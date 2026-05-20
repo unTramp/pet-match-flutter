@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 
-/// Визуальный переключатель RU/EN. Не меняет локаль приложения — серверный
-/// контент по-прежнему идёт через `LocaleInterceptor` с локалью по умолчанию.
-/// Сделано для соответствия дизайну. Интеграция с реальным переключением
-/// языка вне scope тестового задания.
+/// Минимальный текстовый переключатель «RU / EN».
+///
+/// Не меняет локаль приложения — это визуальный элемент для соответствия
+/// дизайну референса. Интеграция с реальным переключением языка вне scope.
 enum AppLang { ru, en }
 
 class LanguageToggle extends StatefulWidget {
@@ -14,76 +14,77 @@ class LanguageToggle extends StatefulWidget {
   final AppLang initial;
 
   @override
-  State<LanguageToggle> createState() => AppLanguageToggleState();
+  State<LanguageToggle> createState() => _LanguageToggleState();
 }
 
-class AppLanguageToggleState extends State<LanguageToggle> {
+class _LanguageToggleState extends State<LanguageToggle> {
   late AppLang _selected = widget.initial;
+
+  void _set(AppLang lang) {
+    if (_selected == lang) return;
+    setState(() => _selected = lang);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: AppColors.lavenderTint,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _LangChip(
-            label: 'RU',
-            selected: _selected == AppLang.ru,
-            onTap: () => setState(() => _selected = AppLang.ru),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _LangText(
+          label: 'RU',
+          active: _selected == AppLang.ru,
+          onTap: () => _set(AppLang.ru),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            '/',
+            style: TextStyle(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+            ),
           ),
-          _LangChip(
-            label: 'EN',
-            selected: _selected == AppLang.en,
-            onTap: () => setState(() => _selected = AppLang.en),
-          ),
-        ],
-      ),
+        ),
+        _LangText(
+          label: 'EN',
+          active: _selected == AppLang.en,
+          onTap: () => _set(AppLang.en),
+        ),
+      ],
     );
   }
 }
 
-class _LangChip extends StatelessWidget {
-  const _LangChip({
+class _LangText extends StatelessWidget {
+  const _LangText({
     required this.label,
-    required this.selected,
+    required this.active,
     required this.onTap,
   });
 
   final String label;
-  final bool selected;
+  final bool active;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: selected ? AppColors.primary : Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(20),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-            child: Text(
-              label,
-              style: TextStyle(
-                color: selected ? Colors.white : AppColors.primary,
-                fontWeight: FontWeight.w700,
-                fontSize: 13,
-                letterSpacing: 0.6,
-              ),
-            ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(6),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 180),
+          style: TextStyle(
+            color: active
+                ? AppColors.primary
+                : AppColors.textSecondary.withValues(alpha: 0.55),
+            fontWeight: active ? FontWeight.w700 : FontWeight.w500,
+            fontSize: 14,
+            letterSpacing: 0.4,
           ),
+          child: Text(label),
         ),
       ),
     );

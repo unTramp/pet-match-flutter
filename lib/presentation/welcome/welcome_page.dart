@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/cache/session_cache.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../widgets/gradient_button.dart';
-import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
 
+/// Hero-экран приветствия.
+///
+/// Композиция (по ревью):
+/// * Кот занимает правую нижнюю четверть экрана (full-bleed).
+/// * За ним мягкий лавандовый blob — единственный декор.
+/// * Над котом — gradient overlay (cream solid слева → прозрачный),
+///   который скрывает зеленоватый ореол PNG-обтравки и обеспечивает
+///   читаемость текста.
+/// * Текст и CTA — слева, акцентное слово в H1 выделено фиолетовым.
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
@@ -18,11 +27,22 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   late Future<bool> _hasActiveSession;
+  bool _imagePrecached = false;
 
   @override
   void initState() {
     super.initState();
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_imagePrecached) {
+      _imagePrecached = true;
+      // Декодим PNG заранее, чтобы первый кадр не подтормаживал.
+      precacheImage(const AssetImage('assets/images/cat.png'), context);
+    }
   }
 
   Future<void> _onRestart() async {
@@ -36,163 +56,177 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
-      backgroundColor: AppColors.cream,
-      body: SafeArea(
-        child: Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: AppColors.cream,
+      ),
+      child: Scaffold(
+        backgroundColor: AppColors.cream,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              const Positioned(
+                right: -90,
+                bottom: 140,
+                child: LavenderBlob(size: 320),
+              ),
+              Positioned.fill(
+                top: null,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.62,
+                    heightFactor: 0.66,
+                    child: Image.asset(
+                      'assets/images/cat.png',
+                      fit: BoxFit.cover,
+                      alignment: Alignment.bottomCenter,
+                      semanticLabel: 'Иллюстрация кота',
+                    ),
+                  ),
+                ),
+              ),
+              const Positioned.fill(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [0.0, 0.45, 0.75],
+                      colors: [
+                        AppColors.cream,
+                        Color(0xCCF7F1E7),
+                        Color(0x00F7F1E7),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 12, 24, 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Align(
+                      alignment: Alignment.centerRight,
+                      child: LanguageToggle(),
+                    ),
+                    const Spacer(flex: 2),
+                    _HeroHeadline(theme: theme),
+                    const SizedBox(height: 14),
+                    Text(
+                      'Несколько коротких вопросов о вашем образе жизни '
+                      '— и мы покажем, какие породы подойдут именно вам.',
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: AppColors.textSecondary,
+                        fontSize: 14,
+                        height: 1.45,
+                      ),
+                    ),
+                    const Spacer(flex: 3),
+                    FutureBuilder<bool>(
+                      future: _hasActiveSession,
+                      builder: (context, snapshot) {
+                        // Оптимистичный рендер: всегда показываем кнопку.
+                        // Когда hasActiveSession резолвится — мягко
+                        // обновляем label.
+                        final hasSession = snapshot.data ?? false;
+                        return _BottomActions(
+                          hasSession: hasSession,
+                          onPressed: () => context.go(
+                            hasSession ? '/questionnaire' : '/intro',
+                          ),
+                          onRestart: hasSession ? _onRestart : null,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HeroHeadline extends StatelessWidget {
+  const _HeroHeadline({required this.theme});
+
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    final baseStyle = theme.textTheme.headlineLarge?.copyWith(
+      fontSize: 34,
+      fontWeight: FontWeight.w800,
+      height: 1.1,
+      color: AppColors.textPrimary,
+    );
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 320),
+      child: RichText(
+        text: TextSpan(
+          style: baseStyle,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 12, 20, 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [AppLogo(), LanguageToggle()],
-              ),
-            ),
-            Expanded(
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  const Positioned(
-                    right: -90,
-                    bottom: 60,
-                    child: LavenderBlob(size: 360),
-                  ),
-                  Positioned(
-                    right: -40,
-                    bottom: 0,
-                    top: 60,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 360),
-                      child: Image.asset(
-                        'assets/images/cat.png',
-                        fit: BoxFit.contain,
-                        alignment: Alignment.bottomRight,
-                      ),
-                    ),
-                  ),
-                  const Positioned(
-                    right: 30,
-                    top: 40,
-                    child: SparkleDeco(size: 22),
-                  ),
-                  const Positioned(
-                    right: 110,
-                    top: 150,
-                    child: HeartDeco(size: 54),
-                  ),
-                  const Positioned(
-                    left: 40,
-                    top: 280,
-                    child: SparkleDeco(size: 16),
-                  ),
-                  const Positioned(
-                    left: 30,
-                    bottom: 100,
-                    child: HeartDeco(size: 72, opacity: 0.22),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 280),
-                          child: Text(
-                            'Мы поможем подобрать питомца, который вам подойдет.',
-                            style: theme.textTheme.headlineLarge?.copyWith(
-                              fontSize: 32,
-                              fontWeight: FontWeight.w800,
-                              height: 1.1,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 230),
-                          child: Text(
-                            'Ответьте на несколько вопросов, и мы покажем, '
-                            'какие питомцы подходят вашему образу жизни и какие '
-                            'могут создать сложности в будущем.',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: AppColors.textSecondary,
-                              fontSize: 13.5,
-                              height: 1.45,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-              child: FutureBuilder<bool>(
-                future: _hasActiveSession,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState != ConnectionState.done) {
-                    return const SizedBox(
-                      height: 64,
-                      child: Center(
-                        child: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                      ),
-                    );
-                  }
-                  final hasSession = snapshot.data ?? false;
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      GradientButton(
-                        label: hasSession ? 'Продолжить' : 'Начать',
-                        onPressed:
-                            () => context.go(
-                              hasSession ? '/questionnaire' : '/intro',
-                            ),
-                      ),
-                      if (hasSession) ...[
-                        const SizedBox(height: 10),
-                        TextButton(
-                          onPressed: _onRestart,
-                          child: const Text('Начать заново'),
-                        ),
-                      ],
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.lock_outline_rounded,
-                            size: 14,
-                            color: AppColors.textSecondary.withValues(
-                              alpha: 0.7,
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            'Ваши ответы конфиденциальны',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              fontSize: 12,
-                              color: AppColors.textSecondary.withValues(
-                                alpha: 0.85,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                },
-              ),
+            const TextSpan(text: 'Найдём питомца, '),
+            TextSpan(
+              text: 'который вам подойдёт.',
+              style: baseStyle?.copyWith(color: AppColors.primary),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _BottomActions extends StatelessWidget {
+  const _BottomActions({
+    required this.hasSession,
+    required this.onPressed,
+    required this.onRestart,
+  });
+
+  final bool hasSession;
+  final VoidCallback onPressed;
+  final VoidCallback? onRestart;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: GradientButton(
+            key: ValueKey<bool>(hasSession),
+            label: hasSession ? 'Продолжить' : 'Подобрать питомца',
+            onPressed: onPressed,
+          ),
+        ),
+        if (onRestart != null) ...[
+          const SizedBox(height: 6),
+          TextButton(
+            onPressed: onRestart,
+            child: const Text('Начать заново'),
+          ),
+        ],
+        const SizedBox(height: 10),
+        Center(
+          child: Text(
+            '≈ 2 минуты · 5–7 вопросов',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontSize: 12,
+              color: AppColors.textSecondary.withValues(alpha: 0.85),
+              letterSpacing: 0.2,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
