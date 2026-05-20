@@ -77,9 +77,10 @@ class _LangText extends StatelessWidget {
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 180),
           style: TextStyle(
-            color: active
-                ? AppColors.primary
-                : AppColors.textSecondary.withValues(alpha: 0.55),
+            color:
+                active
+                    ? AppColors.primary
+                    : AppColors.textSecondary.withValues(alpha: 0.55),
             fontWeight: active ? FontWeight.w700 : FontWeight.w500,
             fontSize: 14,
             letterSpacing: 0.4,

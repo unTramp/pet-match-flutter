@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../core/failures.dart';
+import '../../core/logger.dart';
 import '../../domain/entities/breed_detail.dart';
 import '../../domain/repositories/breed_repository.dart';
 import '../mappers/breed_mapper.dart';
@@ -21,23 +22,32 @@ class BreedRepositoryImpl implements BreedRepository {
       final entity = BreedMapper.fromDto(dto);
       _cache[breedId] = entity;
       return entity;
+    } on AppFailure {
+      rethrow;
     } on DioException catch (e) {
-      switch (e.type) {
-        case DioExceptionType.connectionTimeout:
-        case DioExceptionType.receiveTimeout:
-        case DioExceptionType.sendTimeout:
-          throw const TimeoutFailure();
-        case DioExceptionType.connectionError:
-          throw const NetworkFailure();
-        case DioExceptionType.badResponse:
-        case DioExceptionType.cancel:
-        case DioExceptionType.badCertificate:
-        case DioExceptionType.unknown:
-          throw ServerFailure(
-            statusCode: e.response?.statusCode ?? 0,
-            message: e.message ?? 'Unknown error',
-          );
-      }
+      throw _mapDio(e);
+    } catch (e, st) {
+      appLogger.e('BreedRepository parse error: $e', stackTrace: st);
+      throw ServerFailure(statusCode: -1, message: 'Parse error: $e');
     }
+  }
+}
+
+AppFailure _mapDio(DioException e) {
+  switch (e.type) {
+    case DioExceptionType.connectionTimeout:
+    case DioExceptionType.receiveTimeout:
+    case DioExceptionType.sendTimeout:
+      return const TimeoutFailure();
+    case DioExceptionType.connectionError:
+      return const NetworkFailure();
+    case DioExceptionType.badResponse:
+    case DioExceptionType.cancel:
+    case DioExceptionType.badCertificate:
+    case DioExceptionType.unknown:
+      return ServerFailure(
+        statusCode: e.response?.statusCode ?? 0,
+        message: e.message ?? 'Unknown error',
+      );
   }
 }

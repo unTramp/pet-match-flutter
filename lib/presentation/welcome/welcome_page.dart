@@ -132,9 +132,10 @@ class _WelcomePageState extends State<WelcomePage> {
                         final hasSession = snapshot.data ?? false;
                         return _BottomActions(
                           hasSession: hasSession,
-                          onPressed: () => context.go(
-                            hasSession ? '/questionnaire' : '/intro',
-                          ),
+                          onPressed:
+                              () => context.go(
+                                hasSession ? '/questionnaire' : '/intro',
+                              ),
                           onRestart: hasSession ? _onRestart : null,
                         );
                       },
@@ -208,10 +209,7 @@ class _BottomActions extends StatelessWidget {
         ),
         if (onRestart != null) ...[
           const SizedBox(height: 6),
-          TextButton(
-            onPressed: onRestart,
-            child: const Text('Начать заново'),
-          ),
+          TextButton(onPressed: onRestart, child: const Text('Начать заново')),
         ],
       ],
     );

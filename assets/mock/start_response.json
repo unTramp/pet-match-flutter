@@ -5,8 +5,8 @@
     "display_name": "Тестовый пользователь"
   },
   "stats": {
-    "answered_count": 0,
-    "total_count": 6,
+    "answered_questions_count": 0,
+    "total_questions_count": 6,
     "progress_percent": 0,
     "status": "in_progress"
   },

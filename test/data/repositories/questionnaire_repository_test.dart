@@ -130,6 +130,42 @@ void main() {
     });
   });
 
+  group('parse error mapping', () {
+    test(
+      'TypeError/FormatException из source → ServerFailure(-1)',
+      () async {
+        when(
+          () => source.startSession(externalId: any(named: 'externalId')),
+        ).thenThrow(const FormatException('bad json'));
+
+        try {
+          await repo.startSession('uid:test');
+          fail('expected ServerFailure');
+        } on ServerFailure catch (f) {
+          expect(f.statusCode, -1);
+          expect(f.message, contains('Parse error'));
+        }
+      },
+    );
+
+    test('Уже-типизированный AppFailure rethrows как есть', () async {
+      when(
+        () => source.getDynamicOptions(
+          userId: any(named: 'userId'),
+          questionId: any(named: 'questionId'),
+          query: any(named: 'query'),
+        ),
+      ).thenAnswer((_) async => const DynamicOptionListDto(questionId: 1));
+
+      // EmptyResponseFailure кидается внутри _guard — должен пройти насквозь,
+      // не переупаковаться в ServerFailure(-1).
+      expect(
+        () => repo.getDynamicOptions(userId: 1, questionId: 1),
+        throwsA(isA<EmptyResponseFailure>()),
+      );
+    });
+  });
+
   group('getDynamicOptions', () {
     test('пустой список без query → EmptyResponseFailure', () async {
       when(

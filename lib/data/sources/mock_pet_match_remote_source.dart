@@ -89,16 +89,28 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
     );
   }
 
+  String? _externalId;
+
   @override
   Future<SessionDto> startSession({required String externalId}) async {
     await _maybeFail();
-    _userId = 1;
-    _currentIndex = 0;
-    _pollsAfterCompletion = 0;
     final questions = await _loadQuestions();
+    // Если сессия уже была начата под тем же external_id — это resume
+    // (retry после ошибки, hot-restart с сохранённым uid). Сохраняем прогресс,
+    // чтобы пользователь не откатывался к первому вопросу.
+    // Если external_id новый — сбрасываем индекс на 0 (новая анкета).
+    if (_externalId != externalId) {
+      _externalId = externalId;
+      _currentIndex = 0;
+      _pollsAfterCompletion = 0;
+    }
+    _userId = 1;
+    final isCompleted = _currentIndex >= questions.length;
     return _buildSession(
-      nextQuestion: questions.first,
-      answered: 0,
+      nextQuestion: isCompleted ? null : questions[_currentIndex],
+      compatibility:
+          isCompleted ? const CompatibilityDto(status: 'processing') : null,
+      answered: _currentIndex,
       total: questions.length,
     );
   }
@@ -215,9 +227,10 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
         'assets/mock/breed_$breedId.json',
       );
       return BreedDetailDto.fromJson(jsonDecode(raw) as Map<String, dynamic>);
-    } on Exception {
-      // Fallback: если нет фикстуры под этот id — возвращаем заглушку на основе
-      // первого breed.
+    } catch (_) {
+      // `rootBundle.loadString` для отсутствующего файла бросает FlutterError
+      // (subclass Error, не Exception), поэтому ловим всё. Fallback —
+      // фикстура breed_501.
       final raw = await rootBundle.loadString('assets/mock/breed_501.json');
       return BreedDetailDto.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     }
