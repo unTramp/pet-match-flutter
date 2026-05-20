@@ -156,6 +156,81 @@ void main() {
         ],
   );
 
+  group('toggleMulti with exclusive options', () {
+    const multiQuestion = MultipleChoiceQuestion(
+      id: 8,
+      title: 'Есть ли другие питомцы?',
+      options: [
+        QuestionOption(id: 29, code: 'no-pets', label: 'Нет'),
+        QuestionOption(id: 30, code: 'dog', label: 'Собака'),
+        QuestionOption(id: 31, code: 'cat', label: 'Кошка'),
+      ],
+      exclusiveOptionCodes: {'no-pets'},
+    );
+
+    Session sessionWithMulti() => const Session(
+      userId: 7,
+      progress: Progress(answered: 0, total: 2),
+      nextQuestion: multiQuestion,
+    );
+
+    blocTest<QuestionnaireCubit, QuestionnaireState>(
+      'выбор exclusive после обычной → вытесняет всё кроме exclusive',
+      setUp: () {
+        when(start.call).thenAnswer((_) async => sessionWithMulti());
+      },
+      build: () => QuestionnaireCubit(start, submit, skip),
+      act: (cubit) async {
+        await cubit.start();
+        cubit.toggleMulti(30); // Собака
+        cubit.toggleMulti(31); // Кошка
+        cubit.toggleMulti(29); // Нет (exclusive)
+      },
+      skip: 2,
+      verify: (cubit) {
+        final s = cubit.state as QuestionnaireQuestion;
+        expect(s.selectedOptionIds, {29});
+      },
+    );
+
+    blocTest<QuestionnaireCubit, QuestionnaireState>(
+      'выбор обычной после exclusive → exclusive выбрасывается',
+      setUp: () {
+        when(start.call).thenAnswer((_) async => sessionWithMulti());
+      },
+      build: () => QuestionnaireCubit(start, submit, skip),
+      act: (cubit) async {
+        await cubit.start();
+        cubit.toggleMulti(29); // Нет (exclusive)
+        cubit.toggleMulti(30); // Собака
+      },
+      skip: 2,
+      verify: (cubit) {
+        final s = cubit.state as QuestionnaireQuestion;
+        expect(s.selectedOptionIds, {30});
+      },
+    );
+
+    blocTest<QuestionnaireCubit, QuestionnaireState>(
+      'без exclusive — обычный toggle работает как раньше',
+      setUp: () {
+        when(start.call).thenAnswer((_) async => sessionWithMulti());
+      },
+      build: () => QuestionnaireCubit(start, submit, skip),
+      act: (cubit) async {
+        await cubit.start();
+        cubit.toggleMulti(30);
+        cubit.toggleMulti(31);
+        cubit.toggleMulti(30); // toggle off
+      },
+      skip: 2,
+      verify: (cubit) {
+        final s = cubit.state as QuestionnaireQuestion;
+        expect(s.selectedOptionIds, {31});
+      },
+    );
+  });
+
   blocTest<QuestionnaireCubit, QuestionnaireState>(
     'retry after Error recovers',
     setUp: () {

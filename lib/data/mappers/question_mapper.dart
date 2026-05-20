@@ -28,8 +28,11 @@ class QuestionMapper {
         helpText: dto.helpText,
         isOptional: dto.isOptional,
         options: options,
+        exclusiveOptionCodes: _readExclusiveCodes(dto.configJson),
       ),
-      'dynamic_options' => DynamicOptionsQuestion(
+      // Реальный API возвращает 'search_select' для вопросов с подгрузкой
+      // вариантов; mock-фикстуры используют 'dynamic_options'. Поддерживаем оба.
+      'dynamic_options' || 'search_select' => DynamicOptionsQuestion(
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
@@ -43,5 +46,12 @@ class QuestionMapper {
         options: options,
       ),
     };
+  }
+
+  static Set<String> _readExclusiveCodes(Map<String, dynamic>? configJson) {
+    if (configJson == null) return const <String>{};
+    final raw = configJson['exclusive_option_codes'];
+    if (raw is! List) return const <String>{};
+    return raw.whereType<String>().toSet();
   }
 }

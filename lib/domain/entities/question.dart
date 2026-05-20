@@ -43,14 +43,19 @@ final class MultipleChoiceQuestion extends Question {
     required super.id,
     required super.title,
     required this.options,
+    this.exclusiveOptionCodes = const {},
     super.helpText,
     super.isOptional,
   });
 
   final List<QuestionOption> options;
 
+  /// Коды опций, которые нельзя комбинировать с другими (бэкенд enforces).
+  /// Например, "Нет питомцев" нельзя выбрать вместе с "Собака".
+  final Set<String> exclusiveOptionCodes;
+
   @override
-  List<Object?> get props => [...super.props, options];
+  List<Object?> get props => [...super.props, options, exclusiveOptionCodes];
 }
 
 final class DynamicOptionsQuestion extends Question {

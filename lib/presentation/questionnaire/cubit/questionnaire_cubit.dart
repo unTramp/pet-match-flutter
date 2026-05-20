@@ -50,13 +50,42 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   void toggleMulti(int optionId) {
     final s = state;
     if (s is! QuestionnaireQuestion) return;
-    final updated = Set<int>.from(s.selectedOptionIds);
-    if (updated.contains(optionId)) {
-      updated.remove(optionId);
-    } else {
-      updated.add(optionId);
+    final question = s.question;
+    if (question is! MultipleChoiceQuestion) return;
+
+    final exclusive = question.exclusiveOptionCodes;
+    final tapped = question.options.firstWhere(
+      (o) => o.id == optionId,
+      orElse: () => question.options.first,
+    );
+    final tappedIsExclusive = exclusive.contains(tapped.code);
+
+    final current = Set<int>.from(s.selectedOptionIds);
+
+    if (current.contains(optionId)) {
+      // Toggle off: просто убираем — никаких других правил не нужно.
+      current.remove(optionId);
+      emit(s.copyWith(selectedOptionIds: current));
+      return;
     }
-    emit(s.copyWith(selectedOptionIds: updated));
+
+    if (tappedIsExclusive) {
+      // Кликнули по exclusive-опции → она вытесняет всё остальное.
+      emit(s.copyWith(selectedOptionIds: {optionId}));
+      return;
+    }
+
+    // Кликнули по обычной опции → убираем все ранее выбранные exclusive
+    // и добавляем эту.
+    current.removeWhere((id) {
+      final opt = question.options.firstWhere(
+        (o) => o.id == id,
+        orElse: () => question.options.first,
+      );
+      return exclusive.contains(opt.code);
+    });
+    current.add(optionId);
+    emit(s.copyWith(selectedOptionIds: current));
   }
 
   void selectDynamic(DynamicOption option) {

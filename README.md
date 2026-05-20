@@ -62,13 +62,27 @@ flutter test
 
 Покрыты:
 
-1. **`question_mapper_test.dart`** — конвертация DTO → sealed `Question` (все типы + unknown fallback).
-2. **`questionnaire_repository_test.dart`** — маппинг `DioException` → `AppFailure` + success-кейсы (с `mocktail`).
-3. **`poll_compatibility_test.dart`** — polling success / timeout / network error через `fake_async`.
-4. **`questionnaire_cubit_test.dart`** — state-машина: start/submit/skip/retry (`bloc_test`).
-5. **`questionnaire_page_test.dart`** — Loading / Question / Error состояния UI.
-6. **`result_page_test.dart`** — `MainBreedCard` + `SuggestionCard` рендер + tap.
-7. **`error_view_test.dart`** — сообщение по типу `AppFailure` + Retry callback.
+1. **`question_mapper_test.dart`** — конвертация DTO → sealed `Question`: `single_choice`, `multiple_choice`, `dynamic_options`, `search_select` (имя из реального API), unknown fallback, exclusive_option_codes из `config_json`.
+2. **`compatibility_mapper_test.dart`** — нормализация score (integer 0..100 из реала vs фракция 0..1 из мока) и парсинг status (`ready` / `completed` / `processing` / unknown).
+3. **`questionnaire_repository_test.dart`** — маппинг `DioException` → `AppFailure` + success-кейсы (с `mocktail`).
+4. **`poll_compatibility_test.dart`** — polling success / timeout / network error через `fake_async`.
+5. **`questionnaire_cubit_test.dart`** — state-машина: start/submit/skip/retry + exclusive-option логика в `toggleMulti` (`bloc_test`).
+6. **`questionnaire_page_test.dart`** — Loading / Question / Error состояния UI, ProgressBar, SingleChoiceWidget.
+7. **`result_page_test.dart`** — `MainBreedCard` + `SuggestionCard` рендер + tap.
+8. **`error_view_test.dart`** — сообщение по типу `AppFailure` + Retry callback.
+
+Всего **47** тестов (минимум по ТЗ — 2-3).
+
+## Реальный API — проверено end-to-end
+
+Базовый URL: `https://app-api.dev.pet-match.app/api/v1` (публичный, без auth). Прогон сделан `curl`-ом по 27 вопросам (адаптивная анкета — `total_questions_count` растёт по мере раскрытия scope'ов).
+
+Покрытые отличия от первоначальной разведки и фиксы:
+- **`stats.answered_questions_count` / `stats.total_questions_count`** (а не `*_count`) — `StatsDto` поддерживает оба варианта.
+- **`question_type: "search_select"`** в реале (вместо ожидаемого `dynamic_options`) — `QuestionMapper` маппит оба в `DynamicOptionsQuestion`.
+- **`compatibility.status: "completed"`** (а не `"ready"`) — `CompatibilityMapper` понимает оба.
+- **`score` приходит как integer 0..100** (а не фракция 0..1, как в моке) — нормализуется к единому виду 0..1.
+- **`multiple_choice` exclusive options** — поле `config_json.exclusive_option_codes` читается в `MultipleChoiceQuestion.exclusiveOptionCodes`; `QuestionnaireCubit.toggleMulti` гарантирует на клиенте что exclusive-опция не может быть выбрана вместе с обычными (избегаем 400 от сервера).
 
 ## Mock-фикстуры
 

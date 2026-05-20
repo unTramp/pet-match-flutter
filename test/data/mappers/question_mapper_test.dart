@@ -54,6 +54,53 @@ void main() {
       expect(result, isA<DynamicOptionsQuestion>());
     });
 
+    test('search_select (real API name) → DynamicOptionsQuestion', () {
+      const dto = QuestionDto(
+        id: 41,
+        title: 'Какая порода собаки вам ближе?',
+        questionType: 'search_select',
+      );
+
+      final result = QuestionMapper.fromDto(dto);
+
+      expect(result, isA<DynamicOptionsQuestion>());
+    });
+
+    test('exclusive_option_codes пробрасываются в MultipleChoiceQuestion', () {
+      const dto = QuestionDto(
+        id: 8,
+        title: 'Есть ли у вас другие питомцы?',
+        questionType: 'multiple_choice',
+        options: [
+          OptionDto(id: 29, code: 'people-q-008-option-01', label: 'Нет'),
+          OptionDto(id: 30, code: 'people-q-008-option-02', label: 'Собака'),
+        ],
+        configJson: {
+          'exclusive_option_codes': ['people-q-008-option-01'],
+        },
+      );
+
+      final result = QuestionMapper.fromDto(dto);
+
+      expect(result, isA<MultipleChoiceQuestion>());
+      expect((result as MultipleChoiceQuestion).exclusiveOptionCodes, {
+        'people-q-008-option-01',
+      });
+    });
+
+    test('multiple_choice без config_json → пустой набор exclusive', () {
+      const dto = QuestionDto(
+        id: 9,
+        title: 'Какие качества важны?',
+        questionType: 'multiple_choice',
+        options: [OptionDto(id: 1, code: 'a', label: 'A')],
+      );
+
+      final result = QuestionMapper.fromDto(dto) as MultipleChoiceQuestion;
+
+      expect(result.exclusiveOptionCodes, isEmpty);
+    });
+
     test('unknown question type → fallback SingleChoice (no crash)', () {
       const dto = QuestionDto(
         id: 4,
