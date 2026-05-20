@@ -125,25 +125,14 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 220),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          StatCard(
-                            icon: Icons.schedule_rounded,
-                            title: '≈ 2 минуты',
-                            subtitle: 'на ответы',
-                          ),
-                          SizedBox(height: 10),
-                          StatCard(
-                            icon: Icons.auto_awesome_rounded,
-                            title: 'Персональные',
-                            subtitle: 'рекомендации',
-                          ),
-                        ],
-                      ),
+                    const StatCard(
+                      icon: Icons.schedule_rounded,
+                      label: '≈ 2 минуты на ответы',
+                    ),
+                    const SizedBox(height: 10),
+                    const StatCard(
+                      icon: Icons.auto_awesome_rounded,
+                      label: 'Персональные рекомендации',
                     ),
                     const Spacer(flex: 5),
                     FutureBuilder<bool>(
