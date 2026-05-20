@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/theme/app_colors.dart';
 
@@ -11,17 +12,21 @@ class AppLogo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: 36,
-          height: 36,
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
             color: AppColors.primary.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(12),
           ),
           alignment: Alignment.center,
-          child: const Icon(
-            Icons.pets_rounded,
-            color: AppColors.primary,
-            size: 22,
+          child: SvgPicture.asset(
+            'assets/icons/cathead.svg',
+            width: 26,
+            height: 20,
+            colorFilter: const ColorFilter.mode(
+              AppColors.primary,
+              BlendMode.srcIn,
+            ),
           ),
         ),
         const SizedBox(width: 10),

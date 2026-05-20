@@ -16,7 +16,7 @@ class _PetMatchAppState extends State<PetMatchApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Pet Match',
+      title: 'Pet Match AI',
       theme: AppTheme.light,
       debugShowCheckedModeBanner: false,
       routerConfig: _router,
