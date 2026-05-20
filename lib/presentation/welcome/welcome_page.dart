@@ -9,6 +9,7 @@ import '../widgets/gradient_button.dart';
 import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
+import 'widgets/stat_card.dart';
 
 /// Hero-экран приветствия.
 ///
@@ -123,6 +124,27 @@ class _WelcomePageState extends State<WelcomePage> {
                         height: 1.45,
                       ),
                     ),
+                    const SizedBox(height: 20),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 220),
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          StatCard(
+                            icon: Icons.schedule_rounded,
+                            title: '≈ 2 минуты',
+                            subtitle: 'на ответы',
+                          ),
+                          SizedBox(height: 10),
+                          StatCard(
+                            icon: Icons.auto_awesome_rounded,
+                            title: 'Персональные',
+                            subtitle: 'рекомендации',
+                          ),
+                        ],
+                      ),
+                    ),
                     const Spacer(flex: 5),
                     FutureBuilder<bool>(
                       future: _hasActiveSession,
@@ -195,7 +217,6 @@ class _BottomActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -214,17 +235,6 @@ class _BottomActions extends StatelessWidget {
             child: const Text('Начать заново'),
           ),
         ],
-        const SizedBox(height: 10),
-        Center(
-          child: Text(
-            '≈ 2 минуты · 5–7 вопросов',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 12,
-              color: AppColors.textSecondary.withValues(alpha: 0.85),
-              letterSpacing: 0.2,
-            ),
-          ),
-        ),
       ],
     );
   }
