@@ -6,6 +6,7 @@ import '../../core/cache/session_cache.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../widgets/gradient_button.dart';
+import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
 
@@ -106,9 +107,9 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Align(
-                      alignment: Alignment.centerRight,
-                      child: LanguageToggle(),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [AppLogo(), LanguageToggle()],
                     ),
                     const Spacer(flex: 2),
                     _HeroHeadline(theme: theme),
