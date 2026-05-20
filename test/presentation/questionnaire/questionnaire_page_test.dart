@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pet_match/domain/entities/option.dart';
 import 'package:pet_match/domain/entities/progress.dart';
+import 'package:pet_match/presentation/questionnaire/widgets/option_tile.dart';
 import 'package:pet_match/presentation/questionnaire/widgets/progress_bar.dart';
 import 'package:pet_match/presentation/questionnaire/widgets/single_choice_widget.dart';
 
@@ -81,22 +82,26 @@ void main() {
     expect(tapped, 11);
   });
 
-  testWidgets('SingleChoiceWidget showsCheckedIcon when selected', (
-    tester,
-  ) async {
-    const options = [QuestionOption(id: 1, code: 'a', label: 'A')];
+  testWidgets('SingleChoiceWidget marks selected radio', (tester) async {
+    const options = [
+      QuestionOption(id: 1, code: 'a', label: 'A'),
+      QuestionOption(id: 2, code: 'b', label: 'B'),
+    ];
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: SingleChoiceWidget(
             options: options,
-            selectedId: 1,
+            selectedId: 2,
             onSelect: (_) {},
           ),
         ),
       ),
     );
 
-    expect(find.byIcon(Icons.radio_button_checked_rounded), findsOneWidget);
+    final radios = tester.widgetList<OptionRadio>(find.byType(OptionRadio));
+    expect(radios.length, 2);
+    expect(radios.elementAt(0).selected, isFalse);
+    expect(radios.elementAt(1).selected, isTrue);
   });
 }

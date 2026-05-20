@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/gradient_button.dart';
+
 class QuestionFooter extends StatelessWidget {
   const QuestionFooter({
     super.key,
@@ -19,9 +21,9 @@ class QuestionFooter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ElevatedButton(
+        GradientButton(
+          label: 'Продолжить',
           onPressed: canSubmit ? onSubmit : null,
-          child: const Text('Далее'),
         ),
         if (canSkip) ...[
           const SizedBox(height: 8),

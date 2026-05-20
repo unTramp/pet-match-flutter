@@ -95,7 +95,8 @@ class _QuestionBody extends StatelessWidget {
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: AppColors.primary.withValues(alpha: 0.85),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -133,6 +134,25 @@ class _QuestionBody extends StatelessWidget {
             onSubmit: cubit.submit,
             canSkip: question.isOptional,
             onSkip: cubit.skipCurrent,
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.lock_outline_rounded,
+                size: 14,
+                color: AppColors.textSecondary.withValues(alpha: 0.7),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                'Ваши ответы конфиденциальны',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontSize: 12,
+                  color: AppColors.textSecondary.withValues(alpha: 0.85),
+                ),
+              ),
+            ],
           ),
         ],
       ),

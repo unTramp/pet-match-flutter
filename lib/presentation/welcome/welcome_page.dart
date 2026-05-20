@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/cache/session_cache.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
+import '../widgets/gradient_button.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -88,12 +89,12 @@ class _WelcomePageState extends State<WelcomePage> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ElevatedButton(
+                      GradientButton(
+                        label: hasSession ? 'Продолжить' : 'Начать',
                         onPressed:
                             () => context.go(
                               hasSession ? '/questionnaire' : '/intro',
                             ),
-                        child: Text(hasSession ? 'Продолжить' : 'Начать'),
                       ),
                       if (hasSession) ...[
                         const SizedBox(height: 12),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../widgets/gradient_button.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -55,9 +56,9 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              ElevatedButton(
+              GradientButton(
+                label: 'Начать анкету',
                 onPressed: () => context.go('/questionnaire'),
-                child: const Text('Начать анкету'),
               ),
             ],
           ),

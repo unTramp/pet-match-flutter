@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/option.dart';
+import 'option_tile.dart';
 
 class MultipleChoiceWidget extends StatelessWidget {
   const MultipleChoiceWidget({
@@ -24,41 +24,11 @@ class MultipleChoiceWidget extends StatelessWidget {
         final selected = selectedIds.contains(opt.id);
         return Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: InkWell(
+          child: OptionTile(
+            label: opt.label,
+            selected: selected,
             onTap: () => onToggle(opt.id),
-            borderRadius: BorderRadius.circular(14),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              decoration: BoxDecoration(
-                color:
-                    selected
-                        ? AppColors.primary.withValues(alpha: 0.08)
-                        : AppColors.surface,
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(
-                  color: selected ? AppColors.primary : AppColors.border,
-                  width: selected ? 1.5 : 1,
-                ),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      opt.label,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ),
-                  Icon(
-                    selected
-                        ? Icons.check_box_rounded
-                        : Icons.check_box_outline_blank_rounded,
-                    color:
-                        selected ? AppColors.primary : AppColors.textSecondary,
-                  ),
-                ],
-              ),
-            ),
+            trailing: OptionCheck(selected: selected),
           ),
         );
       }),
