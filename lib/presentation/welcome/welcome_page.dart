@@ -65,45 +65,45 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
       child: Scaffold(
         backgroundColor: AppColors.cream,
-        body: SafeArea(
-          child: Stack(
-            children: [
-              const Positioned(
-                right: -80,
-                bottom: 180,
-                child: LavenderBlob(size: 320),
+        body: Stack(
+          children: [
+            const Positioned(
+              right: -80,
+              bottom: 200,
+              child: LavenderBlob(size: 340),
+            ),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              width: screenWidth * 0.78,
+              child: Image.asset(
+                'assets/images/cat.png',
+                fit: BoxFit.contain,
+                alignment: Alignment.bottomRight,
+                semanticLabel: 'Иллюстрация кота',
               ),
-              Positioned(
-                right: 0,
-                bottom: 0,
-                width: screenWidth * 0.7,
-                child: Image.asset(
-                  'assets/images/cat.png',
-                  fit: BoxFit.contain,
-                  alignment: Alignment.bottomRight,
-                  semanticLabel: 'Иллюстрация кота',
-                ),
-              ),
-              const Positioned.fill(
-                child: IgnorePointer(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        stops: [0.0, 0.4, 0.85],
-                        colors: [
-                          AppColors.cream,
-                          Color(0xCCF7F1E7),
-                          Color(0x00F7F1E7),
-                        ],
-                      ),
+            ),
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [0.0, 0.4, 0.85],
+                      colors: [
+                        AppColors.cream,
+                        Color(0xCCF7F1E7),
+                        Color(0x00F7F1E7),
+                      ],
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(24, 12, 24, 20),
+            ),
+            SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -111,7 +111,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [AppLogo(), LanguageToggle()],
                     ),
-                    const Spacer(flex: 2),
+                    const Spacer(flex: 1),
                     _HeroHeadline(theme: theme),
                     const SizedBox(height: 14),
                     Text(
@@ -123,7 +123,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         height: 1.45,
                       ),
                     ),
-                    const Spacer(flex: 3),
+                    const Spacer(flex: 5),
                     FutureBuilder<bool>(
                       future: _hasActiveSession,
                       builder: (context, snapshot) {
@@ -143,8 +143,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
