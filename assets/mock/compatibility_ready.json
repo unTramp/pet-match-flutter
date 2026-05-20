@@ -1,0 +1,35 @@
+{
+  "status": "ready",
+  "breed_id": 501,
+  "breed_code": "labrador",
+  "breed_name": "Лабрадор-ретривер",
+  "image_url": "https://images.unsplash.com/photo-1547407139-3c921a66005c?w=800",
+  "risk_level": "low",
+  "score": 0.92,
+  "summary": "Лабрадор — отличный выбор для активной семьи. Дружелюбный, легко обучается, прекрасно ладит с детьми и другими питомцами.",
+  "insights": [
+    "Подходит для активного образа жизни.",
+    "Дружелюбен к детям и другим животным.",
+    "Требует регулярных нагрузок и общения."
+  ],
+  "suggestions": [
+    {
+      "breed_id": 502,
+      "breed_code": "golden_retriever",
+      "breed_name": "Голден-ретривер",
+      "risk_level": "low",
+      "score": 0.88,
+      "summary": "Очень близкий по характеру к лабрадору, чуть спокойнее.",
+      "image_url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=800"
+    },
+    {
+      "breed_id": 503,
+      "breed_code": "border_collie",
+      "breed_name": "Бордер-колли",
+      "risk_level": "medium",
+      "score": 0.81,
+      "summary": "Очень умная и активная порода. Требует много занятости.",
+      "image_url": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=800"
+    }
+  ]
+}

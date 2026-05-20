@@ -1,0 +1,184 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:pet_match/core/failures.dart';
+import 'package:pet_match/domain/entities/answer.dart';
+import 'package:pet_match/domain/entities/option.dart';
+import 'package:pet_match/domain/entities/progress.dart';
+import 'package:pet_match/domain/entities/question.dart';
+import 'package:pet_match/domain/entities/session.dart';
+import 'package:pet_match/domain/usecases/skip_question.dart';
+import 'package:pet_match/domain/usecases/start_session.dart';
+import 'package:pet_match/domain/usecases/submit_answer.dart';
+import 'package:pet_match/presentation/questionnaire/cubit/questionnaire_cubit.dart';
+import 'package:pet_match/presentation/questionnaire/cubit/questionnaire_state.dart';
+
+class _MockStart extends Mock implements StartSession {}
+
+class _MockSubmit extends Mock implements SubmitAnswer {}
+
+class _MockSkip extends Mock implements SkipQuestion {}
+
+const _firstQuestion = SingleChoiceQuestion(
+  id: 101,
+  title: 'Какой питомец?',
+  options: [
+    QuestionOption(id: 1, code: 'dog', label: 'Собака'),
+    QuestionOption(id: 2, code: 'cat', label: 'Кошка'),
+  ],
+);
+
+const _secondQuestion = SingleChoiceQuestion(
+  id: 102,
+  title: 'Где живёте?',
+  options: [QuestionOption(id: 11, code: 'flat', label: 'Квартира')],
+);
+
+Session _sessionWithQuestion(Question? q, {int answered = 0, int total = 2}) =>
+    Session(
+      userId: 7,
+      progress: Progress(answered: answered, total: total),
+      nextQuestion: q,
+    );
+
+void main() {
+  late _MockStart start;
+  late _MockSubmit submit;
+  late _MockSkip skip;
+
+  setUpAll(() {
+    registerFallbackValue(const SingleAnswer(questionId: 0, optionId: 0));
+  });
+
+  setUp(() {
+    start = _MockStart();
+    submit = _MockSubmit();
+    skip = _MockSkip();
+  });
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'start emits [Loading, Question] on success',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) => cubit.start(),
+    expect:
+        () => [
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.question.id,
+            'question.id',
+            101,
+          ),
+        ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'submit on non-last question emits [Loading, Question(next)]',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async => _sessionWithQuestion(_secondQuestion, answered: 1),
+      );
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+    },
+    skip: 2,
+    expect:
+        () => [
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.selectedOptionIds,
+            'selection',
+            {1},
+          ),
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.question.id,
+            'next question id',
+            102,
+          ),
+        ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'submit on last question emits Completed',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async => _sessionWithQuestion(null, answered: 2, total: 2),
+      );
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+    },
+    skip: 2,
+    expect:
+        () => [
+          isA<QuestionnaireQuestion>(),
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireCompleted>().having((s) => s.userId, 'userId', 7),
+        ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'start failure emits Error with retry available',
+    setUp: () {
+      when(start.call).thenThrow(const NetworkFailure());
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) => cubit.start(),
+    expect:
+        () => [
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireError>()
+              .having((s) => s.failure, 'failure', isA<NetworkFailure>())
+              .having((s) => s.canRetry, 'canRetry', true),
+        ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'retry after Error recovers',
+    setUp: () {
+      var first = true;
+      when(start.call).thenAnswer((_) async {
+        if (first) {
+          first = false;
+          throw const NetworkFailure();
+        }
+        return _sessionWithQuestion(_firstQuestion);
+      });
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) async {
+      await cubit.start();
+      await cubit.retry();
+    },
+    expect:
+        () => [
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireError>(),
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>(),
+        ],
+  );
+}

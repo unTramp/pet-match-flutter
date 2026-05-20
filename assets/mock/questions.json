@@ -1,0 +1,82 @@
+[
+  {
+    "id": 101,
+    "code": "pet_type",
+    "title": "Какой питомец вам интересен?",
+    "help_text": "Это поможет подобрать подходящую породу.",
+    "question_type": "single_choice",
+    "is_optional": false,
+    "sort_order": 1,
+    "options": [
+      {"id": 1, "code": "dog", "label": "Собака", "sort_order": 1},
+      {"id": 2, "code": "cat", "label": "Кошка", "sort_order": 2}
+    ]
+  },
+  {
+    "id": 102,
+    "code": "living_space",
+    "title": "Где вы живёте?",
+    "help_text": null,
+    "question_type": "single_choice",
+    "is_optional": false,
+    "sort_order": 2,
+    "options": [
+      {"id": 11, "code": "studio", "label": "Студия / маленькая квартира", "sort_order": 1},
+      {"id": 12, "code": "apartment", "label": "Просторная квартира", "sort_order": 2},
+      {"id": 13, "code": "house", "label": "Свой дом", "sort_order": 3}
+    ]
+  },
+  {
+    "id": 103,
+    "code": "activity_level",
+    "title": "Насколько вы активный человек?",
+    "help_text": "Питомец будет разделять ваш образ жизни.",
+    "question_type": "single_choice",
+    "is_optional": false,
+    "sort_order": 3,
+    "options": [
+      {"id": 21, "code": "low", "label": "Спокойный, домашний", "sort_order": 1},
+      {"id": 22, "code": "medium", "label": "Прогулки и активность", "sort_order": 2},
+      {"id": 23, "code": "high", "label": "Спорт и долгие походы", "sort_order": 3}
+    ]
+  },
+  {
+    "id": 104,
+    "code": "experience",
+    "title": "Что для вас важно в питомце?",
+    "help_text": "Можно выбрать несколько вариантов.",
+    "question_type": "multiple_choice",
+    "is_optional": false,
+    "sort_order": 4,
+    "options": [
+      {"id": 31, "code": "calm", "label": "Спокойный темперамент", "sort_order": 1},
+      {"id": 32, "code": "kids_friendly", "label": "Дружелюбен к детям", "sort_order": 2},
+      {"id": 33, "code": "low_shedding", "label": "Минимум линьки", "sort_order": 3},
+      {"id": 34, "code": "trainable", "label": "Легко обучается", "sort_order": 4},
+      {"id": 35, "code": "guard", "label": "Охранные качества", "sort_order": 5}
+    ]
+  },
+  {
+    "id": 105,
+    "code": "allergies",
+    "title": "Есть ли у вас аллергии?",
+    "help_text": "Влияет на выбор гипоаллергенных пород.",
+    "question_type": "single_choice",
+    "is_optional": true,
+    "sort_order": 5,
+    "options": [
+      {"id": 41, "code": "yes", "label": "Да", "sort_order": 1},
+      {"id": 42, "code": "no", "label": "Нет", "sort_order": 2}
+    ]
+  },
+  {
+    "id": 106,
+    "code": "preferred_breed",
+    "title": "Есть ли порода, которая вас вдохновляет?",
+    "help_text": "Можно пропустить и довериться рекомендации.",
+    "question_type": "dynamic_options",
+    "is_optional": true,
+    "sort_order": 6,
+    "options": []
+  }
+]

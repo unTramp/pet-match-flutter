@@ -1,0 +1,152 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/failures.dart';
+import '../../../core/logger.dart';
+import '../../../domain/entities/answer.dart';
+import '../../../domain/entities/option.dart';
+import '../../../domain/entities/question.dart';
+import '../../../domain/entities/session.dart';
+import '../../../domain/usecases/skip_question.dart';
+import '../../../domain/usecases/start_session.dart';
+import '../../../domain/usecases/submit_answer.dart';
+import 'questionnaire_state.dart';
+
+/// Центральный Cubit анкеты. Управляет переходами Question → Loading → Question
+/// и финальным Completed, после которого UI делает redirect на /analyzing.
+class QuestionnaireCubit extends Cubit<QuestionnaireState> {
+  QuestionnaireCubit(this._startSession, this._submitAnswer, this._skipQuestion)
+    : super(const QuestionnaireInitial());
+
+  final StartSession _startSession;
+  final SubmitAnswer _submitAnswer;
+  final SkipQuestion _skipQuestion;
+
+  int? _userId;
+
+  /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
+  /// но ему нужен userId текущей сессии).
+  int get userId => _userId ?? 0;
+
+  /// Стартует или возобновляет анкету. `_userId` сохраняется для последующих
+  /// submit/skip-вызовов.
+  Future<void> start() async {
+    emit(const QuestionnaireLoading());
+    try {
+      final session = await _startSession();
+      _userId = session.userId;
+      _emitFromSession(session);
+    } on AppFailure catch (f) {
+      appLogger.w('start() failed: $f');
+      emit(QuestionnaireError(failure: f, canRetry: true));
+    }
+  }
+
+  void selectSingle(int optionId) {
+    final s = state;
+    if (s is! QuestionnaireQuestion) return;
+    emit(s.copyWith(selectedOptionIds: {optionId}));
+  }
+
+  void toggleMulti(int optionId) {
+    final s = state;
+    if (s is! QuestionnaireQuestion) return;
+    final updated = Set<int>.from(s.selectedOptionIds);
+    if (updated.contains(optionId)) {
+      updated.remove(optionId);
+    } else {
+      updated.add(optionId);
+    }
+    emit(s.copyWith(selectedOptionIds: updated));
+  }
+
+  void selectDynamic(DynamicOption option) {
+    final s = state;
+    if (s is! QuestionnaireQuestion) return;
+    emit(s.copyWith(dynamicSelected: option));
+  }
+
+  void clearDynamic() {
+    final s = state;
+    if (s is! QuestionnaireQuestion) return;
+    emit(s.copyWith(clearDynamicSelected: true));
+  }
+
+  Future<void> submit() async {
+    final s = state;
+    if (s is! QuestionnaireQuestion || !s.canSubmit) return;
+    final userId = _userId;
+    if (userId == null) return;
+
+    final answer = _buildAnswer(s);
+    if (answer == null) return;
+
+    emit(const QuestionnaireLoading());
+    try {
+      final session = await _submitAnswer(userId: userId, answer: answer);
+      _emitFromSession(session);
+    } on AppFailure catch (f) {
+      appLogger.w('submit() failed: $f');
+      emit(QuestionnaireError(failure: f, canRetry: true));
+    }
+  }
+
+  Future<void> skipCurrent() async {
+    final s = state;
+    if (s is! QuestionnaireQuestion) return;
+    if (!s.question.isOptional) return;
+    final userId = _userId;
+    if (userId == null) return;
+
+    emit(const QuestionnaireLoading());
+    try {
+      final session = await _skipQuestion(
+        userId: userId,
+        questionId: s.question.id,
+      );
+      _emitFromSession(session);
+    } on AppFailure catch (f) {
+      appLogger.w('skipCurrent() failed: $f');
+      emit(QuestionnaireError(failure: f, canRetry: true));
+    }
+  }
+
+  /// Повторяет последнее действие, которое привело к ошибке. По умолчанию —
+  /// `start()` (если ошибка случилась до загрузки первого вопроса, _userId
+  /// ещё null). Иначе пытаемся снова загрузить текущую сессию через start —
+  /// бэкенд вернёт session под тем же external_id.
+  Future<void> retry() async {
+    await start();
+  }
+
+  UserAnswer? _buildAnswer(QuestionnaireQuestion s) {
+    return switch (s.question) {
+      SingleChoiceQuestion(:final id) => SingleAnswer(
+        questionId: id,
+        optionId: s.selectedOptionIds.first,
+      ),
+      MultipleChoiceQuestion(:final id) => MultipleAnswer(
+        questionId: id,
+        optionIds: s.selectedOptionIds.toList(),
+      ),
+      DynamicOptionsQuestion(:final id) => () {
+        final selected = s.dynamicSelected;
+        if (selected == null) return null;
+        return DynamicAnswer(
+          questionId: id,
+          code: selected.code,
+          label: selected.label,
+          sourceType: selected.sourceType,
+        );
+      }(),
+    };
+  }
+
+  void _emitFromSession(Session session) {
+    final next = session.nextQuestion;
+    if (next == null) {
+      emit(QuestionnaireCompleted(userId: session.userId));
+      return;
+    }
+    emit(QuestionnaireQuestion(question: next, progress: session.progress));
+  }
+}

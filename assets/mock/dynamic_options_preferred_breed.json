@@ -1,0 +1,15 @@
+{
+  "question_id": 106,
+  "items": [
+    {"source_type": "breed", "code": "labrador", "label": "Лабрадор-ретривер", "sort_order": 1},
+    {"source_type": "breed", "code": "golden_retriever", "label": "Голден-ретривер", "sort_order": 2},
+    {"source_type": "breed", "code": "border_collie", "label": "Бордер-колли", "sort_order": 3},
+    {"source_type": "breed", "code": "poodle", "label": "Пудель", "sort_order": 4},
+    {"source_type": "breed", "code": "shiba_inu", "label": "Сиба-ину", "sort_order": 5},
+    {"source_type": "breed", "code": "corgi", "label": "Вельш-корги", "sort_order": 6},
+    {"source_type": "breed", "code": "maine_coon", "label": "Мейн-кун", "sort_order": 7},
+    {"source_type": "breed", "code": "british_shorthair", "label": "Британская короткошёрстная", "sort_order": 8},
+    {"source_type": "breed", "code": "ragdoll", "label": "Рэгдолл", "sort_order": 9},
+    {"source_type": "breed", "code": "siamese", "label": "Сиамская", "sort_order": 10}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "breed_id": 502,
+  "breed_code": "golden_retriever",
+  "breed_name": "Голден-ретривер",
+  "pet_type": "dog",
+  "summary": "Дружелюбный, мягкий, спокойнее лабрадора. Отлично подходит для семей с детьми.",
+  "image_url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200",
+  "gallery_images": [
+    "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200",
+    "https://images.unsplash.com/photo-1633722715534-3a6087b21ee6?w=1200",
+    "https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=1200"
+  ],
+  "sections": [
+    {
+      "title": "Характер",
+      "body": "Терпеливый, добродушный, легко идёт на контакт."
+    },
+    {
+      "title": "Уход",
+      "body": "Длинная шерсть требует расчёсывания. Активные прогулки и плавание."
+    }
+  ]
+}
