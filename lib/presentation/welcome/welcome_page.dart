@@ -9,7 +9,6 @@ import '../widgets/gradient_button.dart';
 import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
-import 'widgets/stat_card.dart';
 
 /// Hero-экран приветствия.
 ///
@@ -65,7 +64,6 @@ class _WelcomePageState extends State<WelcomePage> {
         systemNavigationBarColor: AppColors.cream,
       ),
       child: Scaffold(
-        backgroundColor: AppColors.cream,
         body: Stack(
           children: [
             const Positioned(
@@ -124,16 +122,6 @@ class _WelcomePageState extends State<WelcomePage> {
                         height: 1.45,
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const StatCard(
-                      icon: Icons.schedule_rounded,
-                      label: '≈ 2 минуты на ответы',
-                    ),
-                    const SizedBox(height: 10),
-                    const StatCard(
-                      icon: Icons.auto_awesome_rounded,
-                      label: 'Персональные рекомендации',
-                    ),
                     const Spacer(flex: 5),
                     FutureBuilder<bool>(
                       future: _hasActiveSession,
@@ -181,11 +169,12 @@ class _HeroHeadline extends StatelessWidget {
         text: TextSpan(
           style: baseStyle,
           children: [
-            const TextSpan(text: 'Найдём питомца, '),
+            const TextSpan(text: 'Найдём питомца,\n'),
             TextSpan(
-              text: 'который вам подойдёт.',
+              text: 'который \nподойдёт\n',
               style: baseStyle?.copyWith(color: AppColors.primary),
             ),
+            const TextSpan(text: 'именно вам.'),
           ],
         ),
       ),
