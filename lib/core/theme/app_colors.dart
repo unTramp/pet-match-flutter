@@ -9,6 +9,8 @@ class AppColors {
   static const Color primaryGradientEnd = Color(0xFF5847D1);
   static const Color accent = Color(0xFF00B894);
   static const Color background = Color(0xFFF7F7FB);
+  static const Color cream = Color(0xFFF7F1E7);
+  static const Color lavenderTint = Color(0xFFEEE9F8);
   static const Color surface = Colors.white;
   static const Color textPrimary = Color(0xFF1F2330);
   static const Color textSecondary = Color(0xFF6E7079);
