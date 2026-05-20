@@ -56,6 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final screenWidth = MediaQuery.of(context).size.width;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(
         statusBarColor: Colors.transparent,
@@ -67,38 +68,35 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Stack(
             children: [
               const Positioned(
-                right: -90,
-                bottom: 140,
+                right: -80,
+                bottom: 180,
                 child: LavenderBlob(size: 320),
               ),
-              Positioned.fill(
-                top: null,
-                child: Align(
+              Positioned(
+                right: 0,
+                bottom: 0,
+                width: screenWidth * 0.7,
+                child: Image.asset(
+                  'assets/images/cat.png',
+                  fit: BoxFit.contain,
                   alignment: Alignment.bottomRight,
-                  child: FractionallySizedBox(
-                    widthFactor: 0.62,
-                    heightFactor: 0.66,
-                    child: Image.asset(
-                      'assets/images/cat.png',
-                      fit: BoxFit.cover,
-                      alignment: Alignment.bottomCenter,
-                      semanticLabel: 'Иллюстрация кота',
-                    ),
-                  ),
+                  semanticLabel: 'Иллюстрация кота',
                 ),
               ),
               const Positioned.fill(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      stops: [0.0, 0.45, 0.75],
-                      colors: [
-                        AppColors.cream,
-                        Color(0xCCF7F1E7),
-                        Color(0x00F7F1E7),
-                      ],
+                child: IgnorePointer(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        stops: [0.0, 0.4, 0.85],
+                        colors: [
+                          AppColors.cream,
+                          Color(0xCCF7F1E7),
+                          Color(0x00F7F1E7),
+                        ],
+                      ),
                     ),
                   ),
                 ),
