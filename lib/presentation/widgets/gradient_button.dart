@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/design/tokens/motion.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
 
 /// Pill-shaped CTA с фиолетовым градиентом, тенью и иконкой-стрелкой.
@@ -52,7 +54,7 @@ class GradientButton extends StatelessWidget {
                 ),
               ),
               if (icon != null) ...[
-                const SizedBox(width: 10),
+                const SizedBox(width: AppSpacing.sm + 2),
                 Icon(icon, size: 22, color: Colors.white),
               ],
             ],
@@ -63,7 +65,7 @@ class GradientButton extends StatelessWidget {
 
     return AnimatedOpacity(
       opacity: enabled ? 1 : 0.45,
-      duration: const Duration(milliseconds: 150),
+      duration: AppMotion.fast,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: const LinearGradient(

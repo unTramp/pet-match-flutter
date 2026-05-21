@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../design/tokens/radius.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -65,7 +66,7 @@ class AppTheme {
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(52),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
@@ -76,7 +77,7 @@ class AppTheme {
           side: const BorderSide(color: AppColors.primary, width: 1.5),
           minimumSize: const Size.fromHeight(52),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
         ),
       ),
@@ -85,7 +86,7 @@ class AppTheme {
         elevation: 0,
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppRadius.xl),
           side: const BorderSide(color: AppColors.border),
         ),
       ),
@@ -93,15 +94,15 @@ class AppTheme {
         filled: true,
         fillColor: AppColors.surface,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppRadius.md),
           borderSide: const BorderSide(color: AppColors.border),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppRadius.md),
           borderSide: const BorderSide(color: AppColors.border),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(AppRadius.md),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
         contentPadding: const EdgeInsets.symmetric(

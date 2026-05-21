@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../core/design/content/app_strings.dart';
 import '../../core/failures.dart';
-import '../../core/theme/app_colors.dart';
+import '../../core/design/components/ui_state_view.dart';
 
 /// Единая точка отображения ошибок в приложении. Принимает [AppFailure] и
 /// показывает осмысленное сообщение по типу. `onRetry` — опционально:
@@ -21,11 +22,10 @@ class ErrorView extends StatelessWidget {
   final String? secondaryLabel;
 
   String get _message => switch (failure) {
-    NetworkFailure() =>
-      'Нет подключения к сети. Проверьте интернет и попробуйте снова.',
-    TimeoutFailure() => 'Сервер долго не отвечает. Попробуйте позже.',
-    ServerFailure() => 'Что-то пошло не так. Попробуйте снова.',
-    EmptyResponseFailure() => 'Нет данных. Попробуйте снова.',
+    NetworkFailure() => AppStrings.common.errorNetwork,
+    TimeoutFailure() => AppStrings.common.errorTimeout,
+    ServerFailure() => AppStrings.common.errorServer,
+    EmptyResponseFailure() => AppStrings.common.errorEmpty,
   };
 
   IconData get _icon => switch (failure) {
@@ -37,37 +37,13 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(_icon, size: 56, color: AppColors.textSecondary),
-            const SizedBox(height: 16),
-            Text(
-              _message,
-              style: theme.textTheme.bodyLarge,
-              textAlign: TextAlign.center,
-            ),
-            if (onRetry != null) ...[
-              const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: onRetry,
-                child: const Text('Повторить'),
-              ),
-            ],
-            if (onSecondary != null && secondaryLabel != null) ...[
-              const SizedBox(height: 12),
-              OutlinedButton(
-                onPressed: onSecondary,
-                child: Text(secondaryLabel!),
-              ),
-            ],
-          ],
-        ),
-      ),
+    return UiStateView.message(
+      icon: _icon,
+      message: _message,
+      primaryLabel: onRetry != null ? AppStrings.common.retry : null,
+      primaryAction: onRetry,
+      secondaryLabel: secondaryLabel,
+      secondaryAction: onSecondary,
     );
   }
 }
