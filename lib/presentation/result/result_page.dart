@@ -46,7 +46,7 @@ class _ResultPageState extends State<ResultPage> {
   }
 
   void _openPrimaryAction(BuildContext context) {
-    _openBreed(context, _primaryCompatibility(widget.compatibility)?.breedId);
+    _openBreed(context, _bottomCtaBreedId(widget.compatibility));
   }
 
   Compatibility? _primaryCompatibility(Compatibility compatibility) {
@@ -61,6 +61,16 @@ class _ResultPageState extends State<ResultPage> {
   ) {
     if (compatibility.breedId != null) return compatibility.suggestions;
     return compatibility.suggestions.skip(1).toList(growable: false);
+  }
+
+  int? _bottomCtaBreedId(Compatibility compatibility) {
+    final primary = _primaryCompatibility(compatibility);
+    if (primary?.breedId case final breedId?) {
+      return breedId;
+    }
+    final suggestions = _visibleSuggestions(compatibility);
+    if (suggestions.isEmpty) return null;
+    return suggestions.first.breedId;
   }
 
   Compatibility _compatibilityFromSuggestion(CompatibilitySuggestion s) =>
@@ -121,6 +131,7 @@ class _ResultPageState extends State<ResultPage> {
     final compatibility = widget.compatibility;
     final primaryCompatibility = _primaryCompatibility(compatibility);
     final suggestions = _visibleSuggestions(compatibility);
+    final bottomCtaBreedId = _bottomCtaBreedId(compatibility);
     final hardReasons = compatibility.hardReasons;
     final risks = compatibility.risks;
     final insights = compatibility.insights;
@@ -180,7 +191,7 @@ class _ResultPageState extends State<ResultPage> {
                   ? AppStrings.result.ctaViewBreed
                   : AppStrings.result.ctaViewAlternatives,
           onPressed:
-              primaryCompatibility != null
+              bottomCtaBreedId != null
                   ? () => _openPrimaryAction(context)
                   : null,
         ),

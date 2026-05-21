@@ -22,9 +22,12 @@
 
 1. `AppSpacing` — отступы.
 2. `AppRadius` — радиусы.
-3. `AppMotion` — длительности и кривые.
-4. `AppColors` — палитра.
-5. `Theme.of(context).textTheme` — типографика.
+3. `AppMotion` — длительности и кривые: базовые `fast`/`normal`/`debounce` и семантические `routeIn`/`routeOut`/`heroIntro`/`pulse`.
+4. `AppColors` — базовая палитра.
+5. `AppAlpha` — семантические прозрачности (`tint*`, `border*`, `muted*`, `shadow*`, `overlay`, `splash`, `divider`, `textOverSurface`).
+6. `AppShadows` — теневая шкала (`card`, `option`, `optionSelected(tint)`).
+7. `AppIconSize` и `AppControlSize` — размеры иконок и интерактивных контролов (tap-target, button-height, selector, thumb, brand-badge, hero-badge, progress bar и т.п.).
+8. `Theme.of(context).textTheme` — типографика, в том числе `displayLarge` для hero-копи welcome-экрана.
 
 ## Базовые компоненты
 

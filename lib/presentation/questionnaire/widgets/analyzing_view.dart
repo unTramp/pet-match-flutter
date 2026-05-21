@@ -7,11 +7,6 @@ import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Промежуточный экран между концом анкеты и показом результата.
-///
-/// Запускается, когда `_emitFromSession` видит `nextQuestion == null` и
-/// compatibility ещё не готова — кубит при этом крутит polling, а UI
-/// показывает пульсирующую иконку и текст «Подбираем…».
 class AnalyzingView extends StatefulWidget {
   const AnalyzingView({super.key});
 

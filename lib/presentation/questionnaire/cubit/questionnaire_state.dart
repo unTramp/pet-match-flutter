@@ -22,8 +22,7 @@ final class QuestionnaireLoading extends QuestionnaireState {
 }
 
 /// Анкета пройдена, бэк считает совместимость. UI показывает отдельный
-/// analyzing-экран (см. ТЗ §3.4: «Analyzing state — промежуточное состояние
-/// после завершения анкеты и перед показом результата»).
+/// analyzing-экран перед переходом к результату.
 final class QuestionnaireAnalyzing extends QuestionnaireState {
   const QuestionnaireAnalyzing();
 }

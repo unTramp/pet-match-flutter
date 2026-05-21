@@ -31,7 +31,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   final PollCompatibility _pollCompatibility;
 
   int? _userId;
-  bool _isResolvingCompletion = false;
   _LastAction? _lastAction;
 
   /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
@@ -49,7 +48,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         onTimeout: () => throw const TimeoutFailure(),
       );
       _userId = session.userId;
-      _emitFromSession(session);
+      await _emitFromSession(session);
     } on AppFailure catch (f) {
       appLogger.w('start() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
@@ -66,9 +65,9 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
   /// Инициализация из уже предзагруженной сессии (например, prefetch на welcome),
   /// чтобы не показывать промежуточный полноэкранный loading.
-  void startWithSession(Session session) {
+  Future<void> startWithSession(Session session) async {
     _userId = session.userId;
-    _emitFromSession(session);
+    await _emitFromSession(session);
   }
 
   void selectSingle(int optionId) {
@@ -141,7 +140,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         answer: answer,
       ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
-      _emitFromSession(session);
+      await _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
       appLogger.w('submit() failed: $f');
@@ -173,7 +172,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         questionId: s.question.id,
       ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
-      _emitFromSession(session);
+      await _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
       appLogger.w('skipCurrent() failed: $f');
@@ -197,6 +196,9 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final action = _lastAction;
     final uid = _userId;
     switch (action) {
+      case _ResolveCompatibilityAction(:final userId):
+        emit(const QuestionnaireAnalyzing());
+        await _resolveCompatibility(userId);
       case _SubmitAction(:final answer) when uid != null:
         await _replaySubmit(uid, answer);
       case _SkipAction(:final questionId) when uid != null:
@@ -222,7 +224,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         answer: answer,
       ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
-      _emitFromSession(session);
+      await _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
       emit(QuestionnaireError(failure: f, canRetry: true));
@@ -251,7 +253,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         questionId: questionId,
       ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
-      _emitFromSession(session);
+      await _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
       emit(QuestionnaireError(failure: f, canRetry: true));
@@ -293,7 +295,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     };
   }
 
-  void _emitFromSession(Session session) {
+  Future<void> _emitFromSession(Session session) async {
     if (isClosed) return;
     final next = session.nextQuestion;
     if (next == null) {
@@ -302,17 +304,15 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         emit(QuestionnaireResultReady(compatibility: ready));
         return;
       }
-      // ТЗ §3.4: analyzing — отдельное состояние перед result.
+      _lastAction = _ResolveCompatibilityAction(session.userId);
       emit(const QuestionnaireAnalyzing());
-      unawaited(_resolveCompatibility(session.userId));
+      await _resolveCompatibility(session.userId);
       return;
     }
     emit(QuestionnaireQuestion(question: next, progress: session.progress));
   }
 
   Future<void> _resolveCompatibility(int userId) async {
-    if (_isResolvingCompletion) return;
-    _isResolvingCompletion = true;
     try {
       final compatibility = await _pollCompatibility(userId: userId);
       if (isClosed) return;
@@ -333,8 +333,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
           canRetry: true,
         ),
       );
-    } finally {
-      _isResolvingCompletion = false;
     }
   }
 }
@@ -355,4 +353,10 @@ final class _SubmitAction extends _LastAction {
 final class _SkipAction extends _LastAction {
   const _SkipAction(this.questionId);
   final int questionId;
+}
+
+final class _ResolveCompatibilityAction extends _LastAction {
+  const _ResolveCompatibilityAction(this.userId);
+
+  final int userId;
 }
