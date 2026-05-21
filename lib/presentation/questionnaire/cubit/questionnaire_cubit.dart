@@ -32,20 +32,15 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   final PollCompatibility _pollCompatibility;
 
   int? _userId;
-  final List<QuestionnaireQuestion> _history = [];
-  QuestionnaireQuestion? _pendingPrevious;
   bool _isResolvingCompletion = false;
 
   /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
   /// но ему нужен userId текущей сессии).
   int get userId => _userId ?? 0;
-  bool get canGoBack => _history.isNotEmpty;
 
   /// Стартует или возобновляет анкету. `_userId` сохраняется для последующих
   /// submit/skip-вызовов.
   Future<void> start() async {
-    _history.clear();
-    _pendingPrevious = null;
     emit(const QuestionnaireLoading());
     try {
       final session = await _startSession().timeout(
@@ -71,8 +66,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   /// Инициализация из уже предзагруженной сессии (например, prefetch на welcome),
   /// чтобы не показывать промежуточный полноэкранный loading.
   void startWithSession(Session session) {
-    _history.clear();
-    _pendingPrevious = null;
     _userId = session.userId;
     _emitFromSession(session);
   }
@@ -139,7 +132,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final answer = _buildAnswer(s);
     if (answer == null) return;
 
-    _pendingPrevious = s;
     emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _submitAnswer(
@@ -150,12 +142,10 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
-      _pendingPrevious = null;
       appLogger.w('submit() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
     } catch (e, st) {
       if (isClosed) return;
-      _pendingPrevious = null;
       appLogger.e('submit() unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
@@ -173,7 +163,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final userId = _userId;
     if (userId == null) return;
 
-    _pendingPrevious = s;
     emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _skipQuestion(
@@ -184,12 +173,10 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
-      _pendingPrevious = null;
       appLogger.w('skipCurrent() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
     } catch (e, st) {
       if (isClosed) return;
-      _pendingPrevious = null;
       appLogger.e('skipCurrent() unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
@@ -198,17 +185,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         ),
       );
     }
-  }
-
-  void goBack() {
-    // Защита от race: пока submit/skip в полёте, back игнорируем.
-    final current = state;
-    if (current is QuestionnaireQuestion && current.isSubmitting) return;
-    if (current is QuestionnaireLoading) return;
-    if (_history.isEmpty) return;
-    _pendingPrevious = null;
-    final previous = _history.removeLast();
-    emit(previous);
   }
 
   /// Повторяет последнее действие, которое привело к ошибке. По умолчанию —
@@ -252,11 +228,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
   void _emitFromSession(Session session) {
     if (isClosed) return;
-    final previous = _pendingPrevious;
-    _pendingPrevious = null;
-    if (previous != null) {
-      _history.add(previous);
-    }
     final next = session.nextQuestion;
     if (next == null) {
       final ready = session.compatibility;

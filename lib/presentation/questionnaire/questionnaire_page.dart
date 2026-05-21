@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,6 +11,8 @@ import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/session.dart';
+import '../welcome/widgets/app_logo.dart';
+import '../welcome/widgets/language_toggle.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
 import 'cubit/questionnaire_cubit.dart';
@@ -59,44 +60,11 @@ class _QuestionnaireView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final isIos = Theme.of(context).platform == TargetPlatform.iOS;
         final questionState = state is QuestionnaireQuestion ? state : null;
         final cubit = context.read<QuestionnaireCubit>();
-
-        Future<void> handleBack() async {
-          if (questionState?.isSubmitting == true) return;
-          if (questionState != null && cubit.canGoBack) {
-            cubit.goBack();
-            return;
-          }
-          final shouldExit = await _confirmExit(context);
-          if (!context.mounted || !shouldExit) return;
-          context.go('/welcome');
-        }
-
         return PopScope(
           canPop: false,
-          onPopInvokedWithResult: (didPop, _) async {
-            if (didPop) return;
-            await handleBack();
-          },
           child: Scaffold(
-            appBar: AppBar(
-              title: Text(AppStrings.questionnaire.appBarTitle),
-              leading: IconButton(
-                icon: Icon(
-                  isIos ? CupertinoIcons.chevron_back : Icons.arrow_back_rounded,
-                ),
-                onPressed: handleBack,
-              ),
-              bottom:
-                  questionState?.isSubmitting == true
-                      ? const PreferredSize(
-                        preferredSize: Size.fromHeight(2),
-                        child: _SubmittingTopProgress(),
-                      )
-                      : null,
-            ),
             bottomNavigationBar:
                 questionState == null
                     ? null
@@ -108,62 +76,33 @@ class _QuestionnaireView extends StatelessWidget {
                       onSkip: cubit.skipCurrent,
                     ),
             body: SafeArea(
-              child: switch (state) {
-                QuestionnaireInitial() || QuestionnaireLoading() =>
-                  LoadingView(message: AppStrings.questionnaire.loading),
-                QuestionnaireQuestion() =>
-                  _QuestionBody(state: state, isSubmitting: state.isSubmitting),
-                QuestionnaireError(:final failure) => ErrorView(
-                  failure: failure,
-                  onRetry: () => context.read<QuestionnaireCubit>().retry(),
-                ),
-                QuestionnaireResultReady() => const LoadingView(),
-              },
+              child: Column(
+                children: [
+                  const _QuestionnaireTopBar(),
+                  if (questionState?.isSubmitting == true)
+                    const _SubmittingTopProgress(),
+                  Expanded(
+                    child: switch (state) {
+                      QuestionnaireInitial() || QuestionnaireLoading() =>
+                        LoadingView(message: AppStrings.questionnaire.loading),
+                      QuestionnaireQuestion() => _QuestionBody(
+                        state: state,
+                        isSubmitting: state.isSubmitting,
+                      ),
+                      QuestionnaireError(:final failure) => ErrorView(
+                        failure: failure,
+                        onRetry: () => context.read<QuestionnaireCubit>().retry(),
+                      ),
+                      QuestionnaireResultReady() => const LoadingView(),
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );
       },
     );
-  }
-
-  Future<bool> _confirmExit(BuildContext context) async {
-    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
-    final result = await showDialog<bool>(
-      context: context,
-      builder:
-          (context) =>
-              isIos
-                  ? CupertinoAlertDialog(
-                    title: Text(AppStrings.questionnaire.exitDialogTitle),
-                    content: Text(AppStrings.questionnaire.exitDialogMessage),
-                    actions: [
-                      CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(false),
-                        child: Text(AppStrings.questionnaire.exitDialogCancel),
-                      ),
-                      CupertinoDialogAction(
-                        isDestructiveAction: true,
-                        onPressed: () => Navigator.of(context).pop(true),
-                        child: Text(AppStrings.questionnaire.exitDialogConfirm),
-                      ),
-                    ],
-                  )
-                  : AlertDialog(
-                    title: Text(AppStrings.questionnaire.exitDialogTitle),
-                    content: Text(AppStrings.questionnaire.exitDialogMessage),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(false),
-                        child: Text(AppStrings.questionnaire.exitDialogCancel),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(true),
-                        child: Text(AppStrings.questionnaire.exitDialogConfirm),
-                      ),
-                    ],
-                  ),
-    );
-    return result ?? false;
   }
 }
 
@@ -173,6 +112,26 @@ class _SubmittingTopProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LinearProgressIndicator(minHeight: 2);
+  }
+}
+
+class _QuestionnaireTopBar extends StatelessWidget {
+  const _QuestionnaireTopBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.sm,
+        AppSpacing.xl,
+        AppSpacing.sm,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [AppLogo(), LanguageToggle()],
+      ),
+    );
   }
 }
 
