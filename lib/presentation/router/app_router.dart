@@ -5,7 +5,6 @@ import '../../core/cache/session_cache.dart';
 import '../../core/di/injection.dart';
 import '../../domain/entities/compatibility.dart';
 import '../../domain/entities/session.dart';
-import '../analyzing/analyzing_page.dart';
 import '../details/breed_detail_page.dart';
 import '../details/breed_gallery_page.dart';
 import '../intro/intro_page.dart';
@@ -52,18 +51,6 @@ GoRouter buildRouter() {
                 initialSession:
                     state.extra is Session ? state.extra as Session : null,
               ),
-            ),
-      ),
-      GoRoute(
-        path: '/analyzing',
-        // extra обязателен; если открыли маршрут без него (deep link,
-        // отсутствие state на restore) — мягко уводим на welcome,
-        // вместо crash на `state.extra! as int`.
-        redirect: (_, state) => state.extra is int ? null : '/welcome',
-        pageBuilder:
-            (context, state) => _buildAppTransitionPage(
-              key: state.pageKey,
-              child: AnalyzingPage(userId: state.extra! as int),
             ),
       ),
       GoRoute(

@@ -110,21 +110,6 @@ void main() {
       expect(find.byType(IntroPage), findsOneWidget);
     });
 
-    testWidgets('/analyzing без extra → redirect на /welcome', (tester) async {
-      when(cache.hasActiveSession).thenAnswer((_) async => false);
-      final router = buildRouter();
-      router.go('/analyzing'); // extra=null
-
-      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
-      await tester.pumpAndSettle(const Duration(milliseconds: 200));
-
-      expect(
-        router.routerDelegate.currentConfiguration.uri.path,
-        '/welcome',
-      );
-      expect(find.byType(WelcomePage), findsOneWidget);
-    });
-
     testWidgets('/result без extra → redirect на /welcome', (tester) async {
       when(cache.hasActiveSession).thenAnswer((_) async => false);
       final router = buildRouter();
