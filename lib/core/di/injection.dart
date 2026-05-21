@@ -22,7 +22,7 @@ final GetIt sl = GetIt.instance;
 /// `--dart-define=API_BASE_URL=...` for staging/local servers.
 const String _defaultBaseUrl = 'https://app-api.dev.pet-match.app/api/v1';
 
-const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: true);
+const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: false);
 const String baseUrl = String.fromEnvironment(
   'API_BASE_URL',
   defaultValue: _defaultBaseUrl,

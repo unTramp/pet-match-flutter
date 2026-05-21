@@ -1,34 +1,32 @@
-# App Flow (Current)
+# Текущий пользовательский сценарий
 
-This document captures the current user flow after UX cleanup.
+Документ фиксирует актуальный сценарий после UX-полировки.
 
-## Entry
+## Вход
 
 1. `Welcome`
-2. If active session exists: CTA label is `Продолжить`, otherwise `Начать`.
+2. Если активная сессия уже есть, CTA показывает `Продолжить`; если нет - `Начать`.
 
-## Start / Continue behavior
+## Старт и продолжение
 
-- `Welcome` CTA and `Intro` CTA both prefetch session via `StartSession`.
-- CTA shows loading while request is in flight.
-- On success, app opens `Questionnaire` with prefetched `Session` in route `extra`.
+- CTA на `Welcome` и `Intro` заранее получает сессию через `StartSession`.
+- Пока запрос выполняется, CTA показывает состояние загрузки.
+- После успешного ответа приложение открывает `Questionnaire` и передаёт уже полученную `Session` через route `extra`.
 
-## Questionnaire behavior
+## Анкета
 
-- No back navigation inside questionnaire (system back is blocked).
-- Header is aligned with welcome style (`AppLogo` + `LanguageToggle`).
-- While submitting:
-  - CTA shows loading
-  - answer options are non-interactive and visually dimmed
-  - top thin progress line is shown
+- Возврата назад внутри анкеты нет: системная кнопка назад заблокирована.
+- Верхняя панель совпадает со стилем Welcome: `AppLogo` + `LanguageToggle`.
+- Во время отправки ответа CTA показывает загрузку, варианты ответа становятся неактивными и визуально приглушаются.
+- Дополнительно отображается тонкая верхняя линия процесса отправки.
 
-## Completion behavior
+## Завершение
 
-- Dedicated `Analyzing` screen is not part of questionnaire happy-path anymore.
-- After last answer, compatibility polling runs inside `QuestionnaireCubit`.
-- App navigates directly to `Result` when compatibility is ready.
+- После последнего ответа расчёт совместимости выполняется внутри `QuestionnaireCubit`.
+- Текущий вопрос остаётся на экране с loading-состоянием CTA и верхней линией процесса.
+- Когда результат готов, приложение сразу переходит на `Result`.
 
-## Resume behavior
+## Возобновление
 
-- `StartSession` first tries `getSession(savedUserId)` if local `savedUserId` exists.
-- If no saved id, it falls back to `startSession(uid:...)`.
+- `StartSession` сначала вызывает `getSession(savedUserId)`, если локально сохранён `savedUserId`.
+- Если сохранённого id нет, используется `startSession(uid:...)`.

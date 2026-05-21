@@ -5,7 +5,6 @@ class AppStrings {
   static const welcome = _WelcomeStrings();
   static const intro = _IntroStrings();
   static const questionnaire = _QuestionnaireStrings();
-  static const analyzing = _AnalyzingStrings();
   static const result = _ResultStrings();
   static const details = _DetailsStrings();
 }
@@ -49,7 +48,8 @@ class _IntroStrings {
   final String bullet1Title = 'Ответьте на несколько вопросов';
   final String bullet1Body = 'О вашем образе жизни, жилье и предпочтениях.';
   final String bullet2Title = 'Получите рекомендацию';
-  final String bullet2Body = 'Подберём породу, которая вам подходит больше всего.';
+  final String bullet2Body =
+      'Подберём породу, которая вам подходит больше всего.';
   final String bullet3Title = 'Узнайте детали';
   final String bullet3Body = 'Характер, уход, особенности и фотографии.';
 }
@@ -75,13 +75,6 @@ class _QuestionnaireStrings {
       'Похоже, эта версия приложения устарела. Если вопрос '
       'опциональный — пропустите его кнопкой ниже. Иначе обновите '
       'приложение и попробуйте снова.';
-}
-
-class _AnalyzingStrings {
-  const _AnalyzingStrings();
-
-  final String title = 'Анализируем ответы';
-  final String subtitle = 'Подбираем подходящую породу под ваш профиль…';
 }
 
 class _ResultStrings {
