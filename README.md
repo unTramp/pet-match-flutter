@@ -77,23 +77,26 @@ flutter test
       Welcome
     </td>
     <td align="center">
-      <img src="docs/screenshots/question-search.png" alt="Анкета: поиск породы" width="180"><br>
-      Анкета: поиск породы
+      <img src="docs/screenshots/intro-how-it-works.png" alt="Как это работает" width="180"><br>
+      Как это работает
     </td>
     <td align="center">
-      <img src="docs/screenshots/question-multi.png" alt="Анкета: множественный выбор" width="180"><br>
-      Анкета: множественный выбор
+      <img src="docs/screenshots/question-single.png" alt="Анкета: одиночный выбор" width="180"><br>
+      Анкета: одиночный выбор
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="docs/screenshots/result.png" alt="Результат" width="180"><br>
+      <img src="docs/screenshots/question-multi-selected.png" alt="Анкета: множественный выбор" width="180"><br>
+      Анкета: множественный выбор
+    </td>
+    <td align="center">
+      <img src="docs/screenshots/result-main.png" alt="Результат" width="180"><br>
       Результат
     </td>
     <td align="center">
-      <img src="docs/screenshots/breed-details.png" alt="О породе" width="180"><br>
-      О породе
+      <img src="docs/screenshots/result-details.png" alt="Факторы совпадения" width="180"><br>
+      Факторы совпадения
     </td>
-    <td></td>
   </tr>
 </table>
