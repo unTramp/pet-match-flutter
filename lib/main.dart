@@ -11,7 +11,7 @@ Future<void> main() async {
 
   // Cubit-фабрики регистрируются здесь, чтобы не образовывать цикл импортов
   // между core/di и presentation.
-  sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl()));
+  sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl(), sl()));
   sl.registerFactory(() => BreedDetailCubit(sl()));
 
   runApp(const PetMatchApp());

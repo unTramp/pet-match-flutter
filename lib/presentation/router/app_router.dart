@@ -27,13 +27,31 @@ GoRouter buildRouter() {
     },
     routes: [
       GoRoute(path: '/', redirect: (_, __) => '/welcome'),
-      GoRoute(path: '/welcome', builder: (_, __) => const WelcomePage()),
-      GoRoute(path: '/intro', builder: (_, __) => const IntroPage()),
+      GoRoute(
+        path: '/welcome',
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: const WelcomePage(),
+            ),
+      ),
+      GoRoute(
+        path: '/intro',
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: const IntroPage(),
+            ),
+      ),
       GoRoute(
         path: '/questionnaire',
-        builder:
-            (_, state) => QuestionnairePage(
-              initialSession: state.extra is Session ? state.extra as Session : null,
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: QuestionnairePage(
+                initialSession:
+                    state.extra is Session ? state.extra as Session : null,
+              ),
             ),
       ),
       GoRoute(
@@ -42,15 +60,21 @@ GoRouter buildRouter() {
         // отсутствие state на restore) — мягко уводим на welcome,
         // вместо crash на `state.extra! as int`.
         redirect: (_, state) => state.extra is int ? null : '/welcome',
-        builder: (_, state) => AnalyzingPage(userId: state.extra! as int),
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: AnalyzingPage(userId: state.extra! as int),
+            ),
       ),
       GoRoute(
         path: '/result',
         redirect:
             (_, state) => state.extra is Compatibility ? null : '/welcome',
-        builder:
-            (_, state) =>
-                ResultPage(compatibility: state.extra! as Compatibility),
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: ResultPage(compatibility: state.extra! as Compatibility),
+            ),
       ),
       GoRoute(
         path: '/breed/:id',
@@ -59,23 +83,52 @@ GoRouter buildRouter() {
           if (raw == null || int.tryParse(raw) == null) return '/welcome';
           return null;
         },
-        builder:
-            (_, state) => BreedDetailPage(
-              breedId: int.parse(state.pathParameters['id']!),
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: BreedDetailPage(
+                breedId: int.parse(state.pathParameters['id']!),
+              ),
             ),
       ),
       GoRoute(
         path: '/breed/:id/gallery',
-        builder:
-            (_, state) => BreedGalleryPage(
-              images:
-                  (state.extra as List<dynamic>? ?? const <dynamic>[])
-                      .cast<String>()
-                      .toList(),
+        pageBuilder:
+            (context, state) => _buildAppTransitionPage(
+              key: state.pageKey,
+              child: BreedGalleryPage(
+                images:
+                    (state.extra as List<dynamic>? ?? const <dynamic>[])
+                        .cast<String>()
+                        .toList(),
+              ),
             ),
       ),
     ],
     errorBuilder: (_, __) => const _RouterErrorFallback(),
+  );
+}
+
+CustomTransitionPage<void> _buildAppTransitionPage({
+  required LocalKey key,
+  required Widget child,
+}) {
+  return CustomTransitionPage<void>(
+    key: key,
+    child: child,
+    transitionDuration: const Duration(milliseconds: 240),
+    reverseTransitionDuration: const Duration(milliseconds: 220),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      final fade = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+      final slide = Tween<Offset>(
+        begin: const Offset(0, 0.02),
+        end: Offset.zero,
+      ).animate(fade);
+      return FadeTransition(
+        opacity: fade,
+        child: SlideTransition(position: slide, child: child),
+      );
+    },
   );
 }
 

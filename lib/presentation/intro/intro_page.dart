@@ -7,6 +7,7 @@ import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
+import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
 
@@ -18,6 +19,7 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
+  static const _prefetchTimeout = Duration(seconds: 15);
   bool _isStarting = false;
 
   static final _bullets = <_IntroBullet>[
@@ -42,7 +44,10 @@ class _IntroPageState extends State<IntroPage> {
     if (_isStarting) return;
     setState(() => _isStarting = true);
     try {
-      final session = await sl<StartSession>()();
+      final session = await sl<StartSession>()().timeout(
+        _prefetchTimeout,
+        onTimeout: () => throw const TimeoutFailure(),
+      );
       if (!mounted) return;
       context.go('/questionnaire', extra: session);
     } catch (_) {

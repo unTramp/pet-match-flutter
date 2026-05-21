@@ -27,7 +27,7 @@ void main() {
     sl.registerSingleton<SessionCache>(cache);
     // Cubit factories — обычно в main.dart, здесь делаем то же самое.
     if (!sl.isRegistered<QuestionnaireCubit>()) {
-      sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl()));
+      sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl(), sl()));
     }
     if (!sl.isRegistered<BreedDetailCubit>()) {
       sl.registerFactory(() => BreedDetailCubit(sl()));

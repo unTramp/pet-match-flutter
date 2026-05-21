@@ -12,8 +12,14 @@ class StartSession {
   final SessionCache _cache;
 
   Future<Session> call() async {
-    final uid = await _cache.getOrCreateUid();
-    final session = await _repository.startSession('uid:$uid');
+    final savedUserId = await _cache.getSavedUserId();
+    final session =
+        savedUserId != null
+            ? await _repository.getSession(savedUserId)
+            : await () async {
+              final uid = await _cache.getOrCreateUid();
+              return _repository.startSession('uid:$uid');
+            }();
     await _cache.saveUserId(session.userId);
     return session;
   }

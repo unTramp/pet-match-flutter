@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../core/failures.dart';
+import '../../../domain/entities/compatibility.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/entities/progress.dart';
 import '../../../domain/entities/question.dart';
@@ -70,14 +71,14 @@ final class QuestionnaireQuestion extends QuestionnaireState {
   ];
 }
 
-/// Анкета завершена, переходим на /analyzing для polling совместимости.
-final class QuestionnaireCompleted extends QuestionnaireState {
-  const QuestionnaireCompleted({required this.userId});
+/// Совместимость готова, UI делает redirect на /result.
+final class QuestionnaireResultReady extends QuestionnaireState {
+  const QuestionnaireResultReady({required this.compatibility});
 
-  final int userId;
+  final Compatibility compatibility;
 
   @override
-  List<Object?> get props => [userId];
+  List<Object?> get props => [compatibility];
 }
 
 final class QuestionnaireError extends QuestionnaireState {

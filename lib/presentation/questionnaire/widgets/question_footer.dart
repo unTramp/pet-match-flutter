@@ -27,7 +27,7 @@ class QuestionFooter extends StatelessWidget {
       children: [
         UiButton(
           label: AppStrings.questionnaire.continueCta,
-          onPressed: (canSubmit && !isSubmitting) ? onSubmit : null,
+          onPressed: canSubmit ? onSubmit : null,
           loading: isSubmitting,
         ),
         if (canSkip) ...[

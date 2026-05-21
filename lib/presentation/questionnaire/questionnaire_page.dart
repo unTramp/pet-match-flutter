@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,9 +34,11 @@ class QuestionnairePage extends StatelessWidget {
         final cubit = sl<QuestionnaireCubit>();
         final session = initialSession;
         if (session != null) {
-          cubit.startWithSession(session);
+          unawaited(
+            Future<void>.microtask(() => cubit.startWithSession(session)),
+          );
         } else {
-          cubit.start();
+          unawaited(Future<void>.microtask(cubit.start));
         }
         return cubit;
       },
@@ -50,8 +54,8 @@ class _QuestionnaireView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<QuestionnaireCubit, QuestionnaireState>(
       listener: (context, state) {
-        if (state is QuestionnaireCompleted) {
-          context.go('/analyzing', extra: state.userId);
+        if (state is QuestionnaireResultReady) {
+          context.go('/result', extra: state.compatibility);
         }
       },
       builder: (context, state) {
@@ -113,7 +117,7 @@ class _QuestionnaireView extends StatelessWidget {
                   failure: failure,
                   onRetry: () => context.read<QuestionnaireCubit>().retry(),
                 ),
-                QuestionnaireCompleted() => const LoadingView(),
+                QuestionnaireResultReady() => const LoadingView(),
               },
             ),
           ),

@@ -10,6 +10,7 @@ import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/motion.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
+import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
 import 'widgets/app_logo.dart';
@@ -34,6 +35,7 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage>
     with SingleTickerProviderStateMixin {
+  static const _prefetchTimeout = Duration(seconds: 15);
   late Future<bool> _hasActiveSession;
   late final AnimationController _introController;
   late final Animation<double> _headlineFade;
@@ -51,7 +53,7 @@ class _WelcomePageState extends State<WelcomePage>
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
     _introController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1100),
+      duration: const Duration(milliseconds: 900),
     );
     _headlineFade = CurvedAnimation(
       parent: _introController,
@@ -81,7 +83,7 @@ class _WelcomePageState extends State<WelcomePage>
     );
     _ctaFade = CurvedAnimation(
       parent: _introController,
-      curve: const Interval(0.62, 1.0, curve: Curves.easeOut),
+      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
     );
     _ctaSlide = Tween<Offset>(
       begin: const Offset(0, 0.06),
@@ -89,13 +91,13 @@ class _WelcomePageState extends State<WelcomePage>
     ).animate(
       CurvedAnimation(
         parent: _introController,
-        curve: const Interval(0.62, 1.0, curve: Curves.easeOutCubic),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOutCubic),
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // На iOS первый layout/paint может "съесть" начало анимации.
       // Стартуем после первого кадра с короткой паузой.
-      await Future<void>.delayed(const Duration(milliseconds: 120));
+      await Future<void>.delayed(const Duration(milliseconds: 40));
       if (!mounted) return;
       unawaited(_introController.forward(from: 0));
     });
@@ -129,7 +131,10 @@ class _WelcomePageState extends State<WelcomePage>
     if (_isContinuing) return;
     setState(() => _isContinuing = true);
     try {
-      final session = await sl<StartSession>()();
+      final session = await sl<StartSession>()().timeout(
+        _prefetchTimeout,
+        onTimeout: () => throw const TimeoutFailure(),
+      );
       if (!mounted) return;
       context.go('/questionnaire', extra: session);
     } catch (_) {
