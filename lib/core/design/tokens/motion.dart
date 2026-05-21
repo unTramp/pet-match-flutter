@@ -7,7 +7,6 @@ class AppMotion {
   // Базовые длительности контролов и transitions.
   static const Duration fast = Duration(milliseconds: 150);
   static const Duration normal = Duration(milliseconds: 200);
-  static const Duration debounce = Duration(milliseconds: 400);
 
   // Семантические длительности экранов и hero-анимаций.
   static const Duration routeIn = Duration(milliseconds: 240);

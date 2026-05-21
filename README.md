@@ -11,6 +11,12 @@ flutter run
 
 По умолчанию приложение запускается с реальным dev API.
 
+Для запуска с конкретным `uid` из ТЗ:
+
+```bash
+flutter run --dart-define=PET_MATCH_EXTERNAL_ID=tester-12345
+```
+
 Для запуска с mock-данными:
 
 ```bash
@@ -29,6 +35,7 @@ flutter build apk --release
 |---|---|---|
 | `USE_MOCK` | `false` | `false` - реальный dev API, `true` - данные из `assets/mock/` |
 | `API_BASE_URL` | `https://app-api.dev.pet-match.app/api/v1` | Базовый URL API |
+| `PET_MATCH_EXTERNAL_ID` | пусто | Фиксированный `uid` для проверки resume-flow через dev API |
 | `MOCK_FAIL_RATE` | `0` | Вероятность сетевой ошибки в mock-режиме |
 
 ## Архитектура
@@ -77,7 +84,7 @@ flutter test
 - **Источник данных переключается build-флагом.** По умолчанию используется реальный dev API; mock-режим (`assets/mock/*.json`) подключается через `--dart-define=USE_MOCK=true` для offline-демо и тестов.
 - **Polling совместимости встроен в анкету.** Финальное состояние подбора получаем через polling `GET /session` (интервал 3 с, общий таймаут 30 с) с отдельным промежуточным состоянием `Analyzing`.
 - **State management.** Каждый Cubit отвечает за один экран; общая инфраструктура (`AppFailure`, дизайн-токены, маршруты, ассеты) централизована в `core/`.
-- **Логичные дальнейшие шаги.** Подключение ARB-локализации поверх готовой `AppStrings`-структуры и production-конфигурации Android-сборки.
+- **Scope тестового задания.** Основной flow реализован полностью; feedback/post-result flow не добавлялся, так как он не требуется в ТЗ.
 
 ## Документация
 

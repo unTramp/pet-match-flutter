@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/design/tokens/spacing.dart';
 import '../welcome/widgets/app_logo.dart';
-import '../welcome/widgets/language_toggle.dart';
+import '../welcome/widgets/locale_badge.dart';
 
 class TopBrandBar extends StatelessWidget {
   const TopBrandBar({
@@ -35,7 +35,7 @@ class TopBrandBar extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               child: logo,
             ),
-          const LanguageToggle(),
+          const LocaleBadge(),
         ],
       ),
     );
