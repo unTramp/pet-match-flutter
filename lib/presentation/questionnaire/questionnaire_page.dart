@@ -162,7 +162,9 @@ class _QuestionBody extends StatelessWidget {
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
+                        color: AppColors.primary.withValues(
+                          alpha: AppAlpha.textOverSurface,
+                        ),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -173,7 +175,9 @@ class _QuestionBody extends StatelessWidget {
                     Text(
                       AppStrings.questionnaire.multiSelectHint,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary.withValues(alpha: AppAlpha.divider),
+                        color: AppColors.textSecondary.withValues(
+                          alpha: AppAlpha.divider,
+                        ),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -223,16 +227,8 @@ class _QuestionBody extends StatelessWidget {
     );
   }
 
-  /// userId доступен только после `start()`. Берём его через progress нельзя —
-  /// поэтому Cubit хранит `_userId` приватно. Здесь же DynamicOptionsWidget
-  /// получает userId напрямую из Cubit через приватный API. Чтобы не
-  /// усложнять — используем `state.progress`-инвариант: к моменту, когда
-  /// показывается dynamic question, userId уже точно есть в Cubit; вытащим
-  /// его через прямой публичный метод.
   int _userIdFromContext(BuildContext context) {
-    // Cubit хранит userId внутри; чтобы не плодить публичных полей,
-    // используем callback-стиль: dynamic widget вызывает usecase сам через DI.
-    // Здесь возвращаем актуальный userId через cubit.
+    // Dynamic-options появляются только после старта сессии, когда userId уже известен.
     return context.read<QuestionnaireCubit>().userId;
   }
 }
