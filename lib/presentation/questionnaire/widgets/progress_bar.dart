@@ -27,7 +27,7 @@ class ProgressBar extends StatelessWidget {
             Text(
               '${progress.percentInt}%',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.primary,
+                color: AppColors.primary.withValues(alpha: 0.85),
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -36,11 +36,28 @@ class ProgressBar extends StatelessWidget {
         const SizedBox(height: AppSpacing.sm),
         ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.sm),
-          child: LinearProgressIndicator(
-            value: progress.percent,
-            minHeight: 6,
-            backgroundColor: AppColors.border,
-            valueColor: const AlwaysStoppedAnimation(AppColors.primary),
+          child: SizedBox(
+            height: 6,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(color: AppColors.border),
+                FractionallySizedBox(
+                  widthFactor: progress.percent.clamp(0.0, 1.0),
+                  alignment: Alignment.centerLeft,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.primary.withValues(alpha: 0.82),
+                          AppColors.primary,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

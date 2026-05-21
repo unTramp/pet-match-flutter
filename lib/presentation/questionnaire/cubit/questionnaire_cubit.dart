@@ -46,6 +46,15 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     }
   }
 
+  /// Инициализация из уже предзагруженной сессии (например, prefetch на welcome),
+  /// чтобы не показывать промежуточный полноэкранный loading.
+  void startWithSession(Session session) {
+    _history.clear();
+    _pendingPrevious = null;
+    _userId = session.userId;
+    _emitFromSession(session);
+  }
+
   void selectSingle(int optionId) {
     final s = state;
     if (s is! QuestionnaireQuestion) return;

@@ -11,6 +11,7 @@ import '../../core/design/tokens/motion.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
+import '../../domain/usecases/start_session.dart';
 import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
@@ -42,6 +43,7 @@ class _WelcomePageState extends State<WelcomePage>
   late final Animation<double> _ctaFade;
   late final Animation<Offset> _ctaSlide;
   bool _imagePrecached = false;
+  bool _isContinuing = false;
 
   @override
   void initState() {
@@ -121,6 +123,21 @@ class _WelcomePageState extends State<WelcomePage>
     setState(() {
       _hasActiveSession = Future.value(false);
     });
+  }
+
+  Future<void> _onContinueToQuestionnaire() async {
+    if (_isContinuing) return;
+    setState(() => _isContinuing = true);
+    try {
+      final session = await sl<StartSession>()();
+      if (!mounted) return;
+      context.go('/questionnaire', extra: session);
+    } catch (_) {
+      if (!mounted) return;
+      context.go('/questionnaire');
+    } finally {
+      if (mounted) setState(() => _isContinuing = false);
+    }
   }
 
   @override
@@ -216,10 +233,11 @@ class _WelcomePageState extends State<WelcomePage>
                           final hasSession = snapshot.data ?? false;
                           return _BottomActions(
                             hasSession: hasSession,
+                            loading: _isContinuing,
                             onPressed:
-                                () => context.go(
-                                  hasSession ? '/questionnaire' : '/intro',
-                                ),
+                                hasSession
+                                    ? _onContinueToQuestionnaire
+                                    : () => context.go('/intro'),
                             onRestart: hasSession ? _onRestart : null,
                           );
                         },
@@ -292,11 +310,13 @@ class _HeroHeadline extends StatelessWidget {
 class _BottomActions extends StatelessWidget {
   const _BottomActions({
     required this.hasSession,
+    required this.loading,
     required this.onPressed,
     required this.onRestart,
   });
 
   final bool hasSession;
+  final bool loading;
   final VoidCallback onPressed;
   final VoidCallback? onRestart;
 
@@ -314,6 +334,7 @@ class _BottomActions extends StatelessWidget {
                     ? AppStrings.welcome.ctaContinue
                     : AppStrings.welcome.ctaStart,
             onPressed: onPressed,
+            loading: loading,
           ),
         ),
         if (onRestart != null) ...[

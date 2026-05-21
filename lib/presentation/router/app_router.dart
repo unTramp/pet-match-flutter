@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/cache/session_cache.dart';
 import '../../core/di/injection.dart';
 import '../../domain/entities/compatibility.dart';
+import '../../domain/entities/session.dart';
 import '../analyzing/analyzing_page.dart';
 import '../details/breed_detail_page.dart';
 import '../details/breed_gallery_page.dart';
@@ -30,7 +31,10 @@ GoRouter buildRouter() {
       GoRoute(path: '/intro', builder: (_, __) => const IntroPage()),
       GoRoute(
         path: '/questionnaire',
-        builder: (_, __) => const QuestionnairePage(),
+        builder:
+            (_, state) => QuestionnairePage(
+              initialSession: state.extra is Session ? state.extra as Session : null,
+            ),
       ),
       GoRoute(
         path: '/analyzing',

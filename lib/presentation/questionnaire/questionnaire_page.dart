@@ -9,6 +9,7 @@ import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
+import '../../domain/entities/session.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
 import 'cubit/questionnaire_cubit.dart';
@@ -20,12 +21,23 @@ import 'widgets/question_footer.dart';
 import 'widgets/single_choice_widget.dart';
 
 class QuestionnairePage extends StatelessWidget {
-  const QuestionnairePage({super.key});
+  const QuestionnairePage({super.key, this.initialSession});
+
+  final Session? initialSession;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<QuestionnaireCubit>(
-      create: (_) => sl<QuestionnaireCubit>()..start(),
+      create: (_) {
+        final cubit = sl<QuestionnaireCubit>();
+        final session = initialSession;
+        if (session != null) {
+          cubit.startWithSession(session);
+        } else {
+          cubit.start();
+        }
+        return cubit;
+      },
       child: const _QuestionnaireView(),
     );
   }
@@ -77,7 +89,7 @@ class _QuestionnaireView extends StatelessWidget {
                   questionState?.isSubmitting == true
                       ? const PreferredSize(
                         preferredSize: Size.fromHeight(2),
-                        child: LinearProgressIndicator(minHeight: 2),
+                        child: _SubmittingTopProgress(),
                       )
                       : null,
             ),
@@ -148,6 +160,15 @@ class _QuestionnaireView extends StatelessWidget {
                   ),
     );
     return result ?? false;
+  }
+}
+
+class _SubmittingTopProgress extends StatelessWidget {
+  const _SubmittingTopProgress();
+
+  @override
+  Widget build(BuildContext context) {
+    return const LinearProgressIndicator(minHeight: 2);
   }
 }
 
