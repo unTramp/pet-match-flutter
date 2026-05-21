@@ -45,6 +45,7 @@ lib/
 
 Подробное описание архитектуры — в приложенном **`docs/architecture.pdf`**.
 Карта соответствия ТЗ — **[docs/tz-compliance.md](docs/tz-compliance.md)**.
+Правила дизайн-системы и UIKit — **[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)**.
 
 ### Ключевые решения
 
