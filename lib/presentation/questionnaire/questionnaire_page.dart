@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -42,13 +43,16 @@ class _QuestionnaireView extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final isIos = Theme.of(context).platform == TargetPlatform.iOS;
         final questionState = state is QuestionnaireQuestion ? state : null;
         final cubit = context.read<QuestionnaireCubit>();
         return Scaffold(
           appBar: AppBar(
             title: Text(AppStrings.questionnaire.appBarTitle),
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back_rounded),
+              icon: Icon(
+                isIos ? CupertinoIcons.chevron_back : Icons.arrow_back_rounded,
+              ),
               onPressed: () async {
                 if (questionState != null && cubit.canGoBack) {
                   cubit.goBack();

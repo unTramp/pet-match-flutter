@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -88,6 +89,7 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final theme = Theme.of(context);
     final compatibility = widget.compatibility;
     final suggestions = compatibility.suggestions;
@@ -142,7 +144,7 @@ class _ResultPageState extends State<ResultPage> {
         leading: IconButton(
           tooltip: 'Домой',
           onPressed: () => context.go('/welcome'),
-          icon: const Icon(Icons.home_rounded),
+          icon: Icon(isIos ? CupertinoIcons.home : Icons.home_rounded),
         ),
       ),
       bottomNavigationBar: SafeArea(
