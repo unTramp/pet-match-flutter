@@ -6,12 +6,20 @@ import '../repositories/questionnaire_repository.dart';
 /// (если нет — генерирует), вызывает POST /start, кеширует `user_id` для
 /// последующих запросов и продолжения сессии после перезапуска.
 class StartSession {
-  StartSession(this._repository, this._cache);
+  StartSession(this._repository, this._cache, {this.externalIdOverride});
 
   final QuestionnaireRepository _repository;
   final SessionCache _cache;
+  final String? externalIdOverride;
 
   Future<Session> call() async {
+    final override = externalIdOverride;
+    if (override != null && override.isNotEmpty) {
+      final session = await _repository.startSession(override);
+      await _cache.saveUserId(session.userId);
+      return session;
+    }
+
     final savedUserId = await _cache.getSavedUserId();
     final session =
         savedUserId != null
