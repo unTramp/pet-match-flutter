@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_card.dart';
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
@@ -41,7 +44,7 @@ class _QuestionnaireView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Анкета'),
+            title: Text(AppStrings.questionnaire.appBarTitle),
             leading: IconButton(
               icon: const Icon(Icons.close_rounded),
               onPressed: () => context.go('/welcome'),
@@ -50,7 +53,7 @@ class _QuestionnaireView extends StatelessWidget {
           body: SafeArea(
             child: switch (state) {
               QuestionnaireInitial() || QuestionnaireLoading() =>
-                const LoadingView(message: 'Загружаем анкету…'),
+                LoadingView(message: AppStrings.questionnaire.loading),
               QuestionnaireQuestion() => _QuestionBody(state: state),
               QuestionnaireError(:final failure) => ErrorView(
                 failure: failure,
@@ -77,12 +80,17 @@ class _QuestionBody extends StatelessWidget {
     final question = state.question;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.md,
+        AppSpacing.xl,
+        AppSpacing.xl,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ProgressBar(progress: state.progress),
-          const SizedBox(height: 24),
+          const SizedBox(height: AppSpacing.xxl),
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -91,7 +99,7 @@ class _QuestionBody extends StatelessWidget {
                 children: [
                   Text(question.title, style: theme.textTheme.headlineMedium),
                   if (question.helpText != null) ...[
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AppSpacing.sm),
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -100,7 +108,7 @@ class _QuestionBody extends StatelessWidget {
                       ),
                     ),
                   ],
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppSpacing.xxl),
                   switch (question) {
                     SingleChoiceQuestion(:final options) => SingleChoiceWidget(
                       options: options,
@@ -130,14 +138,14 @@ class _QuestionBody extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.lg),
           QuestionFooter(
             canSubmit: state.canSubmit,
             onSubmit: cubit.submit,
             canSkip: question.isOptional,
             onSkip: cubit.skipCurrent,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -146,9 +154,9 @@ class _QuestionBody extends StatelessWidget {
                 size: 14,
                 color: AppColors.textSecondary.withValues(alpha: 0.7),
               ),
-              const SizedBox(width: 6),
+              const SizedBox(width: AppSpacing.sm - 2),
               Text(
-                'Ваши ответы конфиденциальны',
+                AppStrings.questionnaire.privacy,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 12,
                   color: AppColors.textSecondary.withValues(alpha: 0.85),
@@ -185,13 +193,8 @@ class _UnsupportedQuestionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.border),
-      ),
+    return UiCard(
+      showShadow: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -202,21 +205,19 @@ class _UnsupportedQuestionView extends StatelessWidget {
                 size: 22,
                 color: AppColors.warning,
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.sm + 2),
               Text(
-                'Тип вопроса не поддерживается',
+                AppStrings.questionnaire.unsupportedTitle,
                 style: theme.textTheme.titleLarge?.copyWith(fontSize: 15),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Text(
-            'Похоже, эта версия приложения устарела. Если вопрос '
-            'опциональный — пропустите его кнопкой ниже. Иначе обновите '
-            'приложение и попробуйте снова.',
+            AppStrings.questionnaire.unsupportedBody,
             style: theme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: AppSpacing.sm - 2),
           Text(
             'question_type: $questionType',
             style: theme.textTheme.bodyMedium?.copyWith(

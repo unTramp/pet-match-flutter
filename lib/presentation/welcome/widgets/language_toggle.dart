@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/motion.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Минимальный текстовый переключатель «RU / EN».
@@ -36,7 +39,7 @@ class _LanguageToggleState extends State<LanguageToggle> {
           onTap: () => _set(AppLang.ru),
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.sm),
           child: Text(
             '/',
             style: TextStyle(
@@ -71,11 +74,14 @@ class _LangText extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(6),
+      borderRadius: BorderRadius.circular(AppRadius.sm - 2),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.xs,
+          vertical: AppSpacing.sm - 2,
+        ),
         child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 180),
+          duration: AppMotion.normal,
           style: TextStyle(
             color:
                 active

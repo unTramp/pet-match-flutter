@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/motion.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Универсальная плашка ответа: белая карточка с радиусом 20, тонкой границей,
@@ -23,7 +26,7 @@ class OptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(20);
+    final radius = BorderRadius.circular(AppRadius.xxl);
     return Material(
       color: Colors.transparent,
       borderRadius: radius,
@@ -33,9 +36,12 @@ class OptionTile extends StatelessWidget {
         splashColor: AppColors.primary.withValues(alpha: 0.06),
         highlightColor: AppColors.primary.withValues(alpha: 0.04),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
+          duration: AppMotion.normal,
           curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xl,
+            vertical: 18,
+          ),
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: radius,
@@ -66,7 +72,7 @@ class OptionTile extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: AppSpacing.md),
               trailing,
             ],
           ),
@@ -86,7 +92,7 @@ class OptionRadio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
+      duration: AppMotion.normal,
       width: 24,
       height: 24,
       decoration: BoxDecoration(
@@ -102,7 +108,7 @@ class OptionRadio extends StatelessWidget {
       alignment: Alignment.center,
       child: AnimatedScale(
         scale: selected ? 1 : 0,
-        duration: const Duration(milliseconds: 180),
+        duration: AppMotion.normal,
         curve: Curves.easeOutBack,
         child: Container(
           width: 12,
@@ -127,7 +133,7 @@ class OptionCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
+      duration: AppMotion.normal,
       width: 24,
       height: 24,
       decoration: BoxDecoration(
@@ -144,7 +150,7 @@ class OptionCheck extends StatelessWidget {
       alignment: Alignment.center,
       child: AnimatedOpacity(
         opacity: selected ? 1 : 0,
-        duration: const Duration(milliseconds: 180),
+        duration: AppMotion.normal,
         child: const Icon(Icons.check_rounded, size: 16, color: Colors.white),
       ),
     );

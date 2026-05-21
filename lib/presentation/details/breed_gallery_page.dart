@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
 
 class BreedGalleryPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _BreedGalleryPageState extends State<BreedGalleryPage> {
                       (_, __) => const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.primary,
-                          strokeWidth: 2,
+                          strokeWidth: AppSpacing.xs / 2,
                         ),
                       ),
                   errorWidget:

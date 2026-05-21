@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/cache/session_cache.dart';
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/motion.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../widgets/gradient_button.dart';
@@ -79,7 +82,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 'assets/images/cat.png',
                 fit: BoxFit.contain,
                 alignment: Alignment.bottomRight,
-                semanticLabel: 'Иллюстрация кота',
+                semanticLabel: AppStrings.welcome.catImageSemantic,
               ),
             ),
             const Positioned.fill(
@@ -102,7 +105,12 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.xxl,
+                  AppSpacing.md,
+                  AppSpacing.xxl,
+                  AppSpacing.md,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -112,10 +120,9 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     const Spacer(flex: 1),
                     _HeroHeadline(theme: theme),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: AppSpacing.lg - 2),
                     Text(
-                      'Несколько коротких вопросов о вашем образе жизни '
-                      '— и мы покажем, какие породы подойдут именно вам.',
+                      AppStrings.welcome.subtitle,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: AppColors.textSecondary,
                         fontSize: 14,
@@ -172,7 +179,7 @@ class _HeroHeadline extends StatelessWidget {
           children: [
             const TextSpan(text: 'Найдём питомца,\n'),
             TextSpan(
-              text: 'который \nподойдёт\n',
+              text: AppStrings.welcome.heroLine2,
               style: baseStyle?.copyWith(color: AppColors.primary),
             ),
             const TextSpan(text: 'именно вам.'),
@@ -200,16 +207,22 @@ class _BottomActions extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
+          duration: AppMotion.normal,
           child: GradientButton(
             key: ValueKey<bool>(hasSession),
-            label: hasSession ? 'Продолжить' : 'Подобрать питомца',
+            label:
+                hasSession
+                    ? AppStrings.welcome.ctaContinue
+                    : AppStrings.welcome.ctaStart,
             onPressed: onPressed,
           ),
         ),
         if (onRestart != null) ...[
-          const SizedBox(height: 6),
-          TextButton(onPressed: onRestart, child: const Text('Начать заново')),
+          const SizedBox(height: AppSpacing.sm - 2),
+          TextButton(
+            onPressed: onRestart,
+            child: Text(AppStrings.common.restart),
+          ),
         ],
       ],
     );

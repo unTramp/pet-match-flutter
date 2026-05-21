@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../widgets/gradient_button.dart';
 
 class QuestionFooter extends StatelessWidget {
@@ -22,12 +24,15 @@ class QuestionFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         GradientButton(
-          label: 'Продолжить',
+          label: AppStrings.questionnaire.continueCta,
           onPressed: canSubmit ? onSubmit : null,
         ),
         if (canSkip) ...[
-          const SizedBox(height: 8),
-          TextButton(onPressed: onSkip, child: const Text('Пропустить')),
+          const SizedBox(height: AppSpacing.sm),
+          TextButton(
+            onPressed: onSkip,
+            child: const Text('Пропустить'),
+          ),
         ],
       ],
     );

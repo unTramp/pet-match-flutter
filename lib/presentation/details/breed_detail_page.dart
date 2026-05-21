@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_card.dart';
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/radius.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/breed_detail.dart';
@@ -35,7 +39,7 @@ class _BreedDetailView extends StatelessWidget {
     return BlocBuilder<BreedDetailCubit, BreedDetailState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('О породе')),
+          appBar: AppBar(title: Text(AppStrings.details.appBarTitle)),
           body: SafeArea(
             child: switch (state) {
               BreedDetailInitial() ||
@@ -64,12 +68,17 @@ class _BreedDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.sm,
+        AppSpacing.xl,
+        AppSpacing.xxl,
+      ),
       physics: const BouncingScrollPhysics(),
       children: [
         if (detail.imageUrl != null)
           ClipRRect(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppRadius.xl),
             child: AspectRatio(
               aspectRatio: 16 / 10,
               child: CachedNetworkImage(
@@ -80,14 +89,14 @@ class _BreedDetailContent extends StatelessWidget {
               ),
             ),
           ),
-        const SizedBox(height: 20),
+        const SizedBox(height: AppSpacing.xl),
         Text(detail.breedName, style: theme.textTheme.headlineLarge),
         if (detail.summary != null) ...[
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Text(detail.summary!, style: theme.textTheme.bodyLarge),
         ],
         if (detail.hasGallery) ...[
-          const SizedBox(height: 20),
+          const SizedBox(height: AppSpacing.xl),
           OutlinedButton.icon(
             onPressed:
                 () => context.push(
@@ -95,25 +104,24 @@ class _BreedDetailContent extends StatelessWidget {
                   extra: detail.galleryImages,
                 ),
             icon: const Icon(Icons.photo_library_outlined),
-            label: Text('Галерея — ${detail.galleryImages.length} фото'),
+            label: Text(
+              '${AppStrings.details.galleryLabelPrefix} — ${detail.galleryImages.length} ${AppStrings.details.photosSuffix}',
+            ),
           ),
         ],
-        const SizedBox(height: 24),
+        const SizedBox(height: AppSpacing.xxl),
         ...detail.sections.map(
           (s) => Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.surface,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.border),
-              ),
+            padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+            child: UiCard(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              borderRadius: AppRadius.xl,
+              showShadow: false,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(s.title, style: theme.textTheme.titleLarge),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
                   Text(s.body, style: theme.textTheme.bodyLarge),
                 ],
               ),

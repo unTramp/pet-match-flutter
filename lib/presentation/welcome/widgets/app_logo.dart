@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Бренд-знак. По умолчанию — иконка + текст «PET MATCH AI».
@@ -20,7 +21,7 @@ class AppLogo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         badge,
-        const SizedBox(width: 10),
+        const SizedBox(width: AppSpacing.sm + 2),
         const Text(
           'PET MATCH AI',
           style: TextStyle(

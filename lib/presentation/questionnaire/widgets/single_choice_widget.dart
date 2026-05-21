@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/spacing.dart';
 import '../../../domain/entities/option.dart';
 import 'option_tile.dart';
 
@@ -23,7 +24,7 @@ class SingleChoiceWidget extends StatelessWidget {
         final opt = options[i];
         final selected = opt.id == selectedId;
         return Padding(
-          padding: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.only(bottom: AppSpacing.md),
           child: OptionTile(
             label: opt.label,
             selected: selected,

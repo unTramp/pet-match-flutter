@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/radius.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/compatibility.dart';
 import '../welcome/widgets/app_logo.dart';
@@ -31,11 +34,11 @@ class ResultPage extends StatelessWidget {
   }
 
   String _headerTitle() {
-    if (compatibility.isRefused) return 'Не рекомендуем сейчас';
+    if (compatibility.isRefused) return AppStrings.result.headerRefused;
     if (compatibility.risk == CompatibilityRisk.medium) {
-      return 'Подходит с оговорками';
+      return AppStrings.result.headerMedium;
     }
-    return 'Лучшее совпадение';
+    return AppStrings.result.headerBest;
   }
 
   @override
@@ -89,16 +92,20 @@ class ResultPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Результат'),
+        title: Text(AppStrings.result.appBarTitle),
         leadingWidth: 56,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8),
+          padding: const EdgeInsets.only(
+            left: AppSpacing.md,
+            top: AppSpacing.sm,
+            bottom: AppSpacing.sm,
+          ),
           child: Material(
             color: Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppRadius.md),
             child: InkWell(
               onTap: () => context.go('/welcome'),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(AppRadius.md),
               child: const AppLogo(showText: false, size: 36),
             ),
           ),
@@ -106,71 +113,79 @@ class ResultPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.xl,
+            AppSpacing.sm,
+            AppSpacing.xl,
+            28,
+          ),
           physics: const BouncingScrollPhysics(),
           children: [
             Text(_headerTitle(), style: theme.textTheme.titleLarge),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             MainBreedCard(
               compatibility: compatibility,
               onTap: () => _openBreed(context, compatibility.breedId),
             ),
             if (influences.isNotEmpty) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: AppSpacing.xxl),
               ResultSectionCard(
                 child: ReasonsSection(
-                  title: 'Что влияет на совпадение?',
+                  title: AppStrings.result.influences,
                   items: influences,
                 ),
               ),
             ],
             if (refusal != null && (refusal.title?.isNotEmpty ?? false)) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: AppSpacing.xxl),
               AlertBlock(
-                title: 'Важно',
+                title: AppStrings.result.important,
                 message: refusal.title!,
                 severity: AlertSeverity.danger,
               ),
             ],
             if (refusal != null && (refusal.message?.isNotEmpty ?? false)) ...[
-              const SizedBox(height: 16),
+              const SizedBox(height: AppSpacing.lg),
               RefusalBlock(
-                title: 'Что важно учесть перед выбором',
+                title: AppStrings.result.refusalTitle,
                 message: refusal.message!,
               ),
             ],
             if (insightItems.isNotEmpty) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: AppSpacing.xxl),
               ResultSectionCard(
                 child: ReasonsSection(
-                  title: 'Что важно знать',
+                  title: AppStrings.result.insights,
                   items: insightItems,
                 ),
               ),
             ],
             if (requirementItems.isNotEmpty) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: AppSpacing.xxl),
               ResultSectionCard(
                 child: ReasonsSection(
-                  title: 'Требования породы',
+                  title: AppStrings.result.requirements,
                   items: requirementItems,
                 ),
               ),
             ],
             if (suggestions.isNotEmpty) ...[
-              const SizedBox(height: 32),
-              Text('Похожие варианты', style: theme.textTheme.titleLarge),
-              const SizedBox(height: 4),
+              const SizedBox(height: AppSpacing.xxxl),
               Text(
-                'Альтернативные породы по вашему профилю.',
+                AppStrings.result.suggestionsTitle,
+                style: theme.textTheme.titleLarge,
+              ),
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                AppStrings.result.suggestionsSubtitle,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: AppColors.textSecondary,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
               ...suggestions.map(
                 (s) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
+                  padding: const EdgeInsets.only(bottom: AppSpacing.md),
                   child: SuggestionCard(
                     suggestion: s,
                     onTap: () => _openBreed(context, s.breedId),
