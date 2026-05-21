@@ -100,10 +100,7 @@ class _QuestionBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ProgressBar(
-            progress: state.progress,
-            stepTypeLabel: _stepTypeLabel(question),
-          ),
+          ProgressBar(progress: state.progress),
           const SizedBox(height: AppSpacing.xxl),
           Expanded(
             child: SingleChildScrollView(
@@ -118,6 +115,17 @@ class _QuestionBody extends StatelessWidget {
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: AppColors.primary.withValues(alpha: 0.85),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                  if (question is MultipleChoiceQuestion &&
+                      question.helpText == null) ...[
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      AppStrings.questionnaire.multiSelectHint,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textSecondary.withValues(alpha: 0.9),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -155,15 +163,6 @@ class _QuestionBody extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _stepTypeLabel(Question question) {
-    return switch (question) {
-      SingleChoiceQuestion() => AppStrings.questionnaire.stepTypeSingle,
-      MultipleChoiceQuestion() => AppStrings.questionnaire.stepTypeMultiple,
-      DynamicOptionsQuestion() => AppStrings.questionnaire.stepTypeSearch,
-      UnknownQuestion() => AppStrings.questionnaire.unsupportedTitle,
-    };
   }
 
   /// userId доступен только после `start()`. Берём его через progress нельзя —
