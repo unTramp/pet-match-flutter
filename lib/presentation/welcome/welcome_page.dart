@@ -29,14 +29,57 @@ class WelcomePage extends StatefulWidget {
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends State<WelcomePage>
+    with SingleTickerProviderStateMixin {
   late Future<bool> _hasActiveSession;
+  late final AnimationController _introController;
+  late final Animation<double> _headlineFade;
+  late final Animation<Offset> _headlineSlide;
+  late final Animation<double> _subtitleFade;
+  late final Animation<Offset> _subtitleSlide;
   bool _imagePrecached = false;
 
   @override
   void initState() {
     super.initState();
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
+    _introController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _headlineFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+    );
+    _headlineSlide = Tween<Offset>(
+      begin: const Offset(0, 0.08),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.0, 0.55, curve: Curves.easeOutCubic),
+      ),
+    );
+    _subtitleFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
+    );
+    _subtitleSlide = Tween<Offset>(
+      begin: const Offset(0, 0.08),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.3, 1.0, curve: Curves.easeOutCubic),
+      ),
+    );
+    _introController.forward();
+  }
+
+  @override
+  void dispose() {
+    _introController.dispose();
+    super.dispose();
   }
 
   @override
@@ -119,14 +162,22 @@ class _WelcomePageState extends State<WelcomePage> {
                       children: [AppLogo(), LanguageToggle()],
                     ),
                     const Spacer(flex: 1),
-                    _HeroHeadline(theme: theme),
+                    _AnimatedTextEntrance(
+                      fade: _headlineFade,
+                      slide: _headlineSlide,
+                      child: _HeroHeadline(theme: theme),
+                    ),
                     const SizedBox(height: AppSpacing.lg - 2),
-                    Text(
-                      AppStrings.welcome.subtitle,
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 14,
-                        height: 1.45,
+                    _AnimatedTextEntrance(
+                      fade: _subtitleFade,
+                      slide: _subtitleSlide,
+                      child: Text(
+                        AppStrings.welcome.subtitle,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: AppColors.textSecondary,
+                          fontSize: 14,
+                          height: 1.45,
+                        ),
                       ),
                     ),
                     const Spacer(flex: 5),
@@ -154,6 +205,26 @@ class _WelcomePageState extends State<WelcomePage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _AnimatedTextEntrance extends StatelessWidget {
+  const _AnimatedTextEntrance({
+    required this.fade,
+    required this.slide,
+    required this.child,
+  });
+
+  final Animation<double> fade;
+  final Animation<Offset> slide;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: fade,
+      child: SlideTransition(position: slide, child: child),
     );
   }
 }
