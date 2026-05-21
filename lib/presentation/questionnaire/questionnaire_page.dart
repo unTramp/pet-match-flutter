@@ -199,33 +199,38 @@ class _QuestionBody extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: AppSpacing.xxl),
-                  IgnorePointer(
-                    ignoring: isSubmitting,
-                    child: switch (question) {
-                      SingleChoiceQuestion(:final options) => SingleChoiceWidget(
-                        options: options,
-                        selectedId:
-                            state.selectedOptionIds.isEmpty
-                                ? null
-                                : state.selectedOptionIds.first,
-                        onSelect: cubit.selectSingle,
-                      ),
-                      MultipleChoiceQuestion(:final options) =>
-                        MultipleChoiceWidget(
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 180),
+                    curve: Curves.easeOut,
+                    opacity: isSubmitting ? 0.75 : 1,
+                    child: IgnorePointer(
+                      ignoring: isSubmitting,
+                      child: switch (question) {
+                        SingleChoiceQuestion(:final options) => SingleChoiceWidget(
                           options: options,
-                          selectedIds: state.selectedOptionIds,
-                          onToggle: cubit.toggleMulti,
+                          selectedId:
+                              state.selectedOptionIds.isEmpty
+                                  ? null
+                                  : state.selectedOptionIds.first,
+                          onSelect: cubit.selectSingle,
                         ),
-                      DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
-                        userId: _userIdFromContext(context),
-                        questionId: id,
-                        selected: state.dynamicSelected,
-                        onSelect: cubit.selectDynamic,
-                        enabled: !isSubmitting,
-                      ),
-                      UnknownQuestion(:final questionType) =>
-                        _UnsupportedQuestionView(questionType: questionType),
-                    },
+                        MultipleChoiceQuestion(:final options) =>
+                          MultipleChoiceWidget(
+                            options: options,
+                            selectedIds: state.selectedOptionIds,
+                            onToggle: cubit.toggleMulti,
+                          ),
+                        DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
+                          userId: _userIdFromContext(context),
+                          questionId: id,
+                          selected: state.dynamicSelected,
+                          onSelect: cubit.selectDynamic,
+                          enabled: !isSubmitting,
+                        ),
+                        UnknownQuestion(:final questionType) =>
+                          _UnsupportedQuestionView(questionType: questionType),
+                      },
+                    ),
                   ),
                 ],
               ),
