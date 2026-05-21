@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
-import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/di/injection.dart';
 import '../../../core/failures.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/usecases/get_dynamic_options.dart';
 import 'option_tile.dart';
@@ -23,7 +21,6 @@ class DynamicOptionsWidget extends StatefulWidget {
     required this.questionId,
     required this.selected,
     required this.onSelect,
-    required this.onClear,
     this.enabled = true,
   });
 
@@ -31,7 +28,6 @@ class DynamicOptionsWidget extends StatefulWidget {
   final int questionId;
   final DynamicOption? selected;
   final ValueChanged<DynamicOption> onSelect;
-  final VoidCallback onClear;
   final bool enabled;
 
   @override
@@ -88,17 +84,6 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (selected != null) ...[
-          _SelectedTile(
-            label: selected.label,
-            onClear: () {
-              widget.onClear();
-              _controller.clear();
-              _load(null);
-            },
-          ),
-          const SizedBox(height: AppSpacing.lg),
-        ],
         TextField(
           controller: _controller,
           onChanged: widget.enabled ? _onSearch : null,
@@ -173,38 +158,6 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
               ),
         ),
       ],
-    );
-  }
-}
-
-class _SelectedTile extends StatelessWidget {
-  const _SelectedTile({required this.label, required this.onClear});
-
-  final String label;
-  final VoidCallback onClear;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.lg,
-        vertical: AppSpacing.md,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.primary, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.check_circle_rounded, color: AppColors.primary),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Text(label, style: Theme.of(context).textTheme.bodyLarge),
-          ),
-          IconButton(icon: const Icon(Icons.close_rounded), onPressed: onClear),
-        ],
-      ),
     );
   }
 }

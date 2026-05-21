@@ -30,7 +30,7 @@ class UiButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isIos = Theme.of(context).platform == TargetPlatform.iOS;
-    final effectiveOnPressed = loading ? null : onPressed;
+    final effectiveOnPressed = onPressed;
     final spinner = SizedBox(
       width: 18,
       height: 18,
@@ -56,7 +56,7 @@ class UiButton extends StatelessWidget {
                 ));
 
     if (isIos) {
-      return switch (variant) {
+      final button = switch (variant) {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
           child: CupertinoButton.filled(onPressed: effectiveOnPressed, child: child),
@@ -93,9 +93,10 @@ class UiButton extends StatelessWidget {
           child: child,
         ),
       };
+      return AbsorbPointer(absorbing: loading, child: button);
     }
 
-    return switch (variant) {
+    final button = switch (variant) {
       UiButtonVariant.primary => ElevatedButton(
         onPressed: effectiveOnPressed,
         child: child,
@@ -106,5 +107,6 @@ class UiButton extends StatelessWidget {
       ),
       UiButtonVariant.text => TextButton(onPressed: effectiveOnPressed, child: child),
     };
+    return AbsorbPointer(absorbing: loading, child: button);
   }
 }

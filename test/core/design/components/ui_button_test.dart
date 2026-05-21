@@ -69,7 +69,7 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
       final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
-      expect(button.onPressed, isNull, reason: 'loading должен disable onPressed');
+      expect(button.onPressed, isNotNull, reason: 'визуально кнопка остаётся активной');
 
       await tester.tap(find.byType(ElevatedButton));
       expect(taps, 0);
@@ -120,12 +120,13 @@ void main() {
       expect(taps, 1);
     });
 
-    testWidgets('loading на iOS — spinner и disabled onPressed', (
+    testWidgets('loading на iOS — spinner и блокировка тапа', (
       tester,
     ) async {
+      var taps = 0;
       await tester.pumpWidget(
         _wrap(
-          UiButton(label: 'Continue', onPressed: () {}, loading: true),
+          UiButton(label: 'Continue', onPressed: () => taps++, loading: true),
           platform: TargetPlatform.iOS,
         ),
       );
@@ -134,7 +135,9 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
       final btn = tester.widget<CupertinoButton>(find.byType(CupertinoButton));
-      expect(btn.onPressed, isNull);
+      expect(btn.onPressed, isNotNull);
+      await tester.tap(find.byType(CupertinoButton));
+      expect(taps, 0);
     });
   });
 }

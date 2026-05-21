@@ -252,7 +252,6 @@ class _QuestionBody extends StatelessWidget {
                         questionId: id,
                         selected: state.dynamicSelected,
                         onSelect: cubit.selectDynamic,
-                        onClear: cubit.clearDynamic,
                         enabled: !isSubmitting,
                       ),
                       UnknownQuestion(:final questionType) =>

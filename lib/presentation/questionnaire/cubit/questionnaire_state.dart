@@ -49,17 +49,13 @@ final class QuestionnaireQuestion extends QuestionnaireState {
   QuestionnaireQuestion copyWith({
     Set<int>? selectedOptionIds,
     DynamicOption? dynamicSelected,
-    bool clearDynamicSelected = false,
     bool? isSubmitting,
   }) {
     return QuestionnaireQuestion(
       question: question,
       progress: progress,
       selectedOptionIds: selectedOptionIds ?? this.selectedOptionIds,
-      dynamicSelected:
-          clearDynamicSelected
-              ? null
-              : (dynamicSelected ?? this.dynamicSelected),
+      dynamicSelected: dynamicSelected ?? this.dynamicSelected,
       isSubmitting: isSubmitting ?? this.isSubmitting,
     );
   }

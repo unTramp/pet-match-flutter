@@ -6,10 +6,19 @@ import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
+import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
+import '../../domain/usecases/start_session.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
+
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
+  bool _isStarting = false;
 
   static final _bullets = <_IntroBullet>[
     _IntroBullet(
@@ -28,6 +37,21 @@ class IntroPage extends StatelessWidget {
       body: AppStrings.intro.bullet3Body,
     ),
   ];
+
+  Future<void> _onStartPressed() async {
+    if (_isStarting) return;
+    setState(() => _isStarting = true);
+    try {
+      final session = await sl<StartSession>()();
+      if (!mounted) return;
+      context.go('/questionnaire', extra: session);
+    } catch (_) {
+      if (!mounted) return;
+      context.go('/questionnaire');
+    } finally {
+      if (mounted) setState(() => _isStarting = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +94,8 @@ class IntroPage extends StatelessWidget {
               const Spacer(),
               UiButton(
                 label: AppStrings.intro.ctaStart,
-                onPressed: () => context.go('/questionnaire'),
+                onPressed: _onStartPressed,
+                loading: _isStarting,
               ),
             ],
           ),

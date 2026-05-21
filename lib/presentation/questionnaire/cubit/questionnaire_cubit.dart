@@ -108,12 +108,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     emit(s.copyWith(dynamicSelected: option));
   }
 
-  void clearDynamic() {
-    final s = state;
-    if (s is! QuestionnaireQuestion) return;
-    emit(s.copyWith(clearDynamicSelected: true));
-  }
-
   Future<void> submit() async {
     final s = state;
     if (s is! QuestionnaireQuestion || !s.canSubmit || s.isSubmitting) return;
