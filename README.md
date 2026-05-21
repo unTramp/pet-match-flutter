@@ -70,33 +70,14 @@ flutter test
 
 ## Скриншоты
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/welcome.png" alt="Welcome" width="180"><br>
-      Welcome
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/intro-how-it-works.png" alt="Как это работает" width="180"><br>
-      Как это работает
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/question-single.png" alt="Анкета: одиночный выбор" width="180"><br>
-      Анкета: одиночный выбор
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/question-multi-selected.png" alt="Анкета: множественный выбор" width="180"><br>
-      Анкета: множественный выбор
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/result-main.png" alt="Результат" width="180"><br>
-      Результат
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/result-details.png" alt="Факторы совпадения" width="180"><br>
-      Факторы совпадения
-    </td>
-  </tr>
-</table>
+<img src="docs/screenshots/welcome-hero.png" alt="Экран 1" width="220">
+
+<img src="docs/screenshots/intro-how-it-works.png" alt="Экран 2" width="220">
+
+<img src="docs/screenshots/question-time-outside-home.png" alt="Экран 3" width="220">
+
+<img src="docs/screenshots/question-current-pets-multiple-choice.png" alt="Экран 4" width="220">
+
+<img src="docs/screenshots/result-recommendation-card.png" alt="Экран 5" width="220">
+
+<img src="docs/screenshots/result-match-factors.png" alt="Экран 6" width="220">
