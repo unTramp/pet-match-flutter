@@ -122,10 +122,10 @@ class _QuestionnaireTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
-        AppSpacing.xl,
-        AppSpacing.sm,
-        AppSpacing.xl,
-        AppSpacing.sm,
+        AppSpacing.xxl,
+        AppSpacing.md,
+        AppSpacing.xxl,
+        AppSpacing.md,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
