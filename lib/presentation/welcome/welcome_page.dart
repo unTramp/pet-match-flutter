@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/cache/session_cache.dart';
+import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/motion.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
-import '../widgets/gradient_button.dart';
 import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
@@ -208,13 +208,14 @@ class _BottomActions extends StatelessWidget {
       children: [
         AnimatedSwitcher(
           duration: AppMotion.normal,
-          child: GradientButton(
+          child: UiButton(
             key: ValueKey<bool>(hasSession),
             label:
                 hasSession
                     ? AppStrings.welcome.ctaContinue
                     : AppStrings.welcome.ctaStart,
             onPressed: onPressed,
+            icon: Icons.arrow_forward_rounded,
           ),
         ),
         if (onRestart != null) ...[

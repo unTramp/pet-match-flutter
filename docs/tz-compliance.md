@@ -94,7 +94,7 @@
 |---|---|---|
 | **Архитектура и организация** | 9/10 | Clean Architecture, sealed-классы для compile-time safety, абстрактный `PetMatchRemoteSource` (mock + http) |
 | **Async и state handling** | 9/10 | Все Cubit-переходы покрыты тестами. Polling через `Future.timeout`. `AnimationController` корректно dispose'ятся |
-| **Качество UI** | 8/10 | Material 3, GradientButton, OptionTile с анимацией radio, hero Welcome с full-bleed cat, гармонизированная cream-палитра |
+| **Качество UI** | 8/10 | Material 3, единая CTA-система на UiButton, OptionTile с анимацией radio, hero Welcome с full-bleed cat, гармонизированная cream-палитра |
 | **Понятность обработки ошибок** | 9/10 | Sealed `AppFailure` (4 типа), осмысленное сообщение на каждый тип, parse-error fallback, retry-кнопка |
 | **Читаемость** | 9/10 | Короткие методы, комментарии только где WHY, доменный язык |
 | **Объяснение решений** | 10/10 | `docs/architecture.pdf` (19 стр) + README + комментарии в коде + этот документ |

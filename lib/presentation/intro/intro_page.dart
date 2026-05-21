@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
-import '../widgets/gradient_button.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
@@ -64,9 +64,10 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              GradientButton(
+              UiButton(
                 label: AppStrings.intro.ctaStart,
                 onPressed: () => context.go('/questionnaire'),
+                icon: Icons.arrow_forward_rounded,
               ),
             ],
           ),

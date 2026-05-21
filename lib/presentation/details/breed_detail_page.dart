@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_button.dart';
 import '../../core/design/components/ui_card.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
@@ -97,16 +98,16 @@ class _BreedDetailContent extends StatelessWidget {
         ],
         if (detail.hasGallery) ...[
           const SizedBox(height: AppSpacing.xl),
-          OutlinedButton.icon(
+          UiButton(
             onPressed:
                 () => context.push(
                   '/breed/${detail.breedId}/gallery',
                   extra: detail.galleryImages,
                 ),
-            icon: const Icon(Icons.photo_library_outlined),
-            label: Text(
-              '${AppStrings.details.galleryLabelPrefix} — ${detail.galleryImages.length} ${AppStrings.details.photosSuffix}',
-            ),
+            icon: Icons.photo_library_outlined,
+            variant: UiButtonVariant.secondary,
+            label:
+                '${AppStrings.details.galleryLabelPrefix} — ${detail.galleryImages.length} ${AppStrings.details.photosSuffix}',
           ),
         ],
         const SizedBox(height: AppSpacing.xxl),

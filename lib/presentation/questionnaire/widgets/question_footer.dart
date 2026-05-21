@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/spacing.dart';
-import '../../widgets/gradient_button.dart';
 
 class QuestionFooter extends StatelessWidget {
   const QuestionFooter({
@@ -23,15 +23,16 @@ class QuestionFooter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        GradientButton(
+        UiButton(
           label: AppStrings.questionnaire.continueCta,
           onPressed: canSubmit ? onSubmit : null,
+          icon: Icons.arrow_forward_rounded,
         ),
         if (canSkip) ...[
           const SizedBox(height: AppSpacing.sm),
           TextButton(
             onPressed: onSkip,
-            child: const Text('Пропустить'),
+            child: Text(AppStrings.questionnaire.skipCta),
           ),
         ],
       ],

@@ -44,7 +44,7 @@ Prefer shared components before creating local variants:
 1. `UiCard` for section/card containers.
 2. `UiStateView` for loading/error/empty states.
 3. `UiButton` for standard action buttons.
-4. `GradientButton` for branded CTA only.
+4. `UiButton` variants (`primary`, `secondary`, `text`) for all CTA levels.
 
 ## Contribution Rules
 
