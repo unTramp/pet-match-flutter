@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/compatibility.dart';
+import '../welcome/widgets/app_logo.dart';
 import 'widgets/alert_block.dart';
 import 'widgets/main_breed_card.dart';
 import 'widgets/reasons_section.dart';
 import 'widgets/refusal_block.dart';
+import 'widgets/result_section_card.dart';
 import 'widgets/suggestion_card.dart';
 
 /// Result-экран отображает **всё**, что отдаёт API:
@@ -88,9 +90,18 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Результат'),
-        leading: IconButton(
-          icon: const Icon(Icons.home_rounded),
-          onPressed: () => context.go('/welcome'),
+        leadingWidth: 56,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8),
+          child: Material(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            child: InkWell(
+              onTap: () => context.go('/welcome'),
+              borderRadius: BorderRadius.circular(12),
+              child: const AppLogo(showText: false, size: 36),
+            ),
+          ),
         ),
       ),
       body: SafeArea(
@@ -105,10 +116,12 @@ class ResultPage extends StatelessWidget {
               onTap: () => _openBreed(context, compatibility.breedId),
             ),
             if (influences.isNotEmpty) ...[
-              const SizedBox(height: 28),
-              ReasonsSection(
-                title: 'Что влияет на совпадение?',
-                items: influences,
+              const SizedBox(height: 24),
+              ResultSectionCard(
+                child: ReasonsSection(
+                  title: 'Что влияет на совпадение?',
+                  items: influences,
+                ),
               ),
             ],
             if (refusal != null && (refusal.title?.isNotEmpty ?? false)) ...[
@@ -127,14 +140,21 @@ class ResultPage extends StatelessWidget {
               ),
             ],
             if (insightItems.isNotEmpty) ...[
-              const SizedBox(height: 28),
-              ReasonsSection(title: 'Что важно знать', items: insightItems),
+              const SizedBox(height: 24),
+              ResultSectionCard(
+                child: ReasonsSection(
+                  title: 'Что важно знать',
+                  items: insightItems,
+                ),
+              ),
             ],
             if (requirementItems.isNotEmpty) ...[
-              const SizedBox(height: 28),
-              ReasonsSection(
-                title: 'Требования породы',
-                items: requirementItems,
+              const SizedBox(height: 24),
+              ResultSectionCard(
+                child: ReasonsSection(
+                  title: 'Требования породы',
+                  items: requirementItems,
+                ),
               ),
             ],
             if (suggestions.isNotEmpty) ...[
