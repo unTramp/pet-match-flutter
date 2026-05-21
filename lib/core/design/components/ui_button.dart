@@ -30,15 +30,15 @@ class UiButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isIos = Theme.of(context).platform == TargetPlatform.iOS;
-    final effectiveOnPressed = onPressed;
+    final effectiveOnPressed = loading ? null : onPressed;
+    final spinnerColor =
+        variant == UiButtonVariant.primary ? Colors.white : AppColors.primary;
     final spinner = SizedBox(
       width: 18,
       height: 18,
       child: CircularProgressIndicator(
         strokeWidth: 2.2,
-        valueColor: AlwaysStoppedAnimation<Color>(
-          variant == UiButtonVariant.primary ? Colors.white : AppColors.primary,
-        ),
+        valueColor: AlwaysStoppedAnimation<Color>(spinnerColor),
       ),
     );
     final child =
@@ -59,32 +59,30 @@ class UiButton extends StatelessWidget {
       final button = switch (variant) {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
-          child: CupertinoButton.filled(onPressed: effectiveOnPressed, child: child),
+          child: CupertinoButton.filled(
+            onPressed: effectiveOnPressed,
+            child: child,
+          ),
         ),
         UiButtonVariant.secondary => CupertinoButton(
           onPressed: effectiveOnPressed,
           padding: EdgeInsets.zero,
-              child: Container(
-                width: double.infinity,
-                constraints: const BoxConstraints(minHeight: 52),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  border: Border.all(
-                    color: AppColors.primary,
-                    width: 1.5,
-                  ),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                    color: AppColors.primary,
-                  ),
-                  child: IconTheme(
-                    data: const IconThemeData(color: AppColors.primary),
-                    child: child,
-                  ),
-                ),
+          child: Container(
+            width: double.infinity,
+            constraints: const BoxConstraints(minHeight: 52),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              border: Border.all(color: AppColors.primary, width: 1.5),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            child: DefaultTextStyle(
+              style: const TextStyle(color: AppColors.primary),
+              child: IconTheme(
+                data: const IconThemeData(color: AppColors.primary),
+                child: child,
+              ),
+            ),
           ),
         ),
         UiButtonVariant.text => CupertinoButton(
@@ -93,7 +91,7 @@ class UiButton extends StatelessWidget {
           child: child,
         ),
       };
-      return AbsorbPointer(absorbing: loading, child: button);
+      return button;
     }
 
     final button = switch (variant) {
@@ -105,8 +103,11 @@ class UiButton extends StatelessWidget {
         onPressed: effectiveOnPressed,
         child: child,
       ),
-      UiButtonVariant.text => TextButton(onPressed: effectiveOnPressed, child: child),
+      UiButtonVariant.text => TextButton(
+        onPressed: effectiveOnPressed,
+        child: child,
+      ),
     };
-    return AbsorbPointer(absorbing: loading, child: button);
+    return button;
   }
 }

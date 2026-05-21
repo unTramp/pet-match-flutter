@@ -13,9 +13,8 @@ import '../../core/di/injection.dart';
 import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
-import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
-import 'widgets/language_toggle.dart';
+import '../widgets/top_brand_bar.dart';
 
 /// Hero-экран приветствия.
 ///
@@ -130,18 +129,23 @@ class _WelcomePageState extends State<WelcomePage>
   Future<void> _onContinueToQuestionnaire() async {
     if (_isContinuing) return;
     setState(() => _isContinuing = true);
+    var navigated = false;
     try {
       final session = await sl<StartSession>()().timeout(
         _prefetchTimeout,
         onTimeout: () => throw const TimeoutFailure(),
       );
       if (!mounted) return;
+      navigated = true;
       context.go('/questionnaire', extra: session);
     } catch (_) {
       if (!mounted) return;
+      navigated = true;
       context.go('/questionnaire');
     } finally {
-      if (mounted) setState(() => _isContinuing = false);
+      if (mounted && !navigated) {
+        setState(() => _isContinuing = false);
+      }
     }
   }
 
@@ -173,18 +177,18 @@ class _WelcomePageState extends State<WelcomePage>
                 semanticLabel: AppStrings.welcome.catImageSemantic,
               ),
             ),
-            const Positioned.fill(
+            Positioned.fill(
               child: IgnorePointer(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      stops: [0.0, 0.4, 0.85],
+                      stops: const [0.0, 0.4, 0.85],
                       colors: [
                         AppColors.cream,
-                        Color(0xCCF7F1E7),
-                        Color(0x00F7F1E7),
+                        AppColors.cream.withValues(alpha: 0.8),
+                        AppColors.cream.withValues(alpha: 0),
                       ],
                     ),
                   ),
@@ -202,10 +206,7 @@ class _WelcomePageState extends State<WelcomePage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [AppLogo(), LanguageToggle()],
-                    ),
+                    const TopBrandBar(padding: EdgeInsets.zero),
                     const Spacer(flex: 1),
                     _AnimatedTextEntrance(
                       fade: _headlineFade,

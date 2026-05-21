@@ -9,8 +9,7 @@ import '../../core/di/injection.dart';
 import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
-import '../welcome/widgets/app_logo.dart';
-import '../welcome/widgets/language_toggle.dart';
+import '../widgets/top_brand_bar.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -87,10 +86,7 @@ class _IntroPageState extends State<IntroPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [AppLogo(), LanguageToggle()],
-              ),
+              const TopBrandBar(padding: EdgeInsets.zero),
               const SizedBox(height: AppSpacing.xxl),
               Text(
                 AppStrings.intro.title,

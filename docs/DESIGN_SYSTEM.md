@@ -1,66 +1,94 @@
-# Design System Guide
+# Дизайн-система проекта
 
-This project uses a lightweight UIKit approach with centralized tokens and shared components.
+Документ описывает действующий UI-контур приложения: токены, компоненты, правила использования и принятые паттерны.
 
-## Goals
+## Цели
 
-1. Keep visuals consistent across screens.
-2. Reduce duplicated UI code.
-3. Make new features faster to implement.
-4. Keep design changes low-risk.
+1. Единый визуальный язык на всех экранах.
+2. Быстрая разработка новых экранов за счёт переиспользования.
+3. Предсказуемое поведение интерактивных элементов.
+4. Низкий риск регрессий при UI-изменениях.
 
-## Layers
+## Архитектура UI-слоя
 
-1. Tokens: `lib/core/design/tokens/`
-2. Content strings: `lib/core/design/content/`
-3. Components: `lib/core/design/components/`
-4. Feature widgets/screens: `lib/presentation/**`
+1. **Токены**: `lib/core/design/tokens/`
+2. **Контент/копирайт**: `lib/core/design/content/`
+3. **Базовые компоненты**: `lib/core/design/components/`
+4. **Фичевые экраны/виджеты**: `lib/presentation/**`
 
-## Tokens
+## Токены
 
-Use tokens instead of hardcoded values:
+Используются централизованные токены:
 
-1. Spacing: `AppSpacing`
-2. Radius: `AppRadius`
-3. Motion: `AppMotion`
-4. Colors: `AppColors`
-5. Theme typography: `Theme.of(context).textTheme`
+1. `AppSpacing` — отступы.
+2. `AppRadius` — радиусы.
+3. `AppMotion` — длительности и кривые.
+4. `AppColors` — палитра.
+5. `Theme.of(context).textTheme` — типографика.
 
-## Strings
+## Базовые компоненты
 
-User-facing text should come from:
+1. `UiButton` — основной компонент CTA.
+2. `UiCard` — контейнеры карточек/секций.
+3. `UiStateView` — состояния `loading/message`.
+4. `TopBrandBar` — единая верхняя панель бренда и переключателя языка.
 
-`lib/core/design/content/app_strings.dart`
+## API `UiButton`
 
-Rules:
+Файл: `lib/core/design/components/ui_button.dart`
 
-1. Do not add new hardcoded business copy directly in screens when a shared key fits.
-2. Keep strings grouped by feature (`welcome`, `intro`, `questionnaire`, `result`, `details`).
+1. `variant: UiButtonVariant.primary | secondary | text`
+2. `icon: IconData?` — опциональная иконка слева от текста.
+3. `onPressed: VoidCallback?`
+4. `loading: bool` — состояние отправки/ожидания.
 
-## Components
+Поведение:
 
-Prefer shared components before creating local variants:
+1. `onPressed == null` — неактивное состояние кнопки.
+2. `loading == true` — вместо label показывается индикатор загрузки.
+3. На `loading` повторное действие блокируется.
+4. Варианты `primary/secondary/text` используются для уровней важности CTA.
 
-1. `UiCard` for section/card containers.
-2. `UiStateView` for loading/error/empty states.
-3. `UiButton` for standard action buttons.
-4. `UiButton` variants (`primary`, `secondary`, `text`) for all CTA levels.
+## API `UiStateView`
 
-## Contribution Rules
+Файл: `lib/core/design/components/ui_state_view.dart`
 
-1. Prefer tokens over raw numbers for spacing/radius/duration.
-2. Keep business logic outside UI primitives.
-3. Add or update widget tests when changing shared components.
-4. Run:
+1. `UiStateView.loading({message})` — единый шаблон экрана загрузки.
+2. `UiStateView.message(...)` — единый шаблон сообщения/ошибки/пустого состояния.
+
+Композиция действий в `message`:
+
+1. `primaryLabel + primaryAction` — основное действие.
+2. `secondaryLabel + secondaryAction` — дополнительное действие.
+3. Оба действия поддерживаются одновременно.
+
+## Правила применения
+
+1. Пользовательский текст берётся из `app_strings.dart`.
+2. Новые экраны строятся на базовых компонентах и токенах.
+3. Прямые литералы отступов/радиусов/цветов не используются, если есть соответствующий токен.
+4. Изменения shared-компонентов сопровождаются тестами и прогоном:
    - `flutter analyze`
-   - `flutter test` (at least affected suites)
+   - `flutter test` (как минимум затронутые наборы).
 
-## When to Add a New Shared Component
+## Паттерны взаимодействия
 
-Create a shared component only if one of these is true:
+1. Единый CTA-паттерн: `loading` + блокировка повторного действия.
+2. В Questionnaire во время submit:
+   - CTA показывает загрузку;
+   - варианты ответов временно неактивны;
+   - добавлен мягкий визуальный busy-сигнал.
+3. Навигация между экранами использует единый плавный пресет переходов.
+4. Нижние CTA используют единый SafeArea-отступ, чтобы положение кнопки не менялось между экранами.
 
-1. The same UI pattern appears in 3+ places.
-2. The pattern has variants that should stay visually consistent.
-3. The pattern carries common behavior (loading/disabled/error interactions).
+## Когда выносить в shared-компонент
 
-Otherwise keep it local to feature scope.
+Вынос оправдан, если:
+
+1. Паттерн повторяется в 3+ местах.
+2. Важно единое поведение/стиль для всех фич.
+3. Компонент инкапсулирует повторяющуюся логику состояний.
+
+## Итог
+
+Текущая дизайн-система покрывает базовые сценарии приложения, даёт единообразный UI и позволяет масштабировать новые экраны без дублирования и расхождения в поведении.
