@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -37,6 +39,8 @@ class _WelcomePageState extends State<WelcomePage>
   late final Animation<Offset> _headlineSlide;
   late final Animation<double> _subtitleFade;
   late final Animation<Offset> _subtitleSlide;
+  late final Animation<double> _ctaFade;
+  late final Animation<Offset> _ctaSlide;
   bool _imagePrecached = false;
 
   @override
@@ -45,7 +49,7 @@ class _WelcomePageState extends State<WelcomePage>
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
     _introController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 1100),
     );
     _headlineFade = CurvedAnimation(
       parent: _introController,
@@ -70,10 +74,29 @@ class _WelcomePageState extends State<WelcomePage>
     ).animate(
       CurvedAnimation(
         parent: _introController,
-        curve: const Interval(0.3, 1.0, curve: Curves.easeOutCubic),
+        curve: const Interval(0.28, 0.84, curve: Curves.easeOutQuart),
       ),
     );
-    _introController.forward();
+    _ctaFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.62, 1.0, curve: Curves.easeOut),
+    );
+    _ctaSlide = Tween<Offset>(
+      begin: const Offset(0, 0.06),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.62, 1.0, curve: Curves.easeOutCubic),
+      ),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // На iOS первый layout/paint может "съесть" начало анимации.
+      // Стартуем после первого кадра с короткой паузой.
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      if (!mounted) return;
+      unawaited(_introController.forward(from: 0));
+    });
   }
 
   @override
@@ -181,22 +204,26 @@ class _WelcomePageState extends State<WelcomePage>
                       ),
                     ),
                     const Spacer(flex: 5),
-                    FutureBuilder<bool>(
-                      future: _hasActiveSession,
-                      builder: (context, snapshot) {
-                        // Оптимистичный рендер: всегда показываем кнопку.
-                        // Когда hasActiveSession резолвится — мягко
-                        // обновляем label.
-                        final hasSession = snapshot.data ?? false;
-                        return _BottomActions(
-                          hasSession: hasSession,
-                          onPressed:
-                              () => context.go(
-                                hasSession ? '/questionnaire' : '/intro',
-                              ),
-                          onRestart: hasSession ? _onRestart : null,
-                        );
-                      },
+                    _AnimatedTextEntrance(
+                      fade: _ctaFade,
+                      slide: _ctaSlide,
+                      child: FutureBuilder<bool>(
+                        future: _hasActiveSession,
+                        builder: (context, snapshot) {
+                          // Оптимистичный рендер: всегда показываем кнопку.
+                          // Когда hasActiveSession резолвится — мягко
+                          // обновляем label.
+                          final hasSession = snapshot.data ?? false;
+                          return _BottomActions(
+                            hasSession: hasSession,
+                            onPressed:
+                                () => context.go(
+                                  hasSession ? '/questionnaire' : '/intro',
+                                ),
+                            onRestart: hasSession ? _onRestart : null,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
