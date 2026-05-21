@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
@@ -22,6 +23,17 @@ class MainBreedCard extends StatelessWidget {
       return AppColors.warning;
     }
     return AppColors.accent;
+  }
+
+  String _statusText() {
+    if (compatibility.compatible == false ||
+        compatibility.risk == CompatibilityRisk.high) {
+      return AppStrings.result.chipRefused;
+    }
+    if (compatibility.risk == CompatibilityRisk.medium) {
+      return AppStrings.result.chipMedium;
+    }
+    return AppStrings.result.chipGood;
   }
 
   @override
@@ -83,9 +95,35 @@ class MainBreedCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          compatibility.breedName ?? 'Порода',
-                          style: theme.textTheme.headlineMedium,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              compatibility.breedName ?? 'Порода',
+                              style: theme.textTheme.headlineMedium,
+                            ),
+                            const SizedBox(height: AppSpacing.xs),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.sm,
+                                vertical: 3,
+                              ),
+                              decoration: BoxDecoration(
+                                color: accent.withValues(alpha: 0.12),
+                                borderRadius: BorderRadius.circular(
+                                  AppRadius.md,
+                                ),
+                              ),
+                              child: Text(
+                                _statusText(),
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: accent,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
@@ -115,21 +153,13 @@ class MainBreedCard extends StatelessWidget {
                   ],
                   if (onTap != null) ...[
                     const SizedBox(height: AppSpacing.lg),
-                    Row(
-                      children: [
-                        Text(
-                          'Подробнее о породе',
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: AppColors.primary,
-                          ),
-                        ),
-                        const SizedBox(width: AppSpacing.xs),
-                        const Icon(
-                          Icons.arrow_forward_rounded,
-                          size: 18,
-                          color: AppColors.primary,
-                        ),
-                      ],
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton.icon(
+                        onPressed: onTap,
+                        icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+                        label: Text(AppStrings.result.ctaViewBreed),
+                      ),
                     ),
                   ],
                 ],

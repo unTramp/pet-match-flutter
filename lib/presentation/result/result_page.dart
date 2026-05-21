@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
@@ -23,10 +24,21 @@ import 'widgets/suggestion_card.dart';
 ///  * блок «Что важно знать» — insights
 ///  * блок «Требования породы» — requirement_highlights
 ///  * альтернативы
-class ResultPage extends StatelessWidget {
+class ResultPage extends StatefulWidget {
   const ResultPage({super.key, required this.compatibility});
 
   final Compatibility compatibility;
+
+  @override
+  State<ResultPage> createState() => _ResultPageState();
+}
+
+class _ResultPageState extends State<ResultPage> {
+  static const int _collapsedLimit = 3;
+
+  bool _showAllInfluences = false;
+  bool _showAllInsights = false;
+  bool _showAllRequirements = false;
 
   void _openBreed(BuildContext context, int? breedId) {
     if (breedId == null) return;
@@ -34,16 +46,68 @@ class ResultPage extends StatelessWidget {
   }
 
   String _headerTitle() {
-    if (compatibility.isRefused) return AppStrings.result.headerRefused;
-    if (compatibility.risk == CompatibilityRisk.medium) {
+    if (widget.compatibility.isRefused) return AppStrings.result.headerRefused;
+    if (widget.compatibility.risk == CompatibilityRisk.medium) {
       return AppStrings.result.headerMedium;
     }
     return AppStrings.result.headerBest;
   }
 
+  String _verdictMessage() {
+    if (widget.compatibility.isRefused) return AppStrings.result.verdictRefused;
+    if (widget.compatibility.risk == CompatibilityRisk.medium) {
+      return AppStrings.result.verdictMedium;
+    }
+    return AppStrings.result.verdictGood;
+  }
+
+  void _openPrimaryAction(BuildContext context) {
+    final primaryId = widget.compatibility.breedId;
+    if (primaryId != null) {
+      _openBreed(context, primaryId);
+      return;
+    }
+    final suggestions = widget.compatibility.suggestions;
+    if (suggestions.isNotEmpty) {
+      _openBreed(context, suggestions.first.breedId);
+    }
+  }
+
+  List<ReasonItem> _visibleItems(List<ReasonItem> source, bool showAll) {
+    if (showAll || source.length <= _collapsedLimit) return source;
+    return source.take(_collapsedLimit).toList(growable: false);
+  }
+
+  Widget _sectionWithExpand({
+    required String title,
+    required List<ReasonItem> items,
+    required bool showAll,
+    required VoidCallback onToggle,
+  }) {
+    final visible = _visibleItems(items, showAll);
+    final canExpand = items.length > _collapsedLimit;
+    return ResultSectionCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ReasonsSection(title: title, items: visible),
+          if (canExpand) ...[
+            const SizedBox(height: AppSpacing.md),
+            UiButton(
+              label: showAll ? AppStrings.result.showLess : AppStrings.result.showMore,
+              onPressed: onToggle,
+              variant: UiButtonVariant.text,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final compatibility = widget.compatibility;
     final suggestions = compatibility.suggestions;
     final hardReasons = compatibility.hardReasons;
     final risks = compatibility.risks;
@@ -111,6 +175,22 @@ class ResultPage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(
+          AppSpacing.xl,
+          AppSpacing.sm,
+          AppSpacing.xl,
+          AppSpacing.xl,
+        ),
+        child: UiButton(
+          label:
+              compatibility.breedId != null
+                  ? AppStrings.result.ctaViewBreed
+                  : AppStrings.result.ctaViewAlternatives,
+          onPressed: () => _openPrimaryAction(context),
+          icon: Icons.arrow_forward_rounded,
+        ),
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(
@@ -123,17 +203,35 @@ class ResultPage extends StatelessWidget {
           children: [
             Text(_headerTitle(), style: theme.textTheme.titleLarge),
             const SizedBox(height: AppSpacing.md),
+            Container(
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(AppRadius.xl),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Text(
+                _verdictMessage(),
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.lg),
             MainBreedCard(
               compatibility: compatibility,
               onTap: () => _openBreed(context, compatibility.breedId),
             ),
             if (influences.isNotEmpty) ...[
               const SizedBox(height: AppSpacing.xxl),
-              ResultSectionCard(
-                child: ReasonsSection(
-                  title: AppStrings.result.influences,
-                  items: influences,
-                ),
+              _sectionWithExpand(
+                title: AppStrings.result.influences,
+                items: influences,
+                showAll: _showAllInfluences,
+                onToggle:
+                    () =>
+                        setState(() => _showAllInfluences = !_showAllInfluences),
               ),
             ],
             if (refusal != null && (refusal.title?.isNotEmpty ?? false)) ...[
@@ -153,20 +251,24 @@ class ResultPage extends StatelessWidget {
             ],
             if (insightItems.isNotEmpty) ...[
               const SizedBox(height: AppSpacing.xxl),
-              ResultSectionCard(
-                child: ReasonsSection(
-                  title: AppStrings.result.insights,
-                  items: insightItems,
-                ),
+              _sectionWithExpand(
+                title: AppStrings.result.insights,
+                items: insightItems,
+                showAll: _showAllInsights,
+                onToggle:
+                    () => setState(() => _showAllInsights = !_showAllInsights),
               ),
             ],
             if (requirementItems.isNotEmpty) ...[
               const SizedBox(height: AppSpacing.xxl),
-              ResultSectionCard(
-                child: ReasonsSection(
-                  title: AppStrings.result.requirements,
-                  items: requirementItems,
-                ),
+              _sectionWithExpand(
+                title: AppStrings.result.requirements,
+                items: requirementItems,
+                showAll: _showAllRequirements,
+                onToggle:
+                    () => setState(
+                      () => _showAllRequirements = !_showAllRequirements,
+                    ),
               ),
             ],
             if (suggestions.isNotEmpty) ...[

@@ -88,6 +88,18 @@ class _ResultStrings {
   final String requirements = 'Требования породы';
   final String suggestionsTitle = 'Похожие варианты';
   final String suggestionsSubtitle = 'Альтернативные породы по вашему профилю.';
+  final String verdictGood = 'Рекомендация подходит вашему профилю.';
+  final String verdictMedium =
+      'Подходит, но обратите внимание на важные оговорки.';
+  final String verdictRefused =
+      'Сейчас лучше выбрать альтернативный вариант породы.';
+  final String showMore = 'Показать все';
+  final String showLess = 'Свернуть';
+  final String ctaViewBreed = 'Подробнее о породе';
+  final String ctaViewAlternatives = 'Смотреть альтернативы';
+  final String chipGood = 'Подходит';
+  final String chipMedium = 'С оговорками';
+  final String chipRefused = 'Не рекомендуем';
 }
 
 class _DetailsStrings {
