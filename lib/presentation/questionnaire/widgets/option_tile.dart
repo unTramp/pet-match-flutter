@@ -27,54 +27,59 @@ class OptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = BorderRadius.circular(AppRadius.xxl);
-    return Material(
-      color: Colors.transparent,
-      borderRadius: radius,
-      child: InkWell(
-        onTap: onTap,
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      child: Material(
+        color: Colors.transparent,
         borderRadius: radius,
-        splashColor: AppColors.primary.withValues(alpha: 0.06),
-        highlightColor: AppColors.primary.withValues(alpha: 0.04),
-        child: AnimatedContainer(
-          duration: AppMotion.normal,
-          curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.xl,
-            vertical: 18,
-          ),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: radius,
-            border: Border.all(
-              color: selected ? AppColors.primary : AppColors.border,
-              width: selected ? 1.5 : 1,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: radius,
+          splashColor: AppColors.primary.withValues(alpha: 0.06),
+          highlightColor: AppColors.primary.withValues(alpha: 0.04),
+          child: AnimatedContainer(
+            duration: AppMotion.normal,
+            curve: Curves.easeOut,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.xl,
+              vertical: 18,
             ),
-            boxShadow: [
-              BoxShadow(
-                color:
-                    selected
-                        ? AppColors.primary.withValues(alpha: 0.18)
-                        : Colors.black.withValues(alpha: 0.04),
-                offset: const Offset(0, 6),
-                blurRadius: selected ? 18 : 12,
-                spreadRadius: -2,
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: radius,
+              border: Border.all(
+                color: selected ? AppColors.primary : AppColors.border,
+                width: selected ? 1.5 : 1,
               ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  label,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-                    color: AppColors.textPrimary,
+              boxShadow: [
+                BoxShadow(
+                  color:
+                      selected
+                          ? AppColors.primary.withValues(alpha: 0.18)
+                          : Colors.black.withValues(alpha: 0.04),
+                  offset: const Offset(0, 6),
+                  blurRadius: selected ? 18 : 12,
+                  spreadRadius: -2,
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    label,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              trailing,
-            ],
+                const SizedBox(width: AppSpacing.md),
+                ExcludeSemantics(child: trailing),
+              ],
+            ),
           ),
         ),
       ),

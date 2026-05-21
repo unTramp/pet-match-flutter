@@ -2,11 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/di/injection.dart';
 import '../../../core/failures.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/usecases/get_dynamic_options.dart';
+import 'option_tile.dart';
 
 /// Виджет с поисковым полем и подгружаемым списком опций. Локальный
 /// `ValueNotifier` хранит загруженные варианты — отдельный Cubit избыточен
@@ -90,17 +94,17 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
               _load(null);
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.lg),
         ],
         TextField(
           controller: _controller,
           onChanged: _onSearch,
-          decoration: const InputDecoration(
-            hintText: 'Поиск породы',
-            prefixIcon: Icon(Icons.search_rounded),
+          decoration: InputDecoration(
+            hintText: AppStrings.questionnaire.searchHint,
+            prefixIcon: const Icon(Icons.search_rounded),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.md),
         ValueListenableBuilder<_OptionsState>(
           valueListenable: _state,
           builder:
@@ -108,7 +112,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                 idle: () => const SizedBox.shrink(),
                 loading:
                     () => const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
+                      padding: EdgeInsets.symmetric(vertical: AppSpacing.xxl),
                       child: Center(
                         child: SizedBox(
                           width: 24,
@@ -120,14 +124,14 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                 loaded:
                     (items) =>
                         items.isEmpty
-                            ? const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 24),
+                            ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.xxl,
+                              ),
                               child: Center(
                                 child: Text(
-                                  'Ничего не найдено',
-                                  style: TextStyle(
-                                    color: AppColors.textSecondary,
-                                  ),
+                                  AppStrings.questionnaire.searchEmpty,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
                             )
@@ -137,7 +141,9 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                                 final isSelected =
                                     selected?.code == option.code;
                                 return Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
+                                  padding: const EdgeInsets.only(
+                                    bottom: AppSpacing.md,
+                                  ),
                                   child: _OptionRow(
                                     label: option.label,
                                     selected: isSelected,
@@ -148,12 +154,14 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                             ),
                 error:
                     (f) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppSpacing.lg,
+                      ),
                       child: Center(
                         child: TextButton.icon(
                           onPressed: () => _load(_controller.text),
                           icon: const Icon(Icons.refresh_rounded),
-                          label: const Text('Повторить'),
+                          label: Text(AppStrings.common.retry),
                         ),
                       ),
                     ),
@@ -173,16 +181,19 @@ class _SelectedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.md,
+      ),
       decoration: BoxDecoration(
         color: AppColors.primary.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.primary, width: 1.5),
       ),
       child: Row(
         children: [
           const Icon(Icons.check_circle_rounded, color: AppColors.primary),
-          const SizedBox(width: 12),
+          const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Text(label, style: Theme.of(context).textTheme.bodyLarge),
           ),
@@ -206,31 +217,11 @@ class _OptionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return OptionTile(
+      label: label,
+      selected: selected,
       onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: selected ? AppColors.primary : AppColors.border,
-            width: selected ? 1.5 : 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Expanded(child: Text(label)),
-            if (selected)
-              const Icon(
-                Icons.check_rounded,
-                color: AppColors.primary,
-                size: 20,
-              ),
-          ],
-        ),
-      ),
+      trailing: OptionCheck(selected: selected),
     );
   }
 }

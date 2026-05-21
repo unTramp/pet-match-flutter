@@ -42,6 +42,8 @@ class _QuestionnaireView extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final questionState = state is QuestionnaireQuestion ? state : null;
+        final cubit = context.read<QuestionnaireCubit>();
         return Scaffold(
           appBar: AppBar(
             title: Text(AppStrings.questionnaire.appBarTitle),
@@ -50,6 +52,15 @@ class _QuestionnaireView extends StatelessWidget {
               onPressed: () => context.go('/welcome'),
             ),
           ),
+          bottomNavigationBar:
+              questionState == null
+                  ? null
+                  : _QuestionBottomBar(
+                    canSubmit: questionState.canSubmit,
+                    onSubmit: cubit.submit,
+                    canSkip: questionState.question.isOptional,
+                    onSkip: cubit.skipCurrent,
+                  ),
           body: SafeArea(
             child: switch (state) {
               QuestionnaireInitial() || QuestionnaireLoading() =>
@@ -76,20 +87,23 @@ class _QuestionBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cubit = context.read<QuestionnaireCubit>();
     final question = state.question;
+    final cubit = context.read<QuestionnaireCubit>();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.xl,
         AppSpacing.md,
         AppSpacing.xl,
-        AppSpacing.xl,
+        AppSpacing.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ProgressBar(progress: state.progress),
+          ProgressBar(
+            progress: state.progress,
+            stepTypeLabel: _stepTypeLabel(question),
+          ),
           const SizedBox(height: AppSpacing.xxl),
           Expanded(
             child: SingleChildScrollView(
@@ -138,14 +152,67 @@ class _QuestionBody extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+        ],
+      ),
+    );
+  }
+
+  String _stepTypeLabel(Question question) {
+    return switch (question) {
+      SingleChoiceQuestion() => AppStrings.questionnaire.stepTypeSingle,
+      MultipleChoiceQuestion() => AppStrings.questionnaire.stepTypeMultiple,
+      DynamicOptionsQuestion() => AppStrings.questionnaire.stepTypeSearch,
+      UnknownQuestion() => AppStrings.questionnaire.unsupportedTitle,
+    };
+  }
+
+  /// userId доступен только после `start()`. Берём его через progress нельзя —
+  /// поэтому Cubit хранит `_userId` приватно. Здесь же DynamicOptionsWidget
+  /// получает userId напрямую из Cubit через приватный API. Чтобы не
+  /// усложнять — используем `state.progress`-инвариант: к моменту, когда
+  /// показывается dynamic question, userId уже точно есть в Cubit; вытащим
+  /// его через прямой публичный метод.
+  int _userIdFromContext(BuildContext context) {
+    // Cubit хранит userId внутри; чтобы не плодить публичных полей,
+    // используем callback-стиль: dynamic widget вызывает usecase сам через DI.
+    // Здесь возвращаем актуальный userId через cubit.
+    return context.read<QuestionnaireCubit>().userId;
+  }
+}
+
+class _QuestionBottomBar extends StatelessWidget {
+  const _QuestionBottomBar({
+    required this.canSubmit,
+    required this.onSubmit,
+    required this.canSkip,
+    required this.onSkip,
+  });
+
+  final bool canSubmit;
+  final VoidCallback onSubmit;
+  final bool canSkip;
+  final VoidCallback onSkip;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return SafeArea(
+      minimum: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.sm,
+        AppSpacing.xl,
+        AppSpacing.md,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
           QuestionFooter(
-            canSubmit: state.canSubmit,
-            onSubmit: cubit.submit,
-            canSkip: question.isOptional,
-            onSkip: cubit.skipCurrent,
+            canSubmit: canSubmit,
+            onSubmit: onSubmit,
+            canSkip: canSkip,
+            onSkip: onSkip,
           ),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: AppSpacing.sm),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -167,19 +234,6 @@ class _QuestionBody extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  /// userId доступен только после `start()`. Берём его через progress нельзя —
-  /// поэтому Cubit хранит `_userId` приватно. Здесь же DynamicOptionsWidget
-  /// получает userId напрямую из Cubit через приватный API. Чтобы не
-  /// усложнять — используем `state.progress`-инвариант: к моменту, когда
-  /// показывается dynamic question, userId уже точно есть в Cubit; вытащим
-  /// его через прямой публичный метод.
-  int _userIdFromContext(BuildContext context) {
-    // Cubit хранит userId внутри; чтобы не плодить публичных полей,
-    // используем callback-стиль: dynamic widget вызывает usecase сам через DI.
-    // Здесь возвращаем актуальный userId через cubit.
-    return context.read<QuestionnaireCubit>().userId;
   }
 }
 

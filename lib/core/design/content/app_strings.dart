@@ -60,6 +60,11 @@ class _QuestionnaireStrings {
   final String continueCta = 'Продолжить';
   final String skipCta = 'Пропустить';
   final String progressLabel = 'Вопрос';
+  final String stepTypeSingle = 'Один вариант';
+  final String stepTypeMultiple = 'Несколько вариантов';
+  final String stepTypeSearch = 'Поиск по списку';
+  final String searchHint = 'Поиск породы';
+  final String searchEmpty = 'Ничего не найдено';
   final String unsupportedTitle = 'Тип вопроса не поддерживается';
   final String unsupportedBody =
       'Похоже, эта версия приложения устарела. Если вопрос '

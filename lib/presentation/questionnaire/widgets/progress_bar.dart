@@ -7,9 +7,10 @@ import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/progress.dart';
 
 class ProgressBar extends StatelessWidget {
-  const ProgressBar({super.key, required this.progress});
+  const ProgressBar({super.key, required this.progress, this.stepTypeLabel});
 
   final Progress progress;
+  final String? stepTypeLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,16 @@ class ProgressBar extends StatelessWidget {
             ),
           ],
         ),
+        if (stepTypeLabel != null) ...[
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            stepTypeLabel!,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
         const SizedBox(height: AppSpacing.sm),
         ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.sm),
