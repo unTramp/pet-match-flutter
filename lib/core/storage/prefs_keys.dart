@@ -11,8 +11,4 @@ class PrefsKeys {
   /// Сохранённый `user_id`, возвращённый бэком после `POST /start`.
   /// Используется для resume-вызовов `GET /session`.
   static const String sessionUserId = 'session_user_id';
-
-  /// Сохранённый код выбранного языка (`ru` / `en`),
-  /// см. `AppLocaleController._prefsKey`.
-  static const String appLanguage = 'app_language';
 }

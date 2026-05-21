@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'core/di/injection.dart';
-import 'core/locale/app_locale_controller.dart';
 import 'presentation/app.dart';
 import 'presentation/details/cubit/breed_detail_cubit.dart';
 import 'presentation/questionnaire/cubit/questionnaire_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppLocaleController.instance.init();
   await configureDependencies();
 
   // Cubit-фабрики регистрируются здесь, чтобы не образовывать цикл импортов

@@ -1,22 +1,7 @@
-import '../../locale/app_locale_controller.dart';
-
 class AppStrings {
   AppStrings._();
 
-  static LocalizedStrings get _s =>
-      AppLocaleController.instance.current == AppLanguage.en ? _en : _ru;
-
-  static final common = SectionProxy<CommonStrings>((s) => s.common);
-  static final welcome = SectionProxy<WelcomeStrings>((s) => s.welcome);
-  static final intro = SectionProxy<IntroStrings>((s) => s.intro);
-  static final questionnaire = SectionProxy<QuestionnaireStrings>(
-    (s) => s.questionnaire,
-  );
-  static final result = SectionProxy<ResultStrings>((s) => s.result);
-  static final details = SectionProxy<DetailsStrings>((s) => s.details);
-  static final analyzing = SectionProxy<AnalyzingStrings>((s) => s.analyzing);
-
-  static const _ru = LocalizedStrings(
+  static const _s = LocalizedStrings(
     common: CommonStrings(
       retry: 'Повторить',
       restart: 'Начать заново',
@@ -93,81 +78,15 @@ class AppStrings {
     ),
   );
 
-  static const _en = LocalizedStrings(
-    common: CommonStrings(
-      retry: 'Retry',
-      restart: 'Start over',
-      loadingDefault: 'Loading...',
-      errorNetwork: 'No internet connection. Check your network and try again.',
-      errorTimeout: 'The server is taking too long. Please try later.',
-      errorServer: 'Something went wrong. Please try again.',
-      errorEmpty: 'No data available. Please try again.',
-      unknownBreed: 'Breed',
-      appBrand: 'PET MATCH AI',
-    ),
-    welcome: WelcomeStrings(
-      catImageSemantic: 'Cat illustration',
-      subtitle:
-          'Answer a few short questions about your lifestyle - '
-          'and we will show which breeds fit you best.',
-      ctaContinue: 'Continue',
-      ctaStart: 'Find a pet',
-      heroLine1: 'Find a pet\n',
-      heroLine2: 'that fits\n',
-      heroLine3: 'your life.',
-    ),
-    intro: IntroStrings(
-      title: 'How it works',
-      subtitle: 'A few questions - and your matching breed is ready.',
-      ctaStart: 'Start questionnaire',
-      bullet1Title: 'Answer a few questions',
-      bullet1Body: 'About your lifestyle, home and preferences.',
-      bullet2Title: 'Get a recommendation',
-      bullet2Body: 'We will pick the breed that fits you best.',
-      bullet3Title: 'Explore the details',
-      bullet3Body: 'Temperament, care, traits and photos.',
-    ),
-    questionnaire: QuestionnaireStrings(
-      loading: 'Loading questionnaire...',
-      continueCta: 'Continue',
-      skipCta: 'Skip',
-      progressLabel: 'Question',
-      progressOf: 'of',
-      multiSelectHint: 'You can choose multiple options',
-      searchHint: 'Search breed',
-      searchEmpty: 'Nothing found',
-      unsupportedTitle: 'Question type is not supported',
-      unsupportedBody:
-          'This app version may be outdated. If the question is optional, '
-          'skip it with the button below. Otherwise update the app and try '
-          'again.',
-    ),
-    result: ResultStrings(
-      influences: 'What affects the match?',
-      important: 'Important',
-      refusalTitle: 'What to consider before choosing',
-      insights: 'Good to know',
-      requirements: 'Breed requirements',
-      suggestionsTitle: 'Similar options',
-      suggestionsSubtitle: 'Alternative breeds based on your profile.',
-      showMore: 'Show all',
-      showLess: 'Collapse',
-      ctaViewBreed: 'Breed details',
-      ctaViewAlternatives: 'View alternatives',
-      chipGood: 'Good fit',
-      chipMedium: 'With notes',
-      chipRefused: 'Not recommended',
-    ),
-    details: DetailsStrings(
-      appBarTitle: 'About breed',
-      galleryLabelPrefix: 'Gallery',
-      photosSuffix: 'photos',
-    ),
-    analyzing: AnalyzingStrings(
-      title: 'Finding your match…',
-      subtitle: 'Comparing your answers with breed profiles.',
-    ),
+  static final common = SectionProxy<CommonStrings>((s) => s.common);
+  static final welcome = SectionProxy<WelcomeStrings>((s) => s.welcome);
+  static final intro = SectionProxy<IntroStrings>((s) => s.intro);
+  static final questionnaire = SectionProxy<QuestionnaireStrings>(
+    (s) => s.questionnaire,
   );
+  static final result = SectionProxy<ResultStrings>((s) => s.result);
+  static final details = SectionProxy<DetailsStrings>((s) => s.details);
+  static final analyzing = SectionProxy<AnalyzingStrings>((s) => s.analyzing);
 }
 
 class SectionProxy<T> {

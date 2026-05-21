@@ -1,10 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:pet_match/core/locale/app_locale_controller.dart';
 import 'package:pet_match/core/network/interceptors/locale_interceptor.dart';
-
-class _MockController extends Mock implements AppLocaleController {}
 
 class _FakeHandler extends RequestInterceptorHandler {
   RequestOptions? captured;
@@ -15,15 +11,8 @@ class _FakeHandler extends RequestInterceptorHandler {
 }
 
 void main() {
-  late _MockController controller;
-
-  setUp(() {
-    controller = _MockController();
-    when(() => controller.current).thenReturn(AppLanguage.ru);
-  });
-
-  test('LocaleInterceptor добавляет locale из controller.current', () {
-    final interceptor = LocaleInterceptor(localeController: controller);
+  test('LocaleInterceptor добавляет locale по умолчанию', () {
+    final interceptor = LocaleInterceptor();
     final options = RequestOptions(path: '/test');
     final handler = _FakeHandler();
 
@@ -33,7 +22,7 @@ void main() {
   });
 
   test('LocaleInterceptor не перезатирает уже-присутствующий locale', () {
-    final interceptor = LocaleInterceptor(localeController: controller);
+    final interceptor = LocaleInterceptor();
     final options = RequestOptions(
       path: '/test',
       queryParameters: {'locale': 'fr'},
@@ -45,9 +34,8 @@ void main() {
     expect(handler.captured?.queryParameters['locale'], 'fr');
   });
 
-  test('LocaleInterceptor берёт актуальное значение при каждом запросе', () {
-    final interceptor = LocaleInterceptor(localeController: controller);
-    when(() => controller.current).thenReturn(AppLanguage.en);
+  test('LocaleInterceptor позволяет переопределить localeCode', () {
+    final interceptor = LocaleInterceptor(localeCode: 'en');
     final options = RequestOptions(path: '/test');
     final handler = _FakeHandler();
 

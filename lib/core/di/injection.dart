@@ -40,8 +40,6 @@ Future<void> configureDependencies() async {
   sl.registerLazySingleton<SessionCache>(SessionCache.new);
 
   // Remote source — Mock or Http depending on build-time flag.
-  // `AppLocaleController` остаётся глобальным singleton'ом (см. AppLocaleController.instance);
-  // `LocaleInterceptor()` фолбэкает на него по умолчанию.
   sl.registerLazySingleton<PetMatchRemoteSource>(
     () =>
         useMock
