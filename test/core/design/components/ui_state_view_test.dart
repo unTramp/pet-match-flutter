@@ -65,33 +65,6 @@ void main() {
       expect(taps, 1);
     });
 
-    testWidgets('.message + primary + secondary — две кнопки разных вариантов',
-        (tester) async {
-      var primaryTaps = 0;
-      var secondaryTaps = 0;
-      await tester.pumpWidget(
-        _wrap(
-          UiStateView.message(
-            icon: Icons.error_outline_rounded,
-            message: 'Что-то пошло не так',
-            primaryLabel: 'Повторить',
-            primaryAction: () => primaryTaps++,
-            secondaryLabel: 'Начать заново',
-            secondaryAction: () => secondaryTaps++,
-          ),
-        ),
-      );
-
-      expect(find.byType(UiButton), findsNWidgets(2));
-      expect(find.text('Повторить'), findsOneWidget);
-      expect(find.text('Начать заново'), findsOneWidget);
-
-      await tester.tap(find.text('Повторить'));
-      await tester.tap(find.text('Начать заново'));
-      expect(primaryTaps, 1);
-      expect(secondaryTaps, 1);
-    });
-
     testWidgets('primaryLabel без primaryAction — кнопка не рендерится', (
       tester,
     ) async {

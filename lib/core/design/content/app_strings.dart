@@ -14,6 +14,7 @@ class AppStrings {
   );
   static final result = SectionProxy<ResultStrings>((s) => s.result);
   static final details = SectionProxy<DetailsStrings>((s) => s.details);
+  static final analyzing = SectionProxy<AnalyzingStrings>((s) => s.analyzing);
 
   static const _ru = LocalizedStrings(
     common: CommonStrings(
@@ -25,7 +26,6 @@ class AppStrings {
       errorTimeout: 'Сервер долго не отвечает. Попробуйте позже.',
       errorServer: 'Что-то пошло не так. Попробуйте снова.',
       errorEmpty: 'Нет данных. Попробуйте снова.',
-      homeTooltip: 'Домой',
       unknownBreed: 'Порода',
       appBrand: 'PET MATCH AI',
     ),
@@ -52,7 +52,6 @@ class AppStrings {
       bullet3Body: 'Характер, уход, особенности и фотографии.',
     ),
     questionnaire: QuestionnaireStrings(
-      appBarTitle: 'Анкета',
       loading: 'Загружаем анкету…',
       continueCta: 'Продолжить',
       skipCta: 'Пропустить',
@@ -61,11 +60,6 @@ class AppStrings {
       multiSelectHint: 'Можно выбрать несколько вариантов',
       searchHint: 'Поиск породы',
       searchEmpty: 'Ничего не найдено',
-      exitDialogTitle: 'Выйти из анкеты?',
-      exitDialogMessage:
-          'Текущий прогресс останется сохранён, и вы сможете продолжить позже.',
-      exitDialogConfirm: 'Выйти',
-      exitDialogCancel: 'Остаться',
       unsupportedTitle: 'Тип вопроса не поддерживается',
       unsupportedBody:
           'Похоже, эта версия приложения устарела. Если вопрос '
@@ -73,7 +67,6 @@ class AppStrings {
           'приложение и попробуйте снова.',
     ),
     result: ResultStrings(
-      appBarTitle: 'Результат',
       influences: 'Что влияет на совпадение?',
       important: 'Важно',
       refusalTitle: 'Что важно учесть перед выбором',
@@ -94,6 +87,10 @@ class AppStrings {
       galleryLabelPrefix: 'Галерея',
       photosSuffix: 'фото',
     ),
+    analyzing: AnalyzingStrings(
+      title: 'Подбираем породу…',
+      subtitle: 'Сравниваем ваши ответы с профилями пород.',
+    ),
   );
 
   static const _en = LocalizedStrings(
@@ -105,7 +102,6 @@ class AppStrings {
       errorTimeout: 'The server is taking too long. Please try later.',
       errorServer: 'Something went wrong. Please try again.',
       errorEmpty: 'No data available. Please try again.',
-      homeTooltip: 'Home',
       unknownBreed: 'Breed',
       appBrand: 'PET MATCH AI',
     ),
@@ -132,7 +128,6 @@ class AppStrings {
       bullet3Body: 'Temperament, care, traits and photos.',
     ),
     questionnaire: QuestionnaireStrings(
-      appBarTitle: 'Questionnaire',
       loading: 'Loading questionnaire...',
       continueCta: 'Continue',
       skipCta: 'Skip',
@@ -141,11 +136,6 @@ class AppStrings {
       multiSelectHint: 'You can choose multiple options',
       searchHint: 'Search breed',
       searchEmpty: 'Nothing found',
-      exitDialogTitle: 'Exit questionnaire?',
-      exitDialogMessage:
-          'Your progress will stay saved, so you can continue later.',
-      exitDialogConfirm: 'Exit',
-      exitDialogCancel: 'Stay',
       unsupportedTitle: 'Question type is not supported',
       unsupportedBody:
           'This app version may be outdated. If the question is optional, '
@@ -153,7 +143,6 @@ class AppStrings {
           'again.',
     ),
     result: ResultStrings(
-      appBarTitle: 'Result',
       influences: 'What affects the match?',
       important: 'Important',
       refusalTitle: 'What to consider before choosing',
@@ -174,6 +163,10 @@ class AppStrings {
       galleryLabelPrefix: 'Gallery',
       photosSuffix: 'photos',
     ),
+    analyzing: AnalyzingStrings(
+      title: 'Finding your match…',
+      subtitle: 'Comparing your answers with breed profiles.',
+    ),
   );
 }
 
@@ -193,7 +186,6 @@ extension CommonStringsProxy on SectionProxy<CommonStrings> {
   String get errorTimeout => current.errorTimeout;
   String get errorServer => current.errorServer;
   String get errorEmpty => current.errorEmpty;
-  String get homeTooltip => current.homeTooltip;
   String get unknownBreed => current.unknownBreed;
   String get appBrand => current.appBrand;
 }
@@ -221,7 +213,6 @@ extension IntroStringsProxy on SectionProxy<IntroStrings> {
 }
 
 extension QuestionnaireStringsProxy on SectionProxy<QuestionnaireStrings> {
-  String get appBarTitle => current.appBarTitle;
   String get loading => current.loading;
   String get continueCta => current.continueCta;
   String get skipCta => current.skipCta;
@@ -230,16 +221,11 @@ extension QuestionnaireStringsProxy on SectionProxy<QuestionnaireStrings> {
   String get multiSelectHint => current.multiSelectHint;
   String get searchHint => current.searchHint;
   String get searchEmpty => current.searchEmpty;
-  String get exitDialogTitle => current.exitDialogTitle;
-  String get exitDialogMessage => current.exitDialogMessage;
-  String get exitDialogConfirm => current.exitDialogConfirm;
-  String get exitDialogCancel => current.exitDialogCancel;
   String get unsupportedTitle => current.unsupportedTitle;
   String get unsupportedBody => current.unsupportedBody;
 }
 
 extension ResultStringsProxy on SectionProxy<ResultStrings> {
-  String get appBarTitle => current.appBarTitle;
   String get influences => current.influences;
   String get important => current.important;
   String get refusalTitle => current.refusalTitle;
@@ -262,6 +248,11 @@ extension DetailsStringsProxy on SectionProxy<DetailsStrings> {
   String get photosSuffix => current.photosSuffix;
 }
 
+extension AnalyzingStringsProxy on SectionProxy<AnalyzingStrings> {
+  String get title => current.title;
+  String get subtitle => current.subtitle;
+}
+
 class LocalizedStrings {
   const LocalizedStrings({
     required this.common,
@@ -270,6 +261,7 @@ class LocalizedStrings {
     required this.questionnaire,
     required this.result,
     required this.details,
+    required this.analyzing,
   });
 
   final CommonStrings common;
@@ -278,6 +270,7 @@ class LocalizedStrings {
   final QuestionnaireStrings questionnaire;
   final ResultStrings result;
   final DetailsStrings details;
+  final AnalyzingStrings analyzing;
 }
 
 class CommonStrings {
@@ -289,7 +282,6 @@ class CommonStrings {
     required this.errorTimeout,
     required this.errorServer,
     required this.errorEmpty,
-    required this.homeTooltip,
     required this.unknownBreed,
     required this.appBrand,
   });
@@ -301,7 +293,6 @@ class CommonStrings {
   final String errorTimeout;
   final String errorServer;
   final String errorEmpty;
-  final String homeTooltip;
   final String unknownBreed;
   final String appBrand;
 }
@@ -352,7 +343,6 @@ class IntroStrings {
 
 class QuestionnaireStrings {
   const QuestionnaireStrings({
-    required this.appBarTitle,
     required this.loading,
     required this.continueCta,
     required this.skipCta,
@@ -361,15 +351,10 @@ class QuestionnaireStrings {
     required this.multiSelectHint,
     required this.searchHint,
     required this.searchEmpty,
-    required this.exitDialogTitle,
-    required this.exitDialogMessage,
-    required this.exitDialogConfirm,
-    required this.exitDialogCancel,
     required this.unsupportedTitle,
     required this.unsupportedBody,
   });
 
-  final String appBarTitle;
   final String loading;
   final String continueCta;
   final String skipCta;
@@ -378,17 +363,12 @@ class QuestionnaireStrings {
   final String multiSelectHint;
   final String searchHint;
   final String searchEmpty;
-  final String exitDialogTitle;
-  final String exitDialogMessage;
-  final String exitDialogConfirm;
-  final String exitDialogCancel;
   final String unsupportedTitle;
   final String unsupportedBody;
 }
 
 class ResultStrings {
   const ResultStrings({
-    required this.appBarTitle,
     required this.influences,
     required this.important,
     required this.refusalTitle,
@@ -405,7 +385,6 @@ class ResultStrings {
     required this.chipRefused,
   });
 
-  final String appBarTitle;
   final String influences;
   final String important;
   final String refusalTitle;
@@ -432,4 +411,11 @@ class DetailsStrings {
   final String appBarTitle;
   final String galleryLabelPrefix;
   final String photosSuffix;
+}
+
+class AnalyzingStrings {
+  const AnalyzingStrings({required this.title, required this.subtitle});
+
+  final String title;
+  final String subtitle;
 }

@@ -2,9 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/utils/score_format.dart';
 import '../../../domain/entities/compatibility.dart';
 
 class MainBreedCard extends StatelessWidget {
@@ -39,8 +42,7 @@ class MainBreedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final score = compatibility.score;
-    final scoreLabel = score != null ? '${(score * 100).round()}%' : '—';
+    final scoreLabel = formatScorePercent(compatibility.score);
     final imageUrl = compatibility.imageUrl;
     final accent = _scoreColor();
 
@@ -75,7 +77,7 @@ class MainBreedCard extends StatelessWidget {
                                     alignment: Alignment.center,
                                     child: const Icon(
                                       Icons.pets_rounded,
-                                      size: 48,
+                                      size: AppIconSize.xxxl,
                                       color: AppColors.textSecondary,
                                     ),
                                   ),
@@ -102,7 +104,7 @@ class MainBreedCard extends StatelessWidget {
                         color: AppColors.overlayDark,
                         borderRadius: BorderRadius.circular(AppRadius.md),
                         border: Border.all(
-                          color: AppColors.surface.withValues(alpha: 0.24),
+                          color: AppColors.surface.withValues(alpha: AppAlpha.borderMuted),
                         ),
                       ),
                       child: Text(
@@ -133,10 +135,10 @@ class MainBreedCard extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: AppSpacing.md,
-                          vertical: 6,
+                          vertical: AppSpacing.s,
                         ),
                         decoration: BoxDecoration(
-                          color: accent.withValues(alpha: 0.1),
+                          color: accent.withValues(alpha: AppAlpha.tintSoft),
                           borderRadius: BorderRadius.circular(AppRadius.xxl),
                         ),
                         child: Text(
