@@ -26,7 +26,6 @@ class QuestionFooter extends StatelessWidget {
         UiButton(
           label: AppStrings.questionnaire.continueCta,
           onPressed: canSubmit ? onSubmit : null,
-          icon: Icons.arrow_forward_rounded,
         ),
         if (canSkip) ...[
           const SizedBox(height: AppSpacing.sm),

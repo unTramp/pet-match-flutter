@@ -172,7 +172,6 @@ class _ResultPageState extends State<ResultPage> {
                   ? AppStrings.result.ctaViewBreed
                   : AppStrings.result.ctaViewAlternatives,
           onPressed: () => _openPrimaryAction(context),
-          icon: Icons.arrow_forward_rounded,
         ),
       ),
       body: SafeArea(

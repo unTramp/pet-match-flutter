@@ -67,7 +67,6 @@ class IntroPage extends StatelessWidget {
               UiButton(
                 label: AppStrings.intro.ctaStart,
                 onPressed: () => context.go('/questionnaire'),
-                icon: Icons.arrow_forward_rounded,
               ),
             ],
           ),

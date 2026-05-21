@@ -314,7 +314,6 @@ class _BottomActions extends StatelessWidget {
                     ? AppStrings.welcome.ctaContinue
                     : AppStrings.welcome.ctaStart,
             onPressed: onPressed,
-            icon: Icons.arrow_forward_rounded,
           ),
         ),
         if (onRestart != null) ...[
