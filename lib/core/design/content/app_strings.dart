@@ -78,9 +78,6 @@ class _ResultStrings {
   const _ResultStrings();
 
   final String appBarTitle = 'Результат';
-  final String headerRefused = 'Не рекомендуем сейчас';
-  final String headerMedium = 'Подходит с оговорками';
-  final String headerBest = 'Лучшее совпадение';
   final String influences = 'Что влияет на совпадение?';
   final String important = 'Важно';
   final String refusalTitle = 'Что важно учесть перед выбором';
@@ -88,11 +85,6 @@ class _ResultStrings {
   final String requirements = 'Требования породы';
   final String suggestionsTitle = 'Похожие варианты';
   final String suggestionsSubtitle = 'Альтернативные породы по вашему профилю.';
-  final String verdictGood = 'Рекомендация подходит вашему профилю.';
-  final String verdictMedium =
-      'Подходит, но обратите внимание на важные оговорки.';
-  final String verdictRefused =
-      'Сейчас лучше выбрать альтернативный вариант породы.';
   final String showMore = 'Показать все';
   final String showLess = 'Свернуть';
   final String ctaViewBreed = 'Подробнее о породе';

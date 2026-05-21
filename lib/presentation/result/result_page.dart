@@ -45,22 +45,6 @@ class _ResultPageState extends State<ResultPage> {
     context.push('/breed/$breedId');
   }
 
-  String _headerTitle() {
-    if (widget.compatibility.isRefused) return AppStrings.result.headerRefused;
-    if (widget.compatibility.risk == CompatibilityRisk.medium) {
-      return AppStrings.result.headerMedium;
-    }
-    return AppStrings.result.headerBest;
-  }
-
-  String _verdictMessage() {
-    if (widget.compatibility.isRefused) return AppStrings.result.verdictRefused;
-    if (widget.compatibility.risk == CompatibilityRisk.medium) {
-      return AppStrings.result.verdictMedium;
-    }
-    return AppStrings.result.verdictGood;
-  }
-
   void _openPrimaryAction(BuildContext context) {
     final primaryId = widget.compatibility.breedId;
     if (primaryId != null) {
@@ -201,24 +185,6 @@ class _ResultPageState extends State<ResultPage> {
           ),
           physics: const BouncingScrollPhysics(),
           children: [
-            Text(_headerTitle(), style: theme.textTheme.titleLarge),
-            const SizedBox(height: AppSpacing.md),
-            Container(
-              padding: const EdgeInsets.all(AppSpacing.lg),
-              decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(AppRadius.xl),
-                border: Border.all(color: AppColors.border),
-              ),
-              child: Text(
-                _verdictMessage(),
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
             MainBreedCard(
               compatibility: compatibility,
               onTap: () => _openBreed(context, compatibility.breedId),
