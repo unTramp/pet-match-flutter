@@ -198,8 +198,8 @@ class _WelcomePageState extends State<WelcomePage>
                         AppStrings.welcome.subtitle,
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: AppColors.textSecondary,
-                          fontSize: 14,
-                          height: 1.45,
+                          fontSize: 15,
+                          height: 1.5,
                         ),
                       ),
                     ),
@@ -264,9 +264,10 @@ class _HeroHeadline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseStyle = theme.textTheme.headlineLarge?.copyWith(
-      fontSize: 34,
+      fontSize: 36,
       fontWeight: FontWeight.w800,
       height: 1.1,
+      letterSpacing: -0.45,
       color: AppColors.textPrimary,
     );
     return ConstrainedBox(

@@ -16,6 +16,17 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      // "Premium" system-first stack without extra runtime/font dependencies.
+      fontFamily: 'SF Pro Text',
+      fontFamilyFallback: const [
+        'SF Pro Display',
+        'Inter',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Arial',
+        'sans-serif',
+      ],
       colorScheme: scheme,
       scaffoldBackgroundColor: AppColors.cream,
       appBarTheme: const AppBarTheme(
