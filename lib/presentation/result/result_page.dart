@@ -3,11 +3,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
-import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/compatibility.dart';
-import '../welcome/widgets/app_logo.dart';
 import 'widgets/alert_block.dart';
 import 'widgets/main_breed_card.dart';
 import 'widgets/reasons_section.dart';
@@ -141,22 +139,10 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.result.appBarTitle),
-        leadingWidth: 56,
-        leading: Padding(
-          padding: const EdgeInsets.only(
-            left: AppSpacing.md,
-            top: AppSpacing.sm,
-            bottom: AppSpacing.sm,
-          ),
-          child: Material(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(AppRadius.md),
-            child: InkWell(
-              onTap: () => context.go('/welcome'),
-              borderRadius: BorderRadius.circular(AppRadius.md),
-              child: const AppLogo(showText: false, size: 36),
-            ),
-          ),
+        leading: IconButton(
+          tooltip: 'Домой',
+          onPressed: () => context.go('/welcome'),
+          icon: const Icon(Icons.home_rounded),
         ),
       ),
       bottomNavigationBar: SafeArea(
