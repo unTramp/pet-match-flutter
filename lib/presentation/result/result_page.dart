@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +12,7 @@ import 'widgets/reasons_section.dart';
 import 'widgets/refusal_block.dart';
 import 'widgets/result_section_card.dart';
 import 'widgets/suggestion_card.dart';
+import '../widgets/top_brand_bar.dart';
 
 /// Result-экран отображает **всё**, что отдаёт API:
 ///  * hero-карточка (фото + название + score с цветом по риску)
@@ -77,7 +77,10 @@ class _ResultPageState extends State<ResultPage> {
           if (canExpand) ...[
             const SizedBox(height: AppSpacing.md),
             UiButton(
-              label: showAll ? AppStrings.result.showLess : AppStrings.result.showMore,
+              label:
+                  showAll
+                      ? AppStrings.result.showLess
+                      : AppStrings.result.showMore,
               onPressed: onToggle,
               variant: UiButtonVariant.text,
             ),
@@ -89,7 +92,6 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final theme = Theme.of(context);
     final compatibility = widget.compatibility;
     final suggestions = compatibility.suggestions;
@@ -139,20 +141,12 @@ class _ResultPageState extends State<ResultPage> {
             .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppStrings.result.appBarTitle),
-        leading: IconButton(
-          tooltip: AppStrings.common.homeTooltip,
-          onPressed: () => context.go('/welcome'),
-          icon: Icon(isIos ? CupertinoIcons.home : Icons.home_rounded),
-        ),
-      ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(
           AppSpacing.xl,
           AppSpacing.sm,
           AppSpacing.xl,
-          AppSpacing.xl,
+          AppSpacing.md,
         ),
         child: UiButton(
           label:
@@ -163,91 +157,103 @@ class _ResultPageState extends State<ResultPage> {
         ),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xl,
-            AppSpacing.sm,
-            AppSpacing.xl,
-            AppSpacing.xxxl,
-          ),
-          physics: const BouncingScrollPhysics(),
+        child: Column(
           children: [
-            MainBreedCard(
-              compatibility: compatibility,
-              onTap: () => _openBreed(context, compatibility.breedId),
-            ),
-            if (influences.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.xxl),
-              _sectionWithExpand(
-                title: AppStrings.result.influences,
-                items: influences,
-                showAll: _showAllInfluences,
-                onToggle:
-                    () =>
-                        setState(() => _showAllInfluences = !_showAllInfluences),
-              ),
-            ],
-            if (refusal != null && (refusal.title?.isNotEmpty ?? false)) ...[
-              const SizedBox(height: AppSpacing.xxl),
-              AlertBlock(
-                title: AppStrings.result.important,
-                message: refusal.title!,
-                severity: AlertSeverity.danger,
-              ),
-            ],
-            if (refusal != null && (refusal.message?.isNotEmpty ?? false)) ...[
-              const SizedBox(height: AppSpacing.lg),
-              RefusalBlock(
-                title: AppStrings.result.refusalTitle,
-                message: refusal.message!,
-              ),
-            ],
-            if (insightItems.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.xxl),
-              _sectionWithExpand(
-                title: AppStrings.result.insights,
-                items: insightItems,
-                showAll: _showAllInsights,
-                onToggle:
-                    () => setState(() => _showAllInsights = !_showAllInsights),
-              ),
-            ],
-            if (requirementItems.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.xxl),
-              _sectionWithExpand(
-                title: AppStrings.result.requirements,
-                items: requirementItems,
-                showAll: _showAllRequirements,
-                onToggle:
-                    () => setState(
-                      () => _showAllRequirements = !_showAllRequirements,
-                    ),
-              ),
-            ],
-            if (suggestions.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.xxxl),
-              Text(
-                AppStrings.result.suggestionsTitle,
-                style: theme.textTheme.titleLarge,
-              ),
-              const SizedBox(height: AppSpacing.xs),
-              Text(
-                AppStrings.result.suggestionsSubtitle,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
+            TopBrandBar(onLogoTap: () => context.go('/welcome')),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.xl,
+                  AppSpacing.xl,
+                  AppSpacing.xl,
+                  AppSpacing.xxxl,
                 ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              ...suggestions.map(
-                (s) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                  child: SuggestionCard(
-                    suggestion: s,
-                    onTap: () => _openBreed(context, s.breedId),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  MainBreedCard(
+                    compatibility: compatibility,
+                    onTap: () => _openBreed(context, compatibility.breedId),
                   ),
-                ),
+                  if (influences.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xxl),
+                    _sectionWithExpand(
+                      title: AppStrings.result.influences,
+                      items: influences,
+                      showAll: _showAllInfluences,
+                      onToggle:
+                          () => setState(
+                            () => _showAllInfluences = !_showAllInfluences,
+                          ),
+                    ),
+                  ],
+                  if (refusal != null &&
+                      (refusal.title?.isNotEmpty ?? false)) ...[
+                    const SizedBox(height: AppSpacing.xxl),
+                    AlertBlock(
+                      title: AppStrings.result.important,
+                      message: refusal.title!,
+                      severity: AlertSeverity.danger,
+                    ),
+                  ],
+                  if (refusal != null &&
+                      (refusal.message?.isNotEmpty ?? false)) ...[
+                    const SizedBox(height: AppSpacing.lg),
+                    RefusalBlock(
+                      title: AppStrings.result.refusalTitle,
+                      message: refusal.message!,
+                    ),
+                  ],
+                  if (insightItems.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xxl),
+                    _sectionWithExpand(
+                      title: AppStrings.result.insights,
+                      items: insightItems,
+                      showAll: _showAllInsights,
+                      onToggle:
+                          () => setState(
+                            () => _showAllInsights = !_showAllInsights,
+                          ),
+                    ),
+                  ],
+                  if (requirementItems.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xxl),
+                    _sectionWithExpand(
+                      title: AppStrings.result.requirements,
+                      items: requirementItems,
+                      showAll: _showAllRequirements,
+                      onToggle:
+                          () => setState(
+                            () => _showAllRequirements = !_showAllRequirements,
+                          ),
+                    ),
+                  ],
+                  if (suggestions.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xxxl),
+                    Text(
+                      AppStrings.result.suggestionsTitle,
+                      style: theme.textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    Text(
+                      AppStrings.result.suggestionsSubtitle,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+                    ...suggestions.map(
+                      (s) => Padding(
+                        padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                        child: SuggestionCard(
+                          suggestion: s,
+                          onTap: () => _openBreed(context, s.breedId),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
-            ],
+            ),
           ],
         ),
       ),

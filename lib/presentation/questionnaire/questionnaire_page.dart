@@ -11,10 +11,9 @@ import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/session.dart';
-import '../welcome/widgets/app_logo.dart';
-import '../welcome/widgets/language_toggle.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
+import '../widgets/top_brand_bar.dart';
 import 'cubit/questionnaire_cubit.dart';
 import 'cubit/questionnaire_state.dart';
 import 'widgets/dynamic_options_widget.dart';
@@ -78,7 +77,7 @@ class _QuestionnaireView extends StatelessWidget {
             body: SafeArea(
               child: Column(
                 children: [
-                  const _QuestionnaireTopBar(),
+                  TopBrandBar(onLogoTap: () => context.go('/welcome')),
                   if (questionState?.isSubmitting == true)
                     const _SubmittingTopProgress(),
                   Expanded(
@@ -91,7 +90,8 @@ class _QuestionnaireView extends StatelessWidget {
                       ),
                       QuestionnaireError(:final failure) => ErrorView(
                         failure: failure,
-                        onRetry: () => context.read<QuestionnaireCubit>().retry(),
+                        onRetry:
+                            () => context.read<QuestionnaireCubit>().retry(),
                       ),
                       QuestionnaireResultReady() => const LoadingView(),
                     },
@@ -112,32 +112,6 @@ class _SubmittingTopProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LinearProgressIndicator(minHeight: 2);
-  }
-}
-
-class _QuestionnaireTopBar extends StatelessWidget {
-  const _QuestionnaireTopBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.xxl,
-        AppSpacing.md,
-        AppSpacing.xxl,
-        AppSpacing.md,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () => context.go('/welcome'),
-            child: const AppLogo(),
-          ),
-          const LanguageToggle(),
-        ],
-      ),
-    );
   }
 }
 
@@ -165,10 +139,7 @@ class _QuestionBody extends StatelessWidget {
         children: [
           ProgressBar(progress: state.progress),
           const SizedBox(height: AppSpacing.md),
-          Divider(
-            color: AppColors.border.withValues(alpha: 0.9),
-            height: 1,
-          ),
+          Divider(color: AppColors.border.withValues(alpha: 0.9), height: 1),
           const SizedBox(height: AppSpacing.xl),
           Expanded(
             child: SingleChildScrollView(
@@ -206,27 +177,29 @@ class _QuestionBody extends StatelessWidget {
                     child: IgnorePointer(
                       ignoring: isSubmitting,
                       child: switch (question) {
-                        SingleChoiceQuestion(:final options) => SingleChoiceWidget(
-                          options: options,
-                          selectedId:
-                              state.selectedOptionIds.isEmpty
-                                  ? null
-                                  : state.selectedOptionIds.first,
-                          onSelect: cubit.selectSingle,
-                        ),
+                        SingleChoiceQuestion(:final options) =>
+                          SingleChoiceWidget(
+                            options: options,
+                            selectedId:
+                                state.selectedOptionIds.isEmpty
+                                    ? null
+                                    : state.selectedOptionIds.first,
+                            onSelect: cubit.selectSingle,
+                          ),
                         MultipleChoiceQuestion(:final options) =>
                           MultipleChoiceWidget(
                             options: options,
                             selectedIds: state.selectedOptionIds,
                             onToggle: cubit.toggleMulti,
                           ),
-                        DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
-                          userId: _userIdFromContext(context),
-                          questionId: id,
-                          selected: state.dynamicSelected,
-                          onSelect: cubit.selectDynamic,
-                          enabled: !isSubmitting,
-                        ),
+                        DynamicOptionsQuestion(:final id) =>
+                          DynamicOptionsWidget(
+                            userId: _userIdFromContext(context),
+                            questionId: id,
+                            selected: state.dynamicSelected,
+                            onSelect: cubit.selectDynamic,
+                            enabled: !isSubmitting,
+                          ),
                         UnknownQuestion(:final questionType) =>
                           _UnsupportedQuestionView(questionType: questionType),
                       },
