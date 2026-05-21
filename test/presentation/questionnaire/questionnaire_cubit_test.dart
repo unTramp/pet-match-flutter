@@ -79,7 +79,7 @@ void main() {
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
-    'submit on non-last question emits [Loading, Question(next)]',
+    'submit on non-last question keeps question visible and emits Question(next)',
     setUp: () {
       when(
         start.call,
@@ -105,7 +105,11 @@ void main() {
             'selection',
             {1},
           ),
-          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
           isA<QuestionnaireQuestion>().having(
             (s) => s.question.id,
             'next question id',
@@ -137,7 +141,11 @@ void main() {
     expect:
         () => [
           isA<QuestionnaireQuestion>(),
-          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
           isA<QuestionnaireCompleted>().having((s) => s.userId, 'userId', 7),
         ],
   );
@@ -289,7 +297,7 @@ void main() {
   );
 
   test(
-    'goBack во время Loading — no-op, не возвращает к Q1 и не ломает '
+    'goBack во время submit-in-flight — no-op, не возвращает к Q1 и не ломает '
     'историю при resolve submit()',
     () async {
       // Готовим сценарий: start → Q1, потом submit «висит» (Completer не
@@ -310,16 +318,19 @@ void main() {
       cubit.selectSingle(2);
       // submit() возвращает Future — НЕ ждём его.
       final submitFuture = cubit.submit();
-      // Сейчас state == QuestionnaireLoading
-      expect(cubit.state, isA<QuestionnaireLoading>());
+      // Сейчас state == QuestionnaireQuestion(isSubmitting: true)
+      expect(cubit.state, isA<QuestionnaireQuestion>());
+      final inFlight = cubit.state as QuestionnaireQuestion;
+      expect(inFlight.isSubmitting, isTrue);
 
-      // Race: пользователь нажимает back во время loading.
+      // Race: пользователь нажимает back во время submit-in-flight.
       cubit.goBack();
       expect(
         cubit.state,
-        isA<QuestionnaireLoading>(),
-        reason: 'goBack должен быть no-op во время loading',
+        isA<QuestionnaireQuestion>(),
+        reason: 'goBack должен быть no-op во время submit-in-flight',
       );
+      expect((cubit.state as QuestionnaireQuestion).isSubmitting, isTrue);
 
       // Резолвим submit() → должен приехать Q2.
       submitCompleter.complete(

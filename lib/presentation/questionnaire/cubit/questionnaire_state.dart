@@ -28,12 +28,14 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     required this.progress,
     this.selectedOptionIds = const {},
     this.dynamicSelected,
+    this.isSubmitting = false,
   });
 
   final Question question;
   final Progress progress;
   final Set<int> selectedOptionIds;
   final DynamicOption? dynamicSelected;
+  final bool isSubmitting;
 
   bool get canSubmit => switch (question) {
     SingleChoiceQuestion() => selectedOptionIds.length == 1,
@@ -48,6 +50,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     Set<int>? selectedOptionIds,
     DynamicOption? dynamicSelected,
     bool clearDynamicSelected = false,
+    bool? isSubmitting,
   }) {
     return QuestionnaireQuestion(
       question: question,
@@ -57,6 +60,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
           clearDynamicSelected
               ? null
               : (dynamicSelected ?? this.dynamicSelected),
+      isSubmitting: isSubmitting ?? this.isSubmitting,
     );
   }
 
@@ -66,6 +70,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     progress,
     selectedOptionIds,
     dynamicSelected,
+    isSubmitting,
   ];
 }
 

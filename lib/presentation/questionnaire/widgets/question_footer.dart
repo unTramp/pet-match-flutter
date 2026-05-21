@@ -8,12 +8,14 @@ class QuestionFooter extends StatelessWidget {
   const QuestionFooter({
     super.key,
     required this.canSubmit,
+    required this.isSubmitting,
     required this.onSubmit,
     required this.canSkip,
     required this.onSkip,
   });
 
   final bool canSubmit;
+  final bool isSubmitting;
   final VoidCallback onSubmit;
   final bool canSkip;
   final VoidCallback onSkip;
@@ -25,12 +27,13 @@ class QuestionFooter extends StatelessWidget {
       children: [
         UiButton(
           label: AppStrings.questionnaire.continueCta,
-          onPressed: canSubmit ? onSubmit : null,
+          onPressed: (canSubmit && !isSubmitting) ? onSubmit : null,
+          loading: isSubmitting,
         ),
         if (canSkip) ...[
           const SizedBox(height: AppSpacing.sm),
           TextButton(
-            onPressed: onSkip,
+            onPressed: isSubmitting ? null : onSkip,
             child: Text(AppStrings.questionnaire.skipCta),
           ),
         ],

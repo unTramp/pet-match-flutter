@@ -48,6 +48,7 @@ class _QuestionnaireView extends StatelessWidget {
         final cubit = context.read<QuestionnaireCubit>();
 
         Future<void> handleBack() async {
+          if (questionState?.isSubmitting == true) return;
           if (questionState != null && cubit.canGoBack) {
             cubit.goBack();
             return;
@@ -78,6 +79,7 @@ class _QuestionnaireView extends StatelessWidget {
                     ? null
                     : _QuestionBottomBar(
                       canSubmit: questionState.canSubmit,
+                      isSubmitting: questionState.isSubmitting,
                       onSubmit: cubit.submit,
                       canSkip: questionState.question.isOptional,
                       onSkip: cubit.skipCurrent,
@@ -86,7 +88,8 @@ class _QuestionnaireView extends StatelessWidget {
               child: switch (state) {
                 QuestionnaireInitial() || QuestionnaireLoading() =>
                   LoadingView(message: AppStrings.questionnaire.loading),
-                QuestionnaireQuestion() => _QuestionBody(state: state),
+                QuestionnaireQuestion() =>
+                  _QuestionBody(state: state, isSubmitting: state.isSubmitting),
                 QuestionnaireError(:final failure) => ErrorView(
                   failure: failure,
                   onRetry: () => context.read<QuestionnaireCubit>().retry(),
@@ -142,9 +145,10 @@ class _QuestionnaireView extends StatelessWidget {
 }
 
 class _QuestionBody extends StatelessWidget {
-  const _QuestionBody({required this.state});
+  const _QuestionBody({required this.state, required this.isSubmitting});
 
   final QuestionnaireQuestion state;
+  final bool isSubmitting;
 
   @override
   Widget build(BuildContext context) {
@@ -198,31 +202,38 @@ class _QuestionBody extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: AppSpacing.xxl),
-                  switch (question) {
-                    SingleChoiceQuestion(:final options) => SingleChoiceWidget(
-                      options: options,
-                      selectedId:
-                          state.selectedOptionIds.isEmpty
-                              ? null
-                              : state.selectedOptionIds.first,
-                      onSelect: cubit.selectSingle,
-                    ),
-                    MultipleChoiceQuestion(:final options) =>
-                      MultipleChoiceWidget(
+                  if (isSubmitting)
+                    const LinearProgressIndicator(minHeight: 2),
+                  if (isSubmitting) const SizedBox(height: AppSpacing.lg),
+                  IgnorePointer(
+                    ignoring: isSubmitting,
+                    child: switch (question) {
+                      SingleChoiceQuestion(:final options) => SingleChoiceWidget(
                         options: options,
-                        selectedIds: state.selectedOptionIds,
-                        onToggle: cubit.toggleMulti,
+                        selectedId:
+                            state.selectedOptionIds.isEmpty
+                                ? null
+                                : state.selectedOptionIds.first,
+                        onSelect: cubit.selectSingle,
                       ),
-                    DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
-                      userId: _userIdFromContext(context),
-                      questionId: id,
-                      selected: state.dynamicSelected,
-                      onSelect: cubit.selectDynamic,
-                      onClear: cubit.clearDynamic,
-                    ),
-                    UnknownQuestion(:final questionType) =>
-                      _UnsupportedQuestionView(questionType: questionType),
-                  },
+                      MultipleChoiceQuestion(:final options) =>
+                        MultipleChoiceWidget(
+                          options: options,
+                          selectedIds: state.selectedOptionIds,
+                          onToggle: cubit.toggleMulti,
+                        ),
+                      DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
+                        userId: _userIdFromContext(context),
+                        questionId: id,
+                        selected: state.dynamicSelected,
+                        onSelect: cubit.selectDynamic,
+                        onClear: cubit.clearDynamic,
+                        enabled: !isSubmitting,
+                      ),
+                      UnknownQuestion(:final questionType) =>
+                        _UnsupportedQuestionView(questionType: questionType),
+                    },
+                  ),
                 ],
               ),
             ),
@@ -249,12 +260,14 @@ class _QuestionBody extends StatelessWidget {
 class _QuestionBottomBar extends StatelessWidget {
   const _QuestionBottomBar({
     required this.canSubmit,
+    required this.isSubmitting,
     required this.onSubmit,
     required this.canSkip,
     required this.onSkip,
   });
 
   final bool canSubmit;
+  final bool isSubmitting;
   final VoidCallback onSubmit;
   final bool canSkip;
   final VoidCallback onSkip;
@@ -273,6 +286,7 @@ class _QuestionBottomBar extends StatelessWidget {
         children: [
           QuestionFooter(
             canSubmit: canSubmit,
+            isSubmitting: isSubmitting,
             onSubmit: onSubmit,
             canSkip: canSkip,
             onSkip: onSkip,

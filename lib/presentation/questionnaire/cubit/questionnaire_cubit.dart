@@ -107,7 +107,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
   Future<void> submit() async {
     final s = state;
-    if (s is! QuestionnaireQuestion || !s.canSubmit) return;
+    if (s is! QuestionnaireQuestion || !s.canSubmit || s.isSubmitting) return;
     final userId = _userId;
     if (userId == null) return;
 
@@ -115,11 +115,13 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     if (answer == null) return;
 
     _pendingPrevious = s;
-    emit(const QuestionnaireLoading());
+    emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _submitAnswer(userId: userId, answer: answer);
+      if (isClosed) return;
       _emitFromSession(session);
     } on AppFailure catch (f) {
+      if (isClosed) return;
       _pendingPrevious = null;
       appLogger.w('submit() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
@@ -128,20 +130,22 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
   Future<void> skipCurrent() async {
     final s = state;
-    if (s is! QuestionnaireQuestion) return;
+    if (s is! QuestionnaireQuestion || s.isSubmitting) return;
     if (!s.question.isOptional) return;
     final userId = _userId;
     if (userId == null) return;
 
     _pendingPrevious = s;
-    emit(const QuestionnaireLoading());
+    emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _skipQuestion(
         userId: userId,
         questionId: s.question.id,
       );
+      if (isClosed) return;
       _emitFromSession(session);
     } on AppFailure catch (f) {
+      if (isClosed) return;
       _pendingPrevious = null;
       appLogger.w('skipCurrent() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
@@ -149,10 +153,10 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   }
 
   void goBack() {
-    // Защита от race: если submit/skip ещё в полёте, ответ сервера
-    // вернётся в _emitFromSession и положит _pendingPrevious в историю —
-    // получим «прыжок вперёд» после back. Игнорируем back в Loading.
-    if (state is QuestionnaireLoading) return;
+    // Защита от race: пока submit/skip в полёте, back игнорируем.
+    final current = state;
+    if (current is QuestionnaireQuestion && current.isSubmitting) return;
+    if (current is QuestionnaireLoading) return;
     if (_history.isEmpty) return;
     _pendingPrevious = null;
     final previous = _history.removeLast();
@@ -194,6 +198,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   }
 
   void _emitFromSession(Session session) {
+    if (isClosed) return;
     final previous = _pendingPrevious;
     _pendingPrevious = null;
     if (previous != null) {

@@ -24,6 +24,7 @@ class DynamicOptionsWidget extends StatefulWidget {
     required this.selected,
     required this.onSelect,
     required this.onClear,
+    this.enabled = true,
   });
 
   final int userId;
@@ -31,6 +32,7 @@ class DynamicOptionsWidget extends StatefulWidget {
   final DynamicOption? selected;
   final ValueChanged<DynamicOption> onSelect;
   final VoidCallback onClear;
+  final bool enabled;
 
   @override
   State<DynamicOptionsWidget> createState() => _DynamicOptionsWidgetState();
@@ -99,7 +101,8 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
         ],
         TextField(
           controller: _controller,
-          onChanged: _onSearch,
+          onChanged: widget.enabled ? _onSearch : null,
+          enabled: widget.enabled,
           decoration: InputDecoration(
             hintText: AppStrings.questionnaire.searchHint,
             prefixIcon: const Icon(Icons.search_rounded),
