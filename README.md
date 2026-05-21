@@ -9,10 +9,12 @@ flutter pub get
 flutter run
 ```
 
-Для запуска с реальным API:
+По умолчанию приложение запускается с реальным dev API.
+
+Для запуска с mock-данными:
 
 ```bash
-flutter run --dart-define=USE_MOCK=false
+flutter run --dart-define=USE_MOCK=true
 ```
 
 Сборка APK:
@@ -25,7 +27,7 @@ flutter build apk --release
 
 | Флаг | По умолчанию | Назначение |
 |---|---|---|
-| `USE_MOCK` | `true` | `true` - данные из `assets/mock/`, `false` - реальный dev API |
+| `USE_MOCK` | `false` | `false` - реальный dev API, `true` - данные из `assets/mock/` |
 | `API_BASE_URL` | `https://app-api.dev.pet-match.app/api/v1` | Базовый URL API |
 | `MOCK_FAIL_RATE` | `0` | Вероятность сетевой ошибки в mock-режиме |
 

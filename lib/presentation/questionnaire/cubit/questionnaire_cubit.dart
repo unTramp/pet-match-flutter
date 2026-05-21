@@ -14,16 +14,15 @@ import '../../../domain/usecases/start_session.dart';
 import '../../../domain/usecases/submit_answer.dart';
 import 'questionnaire_state.dart';
 
-/// Центральный Cubit анкеты. Управляет переходами Question → Loading → Question
-/// и финальным Completed, после которого UI делает redirect на /analyzing.
+/// Центральный Cubit анкеты. Управляет переходами Question → Question
+/// и финальным результатом, после которого UI делает redirect на /result.
 class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   QuestionnaireCubit(
     this._startSession,
     this._submitAnswer,
     this._skipQuestion,
     this._pollCompatibility,
-  )
-    : super(const QuestionnaireInitial());
+  ) : super(const QuestionnaireInitial());
   static const _requestTimeout = Duration(seconds: 15);
 
   final StartSession _startSession;
