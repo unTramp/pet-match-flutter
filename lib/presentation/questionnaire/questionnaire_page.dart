@@ -73,6 +73,13 @@ class _QuestionnaireView extends StatelessWidget {
                 ),
                 onPressed: handleBack,
               ),
+              bottom:
+                  questionState?.isSubmitting == true
+                      ? const PreferredSize(
+                        preferredSize: Size.fromHeight(2),
+                        child: LinearProgressIndicator(minHeight: 2),
+                      )
+                      : null,
             ),
             bottomNavigationBar:
                 questionState == null
@@ -202,9 +209,6 @@ class _QuestionBody extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: AppSpacing.xxl),
-                  if (isSubmitting)
-                    const LinearProgressIndicator(minHeight: 2),
-                  if (isSubmitting) const SizedBox(height: AppSpacing.lg),
                   IgnorePointer(
                     ignoring: isSubmitting,
                     child: switch (question) {
