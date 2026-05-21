@@ -120,8 +120,8 @@ class _QuestionnaireTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
         AppSpacing.xl,
         AppSpacing.sm,
         AppSpacing.xl,
@@ -129,7 +129,13 @@ class _QuestionnaireTopBar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [AppLogo(), LanguageToggle()],
+        children: [
+          GestureDetector(
+            onTap: () => context.go('/welcome'),
+            child: const AppLogo(),
+          ),
+          const LanguageToggle(),
+        ],
       ),
     );
   }
