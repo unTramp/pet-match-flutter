@@ -13,8 +13,8 @@ class StartSession {
   final String? externalIdOverride;
 
   Future<Session> call() async {
-    final override = externalIdOverride;
-    if (override != null && override.isNotEmpty) {
+    final override = _normalizedExternalIdOverride();
+    if (override != null) {
       final session = await _repository.startSession(override);
       await _cache.saveUserId(session.userId);
       return session;
@@ -30,5 +30,11 @@ class StartSession {
             }();
     await _cache.saveUserId(session.userId);
     return session;
+  }
+
+  String? _normalizedExternalIdOverride() {
+    final value = externalIdOverride?.trim();
+    if (value == null || value.isEmpty) return null;
+    return value.startsWith('uid:') ? value : 'uid:$value';
   }
 }

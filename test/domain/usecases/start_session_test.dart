@@ -56,10 +56,10 @@ void main() {
   });
 
   test(
-    'external id override uses provided id and bypasses local session',
+    'external id override normalizes uid and bypasses local session',
     () async {
       when(
-        () => repository.startSession('tester-123458'),
+        () => repository.startSession('uid:tester-123458'),
       ).thenAnswer((_) async => session);
       when(() => cache.saveUserId(7)).thenAnswer((_) async {});
 
@@ -71,10 +71,27 @@ void main() {
       final result = await usecase();
 
       expect(result.userId, 7);
-      verify(() => repository.startSession('tester-123458')).called(1);
+      verify(() => repository.startSession('uid:tester-123458')).called(1);
+      verifyNever(() => repository.startSession('tester-123458'));
       verifyNever(() => cache.getSavedUserId());
       verifyNever(() => cache.getOrCreateUid());
       verifyNever(() => repository.getSession(any()));
     },
   );
+
+  test('external id override keeps existing uid prefix', () async {
+    when(
+      () => repository.startSession('uid:tester-123458'),
+    ).thenAnswer((_) async => session);
+    when(() => cache.saveUserId(7)).thenAnswer((_) async {});
+
+    final usecase = StartSession(
+      repository,
+      cache,
+      externalIdOverride: 'uid:tester-123458',
+    );
+    await usecase();
+
+    verify(() => repository.startSession('uid:tester-123458')).called(1);
+  });
 }

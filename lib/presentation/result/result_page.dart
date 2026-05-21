@@ -45,16 +45,40 @@ class _ResultPageState extends State<ResultPage> {
   }
 
   void _openPrimaryAction(BuildContext context) {
-    final primaryId = widget.compatibility.breedId;
-    if (primaryId != null) {
-      _openBreed(context, primaryId);
-      return;
-    }
-    final suggestions = widget.compatibility.suggestions;
-    if (suggestions.isNotEmpty) {
-      _openBreed(context, suggestions.first.breedId);
-    }
+    _openBreed(context, _primaryCompatibility(widget.compatibility)?.breedId);
   }
+
+  Compatibility? _primaryCompatibility(Compatibility compatibility) {
+    if (compatibility.breedId != null) return compatibility;
+    final suggestions = compatibility.suggestions;
+    if (suggestions.isEmpty) return null;
+    return _compatibilityFromSuggestion(suggestions.first);
+  }
+
+  List<CompatibilitySuggestion> _visibleSuggestions(
+    Compatibility compatibility,
+  ) {
+    if (compatibility.breedId != null) return compatibility.suggestions;
+    return compatibility.suggestions.skip(1).toList(growable: false);
+  }
+
+  Compatibility _compatibilityFromSuggestion(CompatibilitySuggestion s) =>
+      Compatibility(
+        status: CompatibilityStatus.ready,
+        breedId: s.breedId,
+        breedName: s.breedName,
+        imageUrl: s.imageUrl,
+        score: s.score,
+        risk: _riskFromSuggestion(s.riskLevel),
+        summary: s.summary,
+      );
+
+  CompatibilityRisk _riskFromSuggestion(String? raw) => switch (raw) {
+    'low' => CompatibilityRisk.low,
+    'medium' => CompatibilityRisk.medium,
+    'high' => CompatibilityRisk.high,
+    _ => CompatibilityRisk.unknown,
+  };
 
   List<ReasonItem> _visibleItems(List<ReasonItem> source, bool showAll) {
     if (showAll || source.length <= _collapsedLimit) return source;
@@ -94,7 +118,8 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final compatibility = widget.compatibility;
-    final suggestions = compatibility.suggestions;
+    final primaryCompatibility = _primaryCompatibility(compatibility);
+    final suggestions = _visibleSuggestions(compatibility);
     final hardReasons = compatibility.hardReasons;
     final risks = compatibility.risks;
     final insights = compatibility.insights;
@@ -150,10 +175,13 @@ class _ResultPageState extends State<ResultPage> {
         ),
         child: UiButton(
           label:
-              compatibility.breedId != null
+              primaryCompatibility != null
                   ? AppStrings.result.ctaViewBreed
                   : AppStrings.result.ctaViewAlternatives,
-          onPressed: () => _openPrimaryAction(context),
+          onPressed:
+              primaryCompatibility != null
+                  ? () => _openPrimaryAction(context)
+                  : null,
         ),
       ),
       body: SafeArea(
@@ -170,10 +198,13 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  MainBreedCard(
-                    compatibility: compatibility,
-                    onTap: () => _openBreed(context, compatibility.breedId),
-                  ),
+                  if (primaryCompatibility != null)
+                    MainBreedCard(
+                      compatibility: primaryCompatibility,
+                      onTap:
+                          () =>
+                              _openBreed(context, primaryCompatibility.breedId),
+                    ),
                   if (influences.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xxl),
                     _sectionWithExpand(
