@@ -49,12 +49,24 @@ lib/
 ### Ключевые решения
 
 - **State management — Cubit** (`flutter_bloc`). Линейный flow без сложных реактивных цепочек: Cubit = Bloc без Events, меньше boilerplate, проще ревьюить.
-- **Sealed `Question`** — `SingleChoiceQuestion` / `MultipleChoiceQuestion` / `DynamicOptionsQuestion`. UI делает `switch` exhaustively — забыть тип в presentation невозможно (compile error, а не runtime).
+- **Sealed `Question`** — `SingleChoiceQuestion` / `MultipleChoiceQuestion` / `DynamicOptionsQuestion` / `UnknownQuestion`. UI делает `switch` exhaustively — забыть тип в presentation невозможно (compile error, а не runtime). Если backend пришлёт неизвестный `question_type` — он попадёт в `UnknownQuestion`, UI отрисует понятный fallback «не поддерживается», `canSubmit` = false (нельзя отправить мусор). Это лучше чем тихий fallback на пустой single-choice.
 - **Sealed `AppFailure`** — `NetworkFailure` / `TimeoutFailure` / `ServerFailure(code, message)` / `EmptyResponseFailure`. Каждый тип ошибки осмысленно обрабатывается отдельно.
 - **Polling на `/analyzing`** — `PollCompatibility` use case опрашивает `GET /session` каждые 1.5s пока `compatibility.status != ready`, timeout 30s.
 - **`RetryInterceptor`** в dio — 3 попытки, exponential backoff 1s → 2s → 4s, только для `connectionError` и timeout-ов. Server 4xx/5xx не ретраются.
 - **Resume сессии** — `uid` и `user_id` хранятся в `SharedPreferences`. Router redirect ловит активную сессию и уводит сразу на `/questionnaire`, минуя welcome/intro.
 - **Mock-first** — `MockPetMatchRemoteSource` реализует тот же интерфейс, что и `HttpPetMatchRemoteSource`. Включён по умолчанию (`USE_MOCK=true`). Удобен для демо без сети и для тестов без мокания HTTP.
+
+#### Прагматизм в presentation-слое
+
+Не все экраны прячут DI за Cubit'ом — это **осознанный компромисс ради лаконичности**:
+
+- **Главный flow (Questionnaire)** идёт через `QuestionnaireCubit` — там сложное состояние с переходами, тесты обязательны.
+- **`BreedDetailCubit`** — то же, отдельный async-стек с loading/loaded/error.
+- **AnalyzingPage** — StatefulWidget, `PollCompatibility` вызывается прямо в `initState`. Одна async-операция, отдельный Cubit увеличил бы boilerplate без выгоды (см. Architecture document, Phase 4).
+- **`DynamicOptionsWidget`** — child-виджет внутри Questionnaire-страницы. Дёргает `GetDynamicOptions` через `sl<>` напрямую, не через родительский Cubit. Это срезает угол: иначе пришлось бы пробрасывать `List<DynamicOption>` через `QuestionnaireState` и держать debounce в Cubit'е.
+- **`WelcomePage`, router redirect** — читают `SessionCache` напрямую через `sl<>`. Router — composition root для навигации, sl там допустим. Welcome делает один синхронный read в `initState`.
+
+Если бы это был production-проект под рост — DynamicOptions и Welcome логику стоит вынести в свои Cubit'ы. Для тестового задания текущая структура: 80% архитектурной чистоты при 50% boilerplate.
 
 ## Тесты
 

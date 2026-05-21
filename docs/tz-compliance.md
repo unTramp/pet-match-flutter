@@ -48,7 +48,7 @@
 | **Empty response** | ✅ | `EmptyResponseFailure` (специальный sealed-вариант) |
 | **Retry flow** | ✅ | Cubit `retry()` → `start()`. Кнопка Retry на `ErrorView`. Mock сохраняет прогресс при повторном `startSession` с тем же `external_id` |
 | **Базовое кеширование сессии** | ✅ | `SessionCache` (SharedPreferences): `uid` + `user_id`. Также in-memory кеш для `BreedDetail` |
-| **Чистые модели данных** | ✅ | Sealed `Question` (3 типа), sealed `AppFailure` (4), sealed `QuestionnaireState` (5), sealed `UserAnswer` (3), все Equatable |
+| **Чистые модели данных** | ✅ | Sealed `Question` (4 типа: SingleChoice/Multiple/Dynamic/**Unknown** для forward-compat), sealed `AppFailure` (4), sealed `QuestionnaireState` (5), sealed `UserAnswer` (3), все Equatable |
 | **Адаптивный UI** | ✅ | Material 3, `SafeArea`, `Scrollable` где нужно; протестировано на iPhone Pro |
 
 ---

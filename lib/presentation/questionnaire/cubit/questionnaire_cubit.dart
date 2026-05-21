@@ -167,6 +167,9 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
           sourceType: selected.sourceType,
         );
       }(),
+      // canSubmit для UnknownQuestion = false, сюда не должны попадать,
+      // но возвращаем null чтобы submit() сделал ранний return.
+      UnknownQuestion() => null,
     };
   }
 

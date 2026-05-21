@@ -39,6 +39,9 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     SingleChoiceQuestion() => selectedOptionIds.length == 1,
     MultipleChoiceQuestion() => selectedOptionIds.isNotEmpty,
     DynamicOptionsQuestion() => dynamicSelected != null,
+    // Неизвестный тип — отправить нечего, пользователь может только пропустить
+    // (если вопрос optional) или обновить приложение.
+    UnknownQuestion() => false,
   };
 
   QuestionnaireQuestion copyWith({

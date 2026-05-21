@@ -123,6 +123,8 @@ class _QuestionBody extends StatelessWidget {
                       onSelect: cubit.selectDynamic,
                       onClear: cubit.clearDynamic,
                     ),
+                    UnknownQuestion(:final questionType) =>
+                      _UnsupportedQuestionView(questionType: questionType),
                   },
                 ],
               ),
@@ -170,5 +172,61 @@ class _QuestionBody extends StatelessWidget {
     // используем callback-стиль: dynamic widget вызывает usecase сам через DI.
     // Здесь возвращаем актуальный userId через cubit.
     return context.read<QuestionnaireCubit>().userId;
+  }
+}
+
+/// Fallback для неизвестного `question_type` — лучше явный «не поддерживается»,
+/// чем тихий рендер пустого single-choice с возможностью отправить мусор.
+class _UnsupportedQuestionView extends StatelessWidget {
+  const _UnsupportedQuestionView({required this.questionType});
+
+  final String questionType;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.info_outline_rounded,
+                size: 22,
+                color: AppColors.warning,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                'Тип вопроса не поддерживается',
+                style: theme.textTheme.titleLarge?.copyWith(fontSize: 15),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Похоже, эта версия приложения устарела. Если вопрос '
+            'опциональный — пропустите его кнопкой ниже. Иначе обновите '
+            'приложение и попробуйте снова.',
+            style: theme.textTheme.bodyMedium,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'question_type: $questionType',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontSize: 11,
+              color: AppColors.textSecondary,
+              fontFamily: 'monospace',
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

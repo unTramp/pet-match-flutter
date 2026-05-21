@@ -5,9 +5,11 @@ import 'option_mapper.dart';
 class QuestionMapper {
   const QuestionMapper._();
 
-  /// DTO → sealed `Question`. Неизвестный `question_type` маппится на
-  /// `SingleChoiceQuestion` с пустым списком опций (fallback), чтобы новые типы
-  /// вопросов на бэкенде не роняли приложение.
+  /// DTO → sealed `Question`. Неизвестный `question_type` маппится в
+  /// `UnknownQuestion` (а не в SingleChoiceQuestion с пустыми опциями) —
+  /// это сохраняет compile-time exhaustive switch в UI И не показывает
+  /// пользователю кривой пустой single-choice. UI рендерит explicit fallback
+  /// с предложением пропустить.
   static Question fromDto(QuestionDto dto) {
     final options = (dto.options.toList()
           ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder)))
@@ -38,12 +40,12 @@ class QuestionMapper {
         helpText: dto.helpText,
         isOptional: dto.isOptional,
       ),
-      _ => SingleChoiceQuestion(
+      _ => UnknownQuestion(
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
         isOptional: dto.isOptional,
-        options: options,
+        questionType: dto.questionType,
       ),
     };
   }

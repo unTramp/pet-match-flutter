@@ -66,3 +66,23 @@ final class DynamicOptionsQuestion extends Question {
     super.isOptional,
   });
 }
+
+/// Тип вопроса, который пришёл с сервера, но клиент его не умеет рендерить.
+/// Лучше явный «не поддерживается» — чем тихо рендерить пустой single-choice
+/// и отправлять некорректный ответ. UI должен предложить пропустить вопрос
+/// (если он optional) или показать сообщение об устаревшем клиенте.
+final class UnknownQuestion extends Question {
+  const UnknownQuestion({
+    required super.id,
+    required super.title,
+    required this.questionType,
+    super.helpText,
+    super.isOptional,
+  });
+
+  /// Исходный `question_type` из API — пригодится для логов / диагностики.
+  final String questionType;
+
+  @override
+  List<Object?> get props => [...super.props, questionType];
+}

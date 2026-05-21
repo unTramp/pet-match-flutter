@@ -10,7 +10,7 @@ class IntroPage extends StatelessWidget {
   static const _bullets = <_IntroBullet>[
     _IntroBullet(
       icon: Icons.question_answer_outlined,
-      title: 'Ответьте на 6 вопросов',
+      title: 'Ответьте на несколько вопросов',
       body: 'О вашем образе жизни, жилье и предпочтениях.',
     ),
     _IntroBullet(

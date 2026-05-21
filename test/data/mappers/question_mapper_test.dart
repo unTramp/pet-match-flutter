@@ -101,18 +101,25 @@ void main() {
       expect(result.exclusiveOptionCodes, isEmpty);
     });
 
-    test('unknown question type → fallback SingleChoice (no crash)', () {
-      const dto = QuestionDto(
-        id: 4,
-        title: 'Странный вопрос',
-        questionType: 'totally_unknown_type',
-      );
+    test(
+      'unknown question_type → UnknownQuestion (not silent SingleChoice)',
+      () {
+        const dto = QuestionDto(
+          id: 4,
+          title: 'Странный вопрос',
+          questionType: 'slider_input',
+        );
 
-      final result = QuestionMapper.fromDto(dto);
+        final result = QuestionMapper.fromDto(dto);
 
-      expect(result, isA<SingleChoiceQuestion>());
-      expect((result as SingleChoiceQuestion).options, isEmpty);
-    });
+        // Раньше fallback был SingleChoiceQuestion с пустыми options —
+        // пользователь видел кривой пустой single-choice и мог отправить
+        // некорректный ответ. Теперь явный UnknownQuestion — UI рендерит
+        // понятное «не поддерживается» и блокирует submit.
+        expect(result, isA<UnknownQuestion>());
+        expect((result as UnknownQuestion).questionType, 'slider_input');
+      },
+    );
 
     test('isOptional + helpText пробрасываются', () {
       const dto = QuestionDto(
