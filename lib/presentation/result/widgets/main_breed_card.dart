@@ -59,15 +59,28 @@ class MainBreedCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 16 / 10,
-              child:
-                  imageUrl != null
-                      ? CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        fit: BoxFit.cover,
-                        placeholder:
-                            (_, __) => Container(color: AppColors.border),
-                        errorWidget:
-                            (_, __, ___) => Container(
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child:
+                        imageUrl != null
+                            ? CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  (_, __) => Container(color: AppColors.border),
+                              errorWidget:
+                                  (_, __, ___) => Container(
+                                    color: AppColors.border,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Icons.pets_rounded,
+                                      size: 48,
+                                      color: AppColors.textSecondary,
+                                    ),
+                                  ),
+                            )
+                            : Container(
                               color: AppColors.border,
                               alignment: Alignment.center,
                               child: const Icon(
@@ -76,16 +89,32 @@ class MainBreedCard extends StatelessWidget {
                                 color: AppColors.textSecondary,
                               ),
                             ),
-                      )
-                      : Container(
-                        color: AppColors.border,
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.pets_rounded,
-                          size: 48,
-                          color: AppColors.textSecondary,
+                  ),
+                  Positioned(
+                    top: AppSpacing.md,
+                    right: AppSpacing.md,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.5),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
+                        border: Border.all(color: Colors.white24),
+                      ),
+                      child: Text(
+                        _statusText(),
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
                         ),
                       ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(AppSpacing.xl),
@@ -95,35 +124,9 @@ class MainBreedCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              compatibility.breedName ?? 'Порода',
-                              style: theme.textTheme.headlineMedium,
-                            ),
-                            const SizedBox(height: AppSpacing.xs),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppSpacing.sm,
-                                vertical: 3,
-                              ),
-                              decoration: BoxDecoration(
-                                color: accent.withValues(alpha: 0.12),
-                                borderRadius: BorderRadius.circular(
-                                  AppRadius.md,
-                                ),
-                              ),
-                              child: Text(
-                                _statusText(),
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: accent,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          compatibility.breedName ?? 'Порода',
+                          style: theme.textTheme.headlineMedium,
                         ),
                       ),
                       Container(
@@ -132,13 +135,14 @@ class MainBreedCard extends StatelessWidget {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: accent.withValues(alpha: 0.15),
+                          color: accent.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(AppRadius.xxl),
                         ),
                         child: Text(
                           scoreLabel,
-                          style: theme.textTheme.labelLarge?.copyWith(
+                          style: theme.textTheme.bodyMedium?.copyWith(
                             color: accent,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
