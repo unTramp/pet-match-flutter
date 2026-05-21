@@ -112,7 +112,7 @@
 - Аналитика (`POST /events`) не реализована.
 - Accessibility — базовые Flutter-семантики, без кастомных TalkBack-меток.
 - CI/CD не настроен (по решению заказчика).
-- `freezed` не используется — в текущем Flutter SDK builder зависает на этапе analyzer; DTO написаны вручную с `fromJson`/`toJson`.
+- **DTO без codegen.** В `pubspec.yaml` нет ни `build_runner`, ни `json_serializable`, ни `freezed`. Сначала пробовали `freezed`, но его builder зависает на analyzer-баге в Flutter 3.29.3; затем убрали и `json_serializable` по тем же причинам. Для 10 простых DTO ручной `fromJson` оказался короче и без подводных камней. Equatable используется только в domain-слое для `==` в тестах. Подробнее — см. README.
 
 ---
 

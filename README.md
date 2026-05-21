@@ -6,10 +6,11 @@ Android-first Flutter-приложение, воспроизводящее ос�
 
 ```bash
 flutter pub get
-dart run build_runner build --delete-conflicting-outputs
 flutter run                                    # mock-режим (по умолчанию)
 flutter run --dart-define=USE_MOCK=false       # реальный dev API
 ```
+
+Никакого codegen-шага нет: DTO разбираются вручную через `fromJson` (см. раздел компромиссов ниже).
 
 Сборка APK:
 ```bash
@@ -37,7 +38,7 @@ flutter run --dart-define=USE_MOCK=false \
 ```
 lib/
 ├── core/            DI, network (dio + interceptors), cache, theme, failures, logger
-├── data/            DTO (json_serializable), mappers, sources (Http + Mock), repositories
+├── data/            DTO (ручной разбор JSON), mappers, sources (Http + Mock), repositories
 ├── domain/          entities, repositories (abstract), use cases
 └── presentation/    router (go_router), screens, cubits, widgets
 ```
@@ -72,7 +73,7 @@ flutter test
 7. **`result_page_test.dart`** — `MainBreedCard` + `SuggestionCard` рендер + tap.
 8. **`error_view_test.dart`** — сообщение по типу `AppFailure` + Retry callback.
 
-Всего **47** тестов (минимум по ТЗ — 2-3).
+Всего **68** тестов (минимум по ТЗ — 2-3).
 
 ## Реальный API — проверено end-to-end
 
@@ -103,7 +104,7 @@ flutter test
 - **iOS** — не настраивался (per ТЗ Android-first).
 - **CI** — не настроен (по решению заказчика).
 - **Accessibility** — базовые Flutter-семантики. Кастомных focus-orders и TalkBack-меток нет.
-- **freezed** — не используется (вместо неё plain классы + `json_serializable`). Причина: в текущем Flutter SDK (3.29.3 + Dart 3.7.2) freezed builder уходит в zombie-state из-за бага в `analyzer`. Plain DTO + равенство через `Equatable` в domain — рабочая и достаточная альтернатива для тестового задания.
+- **DTO без codegen** — DTO написаны вручную с `fromJson` / `toJson`. Сначала пробовали `freezed`, но его builder зависает на analyzer-баге в текущем Flutter SDK (3.29.3 + Dart 3.7.2). Потом убрали и `json_serializable` — по тем же причинам, и для 10 простых DTO ручной разбор оказался короче и читаемее, чем настраивать кодогенерацию. `Equatable` остался в domain-слое для `==` в тестах. В `pubspec.yaml` нет ни `build_runner`, ни `json_serializable`, ни `freezed` — pub fetch проходит быстро и без подводных камней.
 
 ## Следующие шаги при большем времени
 
