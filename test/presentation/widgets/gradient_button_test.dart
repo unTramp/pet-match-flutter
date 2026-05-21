@@ -50,9 +50,7 @@ void main() {
       expect(opacity.opacity, lessThan(1));
     });
 
-    testWidgets('icon is hidden when icon is null', (
-      tester,
-    ) async {
+    testWidgets('icon is hidden when icon is null', (tester) async {
       await _pump(
         tester,
         GradientButton(label: 'Без иконки', onPressed: () {}, icon: null),

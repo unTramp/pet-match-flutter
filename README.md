@@ -43,6 +43,7 @@ lib/
 ```
 
 Подробное описание архитектуры — в приложенном **`docs/architecture.pdf`**.
+Карта соответствия ТЗ — **[docs/tz-compliance.md](docs/tz-compliance.md)**.
 
 ### Ключевые решения
 

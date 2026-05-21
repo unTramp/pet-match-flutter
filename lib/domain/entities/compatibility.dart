@@ -2,6 +2,39 @@ import 'package:equatable/equatable.dart';
 
 enum CompatibilityStatus { processing, ready, failed, unknown }
 
+/// Уровень риска для рекомендации в целом.
+/// Cервер шлёт строки 'low' / 'medium' / 'high' — маппер парсит.
+enum CompatibilityRisk { low, medium, high, unknown }
+
+/// Severity для конкретной причины. `hard` — обязательная (дисквалифицирует),
+/// `risk` — мягкая (стоит учесть).
+enum ReasonSeverity { hard, risk }
+
+class CompatibilityReason extends Equatable {
+  const CompatibilityReason({
+    required this.message,
+    required this.severity,
+    this.code,
+  });
+
+  final String message;
+  final ReasonSeverity severity;
+  final String? code;
+
+  @override
+  List<Object?> get props => [message, severity, code];
+}
+
+class CompatibilityRefusal extends Equatable {
+  const CompatibilityRefusal({this.title, this.message});
+
+  final String? title;
+  final String? message;
+
+  @override
+  List<Object?> get props => [title, message];
+}
+
 class CompatibilitySuggestion extends Equatable {
   const CompatibilitySuggestion({
     required this.breedId,
@@ -40,9 +73,15 @@ class Compatibility extends Equatable {
     this.breedName,
     this.imageUrl,
     this.score,
-    this.riskLevel,
+    this.risk = CompatibilityRisk.unknown,
+    this.compatible,
+    this.hardFailCount = 0,
     this.summary,
     this.insights = const [],
+    this.requirementHighlights = const [],
+    this.hardReasons = const [],
+    this.risks = const [],
+    this.refusal,
     this.suggestions = const [],
   });
 
@@ -51,12 +90,28 @@ class Compatibility extends Equatable {
   final String? breedName;
   final String? imageUrl;
   final double? score;
-  final String? riskLevel;
+  final CompatibilityRisk risk;
+  final bool? compatible;
+  final int hardFailCount;
   final String? summary;
   final List<String> insights;
+  final List<String> requirementHighlights;
+  final List<CompatibilityReason> hardReasons;
+  final List<CompatibilityReason> risks;
+  final CompatibilityRefusal? refusal;
   final List<CompatibilitySuggestion> suggestions;
 
   bool get isReady => status == CompatibilityStatus.ready;
+
+  /// True — порода действительно подходит. Считаем «подходит» если:
+  /// `compatible == true` И нет жёстких ограничений И уровень риска не high.
+  bool get isFit =>
+      (compatible ?? true) &&
+      hardFailCount == 0 &&
+      risk != CompatibilityRisk.high;
+
+  /// Полностью забракована — есть refusal или сервер явно сказал compatible=false.
+  bool get isRefused => compatible == false || refusal != null;
 
   @override
   List<Object?> get props => [
@@ -65,9 +120,15 @@ class Compatibility extends Equatable {
     breedName,
     imageUrl,
     score,
-    riskLevel,
+    risk,
+    compatible,
+    hardFailCount,
     summary,
     insights,
+    requirementHighlights,
+    hardReasons,
+    risks,
+    refusal,
     suggestions,
   ];
 }

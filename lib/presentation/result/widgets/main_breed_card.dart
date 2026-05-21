@@ -10,12 +10,25 @@ class MainBreedCard extends StatelessWidget {
   final Compatibility compatibility;
   final VoidCallback? onTap;
 
+  /// Цвет score badge зависит от риска и фактической совместимости.
+  Color _scoreColor() {
+    if (compatibility.compatible == false ||
+        compatibility.risk == CompatibilityRisk.high) {
+      return AppColors.error;
+    }
+    if (compatibility.risk == CompatibilityRisk.medium) {
+      return AppColors.warning;
+    }
+    return AppColors.accent;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final score = compatibility.score;
     final scoreLabel = score != null ? '${(score * 100).round()}%' : '—';
     final imageUrl = compatibility.imageUrl;
+    final accent = _scoreColor();
 
     return InkWell(
       onTap: onTap,
@@ -79,13 +92,13 @@ class MainBreedCard extends StatelessWidget {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.accent.withValues(alpha: 0.15),
+                          color: accent.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           scoreLabel,
                           style: theme.textTheme.labelLarge?.copyWith(
-                            color: AppColors.accent,
+                            color: accent,
                           ),
                         ),
                       ),
@@ -96,36 +109,6 @@ class MainBreedCard extends StatelessWidget {
                     Text(
                       compatibility.summary!,
                       style: theme.textTheme.bodyMedium,
-                    ),
-                  ],
-                  if (compatibility.insights.isNotEmpty) ...[
-                    const SizedBox(height: 16),
-                    ...compatibility.insights.map(
-                      (i) => Padding(
-                        padding: const EdgeInsets.only(bottom: 6),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 6),
-                              child: Icon(
-                                Icons.check_circle_rounded,
-                                size: 16,
-                                color: AppColors.accent,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                i,
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: AppColors.textPrimary,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ],
                   if (onTap != null) ...[

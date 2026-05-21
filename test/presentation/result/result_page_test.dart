@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pet_match/core/theme/app_colors.dart';
 import 'package:pet_match/domain/entities/compatibility.dart';
 import 'package:pet_match/presentation/result/widgets/main_breed_card.dart';
 import 'package:pet_match/presentation/result/widgets/suggestion_card.dart';
@@ -39,7 +40,8 @@ void main() {
     expect(find.text('Лабрадор'), findsOneWidget);
     expect(find.text('90%'), findsOneWidget);
     expect(find.text('Отличный выбор'), findsOneWidget);
-    expect(find.text('Дружелюбен'), findsOneWidget);
+    // Insights больше не рендерятся внутри MainBreedCard —
+    // их показывает ResultPage отдельной секцией.
   });
 
   testWidgets('MainBreedCard tap invokes onTap when provided', (tester) async {
@@ -82,6 +84,72 @@ void main() {
 
     await tester.tap(find.byType(SuggestionCard));
     expect(tapped, 1);
+  });
+
+  group('MainBreedCard score color (по style текста)', () {
+    Color scoreLabelColor(WidgetTester tester) {
+      // Score-label — Text «90%»/«0%»/etc. Цвет его TextStyle = accent.
+      final text = tester.widget<Text>(
+        find.descendant(
+          of: find.byType(MainBreedCard),
+          matching: find.byWidgetPredicate(
+            (w) => w is Text && (w.data?.endsWith('%') ?? false),
+          ),
+        ),
+      );
+      return text.style!.color!;
+    }
+
+    Future<void> pumpCard(WidgetTester tester, Compatibility c) {
+      return tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(child: MainBreedCard(compatibility: c)),
+          ),
+        ),
+      );
+    }
+
+    testWidgets('compatible=true, risk=low → зелёный', (tester) async {
+      await pumpCard(
+        tester,
+        const Compatibility(
+          status: CompatibilityStatus.ready,
+          breedName: 'X',
+          score: 0.9,
+          compatible: true,
+        ),
+      );
+      expect(scoreLabelColor(tester), AppColors.accent);
+    });
+
+    testWidgets('compatible=false + risk=high → красный', (tester) async {
+      await pumpCard(
+        tester,
+        const Compatibility(
+          status: CompatibilityStatus.ready,
+          breedName: 'X',
+          score: 0,
+          compatible: false,
+          risk: CompatibilityRisk.high,
+        ),
+      );
+      expect(scoreLabelColor(tester), AppColors.error);
+    });
+
+    testWidgets('risk=medium → оранжевый', (tester) async {
+      await pumpCard(
+        tester,
+        const Compatibility(
+          status: CompatibilityStatus.ready,
+          breedName: 'X',
+          score: 0.6,
+          compatible: true,
+          risk: CompatibilityRisk.medium,
+        ),
+      );
+      expect(scoreLabelColor(tester), AppColors.warning);
+    });
   });
 
   testWidgets('SuggestionCard without score shows em-dash', (tester) async {

@@ -25,14 +25,15 @@ void main() {
     },
     build: () => BreedDetailCubit(useCase),
     act: (cubit) => cubit.load(1),
-    expect: () => [
-      isA<BreedDetailLoading>(),
-      isA<BreedDetailLoaded>().having(
-        (s) => s.detail.breedName,
-        'breedName',
-        'Лабрадор',
-      ),
-    ],
+    expect:
+        () => [
+          isA<BreedDetailLoading>(),
+          isA<BreedDetailLoaded>().having(
+            (s) => s.detail.breedName,
+            'breedName',
+            'Лабрадор',
+          ),
+        ],
   );
 
   blocTest<BreedDetailCubit, BreedDetailState>(
@@ -42,14 +43,15 @@ void main() {
     },
     build: () => BreedDetailCubit(useCase),
     act: (cubit) => cubit.load(1),
-    expect: () => [
-      isA<BreedDetailLoading>(),
-      isA<BreedDetailError>().having(
-        (s) => s.failure,
-        'failure',
-        isA<NetworkFailure>(),
-      ),
-    ],
+    expect:
+        () => [
+          isA<BreedDetailLoading>(),
+          isA<BreedDetailError>().having(
+            (s) => s.failure,
+            'failure',
+            isA<NetworkFailure>(),
+          ),
+        ],
   );
 
   blocTest<BreedDetailCubit, BreedDetailState>(
@@ -69,11 +71,12 @@ void main() {
       await cubit.load(1);
       await cubit.load(1);
     },
-    expect: () => [
-      isA<BreedDetailLoading>(),
-      isA<BreedDetailError>(),
-      isA<BreedDetailLoading>(),
-      isA<BreedDetailLoaded>(),
-    ],
+    expect:
+        () => [
+          isA<BreedDetailLoading>(),
+          isA<BreedDetailError>(),
+          isA<BreedDetailLoading>(),
+          isA<BreedDetailLoaded>(),
+        ],
   );
 }
