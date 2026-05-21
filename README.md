@@ -70,30 +70,14 @@ flutter test
 
 ## Скриншоты
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/welcome.png" alt="Welcome" width="180"><br>
-      Welcome
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/question-search.png" alt="Анкета: поиск породы" width="180"><br>
-      Анкета: поиск породы
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/question-multi.png" alt="Анкета: множественный выбор" width="180"><br>
-      Анкета: множественный выбор
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="docs/screenshots/result.png" alt="Результат" width="180"><br>
-      Результат
-    </td>
-    <td align="center">
-      <img src="docs/screenshots/breed-details.png" alt="О породе" width="180"><br>
-      О породе
-    </td>
-    <td></td>
-  </tr>
-</table>
+<img src="docs/screenshots/welcome-hero.png" alt="Экран 1" width="220">
+
+<img src="docs/screenshots/intro-how-it-works.png" alt="Экран 2" width="220">
+
+<img src="docs/screenshots/question-time-outside-home.png" alt="Экран 3" width="220">
+
+<img src="docs/screenshots/question-current-pets-multiple-choice.png" alt="Экран 4" width="220">
+
+<img src="docs/screenshots/result-recommendation-card.png" alt="Экран 5" width="220">
+
+<img src="docs/screenshots/result-match-factors.png" alt="Экран 6" width="220">
