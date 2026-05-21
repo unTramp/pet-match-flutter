@@ -70,14 +70,15 @@ flutter test
 
 ## Скриншоты
 
-<img src="docs/screenshots/welcome-hero.png" alt="Экран 1" width="220">
-
-<img src="docs/screenshots/intro-how-it-works.png" alt="Экран 2" width="220">
-
-<img src="docs/screenshots/question-time-outside-home.png" alt="Экран 3" width="220">
-
-<img src="docs/screenshots/question-current-pets-multiple-choice.png" alt="Экран 4" width="220">
-
-<img src="docs/screenshots/result-recommendation-card.png" alt="Экран 5" width="220">
-
-<img src="docs/screenshots/result-match-factors.png" alt="Экран 6" width="220">
+<table>
+  <tr>
+    <td><img src="docs/screenshots/1.png" alt="Экран 1" width="180"></td>
+    <td><img src="docs/screenshots/2.png" alt="Экран 2" width="180"></td>
+    <td><img src="docs/screenshots/3.png" alt="Экран 3" width="180"></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/4.png" alt="Экран 4" width="180"></td>
+    <td><img src="docs/screenshots/5.png" alt="Экран 5" width="180"></td>
+    <td><img src="docs/screenshots/6.png" alt="Экран 6" width="180"></td>
+  </tr>
+</table>
