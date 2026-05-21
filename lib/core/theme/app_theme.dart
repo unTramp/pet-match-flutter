@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../design/tokens/radius.dart';
+import '../design/tokens/sizes.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -36,6 +37,16 @@ class AppTheme {
         centerTitle: false,
       ),
       textTheme: const TextTheme(
+        // Hero-копи на welcome (`_HeroHeadline`). Заметно крупнее остального
+        // headline-стека, чтобы стартовый экран ощущался первым кадром
+        // продукта.
+        displayLarge: TextStyle(
+          fontSize: 36,
+          fontWeight: FontWeight.w800,
+          color: AppColors.textPrimary,
+          height: 1.1,
+          letterSpacing: -0.45,
+        ),
         headlineLarge: TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.w800,
@@ -100,7 +111,7 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          minimumSize: const Size.fromHeight(52),
+          minimumSize: const Size.fromHeight(AppControlSize.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
@@ -115,7 +126,7 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
           side: const BorderSide(color: AppColors.primary, width: 1.5),
-          minimumSize: const Size.fromHeight(52),
+          minimumSize: const Size.fromHeight(AppControlSize.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),

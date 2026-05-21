@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
@@ -37,7 +38,7 @@ class RefusalBlock extends StatelessWidget {
           Text(
             message,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: AppColors.textPrimary.withValues(alpha: 0.85),
+              color: AppColors.textPrimary.withValues(alpha: AppAlpha.textOverSurface),
             ),
           ),
         ],

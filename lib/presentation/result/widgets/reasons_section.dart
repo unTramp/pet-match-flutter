@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -68,15 +70,15 @@ class _ReasonRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 24,
-          height: 24,
-          margin: const EdgeInsets.only(top: 2),
+          width: AppControlSize.selector,
+          height: AppControlSize.selector,
+          margin: const EdgeInsets.only(top: AppSpacing.xxs),
           decoration: BoxDecoration(
-            color: item.color.withValues(alpha: 0.12),
+            color: item.color.withValues(alpha: AppAlpha.tint),
             borderRadius: BorderRadius.circular(AppRadius.sm),
           ),
           alignment: Alignment.center,
-          child: Icon(item.icon, size: 14, color: item.color),
+          child: Icon(item.icon, size: AppIconSize.sm, color: item.color),
         ),
         const SizedBox(width: AppSpacing.md),
         Expanded(

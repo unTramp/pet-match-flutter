@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/theme/app_colors.dart';
 
@@ -55,7 +56,7 @@ class _BreedGalleryPageState extends State<BreedGalleryPage> {
                       (_, __, ___) => const Icon(
                         Icons.broken_image_outlined,
                         color: Colors.white54,
-                        size: 64,
+                        size: AppIconSize.hero,
                       ),
                 ),
               ),

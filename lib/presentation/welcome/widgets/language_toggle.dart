@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/motion.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
@@ -69,7 +70,7 @@ class _LangText extends StatelessWidget {
             color:
                 active
                     ? AppColors.primary
-                    : AppColors.textSecondary.withValues(alpha: 0.55),
+                    : AppColors.textSecondary.withValues(alpha: AppAlpha.muted),
             fontWeight: active ? FontWeight.w700 : FontWeight.w500,
             letterSpacing: 0.4,
           ),

@@ -4,13 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/assets.dart';
 import '../../core/cache/session_cache.dart';
+import '../../core/constants.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/alpha.dart';
 import '../../core/design/tokens/motion.dart';
+import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/failures.dart';
+import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
 import 'widgets/decorations.dart';
@@ -34,7 +39,6 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage>
     with SingleTickerProviderStateMixin {
-  static const _prefetchTimeout = Duration(seconds: 15);
   late Future<bool> _hasActiveSession;
   late final AnimationController _introController;
   late final Animation<double> _headlineFade;
@@ -52,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage>
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
     _introController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: AppMotion.heroIntro,
     );
     _headlineFade = CurvedAnimation(
       parent: _introController,
@@ -114,7 +118,7 @@ class _WelcomePageState extends State<WelcomePage>
     if (!_imagePrecached) {
       _imagePrecached = true;
       // Декодим PNG заранее, чтобы первый кадр не подтормаживал.
-      precacheImage(const AssetImage('assets/images/cat.png'), context);
+      precacheImage(const AssetImage(AppAssets.catImage), context);
     }
   }
 
@@ -132,20 +136,18 @@ class _WelcomePageState extends State<WelcomePage>
     var navigated = false;
     try {
       final session = await sl<StartSession>()().timeout(
-        _prefetchTimeout,
+        kRequestTimeout,
         onTimeout: () => throw const TimeoutFailure(),
       );
       if (!mounted) return;
       navigated = true;
-      context.go('/questionnaire', extra: session);
+      context.go(AppRoutes.questionnaire, extra: session);
     } on AppFailure catch (failure) {
       if (!mounted) return;
       _showStartError(failure);
     } catch (_) {
       if (!mounted) return;
-      _showStartError(
-        const ServerFailure(statusCode: -1, message: 'Unexpected error'),
-      );
+      _showStartError(const ServerFailure.unexpected());
     } finally {
       if (mounted && !navigated) {
         setState(() => _isContinuing = false);
@@ -181,14 +183,14 @@ class _WelcomePageState extends State<WelcomePage>
             const Positioned(
               right: -80,
               bottom: 200,
-              child: LavenderBlob(size: 340),
+              child: LavenderBlob(size: AppControlSize.decorBlob),
             ),
             Positioned(
               right: 0,
               bottom: 0,
               width: screenWidth * 0.78,
               child: Image.asset(
-                'assets/images/cat.png',
+                AppAssets.catImage,
                 fit: BoxFit.contain,
                 alignment: Alignment.bottomRight,
                 semanticLabel: AppStrings.welcome.catImageSemantic,
@@ -204,7 +206,7 @@ class _WelcomePageState extends State<WelcomePage>
                       stops: const [0.0, 0.4, 0.85],
                       colors: [
                         AppColors.cream,
-                        AppColors.cream.withValues(alpha: 0.8),
+                        AppColors.cream.withValues(alpha: AppAlpha.overlayMid),
                         AppColors.cream.withValues(alpha: 0),
                       ],
                     ),
@@ -260,7 +262,7 @@ class _WelcomePageState extends State<WelcomePage>
                             onPressed:
                                 hasSession
                                     ? _onContinueToQuestionnaire
-                                    : () => context.go('/intro'),
+                                    : () => context.go(AppRoutes.intro),
                             onRestart: hasSession ? _onRestart : null,
                           );
                         },
@@ -304,13 +306,7 @@ class _HeroHeadline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseStyle = theme.textTheme.headlineLarge?.copyWith(
-      fontSize: 36,
-      fontWeight: FontWeight.w800,
-      height: 1.1,
-      letterSpacing: -0.45,
-      color: AppColors.textPrimary,
-    );
+    final baseStyle = theme.textTheme.displayLarge;
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 320),
       child: RichText(
