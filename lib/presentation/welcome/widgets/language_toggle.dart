@@ -3,55 +3,41 @@ import 'package:flutter/material.dart';
 import '../../../core/design/tokens/motion.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
+import '../../../core/locale/app_locale_controller.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Минимальный текстовый переключатель «RU / EN».
-///
-/// Не меняет локаль приложения — это визуальный элемент для соответствия
-/// дизайну референса. Интеграция с реальным переключением языка вне scope.
-enum AppLang { ru, en }
-
-class LanguageToggle extends StatefulWidget {
-  const LanguageToggle({super.key, this.initial = AppLang.ru});
-
-  final AppLang initial;
-
-  @override
-  State<LanguageToggle> createState() => _LanguageToggleState();
-}
-
-class _LanguageToggleState extends State<LanguageToggle> {
-  late AppLang _selected = widget.initial;
-
-  void _set(AppLang lang) {
-    if (_selected == lang) return;
-    setState(() => _selected = lang);
-  }
+class LanguageToggle extends StatelessWidget {
+  const LanguageToggle({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _LangText(
-          label: 'RU',
-          active: _selected == AppLang.ru,
-          onTap: () => _set(AppLang.ru),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-          child: Text(
-            '/',
-            style: theme.textTheme.bodyMedium,
-          ),
-        ),
-        _LangText(
-          label: 'EN',
-          active: _selected == AppLang.en,
-          onTap: () => _set(AppLang.en),
-        ),
-      ],
+    return ValueListenableBuilder<AppLanguage>(
+      valueListenable: AppLocaleController.instance,
+      builder: (context, selected, _) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _LangText(
+              label: 'RU',
+              active: selected == AppLanguage.ru,
+              onTap:
+                  () =>
+                      AppLocaleController.instance.setLanguage(AppLanguage.ru),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+              child: Text('/', style: Theme.of(context).textTheme.bodyMedium),
+            ),
+            _LangText(
+              label: 'EN',
+              active: selected == AppLanguage.en,
+              onTap:
+                  () =>
+                      AppLocaleController.instance.setLanguage(AppLanguage.en),
+            ),
+          ],
+        );
+      },
     );
   }
 }

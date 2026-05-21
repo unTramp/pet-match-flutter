@@ -20,7 +20,9 @@ class ProgressBar extends StatelessWidget {
         Row(
           children: [
             Text(
-              '${AppStrings.questionnaire.progressLabel} ${progress.answered + 1} из ${progress.total}',
+              '${AppStrings.questionnaire.progressLabel} '
+              '${progress.answered + 1} '
+              '${AppStrings.questionnaire.progressOf} ${progress.total}',
               style: theme.textTheme.bodyMedium,
             ),
             const Spacer(),

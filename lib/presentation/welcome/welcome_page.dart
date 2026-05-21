@@ -138,16 +138,33 @@ class _WelcomePageState extends State<WelcomePage>
       if (!mounted) return;
       navigated = true;
       context.go('/questionnaire', extra: session);
+    } on AppFailure catch (failure) {
+      if (!mounted) return;
+      _showStartError(failure);
     } catch (_) {
       if (!mounted) return;
-      navigated = true;
-      context.go('/questionnaire');
+      _showStartError(
+        const ServerFailure(statusCode: -1, message: 'Unexpected error'),
+      );
     } finally {
       if (mounted && !navigated) {
         setState(() => _isContinuing = false);
       }
     }
   }
+
+  void _showStartError(AppFailure failure) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(_failureMessage(failure))));
+  }
+
+  String _failureMessage(AppFailure failure) => switch (failure) {
+    NetworkFailure() => AppStrings.common.errorNetwork,
+    TimeoutFailure() => AppStrings.common.errorTimeout,
+    ServerFailure() => AppStrings.common.errorServer,
+    EmptyResponseFailure() => AppStrings.common.errorEmpty,
+  };
 
   @override
   Widget build(BuildContext context) {
