@@ -21,6 +21,13 @@ final class QuestionnaireLoading extends QuestionnaireState {
   const QuestionnaireLoading();
 }
 
+/// Анкета пройдена, бэк считает совместимость. UI показывает отдельный
+/// analyzing-экран (см. ТЗ §3.4: «Analyzing state — промежуточное состояние
+/// после завершения анкеты и перед показом результата»).
+final class QuestionnaireAnalyzing extends QuestionnaireState {
+  const QuestionnaireAnalyzing();
+}
+
 /// Активный вопрос. Холдит локальный выбор пользователя и — для
 /// `DynamicOptionsQuestion` — текущий список подгруженных опций.
 final class QuestionnaireQuestion extends QuestionnaireState {
@@ -47,16 +54,20 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     UnknownQuestion() => false,
   };
 
+  static const Object _unsetDynamicSelected = Object();
+
   QuestionnaireQuestion copyWith({
     Set<int>? selectedOptionIds,
-    DynamicOption? dynamicSelected,
+    Object? dynamicSelected = _unsetDynamicSelected,
     bool? isSubmitting,
   }) {
     return QuestionnaireQuestion(
       question: question,
       progress: progress,
       selectedOptionIds: selectedOptionIds ?? this.selectedOptionIds,
-      dynamicSelected: dynamicSelected ?? this.dynamicSelected,
+      dynamicSelected: identical(dynamicSelected, _unsetDynamicSelected)
+          ? this.dynamicSelected
+          : dynamicSelected as DynamicOption?,
       isSubmitting: isSubmitting ?? this.isSubmitting,
     );
   }

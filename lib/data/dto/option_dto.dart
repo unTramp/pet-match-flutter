@@ -17,11 +17,4 @@ class OptionDto {
   final String code;
   final String label;
   final int sortOrder;
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'code': code,
-    'label': label,
-    'sort_order': sortOrder,
-  };
 }

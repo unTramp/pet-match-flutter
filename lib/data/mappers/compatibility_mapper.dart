@@ -34,7 +34,6 @@ class CompatibilityMapper {
     score: _normalizeScore(dto.score),
     risk: _parseRisk(dto.riskLevel),
     compatible: dto.compatible,
-    hardFailCount: dto.hardFailCount,
     summary: dto.summary,
     insights: List<String>.unmodifiable(dto.insights),
     requirementHighlights: List<String>.unmodifiable(dto.requirementHighlights),
@@ -68,7 +67,6 @@ class CompatibilityMapper {
           (s) => CompatibilitySuggestion(
             breedId: s.breedId,
             breedName: s.breedName,
-            breedCode: s.breedCode,
             score: _normalizeScore(s.score),
             riskLevel: s.riskLevel,
             summary: s.summary,

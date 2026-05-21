@@ -1,19 +1,11 @@
+/// Минимальный shape пользователя из `SessionRead.user`. Из DTO в domain
+/// проходит только `id` (см. `SessionMapper.fromDto`); поля
+/// `external_id`/`display_name` нам сейчас не нужны на клиенте.
 class UserSummaryDto {
-  const UserSummaryDto({required this.id, this.externalId, this.displayName});
+  const UserSummaryDto({required this.id});
 
-  factory UserSummaryDto.fromJson(Map<String, dynamic> json) => UserSummaryDto(
-    id: (json['id'] as num).toInt(),
-    externalId: json['external_id'] as String?,
-    displayName: json['display_name'] as String?,
-  );
+  factory UserSummaryDto.fromJson(Map<String, dynamic> json) =>
+      UserSummaryDto(id: (json['id'] as num).toInt());
 
   final int id;
-  final String? externalId;
-  final String? displayName;
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    if (externalId != null) 'external_id': externalId,
-    if (displayName != null) 'display_name': displayName,
-  };
 }

@@ -7,8 +7,6 @@ class BreedMapper {
   static BreedDetail fromDto(BreedDetailDto dto) => BreedDetail(
     breedId: dto.breedId,
     breedName: dto.breedName,
-    breedCode: dto.breedCode,
-    petType: dto.petType,
     summary: dto.summary,
     imageUrl: dto.imageUrl,
     galleryImages: List<String>.unmodifiable(dto.galleryImages),

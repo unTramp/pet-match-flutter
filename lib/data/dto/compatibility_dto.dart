@@ -2,7 +2,6 @@ class CompatibilitySuggestionDto {
   const CompatibilitySuggestionDto({
     required this.breedId,
     required this.breedName,
-    this.breedCode,
     this.riskLevel,
     this.score,
     this.summary,
@@ -12,7 +11,6 @@ class CompatibilitySuggestionDto {
   factory CompatibilitySuggestionDto.fromJson(Map<String, dynamic> json) =>
       CompatibilitySuggestionDto(
         breedId: (json['breed_id'] as num).toInt(),
-        breedCode: json['breed_code'] as String?,
         breedName: json['breed_name'] as String,
         riskLevel: json['risk_level'] as String?,
         score: (json['score'] as num?)?.toDouble(),
@@ -21,7 +19,6 @@ class CompatibilitySuggestionDto {
       );
 
   final int breedId;
-  final String? breedCode;
   final String breedName;
   final String? riskLevel;
   final double? score;
@@ -69,14 +66,12 @@ class CompatibilityDto {
   const CompatibilityDto({
     required this.status,
     this.breedId,
-    this.breedCode,
     this.breedName,
     this.imageUrl,
     this.riskLevel,
     this.score,
     this.summary,
     this.compatible,
-    this.hardFailCount = 0,
     this.insights = const [],
     this.requirementHighlights = const [],
     this.hardReasons = const [],
@@ -90,14 +85,12 @@ class CompatibilityDto {
   ) => CompatibilityDto(
     status: json['status'] as String,
     breedId: (json['breed_id'] as num?)?.toInt(),
-    breedCode: json['breed_code'] as String?,
     breedName: json['breed_name'] as String?,
     imageUrl: json['image_url'] as String?,
     riskLevel: json['risk_level'] as String?,
     score: (json['score'] as num?)?.toDouble(),
     summary: json['summary'] as String?,
     compatible: json['compatible'] as bool?,
-    hardFailCount: (json['hard_fail_count'] as num?)?.toInt() ?? 0,
     insights: (json['insights'] as List<dynamic>? ?? const []).cast<String>(),
     requirementHighlights:
         (json['requirement_highlights'] as List<dynamic>? ?? const [])
@@ -123,14 +116,12 @@ class CompatibilityDto {
 
   final String status;
   final int? breedId;
-  final String? breedCode;
   final String? breedName;
   final String? imageUrl;
   final String? riskLevel;
   final double? score;
   final String? summary;
   final bool? compatible;
-  final int hardFailCount;
   final List<String> insights;
   final List<String> requirementHighlights;
   final List<CompatibilityReasonDto> hardReasons;

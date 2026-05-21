@@ -14,8 +14,6 @@ class BreedDetail extends Equatable {
   const BreedDetail({
     required this.breedId,
     required this.breedName,
-    this.breedCode,
-    this.petType,
     this.summary,
     this.imageUrl,
     this.galleryImages = const [],
@@ -24,8 +22,6 @@ class BreedDetail extends Equatable {
 
   final int breedId;
   final String breedName;
-  final String? breedCode;
-  final String? petType;
   final String? summary;
   final String? imageUrl;
   final List<String> galleryImages;
@@ -37,8 +33,6 @@ class BreedDetail extends Equatable {
   List<Object?> get props => [
     breedId,
     breedName,
-    breedCode,
-    petType,
     summary,
     imageUrl,
     galleryImages,

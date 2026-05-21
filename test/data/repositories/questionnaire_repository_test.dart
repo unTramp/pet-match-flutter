@@ -88,7 +88,7 @@ void main() {
 
   group('success mapping', () {
     const fakeSessionDto = SessionDto(
-      user: UserSummaryDto(id: 7, externalId: 'uid:test'),
+      user: UserSummaryDto(id: 7),
       stats: StatsDto(answeredCount: 0, totalCount: 5),
       nextQuestion: null,
       compatibility: null,
@@ -152,7 +152,7 @@ void main() {
           questionId: any(named: 'questionId'),
           query: any(named: 'query'),
         ),
-      ).thenAnswer((_) async => const DynamicOptionListDto(questionId: 1));
+      ).thenAnswer((_) async => const DynamicOptionListDto());
 
       // EmptyResponseFailure кидается внутри _guard — должен пройти насквозь,
       // не переупаковаться в ServerFailure(-1).
@@ -171,7 +171,7 @@ void main() {
           questionId: any(named: 'questionId'),
           query: any(named: 'query'),
         ),
-      ).thenAnswer((_) async => const DynamicOptionListDto(questionId: 1));
+      ).thenAnswer((_) async => const DynamicOptionListDto());
 
       expect(
         () => repo.getDynamicOptions(userId: 1, questionId: 1),
@@ -188,7 +188,7 @@ void main() {
             questionId: any(named: 'questionId'),
             query: any(named: 'query'),
           ),
-        ).thenAnswer((_) async => const DynamicOptionListDto(questionId: 1));
+        ).thenAnswer((_) async => const DynamicOptionListDto());
 
         final options = await repo.getDynamicOptions(
           userId: 1,

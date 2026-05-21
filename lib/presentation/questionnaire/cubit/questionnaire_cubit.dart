@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/constants.dart';
 import '../../../core/failures.dart';
 import '../../../core/logger.dart';
 import '../../../domain/entities/answer.dart';
@@ -23,7 +24,6 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     this._skipQuestion,
     this._pollCompatibility,
   ) : super(const QuestionnaireInitial());
-  static const _requestTimeout = Duration(seconds: 15);
 
   final StartSession _startSession;
   final SubmitAnswer _submitAnswer;
@@ -32,6 +32,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
   int? _userId;
   bool _isResolvingCompletion = false;
+  _LastAction? _lastAction;
 
   /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
   /// но ему нужен userId текущей сессии).
@@ -40,10 +41,11 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   /// Стартует или возобновляет анкету. `_userId` сохраняется для последующих
   /// submit/skip-вызовов.
   Future<void> start() async {
+    _lastAction = const _StartAction();
     emit(const QuestionnaireLoading());
     try {
       final session = await _startSession().timeout(
-        _requestTimeout,
+        kRequestTimeout,
         onTimeout: () => throw const TimeoutFailure(),
       );
       _userId = session.userId;
@@ -55,7 +57,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       appLogger.e('start() unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
-          failure: ServerFailure(statusCode: -1, message: 'Unexpected error'),
+          failure: ServerFailure.unexpected(),
           canRetry: true,
         ),
       );
@@ -131,12 +133,13 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final answer = _buildAnswer(s);
     if (answer == null) return;
 
+    _lastAction = _SubmitAction(answer);
     emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _submitAnswer(
         userId: userId,
         answer: answer,
-      ).timeout(_requestTimeout, onTimeout: () => throw const TimeoutFailure());
+      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
       _emitFromSession(session);
     } on AppFailure catch (f) {
@@ -148,7 +151,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       appLogger.e('submit() unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
-          failure: ServerFailure(statusCode: -1, message: 'Unexpected error'),
+          failure: ServerFailure.unexpected(),
           canRetry: true,
         ),
       );
@@ -162,12 +165,13 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final userId = _userId;
     if (userId == null) return;
 
+    _lastAction = _SkipAction(s.question.id);
     emit(s.copyWith(isSubmitting: true));
     try {
       final session = await _skipQuestion(
         userId: userId,
         questionId: s.question.id,
-      ).timeout(_requestTimeout, onTimeout: () => throw const TimeoutFailure());
+      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
       if (isClosed) return;
       _emitFromSession(session);
     } on AppFailure catch (f) {
@@ -179,24 +183,88 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       appLogger.e('skipCurrent() unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
-          failure: ServerFailure(statusCode: -1, message: 'Unexpected error'),
+          failure: ServerFailure.unexpected(),
           canRetry: true,
         ),
       );
     }
   }
 
-  /// Повторяет последнее действие, которое привело к ошибке. По умолчанию —
-  /// `start()` (если ошибка случилась до загрузки первого вопроса, _userId
-  /// ещё null). Иначе пытаемся снова загрузить текущую сессию через start —
-  /// бэкенд вернёт session под тем же external_id.
+  /// Повторяет последнее действие, которое привело к ошибке. Если ошибка
+  /// случилась до первого вызова — диспатчим `start()`. Иначе реально
+  /// реплеим submit/skip с теми же аргументами.
   Future<void> retry() async {
-    final s = state;
-    if (s is QuestionnaireQuestion && s.isSubmitting && _userId != null) {
-      await _resolveCompatibility(_userId!);
-      return;
+    final action = _lastAction;
+    final uid = _userId;
+    switch (action) {
+      case _SubmitAction(:final answer) when uid != null:
+        await _replaySubmit(uid, answer);
+      case _SkipAction(:final questionId) when uid != null:
+        await _replaySkip(uid, questionId);
+      case _StartAction():
+      case _SubmitAction():
+      case _SkipAction():
+      case null:
+        await start();
     }
-    await start();
+  }
+
+  Future<void> _replaySubmit(int userId, UserAnswer answer) async {
+    final s = state;
+    final base =
+        s is QuestionnaireQuestion
+            ? s.copyWith(isSubmitting: true)
+            : null;
+    if (base != null) emit(base);
+    try {
+      final session = await _submitAnswer(
+        userId: userId,
+        answer: answer,
+      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
+      if (isClosed) return;
+      _emitFromSession(session);
+    } on AppFailure catch (f) {
+      if (isClosed) return;
+      emit(QuestionnaireError(failure: f, canRetry: true));
+    } catch (e, st) {
+      if (isClosed) return;
+      appLogger.e('retry submit unexpected error', error: e, stackTrace: st);
+      emit(
+        const QuestionnaireError(
+          failure: ServerFailure.unexpected(),
+          canRetry: true,
+        ),
+      );
+    }
+  }
+
+  Future<void> _replaySkip(int userId, int questionId) async {
+    final s = state;
+    final base =
+        s is QuestionnaireQuestion
+            ? s.copyWith(isSubmitting: true)
+            : null;
+    if (base != null) emit(base);
+    try {
+      final session = await _skipQuestion(
+        userId: userId,
+        questionId: questionId,
+      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
+      if (isClosed) return;
+      _emitFromSession(session);
+    } on AppFailure catch (f) {
+      if (isClosed) return;
+      emit(QuestionnaireError(failure: f, canRetry: true));
+    } catch (e, st) {
+      if (isClosed) return;
+      appLogger.e('retry skip unexpected error', error: e, stackTrace: st);
+      emit(
+        const QuestionnaireError(
+          failure: ServerFailure.unexpected(),
+          canRetry: true,
+        ),
+      );
+    }
   }
 
   UserAnswer? _buildAnswer(QuestionnaireQuestion s) {
@@ -234,6 +302,8 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         emit(QuestionnaireResultReady(compatibility: ready));
         return;
       }
+      // ТЗ §3.4: analyzing — отдельное состояние перед result.
+      emit(const QuestionnaireAnalyzing());
       unawaited(_resolveCompatibility(session.userId));
       return;
     }
@@ -259,7 +329,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       );
       emit(
         const QuestionnaireError(
-          failure: ServerFailure(statusCode: -1, message: 'Unexpected error'),
+          failure: ServerFailure.unexpected(),
           canRetry: true,
         ),
       );
@@ -267,4 +337,22 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       _isResolvingCompletion = false;
     }
   }
+}
+
+sealed class _LastAction {
+  const _LastAction();
+}
+
+final class _StartAction extends _LastAction {
+  const _StartAction();
+}
+
+final class _SubmitAction extends _LastAction {
+  const _SubmitAction(this.answer);
+  final UserAnswer answer;
+}
+
+final class _SkipAction extends _LastAction {
+  const _SkipAction(this.questionId);
+  final int questionId;
 }

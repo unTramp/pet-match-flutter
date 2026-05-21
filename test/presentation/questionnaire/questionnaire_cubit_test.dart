@@ -164,7 +164,7 @@ void main() {
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
-    'submit on last question emits ResultReady',
+    'submit on last question emits Analyzing → ResultReady (ТЗ §3.4)',
     setUp: () {
       when(
         start.call,
@@ -190,6 +190,7 @@ void main() {
             'isSubmitting',
             true,
           ),
+          isA<QuestionnaireAnalyzing>(),
           isA<QuestionnaireResultReady>(),
         ],
   );
@@ -348,6 +349,40 @@ void main() {
       },
     );
   });
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'retry after submit failure replays submit (not start)',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      var first = true;
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer((_) async {
+        if (first) {
+          first = false;
+          throw const NetworkFailure();
+        }
+        return _sessionWithQuestion(_secondQuestion, answered: 1);
+      });
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+      await cubit.retry();
+    },
+    verify: (_) {
+      // start вызван ровно один раз, submit — дважды (оригинал + replay).
+      verify(start.call).called(1);
+      verify(
+        () => submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).called(2);
+    },
+  );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
     'retry after Error recovers',
