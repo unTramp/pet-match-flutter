@@ -159,10 +159,9 @@ class MainBreedCard extends StatelessWidget {
                     const SizedBox(height: AppSpacing.lg),
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: TextButton.icon(
+                      child: TextButton(
                         onPressed: onTap,
-                        icon: const Icon(Icons.arrow_forward_rounded, size: 18),
-                        label: Text(AppStrings.result.ctaViewBreed),
+                        child: Text(AppStrings.result.ctaViewBreed),
                       ),
                     ),
                   ],
