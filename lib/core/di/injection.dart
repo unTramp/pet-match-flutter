@@ -14,7 +14,6 @@ import '../../domain/usecases/skip_question.dart';
 import '../../domain/usecases/start_session.dart';
 import '../../domain/usecases/submit_answer.dart';
 import '../cache/session_cache.dart';
-import '../locale/app_locale_controller.dart';
 import '../network/dio_client.dart';
 
 final GetIt sl = GetIt.instance;
@@ -39,16 +38,15 @@ Future<void> configureDependencies() async {
 
   // Core singletons.
   sl.registerLazySingleton<SessionCache>(SessionCache.new);
-  sl.registerLazySingleton<AppLocaleController>(
-    () => AppLocaleController.instance,
-  );
 
   // Remote source — Mock or Http depending on build-time flag.
+  // `AppLocaleController` остаётся глобальным singleton'ом (см. AppLocaleController.instance);
+  // `LocaleInterceptor()` фолбэкает на него по умолчанию.
   sl.registerLazySingleton<PetMatchRemoteSource>(
     () =>
         useMock
             ? MockPetMatchRemoteSource()
-            : HttpPetMatchRemoteSource(buildDio(baseUrl, sl())),
+            : HttpPetMatchRemoteSource(buildDio(baseUrl)),
   );
 
   // Repositories.

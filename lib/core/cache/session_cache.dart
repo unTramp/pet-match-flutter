@@ -1,13 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import '../storage/prefs_keys.dart';
+
 class SessionCache {
   SessionCache({SharedPreferences? prefs, Uuid? uuid})
     : _prefs = prefs,
       _uuid = uuid ?? const Uuid();
 
-  static const _uidKey = 'session_uid';
-  static const _userIdKey = 'session_user_id';
+  static const _uidKey = PrefsKeys.sessionUid;
+  static const _userIdKey = PrefsKeys.sessionUserId;
 
   SharedPreferences? _prefs;
   final Uuid _uuid;
@@ -36,6 +38,12 @@ class SessionCache {
 
   Future<bool> hasActiveSession() async => (await getSavedUserId()) != null;
 
+  /// Полный сброс анонимной идентичности: удаляет и `uid`, и `user_id`.
+  /// Соответствует семантике UI-кнопки «Начать заново» — следующий
+  /// `StartSession` сгенерирует новый uuid и попросит бэк создать новую
+  /// сессию. Если бы стирался только `user_id`, бэк подхватил бы сессию
+  /// по существующему uid и пользователь фактически не смог бы начать
+  /// заново.
   Future<void> clearSession() async {
     final prefs = await _instance;
     await prefs.remove(_uidKey);

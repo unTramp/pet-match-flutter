@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../logger.dart';
 
@@ -28,9 +29,11 @@ class RetryInterceptor extends Interceptor {
     }
 
     final delay = Duration(seconds: 1 << attempt); // 1s, 2s, 4s
-    appLogger.w(
-      'Retry #${attempt + 1} after $delay for ${err.requestOptions.uri}',
-    );
+    if (kDebugMode) {
+      appLogger.w(
+        'Retry #${attempt + 1} after $delay for ${err.requestOptions.uri}',
+      );
+    }
     await Future<void>.delayed(delay);
 
     final updatedOptions =

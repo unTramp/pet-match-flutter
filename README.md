@@ -64,6 +64,22 @@ flutter analyze
 flutter test
 ```
 
+## Компромиссы и упрощения
+
+- **Mock-источник как опция, не дефолт.** По умолчанию приложение ходит в реальный dev API (`USE_MOCK=false`). Mock доступен через `--dart-define=USE_MOCK=true` для оффлайн-демо и тестов.
+- **EN-локализация — каркас.** Переключение языка и persist выбора через `SharedPreferences` работают, но строки переведены вручную через `LocalizedStrings` без `flutter_localizations`-ARB.
+- **Release-сборка подписана debug-ключом.** `applicationId` — placeholder (`app.pet_match.pet_match`). Для публикации в сторе нужны реальный keystore и финальный package id.
+- **Polling совместимости — фиксированный интервал 3 с.** Для прод-нагрузки имеет смысл экспоненциальный backoff.
+- **Analyzing state встроен в `QuestionnaireCubit` как отдельное состояние**, отдельного роута `/analyzing` нет — так проще координировать polling и retry без второго экрана.
+
+## Что улучшил бы следующим шагом
+
+- Перевод строк на `flutter_localizations` + ARB-файлы для полноценной i18n.
+- Подключение реального keystore + CI-сборка release APK.
+- Crashlytics/Sentry для прод-логов.
+- Локальный persist промежуточных ответов (сейчас resume полагается на бэк по `external_id`).
+- Golden-тесты на ключевые экраны и e2e-flow.
+
 ## Документация
 
 - Архитектура и соответствие ТЗ: [docs/АРХИТЕКТУРА_И_СООТВЕТСТВИЕ_ТЗ.md](docs/АРХИТЕКТУРА_И_СООТВЕТСТВИЕ_ТЗ.md)

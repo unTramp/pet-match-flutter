@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 
-import '../locale/app_locale_controller.dart';
+import '../constants.dart';
 import 'interceptors/locale_interceptor.dart';
 import 'interceptors/logging_interceptor.dart';
 import 'interceptors/retry_interceptor.dart';
 
-Dio buildDio(String baseUrl, AppLocaleController localeController) {
+Dio buildDio(String baseUrl) {
   final dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 15),
+      receiveTimeout: kRequestTimeout,
       sendTimeout: const Duration(seconds: 10),
       headers: const {
         'Accept': 'application/json',
@@ -21,7 +21,7 @@ Dio buildDio(String baseUrl, AppLocaleController localeController) {
   );
 
   dio.interceptors.addAll([
-    LocaleInterceptor(localeController: localeController),
+    LocaleInterceptor(),
     RetryInterceptor(dio: dio),
     LoggingInterceptor(),
   ]);

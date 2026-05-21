@@ -5,6 +5,7 @@ import '../dto/answer_submit_dto.dart';
 import '../dto/breed_detail_dto.dart';
 import '../dto/dynamic_option_dto.dart';
 import '../dto/session_dto.dart';
+import 'endpoints.dart';
 import 'pet_match_remote_source.dart';
 
 class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
@@ -15,7 +16,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
   @override
   Future<SessionDto> startSession({required String externalId}) async {
     final response = await _dio.post<Map<String, dynamic>>(
-      '/questionnaire/start',
+      Endpoints.startSession,
       data: {'external_id': externalId},
     );
     return SessionDto.fromJson(response.data!);
@@ -24,7 +25,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
   @override
   Future<SessionDto> getSession({required int userId}) async {
     final response = await _dio.get<Map<String, dynamic>>(
-      '/questionnaire/users/$userId/session',
+      Endpoints.userSession(userId),
     );
     return SessionDto.fromJson(response.data!);
   }
@@ -35,7 +36,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
     required AnswerSubmitDto answer,
   }) async {
     final response = await _dio.post<Map<String, dynamic>>(
-      '/questionnaire/users/$userId/answers',
+      Endpoints.userAnswers(userId),
       data: answer.toJson(),
     );
     return AnswerResultDto.fromJson(response.data!);
@@ -47,7 +48,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
     required int questionId,
   }) async {
     final response = await _dio.post<Map<String, dynamic>>(
-      '/questionnaire/users/$userId/questions/$questionId/skip',
+      Endpoints.skipQuestion(userId, questionId),
     );
     return SessionDto.fromJson(response.data!);
   }
@@ -60,7 +61,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
     int limit = 50,
   }) async {
     final response = await _dio.get<Map<String, dynamic>>(
-      '/questionnaire/users/$userId/questions/$questionId/options',
+      Endpoints.questionOptions(userId, questionId),
       queryParameters: {
         if (query != null && query.isNotEmpty) 'q': query,
         'limit': limit,
@@ -72,7 +73,7 @@ class HttpPetMatchRemoteSource implements PetMatchRemoteSource {
   @override
   Future<BreedDetailDto> getBreedDetail({required int breedId}) async {
     final response = await _dio.get<Map<String, dynamic>>(
-      '/questionnaire/breeds/$breedId',
+      Endpoints.breedDetail(breedId),
     );
     return BreedDetailDto.fromJson(response.data!);
   }
