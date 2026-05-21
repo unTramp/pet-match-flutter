@@ -63,6 +63,11 @@ class _QuestionnaireStrings {
   final String multiSelectHint = 'Можно выбрать несколько вариантов';
   final String searchHint = 'Поиск породы';
   final String searchEmpty = 'Ничего не найдено';
+  final String exitDialogTitle = 'Выйти из анкеты?';
+  final String exitDialogMessage =
+      'Текущий прогресс останется сохранён, и вы сможете продолжить позже.';
+  final String exitDialogConfirm = 'Выйти';
+  final String exitDialogCancel = 'Остаться';
   final String unsupportedTitle = 'Тип вопроса не поддерживается';
   final String unsupportedBody =
       'Похоже, эта версия приложения устарела. Если вопрос '

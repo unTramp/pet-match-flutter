@@ -256,4 +256,33 @@ void main() {
           isA<QuestionnaireQuestion>(),
         ],
   );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'goBack returns to previous answered question',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async => _sessionWithQuestion(_secondQuestion, answered: 1),
+      );
+    },
+    build: () => QuestionnaireCubit(start, submit, skip),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(2);
+      await cubit.submit();
+      cubit.goBack();
+    },
+    skip: 2,
+    verify: (cubit) {
+      expect(cubit.state, isA<QuestionnaireQuestion>());
+      final state = cubit.state as QuestionnaireQuestion;
+      expect(state.question.id, 101);
+      expect(state.selectedOptionIds, {2});
+    },
+  );
 }

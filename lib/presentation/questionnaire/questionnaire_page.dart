@@ -48,8 +48,16 @@ class _QuestionnaireView extends StatelessWidget {
           appBar: AppBar(
             title: Text(AppStrings.questionnaire.appBarTitle),
             leading: IconButton(
-              icon: const Icon(Icons.close_rounded),
-              onPressed: () => context.go('/welcome'),
+              icon: const Icon(Icons.arrow_back_rounded),
+              onPressed: () async {
+                if (questionState != null && cubit.canGoBack) {
+                  cubit.goBack();
+                  return;
+                }
+                final shouldExit = await _confirmExit(context);
+                if (!context.mounted || !shouldExit) return;
+                context.go('/welcome');
+              },
             ),
           ),
           bottomNavigationBar:
@@ -76,6 +84,28 @@ class _QuestionnaireView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<bool> _confirmExit(BuildContext context) async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Text(AppStrings.questionnaire.exitDialogTitle),
+            content: Text(AppStrings.questionnaire.exitDialogMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(AppStrings.questionnaire.exitDialogCancel),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(AppStrings.questionnaire.exitDialogConfirm),
+              ),
+            ],
+          ),
+    );
+    return result ?? false;
   }
 }
 

@@ -22,14 +22,19 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   final SkipQuestion _skipQuestion;
 
   int? _userId;
+  final List<QuestionnaireQuestion> _history = [];
+  QuestionnaireQuestion? _pendingPrevious;
 
   /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
   /// но ему нужен userId текущей сессии).
   int get userId => _userId ?? 0;
+  bool get canGoBack => _history.isNotEmpty;
 
   /// Стартует или возобновляет анкету. `_userId` сохраняется для последующих
   /// submit/skip-вызовов.
   Future<void> start() async {
+    _history.clear();
+    _pendingPrevious = null;
     emit(const QuestionnaireLoading());
     try {
       final session = await _startSession();
@@ -109,11 +114,13 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final answer = _buildAnswer(s);
     if (answer == null) return;
 
+    _pendingPrevious = s;
     emit(const QuestionnaireLoading());
     try {
       final session = await _submitAnswer(userId: userId, answer: answer);
       _emitFromSession(session);
     } on AppFailure catch (f) {
+      _pendingPrevious = null;
       appLogger.w('submit() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
     }
@@ -126,6 +133,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     final userId = _userId;
     if (userId == null) return;
 
+    _pendingPrevious = s;
     emit(const QuestionnaireLoading());
     try {
       final session = await _skipQuestion(
@@ -134,9 +142,16 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       );
       _emitFromSession(session);
     } on AppFailure catch (f) {
+      _pendingPrevious = null;
       appLogger.w('skipCurrent() failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
     }
+  }
+
+  void goBack() {
+    if (_history.isEmpty) return;
+    final previous = _history.removeLast();
+    emit(previous);
   }
 
   /// Повторяет последнее действие, которое привело к ошибке. По умолчанию —
@@ -174,6 +189,11 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   }
 
   void _emitFromSession(Session session) {
+    final previous = _pendingPrevious;
+    _pendingPrevious = null;
+    if (previous != null) {
+      _history.add(previous);
+    }
     final next = session.nextQuestion;
     if (next == null) {
       emit(QuestionnaireCompleted(userId: session.userId));
