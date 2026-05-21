@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 import '../tokens/radius.dart';
+import '../tokens/sizes.dart';
 import '../tokens/spacing.dart';
 
 enum UiButtonVariant { primary, secondary, text }
@@ -49,7 +50,7 @@ class UiButton extends StatelessWidget {
                 : Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(icon, size: 18),
+                    Icon(icon, size: AppIconSize.lg),
                     const SizedBox(width: AppSpacing.sm),
                     Text(label),
                   ],
@@ -69,7 +70,7 @@ class UiButton extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: Container(
             width: double.infinity,
-            constraints: const BoxConstraints(minHeight: 52),
+            constraints: const BoxConstraints(minHeight: AppControlSize.buttonHeight),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),

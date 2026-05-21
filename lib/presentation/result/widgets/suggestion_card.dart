@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/utils/score_format.dart';
 import '../../../domain/entities/compatibility.dart';
 
 class SuggestionCard extends StatelessWidget {
@@ -15,8 +18,7 @@ class SuggestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final score = suggestion.score;
-    final scoreLabel = score != null ? '${(score * 100).round()}%' : '—';
+    final scoreLabel = formatScorePercent(suggestion.score);
     final imageUrl = suggestion.imageUrl;
     return InkWell(
       onTap: onTap,
@@ -33,8 +35,8 @@ class SuggestionCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(AppRadius.md),
               child: SizedBox(
-                width: 72,
-                height: 72,
+                width: AppControlSize.thumb,
+                height: AppControlSize.thumb,
                 child:
                     imageUrl != null
                         ? CachedNetworkImage(
@@ -83,7 +85,7 @@ class SuggestionCard extends StatelessWidget {
                           vertical: AppSpacing.xxs,
                         ),
                         decoration: BoxDecoration(
-                          color: AppColors.primary.withValues(alpha: 0.12),
+                          color: AppColors.primary.withValues(alpha: AppAlpha.tint),
                           borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                         child: Text(

@@ -8,18 +8,10 @@ import '../../core/design/components/ui_state_view.dart';
 /// показывает осмысленное сообщение по типу. `onRetry` — опционально:
 /// если null, кнопка не показывается (например, на терминальных ошибках).
 class ErrorView extends StatelessWidget {
-  const ErrorView({
-    super.key,
-    required this.failure,
-    this.onRetry,
-    this.onSecondary,
-    this.secondaryLabel,
-  });
+  const ErrorView({super.key, required this.failure, this.onRetry});
 
   final AppFailure failure;
   final VoidCallback? onRetry;
-  final VoidCallback? onSecondary;
-  final String? secondaryLabel;
 
   String get _message => switch (failure) {
     NetworkFailure() => AppStrings.common.errorNetwork,
@@ -42,8 +34,6 @@ class ErrorView extends StatelessWidget {
       message: _message,
       primaryLabel: onRetry != null ? AppStrings.common.retry : null,
       primaryAction: onRetry,
-      secondaryLabel: secondaryLabel,
-      secondaryAction: onSecondary,
     );
   }
 }

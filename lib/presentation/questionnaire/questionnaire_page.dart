@@ -6,8 +6,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/design/components/ui_card.dart';
 import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/alpha.dart';
+import '../../core/design/tokens/motion.dart';
+import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
+import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/session.dart';
@@ -16,6 +20,7 @@ import '../widgets/loading_view.dart';
 import '../widgets/top_brand_bar.dart';
 import 'cubit/questionnaire_cubit.dart';
 import 'cubit/questionnaire_state.dart';
+import 'widgets/analyzing_view.dart';
 import 'widgets/dynamic_options_widget.dart';
 import 'widgets/multiple_choice_widget.dart';
 import 'widgets/progress_bar.dart';
@@ -55,7 +60,7 @@ class _QuestionnaireView extends StatelessWidget {
     return BlocConsumer<QuestionnaireCubit, QuestionnaireState>(
       listener: (context, state) {
         if (state is QuestionnaireResultReady) {
-          context.go('/result', extra: state.compatibility);
+          context.go(AppRoutes.result, extra: state.compatibility);
         }
       },
       builder: (context, state) {
@@ -77,7 +82,7 @@ class _QuestionnaireView extends StatelessWidget {
             body: SafeArea(
               child: Column(
                 children: [
-                  TopBrandBar(onLogoTap: () => context.go('/welcome')),
+                  TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
                   if (questionState?.isSubmitting == true)
                     const _SubmittingTopProgress(),
                   Expanded(
@@ -88,6 +93,7 @@ class _QuestionnaireView extends StatelessWidget {
                         state: state,
                         isSubmitting: state.isSubmitting,
                       ),
+                      QuestionnaireAnalyzing() => const AnalyzingView(),
                       QuestionnaireError(:final failure) => ErrorView(
                         failure: failure,
                         onRetry:
@@ -139,7 +145,10 @@ class _QuestionBody extends StatelessWidget {
         children: [
           ProgressBar(progress: state.progress),
           const SizedBox(height: AppSpacing.md),
-          Divider(color: AppColors.border.withValues(alpha: 0.9), height: 1),
+          Divider(
+            color: AppColors.border.withValues(alpha: AppAlpha.divider),
+            height: 1,
+          ),
           const SizedBox(height: AppSpacing.xl),
           Expanded(
             child: SingleChildScrollView(
@@ -153,7 +162,7 @@ class _QuestionBody extends StatelessWidget {
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.primary.withValues(alpha: 0.85),
+                        color: AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -164,14 +173,14 @@ class _QuestionBody extends StatelessWidget {
                     Text(
                       AppStrings.questionnaire.multiSelectHint,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary.withValues(alpha: 0.9),
+                        color: AppColors.textSecondary.withValues(alpha: AppAlpha.divider),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                   const SizedBox(height: AppSpacing.xxl),
                   AnimatedOpacity(
-                    duration: const Duration(milliseconds: 180),
+                    duration: AppMotion.normal,
                     curve: Curves.easeOut,
                     opacity: isSubmitting ? 0.75 : 1,
                     child: IgnorePointer(
@@ -287,7 +296,7 @@ class _UnsupportedQuestionView extends StatelessWidget {
             children: [
               const Icon(
                 Icons.info_outline_rounded,
-                size: 22,
+                size: AppIconSize.xxl,
                 color: AppColors.warning,
               ),
               const SizedBox(width: AppSpacing.smd),

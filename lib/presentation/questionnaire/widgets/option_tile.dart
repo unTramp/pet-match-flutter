@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/motion.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/shadows.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -37,8 +40,8 @@ class OptionTile extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: radius,
-          splashColor: AppColors.primary.withValues(alpha: 0.06),
-          highlightColor: AppColors.primary.withValues(alpha: 0.04),
+          splashColor: AppColors.primary.withValues(alpha: AppAlpha.splash),
+          highlightColor: AppColors.primary.withValues(alpha: AppAlpha.tintFaint),
           child: AnimatedContainer(
             duration: AppMotion.normal,
             curve: Curves.easeOut,
@@ -53,17 +56,10 @@ class OptionTile extends StatelessWidget {
                 color: selected ? AppColors.primary : AppColors.border,
                 width: selected ? 1.5 : 1,
               ),
-              boxShadow: [
-                BoxShadow(
-                  color:
-                      selected
-                          ? AppColors.primary.withValues(alpha: 0.18)
-                          : Colors.black.withValues(alpha: 0.04),
-                  offset: const Offset(0, 6),
-                  blurRadius: selected ? 18 : 12,
-                  spreadRadius: -2,
-                ),
-              ],
+              boxShadow:
+                  selected
+                      ? AppShadows.optionSelected(AppColors.primary)
+                      : AppShadows.option,
             ),
             child: Row(
               children: [
@@ -98,15 +94,15 @@ class OptionRadio extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: AppMotion.normal,
-      width: 24,
-      height: 24,
+      width: AppControlSize.selector,
+      height: AppControlSize.selector,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
           color:
               selected
                   ? AppColors.primary
-                  : AppColors.textSecondary.withValues(alpha: 0.45),
+                  : AppColors.textSecondary.withValues(alpha: AppAlpha.mutedHeavy),
           width: 1.5,
         ),
       ),
@@ -116,8 +112,8 @@ class OptionRadio extends StatelessWidget {
         duration: AppMotion.normal,
         curve: Curves.easeOutBack,
         child: Container(
-          width: 12,
-          height: 12,
+          width: AppControlSize.selectorDot,
+          height: AppControlSize.selectorDot,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: AppColors.primary,
@@ -139,8 +135,8 @@ class OptionCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: AppMotion.normal,
-      width: 24,
-      height: 24,
+      width: AppControlSize.selector,
+      height: AppControlSize.selector,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: selected ? AppColors.primary : Colors.transparent,
@@ -148,7 +144,7 @@ class OptionCheck extends StatelessWidget {
           color:
               selected
                   ? AppColors.primary
-                  : AppColors.textSecondary.withValues(alpha: 0.45),
+                  : AppColors.textSecondary.withValues(alpha: AppAlpha.mutedHeavy),
           width: 1.5,
         ),
       ),
@@ -156,7 +152,11 @@ class OptionCheck extends StatelessWidget {
       child: AnimatedOpacity(
         opacity: selected ? 1 : 0,
         duration: AppMotion.normal,
-        child: const Icon(Icons.check_rounded, size: 16, color: Colors.white),
+        child: const Icon(
+          Icons.check_rounded,
+          size: AppIconSize.md,
+          color: Colors.white,
+        ),
       ),
     );
   }

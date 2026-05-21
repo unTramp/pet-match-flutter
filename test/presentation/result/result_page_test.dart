@@ -207,6 +207,9 @@ void main() {
 
       await tester.scrollUntilVisible(find.text('Мальтезе'), 300);
       expect(find.text('Мальтезе'), findsOneWidget);
+
+      final cta = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+      expect(cta.onPressed, isNotNull);
     },
   );
 }

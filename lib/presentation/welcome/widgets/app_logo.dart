@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/assets.dart';
 import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/alpha.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Бренд-знак. По умолчанию — иконка + текст «PET MATCH AI».
-/// При `showText: false` рендерится только square-badge (используется на
-/// Result-экране как кликабельный лого в AppBar.leading).
+/// Бренд-знак: квадратный badge с иконкой + текст «PET MATCH AI».
+/// Используется в `TopBrandBar` в верхней панели экранов.
 class AppLogo extends StatelessWidget {
-  const AppLogo({super.key, this.showText = true, this.size = 40});
+  const AppLogo({super.key});
 
-  final bool showText;
-  final double size;
+  static const double _size = AppControlSize.brandBadge;
 
   @override
   Widget build(BuildContext context) {
-    final badge = _Badge(size: size);
-    if (!showText) return badge;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        badge,
+        const _Badge(size: _size),
         const SizedBox(width: AppSpacing.smd),
         Text(
           AppStrings.common.appBrand,
@@ -47,12 +46,12 @@ class _Badge extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.12),
+        color: AppColors.primary.withValues(alpha: AppAlpha.tint),
         borderRadius: BorderRadius.circular(size * 0.3),
       ),
       alignment: Alignment.center,
       child: SvgPicture.asset(
-        'assets/icons/cathead.svg',
+        AppAssets.brandIcon,
         width: size * 0.65,
         height: size * 0.5,
         colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),

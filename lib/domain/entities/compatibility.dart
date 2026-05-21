@@ -39,7 +39,6 @@ class CompatibilitySuggestion extends Equatable {
   const CompatibilitySuggestion({
     required this.breedId,
     required this.breedName,
-    this.breedCode,
     this.score,
     this.riskLevel,
     this.summary,
@@ -48,7 +47,6 @@ class CompatibilitySuggestion extends Equatable {
 
   final int breedId;
   final String breedName;
-  final String? breedCode;
   final double? score;
   final String? riskLevel;
   final String? summary;
@@ -58,7 +56,6 @@ class CompatibilitySuggestion extends Equatable {
   List<Object?> get props => [
     breedId,
     breedName,
-    breedCode,
     score,
     riskLevel,
     summary,
@@ -75,7 +72,6 @@ class Compatibility extends Equatable {
     this.score,
     this.risk = CompatibilityRisk.unknown,
     this.compatible,
-    this.hardFailCount = 0,
     this.summary,
     this.insights = const [],
     this.requirementHighlights = const [],
@@ -92,7 +88,6 @@ class Compatibility extends Equatable {
   final double? score;
   final CompatibilityRisk risk;
   final bool? compatible;
-  final int hardFailCount;
   final String? summary;
   final List<String> insights;
   final List<String> requirementHighlights;
@@ -105,16 +100,6 @@ class Compatibility extends Equatable {
       status == CompatibilityStatus.ready ||
       status == CompatibilityStatus.skipped;
 
-  /// True — порода действительно подходит. Считаем «подходит» если:
-  /// `compatible == true` И нет жёстких ограничений И уровень риска не high.
-  bool get isFit =>
-      (compatible ?? true) &&
-      hardFailCount == 0 &&
-      risk != CompatibilityRisk.high;
-
-  /// Полностью забракована — есть refusal или сервер явно сказал compatible=false.
-  bool get isRefused => compatible == false || refusal != null;
-
   @override
   List<Object?> get props => [
     status,
@@ -124,7 +109,6 @@ class Compatibility extends Equatable {
     score,
     risk,
     compatible,
-    hardFailCount,
     summary,
     insights,
     requirementHighlights,

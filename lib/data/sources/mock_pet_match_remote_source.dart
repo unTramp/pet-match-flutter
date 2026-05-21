@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../../core/assets.dart';
 import '../dto/answer_result_dto.dart';
 import '../dto/answer_submit_dto.dart';
 import '../dto/breed_detail_dto.dart';
@@ -56,7 +57,7 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
   Future<List<QuestionDto>> _loadQuestions() async {
     final cached = _questions;
     if (cached != null) return cached;
-    final raw = await rootBundle.loadString('assets/mock/questions.json');
+    final raw = await rootBundle.loadString(AppAssets.mockQuestions);
     final list =
         (jsonDecode(raw) as List<dynamic>)
             .cast<Map<String, dynamic>>()
@@ -73,17 +74,8 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
     required int total,
   }) {
     return SessionDto(
-      user: UserSummaryDto(
-        id: _userId ?? 1,
-        externalId: 'uid:mock-user',
-        displayName: 'Тестовый пользователь',
-      ),
-      stats: StatsDto(
-        answeredCount: answered,
-        totalCount: total,
-        progressPercent: total > 0 ? (answered / total) * 100 : 0,
-        status: nextQuestion != null ? 'in_progress' : 'completed',
-      ),
+      user: UserSummaryDto(id: _userId ?? 1),
+      stats: StatsDto(answeredCount: answered, totalCount: total),
       nextQuestion: nextQuestion,
       compatibility: compatibility,
     );
@@ -145,8 +137,8 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
   }) async {
     final path =
         readyFromPoll
-            ? 'assets/mock/compatibility_ready.json'
-            : 'assets/mock/compatibility_processing.json';
+            ? AppAssets.mockCompatibilityReady
+            : AppAssets.mockCompatibilityProcessing;
     final raw = await rootBundle.loadString(path);
     return CompatibilityDto.fromJson(jsonDecode(raw) as Map<String, dynamic>);
   }
@@ -199,9 +191,7 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
     int limit = 50,
   }) async {
     await _maybeFail();
-    final raw = await rootBundle.loadString(
-      'assets/mock/dynamic_options_preferred_breed.json',
-    );
+    final raw = await rootBundle.loadString(AppAssets.mockDynamicOptions);
     final dto = DynamicOptionListDto.fromJson(
       jsonDecode(raw) as Map<String, dynamic>,
     );
@@ -213,25 +203,20 @@ class MockPetMatchRemoteSource implements PetMatchRemoteSource {
                   (o) => o.label.toLowerCase().contains(query.toLowerCase()),
                 )
                 .toList();
-    return DynamicOptionListDto(
-      questionId: dto.questionId,
-      items: filtered.take(limit).toList(),
-    );
+    return DynamicOptionListDto(items: filtered.take(limit).toList());
   }
 
   @override
   Future<BreedDetailDto> getBreedDetail({required int breedId}) async {
     await _maybeFail();
     try {
-      final raw = await rootBundle.loadString(
-        'assets/mock/breed_$breedId.json',
-      );
+      final raw = await rootBundle.loadString(AppAssets.mockBreed(breedId));
       return BreedDetailDto.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       // `rootBundle.loadString` для отсутствующего файла бросает FlutterError
       // (subclass Error, не Exception), поэтому ловим всё. Fallback —
       // фикстура breed_501.
-      final raw = await rootBundle.loadString('assets/mock/breed_501.json');
+      final raw = await rootBundle.loadString(AppAssets.mockBreedFallback);
       return BreedDetailDto.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     }
   }

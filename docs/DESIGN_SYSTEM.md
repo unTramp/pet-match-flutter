@@ -22,9 +22,12 @@
 
 1. `AppSpacing` — отступы.
 2. `AppRadius` — радиусы.
-3. `AppMotion` — длительности и кривые.
-4. `AppColors` — палитра.
-5. `Theme.of(context).textTheme` — типографика.
+3. `AppMotion` — длительности и кривые: базовые `fast`/`normal`/`debounce` и семантические `routeIn`/`routeOut`/`heroIntro`/`pulse`.
+4. `AppColors` — базовая палитра.
+5. `AppAlpha` — семантические прозрачности (`tint*`, `border*`, `muted*`, `shadow*`, `overlay`, `splash`, `divider`, `textOverSurface`).
+6. `AppShadows` — теневая шкала (`card`, `option`, `optionSelected(tint)`).
+7. `AppIconSize` и `AppControlSize` — размеры иконок и интерактивных контролов (tap-target, button-height, selector, thumb, brand-badge, hero-badge, progress bar и т.п.).
+8. `Theme.of(context).textTheme` — типографика, в том числе `displayLarge` для hero-копи welcome-экрана.
 
 ## Базовые компоненты
 
@@ -59,8 +62,7 @@
 Композиция действий в `message`:
 
 1. `primaryLabel + primaryAction` — основное действие.
-2. `secondaryLabel + secondaryAction` — дополнительное действие.
-3. Оба действия поддерживаются одновременно.
+2. Вторичный action намеренно не добавляется, чтобы не размывать основной сценарий и не перегружать state-экраны.
 
 ## Правила применения
 
@@ -70,6 +72,7 @@
 4. Изменения shared-компонентов сопровождаются тестами и прогоном:
    - `flutter analyze`
    - `flutter test` (как минимум затронутые наборы).
+5. Базовый язык интерфейса приложения — русский, текстовые токены поддерживаются централизованно через `AppStrings`.
 
 ## Паттерны взаимодействия
 

@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/spacing.dart';
+import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/compatibility.dart';
+import '../../core/design/components/ui_card.dart';
 import 'widgets/alert_block.dart';
 import 'widgets/main_breed_card.dart';
 import 'widgets/reasons_section.dart';
 import 'widgets/refusal_block.dart';
-import 'widgets/result_section_card.dart';
 import 'widgets/suggestion_card.dart';
 import '../widgets/top_brand_bar.dart';
 
@@ -41,11 +42,11 @@ class _ResultPageState extends State<ResultPage> {
 
   void _openBreed(BuildContext context, int? breedId) {
     if (breedId == null) return;
-    context.push('/breed/$breedId');
+    context.push(AppRoutes.breed(breedId));
   }
 
   void _openPrimaryAction(BuildContext context) {
-    _openBreed(context, _primaryCompatibility(widget.compatibility)?.breedId);
+    _openBreed(context, _bottomCtaBreedId(widget.compatibility));
   }
 
   Compatibility? _primaryCompatibility(Compatibility compatibility) {
@@ -60,6 +61,16 @@ class _ResultPageState extends State<ResultPage> {
   ) {
     if (compatibility.breedId != null) return compatibility.suggestions;
     return compatibility.suggestions.skip(1).toList(growable: false);
+  }
+
+  int? _bottomCtaBreedId(Compatibility compatibility) {
+    final primary = _primaryCompatibility(compatibility);
+    if (primary?.breedId case final breedId?) {
+      return breedId;
+    }
+    final suggestions = _visibleSuggestions(compatibility);
+    if (suggestions.isEmpty) return null;
+    return suggestions.first.breedId;
   }
 
   Compatibility _compatibilityFromSuggestion(CompatibilitySuggestion s) =>
@@ -93,7 +104,7 @@ class _ResultPageState extends State<ResultPage> {
   }) {
     final visible = _visibleItems(items, showAll);
     final canExpand = items.length > _collapsedLimit;
-    return ResultSectionCard(
+    return UiCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -120,6 +131,7 @@ class _ResultPageState extends State<ResultPage> {
     final compatibility = widget.compatibility;
     final primaryCompatibility = _primaryCompatibility(compatibility);
     final suggestions = _visibleSuggestions(compatibility);
+    final bottomCtaBreedId = _bottomCtaBreedId(compatibility);
     final hardReasons = compatibility.hardReasons;
     final risks = compatibility.risks;
     final insights = compatibility.insights;
@@ -179,7 +191,7 @@ class _ResultPageState extends State<ResultPage> {
                   ? AppStrings.result.ctaViewBreed
                   : AppStrings.result.ctaViewAlternatives,
           onPressed:
-              primaryCompatibility != null
+              bottomCtaBreedId != null
                   ? () => _openPrimaryAction(context)
                   : null,
         ),
@@ -187,7 +199,7 @@ class _ResultPageState extends State<ResultPage> {
       body: SafeArea(
         child: Column(
           children: [
-            TopBrandBar(onLogoTap: () => context.go('/welcome')),
+            TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(
@@ -223,7 +235,6 @@ class _ResultPageState extends State<ResultPage> {
                     AlertBlock(
                       title: AppStrings.result.important,
                       message: refusal.title!,
-                      severity: AlertSeverity.danger,
                     ),
                   ],
                   if (refusal != null &&

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/constants.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/alpha.dart';
 import '../../core/design/tokens/radius.dart';
+import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/failures.dart';
+import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
 import '../widgets/top_brand_bar.dart';
@@ -19,7 +23,6 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-  static const _prefetchTimeout = Duration(seconds: 15);
   bool _isStarting = false;
 
   List<_IntroBullet> get _bullets => [
@@ -45,19 +48,17 @@ class _IntroPageState extends State<IntroPage> {
     setState(() => _isStarting = true);
     try {
       final session = await sl<StartSession>()().timeout(
-        _prefetchTimeout,
+        kRequestTimeout,
         onTimeout: () => throw const TimeoutFailure(),
       );
       if (!mounted) return;
-      context.go('/questionnaire', extra: session);
+      context.go(AppRoutes.questionnaire, extra: session);
     } on AppFailure catch (failure) {
       if (!mounted) return;
       _showStartError(failure);
     } catch (_) {
       if (!mounted) return;
-      _showStartError(
-        const ServerFailure(statusCode: -1, message: 'Unexpected error'),
-      );
+      _showStartError(const ServerFailure.unexpected());
     } finally {
       if (mounted) setState(() => _isStarting = false);
     }
@@ -150,10 +151,10 @@ class _IntroBullet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 44,
-          height: 44,
+          width: AppControlSize.tapTarget,
+          height: AppControlSize.tapTarget,
           decoration: BoxDecoration(
-            color: AppColors.primary.withValues(alpha: 0.12),
+            color: AppColors.primary.withValues(alpha: AppAlpha.tint),
             borderRadius: BorderRadius.circular(AppRadius.md),
           ),
           child: Icon(icon, color: AppColors.primary),

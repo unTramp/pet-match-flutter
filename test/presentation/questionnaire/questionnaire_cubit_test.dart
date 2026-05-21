@@ -164,7 +164,7 @@ void main() {
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
-    'submit on last question emits ResultReady',
+    'submit on last question emits Analyzing → ResultReady',
     setUp: () {
       when(
         start.call,
@@ -190,6 +190,7 @@ void main() {
             'isSubmitting',
             true,
           ),
+          isA<QuestionnaireAnalyzing>(),
           isA<QuestionnaireResultReady>(),
         ],
   );
@@ -350,6 +351,43 @@ void main() {
   });
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'retry after submit failure replays submit (not start)',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      var first = true;
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer((_) async {
+        if (first) {
+          first = false;
+          throw const NetworkFailure();
+        }
+        return _sessionWithQuestion(_secondQuestion, answered: 1);
+      });
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+      while (cubit.state is! QuestionnaireError) {
+        await Future<void>.delayed(Duration.zero);
+      }
+      await cubit.retry();
+    },
+    verify: (_) {
+      // start вызван ровно один раз, submit — дважды (оригинал + replay).
+      verify(start.call).called(1);
+      verify(
+        () => submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).called(2);
+    },
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
     'retry after Error recovers',
     setUp: () {
       var first = true;
@@ -373,5 +411,55 @@ void main() {
           isA<QuestionnaireLoading>(),
           isA<QuestionnaireQuestion>(),
         ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'retry after compatibility polling failure repeats poll, not submit',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async => _sessionWithQuestion(null, answered: 2, total: 2),
+      );
+      var firstPoll = true;
+      when(() => poll(userId: any(named: 'userId'))).thenAnswer((_) async {
+        if (firstPoll) {
+          firstPoll = false;
+          throw const NetworkFailure();
+        }
+        return _readyCompatibility;
+      });
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+      await cubit.retry();
+    },
+    skip: 3,
+    expect:
+        () => [
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
+          isA<QuestionnaireAnalyzing>(),
+          isA<QuestionnaireError>(),
+          isA<QuestionnaireAnalyzing>(),
+          isA<QuestionnaireResultReady>(),
+        ],
+    verify: (_) {
+      verify(start.call).called(1);
+      verify(
+        () => submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).called(1);
+      verify(() => poll(userId: any(named: 'userId'))).called(2);
+    },
   );
 }

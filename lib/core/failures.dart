@@ -18,6 +18,13 @@ final class TimeoutFailure extends AppFailure {
 final class ServerFailure extends AppFailure {
   const ServerFailure({required this.statusCode, required this.message});
 
+  /// Generic-фабрика для непредвиденных исключений на уровне cubit/UI.
+  /// Используется в `catch (e, st)`-блоках, где специфичный код ответа
+  /// отсутствует. `statusCode: -1` отличает её от настоящих HTTP-ошибок.
+  const ServerFailure.unexpected()
+    : statusCode = -1,
+      message = 'Unexpected error';
+
   final int statusCode;
   final String message;
 

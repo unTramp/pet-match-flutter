@@ -9,6 +9,7 @@ import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
+import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/breed_detail.dart';
 import '../widgets/error_view.dart';
@@ -101,7 +102,7 @@ class _BreedDetailContent extends StatelessWidget {
           UiButton(
             onPressed:
                 () => context.push(
-                  '/breed/${detail.breedId}/gallery',
+                  AppRoutes.breedGallery(detail.breedId),
                   extra: detail.galleryImages,
                 ),
             icon: Icons.photo_library_outlined,

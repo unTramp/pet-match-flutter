@@ -1,36 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-enum AlertSeverity { info, warning, danger }
-
-/// Короткий alert-блок: иконка + заголовок + текст.
-/// Цветовая полоса слева подбирается по severity.
+/// Короткий alert-блок «Важно» на Result-экране — иконка + заголовок + текст.
+/// Сейчас используется только для отказа (refusal.title), поэтому стиль
+/// фиксированный danger (красный акцент). Если понадобятся info/warning —
+/// возвращаем параметр severity.
 class AlertBlock extends StatelessWidget {
-  const AlertBlock({
-    super.key,
-    required this.title,
-    required this.message,
-    this.severity = AlertSeverity.warning,
-  });
+  const AlertBlock({super.key, required this.title, required this.message});
 
   final String title;
   final String message;
-  final AlertSeverity severity;
-
-  Color get _accent => switch (severity) {
-    AlertSeverity.info => AppColors.primary,
-    AlertSeverity.warning => AppColors.warning,
-    AlertSeverity.danger => AppColors.error,
-  };
-
-  IconData get _icon => switch (severity) {
-    AlertSeverity.info => Icons.info_outline_rounded,
-    AlertSeverity.warning => Icons.warning_amber_rounded,
-    AlertSeverity.danger => Icons.error_outline_rounded,
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +22,20 @@ class AlertBlock extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
-        color: _accent.withValues(alpha: 0.08),
+        color: AppColors.error.withValues(alpha: AppAlpha.tintSubtle),
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border(left: BorderSide(color: _accent, width: 3)),
+        border: const Border(
+          left: BorderSide(color: AppColors.error, width: 3),
+        ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(_icon, color: _accent, size: 20),
+          const Icon(
+            Icons.error_outline_rounded,
+            color: AppColors.error,
+            size: AppIconSize.xl,
+          ),
           const SizedBox(width: AppSpacing.md),
           Expanded(
             child: Column(
@@ -61,7 +51,9 @@ class AlertBlock extends StatelessWidget {
                 Text(
                   message,
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: AppColors.textPrimary.withValues(alpha: 0.85),
+                    color: AppColors.textPrimary.withValues(
+                      alpha: AppAlpha.textOverSurface,
+                    ),
                   ),
                 ),
               ],

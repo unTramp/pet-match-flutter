@@ -95,12 +95,11 @@ void main() {
   });
 
   group('CompatibilityMapper расширенные поля', () {
-    test('compatible=false + hard_reasons → isFit=false, isRefused=true', () {
+    test('compatible=false + hard_reasons маппятся корректно', () {
       const dto = CompatibilityDto(
         status: 'completed',
         breedName: 'Бельгийская овчарка',
         compatible: false,
-        hardFailCount: 3,
         riskLevel: 'high',
         hardReasons: [
           CompatibilityReasonDto(
@@ -121,10 +120,7 @@ void main() {
       final result = CompatibilityMapper.fromDto(dto);
 
       expect(result.compatible, isFalse);
-      expect(result.hardFailCount, 3);
       expect(result.risk, CompatibilityRisk.high);
-      expect(result.isFit, isFalse);
-      expect(result.isRefused, isTrue);
       expect(result.hardReasons, hasLength(1));
       expect(result.hardReasons.first.severity, ReasonSeverity.hard);
       expect(result.risks, hasLength(1));
@@ -146,26 +142,20 @@ void main() {
       expect(result.refusal, isNotNull);
       expect(result.refusal!.title, 'Почему сейчас не рекомендуем');
       expect(result.refusal!.message, 'Длинный текст обоснования…');
-      expect(result.isRefused, isTrue);
     });
 
-    test(
-      'risk_level=medium → CompatibilityRisk.medium, isFit=true если compatible',
-      () {
-        const dto = CompatibilityDto(
-          status: 'completed',
-          breedName: 'X',
-          compatible: true,
-          riskLevel: 'medium',
-        );
+    test('risk_level=medium → CompatibilityRisk.medium', () {
+      const dto = CompatibilityDto(
+        status: 'completed',
+        breedName: 'X',
+        compatible: true,
+        riskLevel: 'medium',
+      );
 
-        final result = CompatibilityMapper.fromDto(dto);
+      final result = CompatibilityMapper.fromDto(dto);
 
-        expect(result.risk, CompatibilityRisk.medium);
-        // isFit требует !=high, medium допустим
-        expect(result.isFit, isTrue);
-      },
-    );
+      expect(result.risk, CompatibilityRisk.medium);
+    });
 
     test('requirement_highlights пробрасываются', () {
       const dto = CompatibilityDto(

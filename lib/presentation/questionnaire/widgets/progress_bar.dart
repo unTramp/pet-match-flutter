@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/progress.dart';
@@ -29,7 +31,7 @@ class ProgressBar extends StatelessWidget {
             Text(
               '${progress.percentInt}%',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.primary.withValues(alpha: 0.85),
+                color: AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -39,7 +41,7 @@ class ProgressBar extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(AppRadius.sm),
           child: SizedBox(
-            height: 6,
+            height: AppControlSize.progressBarHeight,
             child: Stack(
               fit: StackFit.expand,
               children: [
@@ -51,7 +53,7 @@ class ProgressBar extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppColors.primary.withValues(alpha: 0.82),
+                          AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
                           AppColors.primary,
                         ],
                       ),

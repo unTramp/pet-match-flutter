@@ -15,8 +15,6 @@ class BreedDetailDto {
   const BreedDetailDto({
     required this.breedId,
     required this.breedName,
-    this.breedCode,
-    this.petType,
     this.summary,
     this.imageUrl,
     this.galleryImages = const [],
@@ -25,9 +23,7 @@ class BreedDetailDto {
 
   factory BreedDetailDto.fromJson(Map<String, dynamic> json) => BreedDetailDto(
     breedId: (json['breed_id'] as num).toInt(),
-    breedCode: json['breed_code'] as String?,
     breedName: json['breed_name'] as String,
-    petType: json['pet_type'] as String?,
     summary: json['summary'] as String?,
     imageUrl: json['image_url'] as String?,
     galleryImages:
@@ -38,9 +34,7 @@ class BreedDetailDto {
   );
 
   final int breedId;
-  final String? breedCode;
   final String breedName;
-  final String? petType;
   final String? summary;
   final String? imageUrl;
   final List<String> galleryImages;

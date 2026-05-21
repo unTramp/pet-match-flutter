@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 import '../tokens/radius.dart';
+import '../tokens/shadows.dart';
 import '../tokens/spacing.dart';
 
 class UiCard extends StatelessWidget {
@@ -26,17 +27,7 @@ class UiCard extends StatelessWidget {
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(color: AppColors.border),
-        boxShadow:
-            showShadow
-                ? [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.03),
-                    offset: const Offset(0, 4),
-                    blurRadius: 12,
-                    spreadRadius: -4,
-                  ),
-                ]
-                : const [],
+        boxShadow: showShadow ? AppShadows.card : const [],
       ),
       child: child,
     );

@@ -2,7 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/cache/session_cache.dart';
+import '../../core/design/tokens/motion.dart';
 import '../../core/di/injection.dart';
+import '../../core/logger.dart';
+import '../../core/routing/app_routes.dart';
 import '../../domain/entities/compatibility.dart';
 import '../../domain/entities/session.dart';
 import '../details/breed_detail_page.dart';
@@ -14,20 +17,21 @@ import '../welcome/welcome_page.dart';
 
 GoRouter buildRouter() {
   return GoRouter(
-    initialLocation: '/welcome',
+    initialLocation: AppRoutes.welcome,
     redirect: (context, state) async {
       final hasSession = await sl<SessionCache>().hasActiveSession();
       final isOnboarding =
-          state.matchedLocation == '/' || state.matchedLocation == '/intro';
+          state.matchedLocation == '/' ||
+          state.matchedLocation == AppRoutes.intro;
       if (hasSession && isOnboarding) {
-        return '/questionnaire';
+        return AppRoutes.questionnaire;
       }
       return null;
     },
     routes: [
-      GoRoute(path: '/', redirect: (_, __) => '/welcome'),
+      GoRoute(path: '/', redirect: (_, __) => AppRoutes.welcome),
       GoRoute(
-        path: '/welcome',
+        path: AppRoutes.welcome,
         pageBuilder:
             (context, state) => _buildAppTransitionPage(
               key: state.pageKey,
@@ -35,7 +39,7 @@ GoRouter buildRouter() {
             ),
       ),
       GoRoute(
-        path: '/intro',
+        path: AppRoutes.intro,
         pageBuilder:
             (context, state) => _buildAppTransitionPage(
               key: state.pageKey,
@@ -43,7 +47,7 @@ GoRouter buildRouter() {
             ),
       ),
       GoRoute(
-        path: '/questionnaire',
+        path: AppRoutes.questionnaire,
         pageBuilder:
             (context, state) => _buildAppTransitionPage(
               key: state.pageKey,
@@ -54,9 +58,10 @@ GoRouter buildRouter() {
             ),
       ),
       GoRoute(
-        path: '/result',
+        path: AppRoutes.result,
         redirect:
-            (_, state) => state.extra is Compatibility ? null : '/welcome',
+            (_, state) =>
+                state.extra is Compatibility ? null : AppRoutes.welcome,
         pageBuilder:
             (context, state) => _buildAppTransitionPage(
               key: state.pageKey,
@@ -64,10 +69,10 @@ GoRouter buildRouter() {
             ),
       ),
       GoRoute(
-        path: '/breed/:id',
+        path: AppRoutes.breedPattern,
         redirect: (_, state) {
           final raw = state.pathParameters['id'];
-          if (raw == null || int.tryParse(raw) == null) return '/welcome';
+          if (raw == null || int.tryParse(raw) == null) return AppRoutes.welcome;
           return null;
         },
         pageBuilder:
@@ -79,7 +84,7 @@ GoRouter buildRouter() {
             ),
       ),
       GoRoute(
-        path: '/breed/:id/gallery',
+        path: AppRoutes.breedGalleryPattern,
         pageBuilder:
             (context, state) => _buildAppTransitionPage(
               key: state.pageKey,
@@ -92,7 +97,13 @@ GoRouter buildRouter() {
             ),
       ),
     ],
-    errorBuilder: (_, __) => const _RouterErrorFallback(),
+    errorBuilder: (_, state) {
+      appLogger.e(
+        'Router error: ${state.uri} — ${state.error}',
+        error: state.error,
+      );
+      return const _RouterErrorFallback();
+    },
   );
 }
 
@@ -103,8 +114,8 @@ CustomTransitionPage<void> _buildAppTransitionPage({
   return CustomTransitionPage<void>(
     key: key,
     child: child,
-    transitionDuration: const Duration(milliseconds: 240),
-    reverseTransitionDuration: const Duration(milliseconds: 220),
+    transitionDuration: AppMotion.routeIn,
+    reverseTransitionDuration: AppMotion.routeOut,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       final fade = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
       final slide = Tween<Offset>(
