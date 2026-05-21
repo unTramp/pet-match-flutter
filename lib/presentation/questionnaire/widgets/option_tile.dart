@@ -11,8 +11,8 @@ import '../../../core/theme/app_colors.dart';
 /// Универсальная плашка ответа: белая карточка с радиусом 20, тонкой границей,
 /// текстом слева и `trailing`-виджетом (radio / checkbox) справа.
 ///
-/// Used by [SingleChoiceWidget] и [MultipleChoiceWidget]. Без иконок/эмодзи
-/// слева — на скриншоте дизайна они есть, но пользователь явно попросил без них.
+/// Used by [SingleChoiceWidget] и [MultipleChoiceWidget]. Контент слева
+/// намеренно текстовый, без дополнительных декоративных иконок.
 class OptionTile extends StatelessWidget {
   const OptionTile({
     super.key,
@@ -41,7 +41,9 @@ class OptionTile extends StatelessWidget {
           onTap: onTap,
           borderRadius: radius,
           splashColor: AppColors.primary.withValues(alpha: AppAlpha.splash),
-          highlightColor: AppColors.primary.withValues(alpha: AppAlpha.tintFaint),
+          highlightColor: AppColors.primary.withValues(
+            alpha: AppAlpha.tintFaint,
+          ),
           child: AnimatedContainer(
             duration: AppMotion.normal,
             curve: Curves.easeOut,
@@ -102,7 +104,9 @@ class OptionRadio extends StatelessWidget {
           color:
               selected
                   ? AppColors.primary
-                  : AppColors.textSecondary.withValues(alpha: AppAlpha.mutedHeavy),
+                  : AppColors.textSecondary.withValues(
+                    alpha: AppAlpha.mutedHeavy,
+                  ),
           width: 1.5,
         ),
       ),
@@ -144,7 +148,9 @@ class OptionCheck extends StatelessWidget {
           color:
               selected
                   ? AppColors.primary
-                  : AppColors.textSecondary.withValues(alpha: AppAlpha.mutedHeavy),
+                  : AppColors.textSecondary.withValues(
+                    alpha: AppAlpha.mutedHeavy,
+                  ),
           width: 1.5,
         ),
       ),
