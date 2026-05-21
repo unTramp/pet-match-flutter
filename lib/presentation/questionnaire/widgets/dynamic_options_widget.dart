@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
@@ -158,10 +159,11 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                         vertical: AppSpacing.lg,
                       ),
                       child: Center(
-                        child: TextButton.icon(
+                        child: UiButton(
+                          label: AppStrings.common.retry,
                           onPressed: () => _load(_controller.text),
-                          icon: const Icon(Icons.refresh_rounded),
-                          label: Text(AppStrings.common.retry),
+                          variant: UiButtonVariant.text,
+                          icon: Icons.refresh_rounded,
                         ),
                       ),
                     ),

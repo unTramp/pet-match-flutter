@@ -13,18 +13,15 @@ class RefusalBlock extends StatelessWidget {
   final String title;
   final String message;
 
-  static const _bg = Color(0xFFFFF6E0); // тёплый жёлтый, читается на cream
-  static const _border = Color(0xFFF0E1B8);
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
-        color: _bg,
+        color: AppColors.warningSurface,
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border.all(color: _border),
+        border: Border.all(color: AppColors.warningBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,17 +29,14 @@ class RefusalBlock extends StatelessWidget {
           Text(
             title,
             style: theme.textTheme.titleLarge?.copyWith(
-              fontSize: 16,
               fontWeight: FontWeight.w700,
               color: AppColors.textPrimary,
             ),
           ),
-          const SizedBox(height: AppSpacing.sm + 2),
+          const SizedBox(height: AppSpacing.smd),
           Text(
             message,
             style: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 14,
-              height: 1.5,
               color: AppColors.textPrimary.withValues(alpha: 0.85),
             ),
           ),

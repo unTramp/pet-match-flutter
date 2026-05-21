@@ -62,7 +62,7 @@ class SuggestionCard extends StatelessWidget {
                         ),
               ),
             ),
-            const SizedBox(width: AppSpacing.lg - 2),
+            const SizedBox(width: AppSpacing.lg),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,8 +79,8 @@ class SuggestionCard extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xxs,
                         ),
                         decoration: BoxDecoration(
                           color: AppColors.primary.withValues(alpha: 0.12),

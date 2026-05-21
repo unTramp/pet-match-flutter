@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Минималистичный «факт» — фиолетовый icon-badge + текст рядом, без
@@ -21,17 +23,16 @@ class StatCard extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             color: AppColors.primary.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(9),
+            borderRadius: BorderRadius.circular(AppRadius.sm),
           ),
           alignment: Alignment.center,
           child: Icon(icon, color: AppColors.primary, size: 16),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: AppSpacing.smd),
         Flexible(
           child: Text(
             label,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 13,
+            style: theme.textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.w600,
               color: AppColors.textPrimary,
             ),

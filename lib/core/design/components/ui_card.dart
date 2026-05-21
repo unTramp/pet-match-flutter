@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 import '../tokens/radius.dart';
+import '../tokens/spacing.dart';
 
 class UiCard extends StatelessWidget {
   const UiCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(20),
+    this.padding = const EdgeInsets.all(AppSpacing.xl),
     this.borderRadius = AppRadius.xxl,
     this.showShadow = true,
   });

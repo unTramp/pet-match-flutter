@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -21,13 +22,12 @@ class AppLogo extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         badge,
-        const SizedBox(width: AppSpacing.sm + 2),
-        const Text(
-          'PET MATCH AI',
-          style: TextStyle(
+        const SizedBox(width: AppSpacing.smd),
+        Text(
+          AppStrings.common.appBrand,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
             color: AppColors.primary,
             fontWeight: FontWeight.w800,
-            fontSize: 15,
             letterSpacing: 1.2,
           ),
         ),

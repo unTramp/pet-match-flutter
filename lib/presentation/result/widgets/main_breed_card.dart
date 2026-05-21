@@ -99,16 +99,17 @@ class MainBreedCard extends StatelessWidget {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.5),
+                        color: AppColors.overlayDark,
                         borderRadius: BorderRadius.circular(AppRadius.md),
-                        border: Border.all(color: Colors.white24),
+                        border: Border.all(
+                          color: AppColors.surface.withValues(alpha: 0.24),
+                        ),
                       ),
                       child: Text(
                         _statusText(),
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: Colors.white,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.surface,
                           fontWeight: FontWeight.w700,
-                          fontSize: 12,
                         ),
                       ),
                     ),
@@ -125,7 +126,7 @@ class MainBreedCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          compatibility.breedName ?? 'Порода',
+                          compatibility.breedName ?? AppStrings.common.unknownBreed,
                           style: theme.textTheme.headlineMedium,
                         ),
                       ),

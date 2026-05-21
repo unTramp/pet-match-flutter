@@ -57,6 +57,12 @@ class AppTheme {
           height: 1.22,
           letterSpacing: -0.1,
         ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
+          height: 1.3,
+        ),
         bodyLarge: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -69,11 +75,24 @@ class AppTheme {
           color: AppColors.textSecondary,
           height: 1.5,
         ),
+        bodySmall: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.w400,
+          color: AppColors.textSecondary,
+          height: 1.45,
+        ),
         labelLarge: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
           color: AppColors.textPrimary,
           height: 1.2,
+          letterSpacing: 0.1,
+        ),
+        labelMedium: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textPrimary,
+          height: 1.25,
           letterSpacing: 0.1,
         ),
       ),

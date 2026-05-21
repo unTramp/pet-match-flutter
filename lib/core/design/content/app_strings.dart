@@ -21,6 +21,9 @@ class _CommonStrings {
   final String errorTimeout = 'Сервер долго не отвечает. Попробуйте позже.';
   final String errorServer = 'Что-то пошло не так. Попробуйте снова.';
   final String errorEmpty = 'Нет данных. Попробуйте снова.';
+  final String homeTooltip = 'Домой';
+  final String unknownBreed = 'Порода';
+  final String appBrand = 'PET MATCH AI';
 }
 
 class _WelcomeStrings {

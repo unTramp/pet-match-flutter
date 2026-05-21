@@ -91,23 +91,41 @@ class _QuestionnaireView extends StatelessWidget {
   }
 
   Future<bool> _confirmExit(BuildContext context) async {
+    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final result = await showDialog<bool>(
       context: context,
       builder:
-          (context) => AlertDialog(
-            title: Text(AppStrings.questionnaire.exitDialogTitle),
-            content: Text(AppStrings.questionnaire.exitDialogMessage),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text(AppStrings.questionnaire.exitDialogCancel),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: Text(AppStrings.questionnaire.exitDialogConfirm),
-              ),
-            ],
-          ),
+          (context) =>
+              isIos
+                  ? CupertinoAlertDialog(
+                    title: Text(AppStrings.questionnaire.exitDialogTitle),
+                    content: Text(AppStrings.questionnaire.exitDialogMessage),
+                    actions: [
+                      CupertinoDialogAction(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: Text(AppStrings.questionnaire.exitDialogCancel),
+                      ),
+                      CupertinoDialogAction(
+                        isDestructiveAction: true,
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: Text(AppStrings.questionnaire.exitDialogConfirm),
+                      ),
+                    ],
+                  )
+                  : AlertDialog(
+                    title: Text(AppStrings.questionnaire.exitDialogTitle),
+                    content: Text(AppStrings.questionnaire.exitDialogMessage),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: Text(AppStrings.questionnaire.exitDialogCancel),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: Text(AppStrings.questionnaire.exitDialogConfirm),
+                      ),
+                    ],
+                  ),
     );
     return result ?? false;
   }
@@ -277,10 +295,10 @@ class _UnsupportedQuestionView extends StatelessWidget {
                 size: 22,
                 color: AppColors.warning,
               ),
-              const SizedBox(width: AppSpacing.sm + 2),
+              const SizedBox(width: AppSpacing.smd),
               Text(
                 AppStrings.questionnaire.unsupportedTitle,
-                style: theme.textTheme.titleLarge?.copyWith(fontSize: 15),
+                style: theme.textTheme.titleMedium,
               ),
             ],
           ),
@@ -289,11 +307,10 @@ class _UnsupportedQuestionView extends StatelessWidget {
             AppStrings.questionnaire.unsupportedBody,
             style: theme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: AppSpacing.sm - 2),
+          const SizedBox(height: AppSpacing.s),
           Text(
             'question_type: $questionType',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 11,
+            style: theme.textTheme.bodySmall?.copyWith(
               color: AppColors.textSecondary,
               fontFamily: 'monospace',
             ),

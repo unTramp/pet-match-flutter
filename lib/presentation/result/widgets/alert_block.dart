@@ -53,18 +53,14 @@ class AlertBlock extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontSize: 15,
+                  style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
                   message,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    fontSize: 13.5,
-                    height: 1.45,
+                  style: theme.textTheme.bodySmall?.copyWith(
                     color: AppColors.textPrimary.withValues(alpha: 0.85),
                   ),
                 ),

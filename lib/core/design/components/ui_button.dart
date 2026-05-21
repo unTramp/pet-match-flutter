@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/app_colors.dart';
+import '../tokens/radius.dart';
+import '../tokens/spacing.dart';
+
 enum UiButtonVariant { primary, secondary, text }
 
 class UiButton extends StatelessWidget {
@@ -27,7 +31,7 @@ class UiButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(icon, size: 18),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppSpacing.sm),
                 Text(label),
               ],
             );
@@ -41,31 +45,27 @@ class UiButton extends StatelessWidget {
         UiButtonVariant.secondary => CupertinoButton(
           onPressed: onPressed,
           padding: EdgeInsets.zero,
-          child: Container(
-            width: double.infinity,
-            constraints: const BoxConstraints(minHeight: 52),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: CupertinoColors.activeBlue,
-                width: 1.5,
-              ),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DefaultTextStyle(
-              style: const TextStyle(
-                color: CupertinoColors.activeBlue,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-              child: IconTheme(
-                data: const IconThemeData(
-                  color: CupertinoColors.activeBlue,
+              child: Container(
+                width: double.infinity,
+                constraints: const BoxConstraints(minHeight: 52),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
+                  border: Border.all(
+                    color: AppColors.primary,
+                    width: 1.5,
+                  ),
                 ),
-                child: child,
-              ),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    color: AppColors.primary,
+                  ),
+                  child: IconTheme(
+                    data: const IconThemeData(color: AppColors.primary),
+                    child: child,
+                  ),
+                ),
           ),
         ),
         UiButtonVariant.text => CupertinoButton(

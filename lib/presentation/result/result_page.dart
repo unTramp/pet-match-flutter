@@ -142,7 +142,7 @@ class _ResultPageState extends State<ResultPage> {
       appBar: AppBar(
         title: Text(AppStrings.result.appBarTitle),
         leading: IconButton(
-          tooltip: 'Домой',
+          tooltip: AppStrings.common.homeTooltip,
           onPressed: () => context.go('/welcome'),
           icon: Icon(isIos ? CupertinoIcons.home : Icons.home_rounded),
         ),
@@ -168,7 +168,7 @@ class _ResultPageState extends State<ResultPage> {
             AppSpacing.xl,
             AppSpacing.sm,
             AppSpacing.xl,
-            28,
+            AppSpacing.xxxl,
           ),
           physics: const BouncingScrollPhysics(),
           children: [

@@ -190,7 +190,7 @@ class _WelcomePageState extends State<WelcomePage>
                       slide: _headlineSlide,
                       child: _HeroHeadline(theme: theme),
                     ),
-                    const SizedBox(height: AppSpacing.lg - 2),
+                    const SizedBox(height: AppSpacing.lg),
                     _AnimatedTextEntrance(
                       fade: _subtitleFade,
                       slide: _subtitleSlide,
@@ -276,12 +276,12 @@ class _HeroHeadline extends StatelessWidget {
         text: TextSpan(
           style: baseStyle,
           children: [
-            const TextSpan(text: 'Найдём питомца,\n'),
+            TextSpan(text: AppStrings.welcome.heroLine1),
             TextSpan(
               text: AppStrings.welcome.heroLine2,
               style: baseStyle?.copyWith(color: AppColors.primary),
             ),
-            const TextSpan(text: 'именно вам.'),
+            TextSpan(text: AppStrings.welcome.heroLine3),
           ],
         ),
       ),
@@ -317,7 +317,7 @@ class _BottomActions extends StatelessWidget {
           ),
         ),
         if (onRestart != null) ...[
-          const SizedBox(height: AppSpacing.sm - 2),
+          const SizedBox(height: AppSpacing.s),
           TextButton(
             onPressed: onRestart,
             child: Text(AppStrings.common.restart),

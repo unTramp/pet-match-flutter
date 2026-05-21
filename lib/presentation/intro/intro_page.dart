@@ -106,7 +106,7 @@ class _IntroBullet extends StatelessWidget {
           ),
           child: Icon(icon, color: AppColors.primary),
         ),
-        const SizedBox(width: AppSpacing.lg - 2),
+        const SizedBox(width: AppSpacing.lg),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

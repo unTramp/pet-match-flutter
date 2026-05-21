@@ -40,11 +40,7 @@ class ReasonsSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
-          ),
+          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: AppSpacing.md),
         ...List.generate(items.length, (i) {
@@ -87,8 +83,6 @@ class _ReasonRow extends StatelessWidget {
           child: Text(
             item.text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontSize: 14,
-              height: 1.45,
               color: AppColors.textPrimary,
             ),
           ),
