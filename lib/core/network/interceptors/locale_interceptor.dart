@@ -1,14 +1,17 @@
 import 'package:dio/dio.dart';
 
-class LocaleInterceptor extends Interceptor {
-  LocaleInterceptor({this.locale = 'ru'});
+import '../../locale/app_locale_controller.dart';
 
-  final String locale;
+class LocaleInterceptor extends Interceptor {
+  LocaleInterceptor({AppLocaleController? localeController})
+    : _localeController = localeController ?? AppLocaleController.instance;
+
+  final AppLocaleController _localeController;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!options.queryParameters.containsKey('locale')) {
-      options.queryParameters['locale'] = locale;
+      options.queryParameters['locale'] = _localeController.current.code;
     }
     handler.next(options);
   }

@@ -3,7 +3,7 @@ import '../entities/compatibility.dart';
 import '../repositories/questionnaire_repository.dart';
 
 /// Циклически опрашивает GET /session пока `compatibility.status` не станет
-/// `ready`. Дефолтные параметры — 1.5s интервал, 30s timeout — выбраны так,
+/// `ready`. Дефолтные параметры — 3s интервал, 30s timeout — выбраны так,
 /// чтобы покрыть типичное время расчёта совместимости на бэкенде без излишней
 /// нагрузки на сеть.
 ///
@@ -18,7 +18,7 @@ class PollCompatibility {
   Future<Compatibility> call({
     required int userId,
     Duration timeout = const Duration(seconds: 30),
-    Duration interval = const Duration(milliseconds: 1500),
+    Duration interval = const Duration(seconds: 3),
   }) {
     Future<Compatibility> loop() async {
       while (true) {
