@@ -194,7 +194,6 @@ class _QuestionBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return SafeArea(
       minimum: const EdgeInsets.fromLTRB(
         AppSpacing.xl,
@@ -210,25 +209,6 @@ class _QuestionBottomBar extends StatelessWidget {
             onSubmit: onSubmit,
             canSkip: canSkip,
             onSkip: onSkip,
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.lock_outline_rounded,
-                size: 14,
-                color: AppColors.textSecondary.withValues(alpha: 0.7),
-              ),
-              const SizedBox(width: AppSpacing.sm - 2),
-              Text(
-                AppStrings.questionnaire.privacy,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontSize: 12,
-                  color: AppColors.textSecondary.withValues(alpha: 0.85),
-                ),
-              ),
-            ],
           ),
         ],
       ),
