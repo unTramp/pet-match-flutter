@@ -62,16 +62,19 @@ lib/
 flutter test
 ```
 
-Покрыты:
+Покрыты (11 файлов):
 
 1. **`question_mapper_test.dart`** — конвертация DTO → sealed `Question`: `single_choice`, `multiple_choice`, `dynamic_options`, `search_select` (имя из реального API), unknown fallback, exclusive_option_codes из `config_json`.
-2. **`compatibility_mapper_test.dart`** — нормализация score (integer 0..100 из реала vs фракция 0..1 из мока) и парсинг status (`ready` / `completed` / `processing` / unknown).
-3. **`questionnaire_repository_test.dart`** — маппинг `DioException` → `AppFailure` + success-кейсы (с `mocktail`).
+2. **`compatibility_mapper_test.dart`** — нормализация score (integer 0..100 из реала vs фракция 0..1 из мока), парсинг status (`ready` / `completed` / `processing` / unknown), маппинг расширенных полей (`compatible`, `hard_reasons`, `risks`, `refusal`, `requirement_highlights`).
+3. **`questionnaire_repository_test.dart`** — маппинг `DioException` → `AppFailure`, parse-error → `ServerFailure(-1)`, rethrow `AppFailure`.
 4. **`poll_compatibility_test.dart`** — polling success / timeout / network error через `fake_async`.
 5. **`questionnaire_cubit_test.dart`** — state-машина: start/submit/skip/retry + exclusive-option логика в `toggleMulti` (`bloc_test`).
-6. **`questionnaire_page_test.dart`** — Loading / Question / Error состояния UI, ProgressBar, SingleChoiceWidget.
-7. **`result_page_test.dart`** — `MainBreedCard` + `SuggestionCard` рендер + tap.
-8. **`error_view_test.dart`** — сообщение по типу `AppFailure` + Retry callback.
+6. **`breed_detail_cubit_test.dart`** — Loading / Loaded / Error / Retry для BreedDetail.
+7. **`session_cache_test.dart`** — uid caching, hasActiveSession, saveUserId, clearSession idempotency.
+8. **`questionnaire_page_test.dart`** — Loading / Question / Error состояния UI, ProgressBar, SingleChoiceWidget.
+9. **`result_page_test.dart`** — `MainBreedCard` + `SuggestionCard` рендер + tap, цвет score-badge по risk_level.
+10. **`error_view_test.dart`** — сообщение по типу `AppFailure` + Retry callback.
+11. **`gradient_button_test.dart`** — рендер, tap, disabled state, опциональная иконка.
 
 Всего **68** тестов (минимум по ТЗ — 2-3).
 
@@ -101,7 +104,7 @@ flutter test
 - **Галерея** — `PageView` + `InteractiveViewer` для pinch-to-zoom. Нет Hero-анимаций.
 - **Offline-режим** — только in-memory кеш для `BreedDetail`. Полноценного offline нет: ответы анкеты живут на сервере (мы их не дублируем локально).
 - **Аналитика (`POST /events`)** — не реализована, ТЗ не требует.
-- **iOS** — не настраивался (per ТЗ Android-first).
+- **iOS** — добавлен как dev-bonus (`ios/` папка, `pod install`, signing через personal Apple Developer Team). Приложение запускается на физическом iPhone в debug-режиме. Production-distribution (App Store / TestFlight) не настраивался — focus на Android per ТЗ.
 - **CI** — не настроен (по решению заказчика).
 - **Accessibility** — базовые Flutter-семантики. Кастомных focus-orders и TalkBack-меток нет.
 - **DTO без codegen** — DTO написаны вручную с `fromJson` / `toJson`. Сначала пробовали `freezed`, но его builder зависает на analyzer-баге в текущем Flutter SDK (3.29.3 + Dart 3.7.2). Потом убрали и `json_serializable` — по тем же причинам, и для 10 простых DTO ручной разбор оказался короче и читаемее, чем настраивать кодогенерацию. `Equatable` остался в domain-слое для `==` в тестах. В `pubspec.yaml` нет ни `build_runner`, ни `json_serializable`, ни `freezed` — pub fetch проходит быстро и без подводных камней.

@@ -57,7 +57,7 @@
 
 > **Требование:** минимум 2-3 теста.
 >
-> **У нас:** 11 тест-файлов / 61 тест-кейс, все зелёные. `flutter analyze` чист.
+> **У нас:** 11 тест-файлов / 68 тест-кейсов, все зелёные. `flutter analyze` чист.
 
 | Тест | Что покрывает |
 |---|---|
@@ -83,7 +83,7 @@
 | README с инструкцией запуска | ✅ | `README.md` — флаги, build, тесты, компромиссы |
 | APK | ✅ | `build/app/outputs/flutter-apk/app-release.apk` (22 МБ) |
 | Описание архитектуры | ✅ | `docs/architecture.pdf` (19 страниц, приложен) + раздел в README |
-| Список компромиссов | ✅ | Раздел «Осознанные упрощения» в README — 8 пунктов |
+| Список компромиссов | ✅ | Раздел «Осознанные упрощения» в README — 9 пунктов |
 | Что улучшил бы дальше | ✅ | Раздел «Следующие шаги» в README |
 
 ---
@@ -105,7 +105,7 @@
 
 См. соответствующий раздел в [README.md](../README.md). Кратко:
 
-- iOS не настраивался под продакшен-подпись (Android-first из ТЗ; на iOS добавлен dev-build).
+- iOS добавлен как dev-bonus: `ios/` папка, `pod install`, signing через personal Apple Developer Team. Приложение запускается на физическом iPhone в debug. Production-distribution (App Store / TestFlight) не настраивался — focus на Android per ТЗ.
 - Локализация UI захардкожена на русском (API сам отдаёт локализованный контент через `?locale=ru`).
 - Анимации переходов — стандартные `go_router`, без custom slide/fade.
 - Offline — только in-memory кеш для breed detail.
@@ -121,7 +121,7 @@
 | Что | Где |
 |---|---|
 | Hero Welcome screen с full-bleed котом, gradient overlay, языковым toggle | `lib/presentation/welcome/welcome_page.dart` |
-| Stat-маркеры «≈ 2 минуты» / «Персональные рекомендации» под подзаголовком | `widgets/stat_card.dart` (закомментировано — оставлено на полке) |
+| Stat-маркеры «≈ 2 минуты» / «Персональные рекомендации» (виджет готов, не подключен в текущей версии Welcome) | `lib/presentation/welcome/widgets/stat_card.dart` |
 | App icon из cathead SVG (фиолетовый фон + белый кот) для iOS + Android | `assets/icons/`, генерация через `flutter_launcher_icons` |
 | `RetryInterceptor` с exp backoff на сетевом уровне (поверх Cubit-уровня retry) | `lib/core/network/interceptors/retry_interceptor.dart` |
 | Verified end-to-end на real API — прошёл 27 вопросов до compatibility | См. секцию «Реальный API» в README |
