@@ -14,6 +14,7 @@ class UiButton extends StatelessWidget {
     required this.onPressed,
     this.variant = UiButtonVariant.primary,
     this.icon,
+    this.loading = false,
   });
 
   final String label;
@@ -21,29 +22,47 @@ class UiButton extends StatelessWidget {
   final UiButtonVariant variant;
   final IconData? icon;
 
+  /// Когда true — кнопка disabled и вместо label показывает компактный
+  /// CircularProgressIndicator. Высота кнопки сохраняется, чтобы layout
+  /// не «прыгал» при переключении.
+  final bool loading;
+
   @override
   Widget build(BuildContext context) {
     final isIos = Theme.of(context).platform == TargetPlatform.iOS;
+    final effectiveOnPressed = loading ? null : onPressed;
+    final spinner = SizedBox(
+      width: 18,
+      height: 18,
+      child: CircularProgressIndicator(
+        strokeWidth: 2.2,
+        valueColor: AlwaysStoppedAnimation<Color>(
+          variant == UiButtonVariant.primary ? Colors.white : AppColors.primary,
+        ),
+      ),
+    );
     final child =
-        icon == null
-            ? Text(label)
-            : Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(icon, size: 18),
-                const SizedBox(width: AppSpacing.sm),
-                Text(label),
-              ],
-            );
+        loading
+            ? spinner
+            : (icon == null
+                ? Text(label)
+                : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(icon, size: 18),
+                    const SizedBox(width: AppSpacing.sm),
+                    Text(label),
+                  ],
+                ));
 
     if (isIos) {
       return switch (variant) {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
-          child: CupertinoButton.filled(onPressed: onPressed, child: child),
+          child: CupertinoButton.filled(onPressed: effectiveOnPressed, child: child),
         ),
         UiButtonVariant.secondary => CupertinoButton(
-          onPressed: onPressed,
+          onPressed: effectiveOnPressed,
           padding: EdgeInsets.zero,
               child: Container(
                 width: double.infinity,
@@ -69,23 +88,23 @@ class UiButton extends StatelessWidget {
           ),
         ),
         UiButtonVariant.text => CupertinoButton(
-          onPressed: onPressed,
+          onPressed: effectiveOnPressed,
           padding: EdgeInsets.zero,
-          child: Text(label),
+          child: child,
         ),
       };
     }
 
     return switch (variant) {
       UiButtonVariant.primary => ElevatedButton(
-        onPressed: onPressed,
+        onPressed: effectiveOnPressed,
         child: child,
       ),
       UiButtonVariant.secondary => OutlinedButton(
-        onPressed: onPressed,
+        onPressed: effectiveOnPressed,
         child: child,
       ),
-      UiButtonVariant.text => TextButton(onPressed: onPressed, child: child),
+      UiButtonVariant.text => TextButton(onPressed: effectiveOnPressed, child: child),
     };
   }
 }

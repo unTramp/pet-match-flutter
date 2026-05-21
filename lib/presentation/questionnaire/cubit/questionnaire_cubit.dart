@@ -149,7 +149,12 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   }
 
   void goBack() {
+    // Защита от race: если submit/skip ещё в полёте, ответ сервера
+    // вернётся в _emitFromSession и положит _pendingPrevious в историю —
+    // получим «прыжок вперёд» после back. Игнорируем back в Loading.
+    if (state is QuestionnaireLoading) return;
     if (_history.isEmpty) return;
+    _pendingPrevious = null;
     final previous = _history.removeLast();
     emit(previous);
   }

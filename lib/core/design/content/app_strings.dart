@@ -59,7 +59,6 @@ class _QuestionnaireStrings {
 
   final String appBarTitle = 'Анкета';
   final String loading = 'Загружаем анкету…';
-  final String privacy = 'Ваши ответы конфиденциальны';
   final String continueCta = 'Продолжить';
   final String skipCta = 'Пропустить';
   final String progressLabel = 'Вопрос';

@@ -46,44 +46,54 @@ class _QuestionnaireView extends StatelessWidget {
         final isIos = Theme.of(context).platform == TargetPlatform.iOS;
         final questionState = state is QuestionnaireQuestion ? state : null;
         final cubit = context.read<QuestionnaireCubit>();
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(AppStrings.questionnaire.appBarTitle),
-            leading: IconButton(
-              icon: Icon(
-                isIos ? CupertinoIcons.chevron_back : Icons.arrow_back_rounded,
+
+        Future<void> handleBack() async {
+          if (questionState != null && cubit.canGoBack) {
+            cubit.goBack();
+            return;
+          }
+          final shouldExit = await _confirmExit(context);
+          if (!context.mounted || !shouldExit) return;
+          context.go('/welcome');
+        }
+
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, _) async {
+            if (didPop) return;
+            await handleBack();
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(AppStrings.questionnaire.appBarTitle),
+              leading: IconButton(
+                icon: Icon(
+                  isIos ? CupertinoIcons.chevron_back : Icons.arrow_back_rounded,
+                ),
+                onPressed: handleBack,
               ),
-              onPressed: () async {
-                if (questionState != null && cubit.canGoBack) {
-                  cubit.goBack();
-                  return;
-                }
-                final shouldExit = await _confirmExit(context);
-                if (!context.mounted || !shouldExit) return;
-                context.go('/welcome');
+            ),
+            bottomNavigationBar:
+                questionState == null
+                    ? null
+                    : _QuestionBottomBar(
+                      canSubmit: questionState.canSubmit,
+                      onSubmit: cubit.submit,
+                      canSkip: questionState.question.isOptional,
+                      onSkip: cubit.skipCurrent,
+                    ),
+            body: SafeArea(
+              child: switch (state) {
+                QuestionnaireInitial() || QuestionnaireLoading() =>
+                  LoadingView(message: AppStrings.questionnaire.loading),
+                QuestionnaireQuestion() => _QuestionBody(state: state),
+                QuestionnaireError(:final failure) => ErrorView(
+                  failure: failure,
+                  onRetry: () => context.read<QuestionnaireCubit>().retry(),
+                ),
+                QuestionnaireCompleted() => const LoadingView(),
               },
             ),
-          ),
-          bottomNavigationBar:
-              questionState == null
-                  ? null
-                  : _QuestionBottomBar(
-                    canSubmit: questionState.canSubmit,
-                    onSubmit: cubit.submit,
-                    canSkip: questionState.question.isOptional,
-                    onSkip: cubit.skipCurrent,
-                  ),
-          body: SafeArea(
-            child: switch (state) {
-              QuestionnaireInitial() || QuestionnaireLoading() =>
-                LoadingView(message: AppStrings.questionnaire.loading),
-              QuestionnaireQuestion() => _QuestionBody(state: state),
-              QuestionnaireError(:final failure) => ErrorView(
-                failure: failure,
-                onRetry: () => context.read<QuestionnaireCubit>().retry(),
-              ),
-              QuestionnaireCompleted() => const LoadingView(),
-            },
           ),
         );
       },

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -283,6 +285,54 @@ void main() {
       final state = cubit.state as QuestionnaireQuestion;
       expect(state.question.id, 101);
       expect(state.selectedOptionIds, {2});
+    },
+  );
+
+  test(
+    'goBack во время Loading — no-op, не возвращает к Q1 и не ломает '
+    'историю при resolve submit()',
+    () async {
+      // Готовим сценарий: start → Q1, потом submit «висит» (Completer не
+      // resolved), пользователь жмёт back. Ожидаем что goBack ничего не
+      // делает, потом submit() резолвится → текущее состояние Q2.
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+
+      final submitCompleter = Completer<Session>();
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer((_) => submitCompleter.future);
+
+      final cubit = QuestionnaireCubit(start, submit, skip);
+      await cubit.start();
+      cubit.selectSingle(2);
+      // submit() возвращает Future — НЕ ждём его.
+      final submitFuture = cubit.submit();
+      // Сейчас state == QuestionnaireLoading
+      expect(cubit.state, isA<QuestionnaireLoading>());
+
+      // Race: пользователь нажимает back во время loading.
+      cubit.goBack();
+      expect(
+        cubit.state,
+        isA<QuestionnaireLoading>(),
+        reason: 'goBack должен быть no-op во время loading',
+      );
+
+      // Резолвим submit() → должен приехать Q2.
+      submitCompleter.complete(
+        _sessionWithQuestion(_secondQuestion, answered: 1),
+      );
+      await submitFuture;
+
+      expect(cubit.state, isA<QuestionnaireQuestion>());
+      final state = cubit.state as QuestionnaireQuestion;
+      expect(state.question.id, 102, reason: 'должен быть Q2, не Q1');
+      expect(cubit.canGoBack, isTrue, reason: 'Q1 должен быть в истории');
+
+      await cubit.close();
     },
   );
 }
