@@ -64,6 +64,34 @@ void main() {
     });
   });
 
+  test('returns Compatibility when status is skipped', () {
+    fakeAsync((async) {
+      var callCount = 0;
+      when(() => repo.getSession(any())).thenAnswer((_) async {
+        callCount += 1;
+        return _sessionWith(status: CompatibilityStatus.skipped);
+      });
+
+      Compatibility? result;
+      Object? error;
+      usecase(
+        userId: 1,
+        interval: const Duration(milliseconds: 100),
+        timeout: const Duration(seconds: 5),
+      ).then((c) => result = c).catchError((Object e) {
+        error = e;
+        return const Compatibility(status: CompatibilityStatus.failed);
+      });
+
+      async.elapse(const Duration(milliseconds: 100));
+      expect(error, isNull);
+      expect(result, isNotNull);
+      expect(result!.status, CompatibilityStatus.skipped);
+      expect(result!.isReady, isTrue);
+      expect(callCount, 1);
+    });
+  });
+
   test('throws TimeoutFailure when status stays processing past timeout', () {
     fakeAsync((async) {
       when(() => repo.getSession(any())).thenAnswer(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pet_match/core/theme/app_colors.dart';
 import 'package:pet_match/domain/entities/compatibility.dart';
+import 'package:pet_match/presentation/result/result_page.dart';
 import 'package:pet_match/presentation/result/widgets/main_breed_card.dart';
 import 'package:pet_match/presentation/result/widgets/suggestion_card.dart';
 
@@ -165,4 +166,47 @@ void main() {
 
     expect(find.text('—'), findsOneWidget);
   });
+
+  testWidgets(
+    'ResultPage promotes first suggestion when primary breed is absent',
+    (tester) async {
+      const skippedCompatibility = Compatibility(
+        status: CompatibilityStatus.skipped,
+        summary: 'Показана подборка подходящих вариантов.',
+        suggestions: [
+          CompatibilitySuggestion(
+            breedId: 139,
+            breedName: 'Бордер-терьер',
+            score: 1,
+            riskLevel: 'low',
+            summary: 'Хорошо соответствует выбранным критериям.',
+          ),
+          CompatibilitySuggestion(
+            breedId: 242,
+            breedName: 'Мальтезе',
+            score: 0.92,
+            riskLevel: 'low',
+          ),
+        ],
+      );
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: ResultPage(compatibility: skippedCompatibility),
+        ),
+      );
+
+      expect(find.byType(MainBreedCard), findsOneWidget);
+      expect(find.text('Бордер-терьер'), findsOneWidget);
+      expect(find.text('100%'), findsOneWidget);
+      expect(
+        find.text('Хорошо соответствует выбранным критериям.'),
+        findsOneWidget,
+      );
+      expect(find.text('Порода'), findsNothing);
+
+      await tester.scrollUntilVisible(find.text('Мальтезе'), 300);
+      expect(find.text('Мальтезе'), findsOneWidget);
+    },
+  );
 }

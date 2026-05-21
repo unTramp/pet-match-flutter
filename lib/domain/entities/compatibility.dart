@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum CompatibilityStatus { processing, ready, failed, unknown }
+enum CompatibilityStatus { processing, ready, skipped, failed, unknown }
 
 /// Уровень риска для рекомендации в целом.
 /// Cервер шлёт строки 'low' / 'medium' / 'high' — маппер парсит.
@@ -101,7 +101,9 @@ class Compatibility extends Equatable {
   final CompatibilityRefusal? refusal;
   final List<CompatibilitySuggestion> suggestions;
 
-  bool get isReady => status == CompatibilityStatus.ready;
+  bool get isReady =>
+      status == CompatibilityStatus.ready ||
+      status == CompatibilityStatus.skipped;
 
   /// True — порода действительно подходит. Считаем «подходит» если:
   /// `compatible == true` И нет жёстких ограничений И уровень риска не high.

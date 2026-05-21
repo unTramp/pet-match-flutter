@@ -106,14 +106,9 @@ void main() {
       cubit.selectSingle(1);
       await cubit.submit();
     },
-    skip: 2,
+    skip: 3,
     expect:
         () => [
-          isA<QuestionnaireQuestion>().having(
-            (s) => s.selectedOptionIds,
-            'selection',
-            {1},
-          ),
           isA<QuestionnaireQuestion>().having(
             (s) => s.isSubmitting,
             'isSubmitting',
@@ -125,6 +120,47 @@ void main() {
             102,
           ),
         ],
+    verify: (_) {
+      verifyNever(() => poll(userId: any(named: 'userId')));
+    },
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'submit continues adaptive flow when backend adds more questions',
+    setUp: () {
+      when(start.call).thenAnswer(
+        (_) async =>
+            _sessionWithQuestion(_firstQuestion, answered: 16, total: 17),
+      );
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async =>
+            _sessionWithQuestion(_secondQuestion, answered: 17, total: 26),
+      );
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+    },
+    skip: 3,
+    expect:
+        () => [
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
+          isA<QuestionnaireQuestion>()
+              .having((s) => s.question.id, 'next question id', 102)
+              .having((s) => s.progress.total, 'expanded total', 26),
+        ],
+    verify: (_) {
+      verifyNever(() => poll(userId: any(named: 'userId')));
+    },
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
@@ -146,10 +182,9 @@ void main() {
       cubit.selectSingle(1);
       await cubit.submit();
     },
-    skip: 2,
+    skip: 3,
     expect:
         () => [
-          isA<QuestionnaireQuestion>(),
           isA<QuestionnaireQuestion>().having(
             (s) => s.isSubmitting,
             'isSubmitting',
@@ -157,6 +192,54 @@ void main() {
           ),
           isA<QuestionnaireResultReady>(),
         ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'submit on terminal skipped compatibility emits ResultReady without polling',
+    setUp: () {
+      when(
+        start.call,
+      ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
+      when(
+        () =>
+            submit(userId: any(named: 'userId'), answer: any(named: 'answer')),
+      ).thenAnswer(
+        (_) async => const Session(
+          userId: 7,
+          progress: Progress(answered: 17, total: 17),
+          compatibility: Compatibility(
+            status: CompatibilityStatus.skipped,
+            summary: 'Подборка вариантов без выбранной породы.',
+            suggestions: [
+              CompatibilitySuggestion(breedId: 1, breedName: 'Скоттиш Страйт'),
+            ],
+          ),
+        ),
+      );
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) async {
+      await cubit.start();
+      cubit.selectSingle(1);
+      await cubit.submit();
+    },
+    skip: 3,
+    expect:
+        () => [
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
+          isA<QuestionnaireResultReady>().having(
+            (s) => s.compatibility.suggestions.length,
+            'suggestions',
+            1,
+          ),
+        ],
+    verify: (_) {
+      verifyNever(() => poll(userId: any(named: 'userId')));
+    },
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
@@ -291,5 +374,4 @@ void main() {
           isA<QuestionnaireQuestion>(),
         ],
   );
-
 }

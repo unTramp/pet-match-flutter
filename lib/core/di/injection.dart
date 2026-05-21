@@ -27,6 +27,9 @@ const String baseUrl = String.fromEnvironment(
   'API_BASE_URL',
   defaultValue: _defaultBaseUrl,
 );
+const String externalIdOverride = String.fromEnvironment(
+  'PET_MATCH_EXTERNAL_ID',
+);
 
 Future<void> configureDependencies() async {
   if (sl.isRegistered<SessionCache>()) {
@@ -54,7 +57,12 @@ Future<void> configureDependencies() async {
 
   // Use cases — factory: cheap to construct, stateless.
   sl.registerFactory(
-    () => StartSession(sl<QuestionnaireRepository>(), sl<SessionCache>()),
+    () => StartSession(
+      sl<QuestionnaireRepository>(),
+      sl<SessionCache>(),
+      externalIdOverride:
+          externalIdOverride.isEmpty ? null : externalIdOverride,
+    ),
   );
   sl.registerFactory(() => SubmitAnswer(sl<QuestionnaireRepository>()));
   sl.registerFactory(() => SkipQuestion(sl<QuestionnaireRepository>()));

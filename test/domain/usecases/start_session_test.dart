@@ -19,7 +19,10 @@ void main() {
     cache = _MockCache();
   });
 
-  const session = Session(userId: 7, progress: Progress(answered: 2, total: 10));
+  const session = Session(
+    userId: 7,
+    progress: Progress(answered: 2, total: 10),
+  );
 
   test('resume flow: when saved user id exists, uses getSession', () async {
     when(cache.getSavedUserId).thenAnswer((_) async => 7);
@@ -50,5 +53,45 @@ void main() {
     verify(() => cache.getOrCreateUid()).called(1);
     verify(() => repository.startSession('uid:abc')).called(1);
     verifyNever(() => repository.getSession(any()));
+  });
+
+  test(
+    'external id override normalizes uid and bypasses local session',
+    () async {
+      when(
+        () => repository.startSession('uid:tester-123458'),
+      ).thenAnswer((_) async => session);
+      when(() => cache.saveUserId(7)).thenAnswer((_) async {});
+
+      final usecase = StartSession(
+        repository,
+        cache,
+        externalIdOverride: 'tester-123458',
+      );
+      final result = await usecase();
+
+      expect(result.userId, 7);
+      verify(() => repository.startSession('uid:tester-123458')).called(1);
+      verifyNever(() => repository.startSession('tester-123458'));
+      verifyNever(() => cache.getSavedUserId());
+      verifyNever(() => cache.getOrCreateUid());
+      verifyNever(() => repository.getSession(any()));
+    },
+  );
+
+  test('external id override keeps existing uid prefix', () async {
+    when(
+      () => repository.startSession('uid:tester-123458'),
+    ).thenAnswer((_) async => session);
+    when(() => cache.saveUserId(7)).thenAnswer((_) async {});
+
+    final usecase = StartSession(
+      repository,
+      cache,
+      externalIdOverride: 'uid:tester-123458',
+    );
+    await usecase();
+
+    verify(() => repository.startSession('uid:tester-123458')).called(1);
   });
 }

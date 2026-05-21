@@ -69,6 +69,22 @@ void main() {
       );
     });
 
+    test('"skipped" → CompatibilityStatus.skipped и isReady=true', () {
+      const dto = CompatibilityDto(
+        status: 'skipped',
+        summary: 'Подборка вариантов без выбранной породы.',
+        suggestions: [
+          CompatibilitySuggestionDto(breedId: 1, breedName: 'Скоттиш Страйт'),
+        ],
+      );
+
+      final result = CompatibilityMapper.fromDto(dto);
+
+      expect(result.status, CompatibilityStatus.skipped);
+      expect(result.isReady, isTrue);
+      expect(result.suggestions, hasLength(1));
+    });
+
     test('unknown string → CompatibilityStatus.unknown', () {
       const dto = CompatibilityDto(status: 'something-else');
       expect(

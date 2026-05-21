@@ -6,6 +6,9 @@ class CompatibilityMapper {
 
   static CompatibilityStatus _parseStatus(String raw) => switch (raw) {
     'ready' || 'completed' => CompatibilityStatus.ready,
+    // Это не skip вопроса, а финальный статус compatibility: расчёт конкретной
+    // породы пропущен, но сервер уже вернул итоговую подборку в suggestions.
+    'skipped' => CompatibilityStatus.skipped,
     'processing' ||
     'pending' ||
     'in_progress' => CompatibilityStatus.processing,
