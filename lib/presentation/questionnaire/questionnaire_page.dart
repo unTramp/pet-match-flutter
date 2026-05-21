@@ -108,28 +108,41 @@ class _QuestionBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(question.title, style: theme.textTheme.headlineMedium),
-                  if (question.helpText != null) ...[
-                    const SizedBox(height: AppSpacing.sm),
-                    Text(
-                      question.helpText!,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.primary.withValues(alpha: 0.85),
-                        fontWeight: FontWeight.w500,
-                      ),
+                  UiCard(
+                    showShadow: false,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          question.title,
+                          style: theme.textTheme.headlineMedium,
+                        ),
+                        if (question.helpText != null) ...[
+                          const SizedBox(height: AppSpacing.sm),
+                          Text(
+                            question.helpText!,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: AppColors.primary.withValues(alpha: 0.85),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                        if (question is MultipleChoiceQuestion &&
+                            question.helpText == null) ...[
+                          const SizedBox(height: AppSpacing.sm),
+                          Text(
+                            AppStrings.questionnaire.multiSelectHint,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textSecondary.withValues(
+                                alpha: 0.9,
+                              ),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
-                  ],
-                  if (question is MultipleChoiceQuestion &&
-                      question.helpText == null) ...[
-                    const SizedBox(height: AppSpacing.sm),
-                    Text(
-                      AppStrings.questionnaire.multiSelectHint,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary.withValues(alpha: 0.9),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                  ),
                   const SizedBox(height: AppSpacing.xxl),
                   switch (question) {
                     SingleChoiceQuestion(:final options) => SingleChoiceWidget(
