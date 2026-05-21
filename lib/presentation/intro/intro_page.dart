@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +9,8 @@ import '../../core/di/injection.dart';
 import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/usecases/start_session.dart';
+import '../welcome/widgets/app_logo.dart';
+import '../welcome/widgets/language_toggle.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -60,15 +61,19 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            isIos ? CupertinoIcons.chevron_back : Icons.arrow_back_rounded,
-          ),
-          onPressed: () => context.go('/welcome'),
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(
+          AppSpacing.xl,
+          AppSpacing.sm,
+          AppSpacing.xl,
+          AppSpacing.md,
+        ),
+        child: UiButton(
+          label: AppStrings.intro.ctaStart,
+          onPressed: _onStartPressed,
+          loading: _isStarting,
         ),
       ),
       body: SafeArea(
@@ -77,12 +82,20 @@ class _IntroPageState extends State<IntroPage> {
             AppSpacing.xxl,
             AppSpacing.sm,
             AppSpacing.xxl,
-            AppSpacing.xxl,
+            AppSpacing.md,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(AppStrings.intro.title, style: theme.textTheme.headlineMedium),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [AppLogo(), LanguageToggle()],
+              ),
+              const SizedBox(height: AppSpacing.xxl),
+              Text(
+                AppStrings.intro.title,
+                style: theme.textTheme.headlineMedium,
+              ),
               const SizedBox(height: AppSpacing.sm),
               Text(
                 AppStrings.intro.subtitle,
@@ -97,11 +110,6 @@ class _IntroPageState extends State<IntroPage> {
                 ),
               ),
               const Spacer(),
-              UiButton(
-                label: AppStrings.intro.ctaStart,
-                onPressed: _onStartPressed,
-                loading: _isStarting,
-              ),
             ],
           ),
         ),

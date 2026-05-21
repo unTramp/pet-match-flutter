@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +12,8 @@ import 'widgets/reasons_section.dart';
 import 'widgets/refusal_block.dart';
 import 'widgets/result_section_card.dart';
 import 'widgets/suggestion_card.dart';
+import '../welcome/widgets/app_logo.dart';
+import '../welcome/widgets/language_toggle.dart';
 
 /// Result-экран отображает **всё**, что отдаёт API:
 ///  * hero-карточка (фото + название + score с цветом по риску)
@@ -77,7 +78,10 @@ class _ResultPageState extends State<ResultPage> {
           if (canExpand) ...[
             const SizedBox(height: AppSpacing.md),
             UiButton(
-              label: showAll ? AppStrings.result.showLess : AppStrings.result.showMore,
+              label:
+                  showAll
+                      ? AppStrings.result.showLess
+                      : AppStrings.result.showMore,
               onPressed: onToggle,
               variant: UiButtonVariant.text,
             ),
@@ -89,7 +93,6 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final theme = Theme.of(context);
     final compatibility = widget.compatibility;
     final suggestions = compatibility.suggestions;
@@ -139,20 +142,12 @@ class _ResultPageState extends State<ResultPage> {
             .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppStrings.result.appBarTitle),
-        leading: IconButton(
-          tooltip: AppStrings.common.homeTooltip,
-          onPressed: () => context.go('/welcome'),
-          icon: Icon(isIos ? CupertinoIcons.home : Icons.home_rounded),
-        ),
-      ),
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(
           AppSpacing.xl,
           AppSpacing.sm,
           AppSpacing.xl,
-          AppSpacing.xl,
+          AppSpacing.md,
         ),
         child: UiButton(
           label:
@@ -172,6 +167,18 @@ class _ResultPageState extends State<ResultPage> {
           ),
           physics: const BouncingScrollPhysics(),
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => context.go('/welcome'),
+                  behavior: HitTestBehavior.opaque,
+                  child: const AppLogo(),
+                ),
+                const LanguageToggle(),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.xxl),
             MainBreedCard(
               compatibility: compatibility,
               onTap: () => _openBreed(context, compatibility.breedId),
@@ -183,8 +190,9 @@ class _ResultPageState extends State<ResultPage> {
                 items: influences,
                 showAll: _showAllInfluences,
                 onToggle:
-                    () =>
-                        setState(() => _showAllInfluences = !_showAllInfluences),
+                    () => setState(
+                      () => _showAllInfluences = !_showAllInfluences,
+                    ),
               ),
             ],
             if (refusal != null && (refusal.title?.isNotEmpty ?? false)) ...[
