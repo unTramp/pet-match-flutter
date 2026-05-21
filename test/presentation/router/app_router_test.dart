@@ -3,6 +3,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pet_match/core/cache/session_cache.dart';
 import 'package:pet_match/core/di/injection.dart';
+import 'package:pet_match/data/repositories/breed_repository_impl.dart';
+import 'package:pet_match/data/repositories/questionnaire_repository_impl.dart';
+import 'package:pet_match/data/sources/mock_pet_match_remote_source.dart';
+import 'package:pet_match/data/sources/pet_match_remote_source.dart';
+import 'package:pet_match/domain/repositories/breed_repository.dart';
+import 'package:pet_match/domain/repositories/questionnaire_repository.dart';
+import 'package:pet_match/domain/usecases/get_breed_detail.dart';
+import 'package:pet_match/domain/usecases/get_dynamic_options.dart';
+import 'package:pet_match/domain/usecases/poll_compatibility.dart';
+import 'package:pet_match/domain/usecases/skip_question.dart';
+import 'package:pet_match/domain/usecases/start_session.dart';
+import 'package:pet_match/domain/usecases/submit_answer.dart';
 import 'package:pet_match/presentation/details/cubit/breed_detail_cubit.dart';
 import 'package:pet_match/presentation/intro/intro_page.dart';
 import 'package:pet_match/presentation/questionnaire/cubit/questionnaire_cubit.dart';
@@ -18,20 +30,27 @@ void main() {
   late _MockSessionCache cache;
 
   Future<void> setupDi() async {
-    if (sl.isRegistered<SessionCache>()) await sl.reset();
-    await configureDependencies();
-    // Перезатираем SessionCache моком — остальной DI (Mock-source, repos,
-    // usecases) остаётся реальным mock-стеком, чтобы Cubit'ы могли
-    // зарегистрироваться без падений.
-    sl.unregister<SessionCache>();
+    await sl.reset();
     sl.registerSingleton<SessionCache>(cache);
-    // Cubit factories — обычно в main.dart, здесь делаем то же самое.
-    if (!sl.isRegistered<QuestionnaireCubit>()) {
-      sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl(), sl()));
-    }
-    if (!sl.isRegistered<BreedDetailCubit>()) {
-      sl.registerFactory(() => BreedDetailCubit(sl()));
-    }
+    sl.registerLazySingleton<PetMatchRemoteSource>(
+      MockPetMatchRemoteSource.new,
+    );
+    sl.registerLazySingleton<QuestionnaireRepository>(
+      () => QuestionnaireRepositoryImpl(sl<PetMatchRemoteSource>()),
+    );
+    sl.registerLazySingleton<BreedRepository>(
+      () => BreedRepositoryImpl(sl<PetMatchRemoteSource>()),
+    );
+    sl.registerFactory(
+      () => StartSession(sl<QuestionnaireRepository>(), sl<SessionCache>()),
+    );
+    sl.registerFactory(() => SubmitAnswer(sl<QuestionnaireRepository>()));
+    sl.registerFactory(() => SkipQuestion(sl<QuestionnaireRepository>()));
+    sl.registerFactory(() => GetDynamicOptions(sl<QuestionnaireRepository>()));
+    sl.registerFactory(() => PollCompatibility(sl<QuestionnaireRepository>()));
+    sl.registerFactory(() => GetBreedDetail(sl<BreedRepository>()));
+    sl.registerFactory(() => QuestionnaireCubit(sl(), sl(), sl(), sl()));
+    sl.registerFactory(() => BreedDetailCubit(sl()));
   }
 
   setUp(() async {
@@ -53,9 +72,7 @@ void main() {
     testWidgets('пустая сессия → стартует на /welcome', (tester) async {
       when(cache.hasActiveSession).thenAnswer((_) async => false);
 
-      await tester.pumpWidget(
-        MaterialApp.router(routerConfig: buildRouter()),
-      );
+      await tester.pumpWidget(MaterialApp.router(routerConfig: buildRouter()));
       await tester.pumpAndSettle(const Duration(milliseconds: 200));
 
       expect(find.byType(WelcomePage), findsOneWidget);
@@ -103,10 +120,7 @@ void main() {
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
       await tester.pumpAndSettle(const Duration(milliseconds: 200));
 
-      expect(
-        router.routerDelegate.currentConfiguration.uri.path,
-        '/intro',
-      );
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/intro');
       expect(find.byType(IntroPage), findsOneWidget);
     });
 
@@ -118,10 +132,7 @@ void main() {
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
       await tester.pumpAndSettle(const Duration(milliseconds: 200));
 
-      expect(
-        router.routerDelegate.currentConfiguration.uri.path,
-        '/welcome',
-      );
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/welcome');
       expect(find.byType(WelcomePage), findsOneWidget);
     });
   });

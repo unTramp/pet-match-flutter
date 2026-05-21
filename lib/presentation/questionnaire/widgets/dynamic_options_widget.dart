@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../../core/constants.dart';
 import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
-import '../../../core/design/tokens/motion.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/di/injection.dart';
@@ -61,7 +61,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
 
   void _onSearch(String value) {
     _debounce?.cancel();
-    _debounce = Timer(AppMotion.debounce, () => _load(value));
+    _debounce = Timer(kSearchDebounce, () => _load(value));
   }
 
   Future<void> _load(String? query) async {

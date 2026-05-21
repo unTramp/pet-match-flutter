@@ -4,8 +4,8 @@ import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-class LanguageToggle extends StatelessWidget {
-  const LanguageToggle({super.key});
+class LocaleBadge extends StatelessWidget {
+  const LocaleBadge({super.key});
 
   @override
   Widget build(BuildContext context) {
