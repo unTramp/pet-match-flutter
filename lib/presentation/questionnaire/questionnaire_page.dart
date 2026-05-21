@@ -1,10 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/ui_card.dart';
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
+import '../../domain/entities/session.dart';
+import '../welcome/widgets/app_logo.dart';
+import '../welcome/widgets/language_toggle.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
 import 'cubit/questionnaire_cubit.dart';
@@ -16,12 +24,25 @@ import 'widgets/question_footer.dart';
 import 'widgets/single_choice_widget.dart';
 
 class QuestionnairePage extends StatelessWidget {
-  const QuestionnairePage({super.key});
+  const QuestionnairePage({super.key, this.initialSession});
+
+  final Session? initialSession;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<QuestionnaireCubit>(
-      create: (_) => sl<QuestionnaireCubit>()..start(),
+      create: (_) {
+        final cubit = sl<QuestionnaireCubit>();
+        final session = initialSession;
+        if (session != null) {
+          unawaited(
+            Future<void>.microtask(() => cubit.startWithSession(session)),
+          );
+        } else {
+          unawaited(Future<void>.microtask(cubit.start));
+        }
+        return cubit;
+      },
       child: const _QuestionnaireView(),
     );
   }
@@ -34,30 +55,50 @@ class _QuestionnaireView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<QuestionnaireCubit, QuestionnaireState>(
       listener: (context, state) {
-        if (state is QuestionnaireCompleted) {
-          context.go('/analyzing', extra: state.userId);
+        if (state is QuestionnaireResultReady) {
+          context.go('/result', extra: state.compatibility);
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Анкета'),
-            leading: IconButton(
-              icon: const Icon(Icons.close_rounded),
-              onPressed: () => context.go('/welcome'),
-            ),
-          ),
-          body: SafeArea(
-            child: switch (state) {
-              QuestionnaireInitial() || QuestionnaireLoading() =>
-                const LoadingView(message: 'Загружаем анкету…'),
-              QuestionnaireQuestion() => _QuestionBody(state: state),
-              QuestionnaireError(:final failure) => ErrorView(
-                failure: failure,
-                onRetry: () => context.read<QuestionnaireCubit>().retry(),
+        final questionState = state is QuestionnaireQuestion ? state : null;
+        final cubit = context.read<QuestionnaireCubit>();
+        return PopScope(
+          canPop: false,
+          child: Scaffold(
+            bottomNavigationBar:
+                questionState == null
+                    ? null
+                    : _QuestionBottomBar(
+                      canSubmit: questionState.canSubmit,
+                      isSubmitting: questionState.isSubmitting,
+                      onSubmit: cubit.submit,
+                      canSkip: questionState.question.isOptional,
+                      onSkip: cubit.skipCurrent,
+                    ),
+            body: SafeArea(
+              child: Column(
+                children: [
+                  const _QuestionnaireTopBar(),
+                  if (questionState?.isSubmitting == true)
+                    const _SubmittingTopProgress(),
+                  Expanded(
+                    child: switch (state) {
+                      QuestionnaireInitial() || QuestionnaireLoading() =>
+                        LoadingView(message: AppStrings.questionnaire.loading),
+                      QuestionnaireQuestion() => _QuestionBody(
+                        state: state,
+                        isSubmitting: state.isSubmitting,
+                      ),
+                      QuestionnaireError(:final failure) => ErrorView(
+                        failure: failure,
+                        onRetry: () => context.read<QuestionnaireCubit>().retry(),
+                      ),
+                      QuestionnaireResultReady() => const LoadingView(),
+                    },
+                  ),
+                ],
               ),
-              QuestionnaireCompleted() => const LoadingView(),
-            },
+            ),
           ),
         );
       },
@@ -65,24 +106,70 @@ class _QuestionnaireView extends StatelessWidget {
   }
 }
 
+class _SubmittingTopProgress extends StatelessWidget {
+  const _SubmittingTopProgress();
+
+  @override
+  Widget build(BuildContext context) {
+    return const LinearProgressIndicator(minHeight: 2);
+  }
+}
+
+class _QuestionnaireTopBar extends StatelessWidget {
+  const _QuestionnaireTopBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xxl,
+        AppSpacing.md,
+        AppSpacing.xxl,
+        AppSpacing.md,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: () => context.go('/welcome'),
+            child: const AppLogo(),
+          ),
+          const LanguageToggle(),
+        ],
+      ),
+    );
+  }
+}
+
 class _QuestionBody extends StatelessWidget {
-  const _QuestionBody({required this.state});
+  const _QuestionBody({required this.state, required this.isSubmitting});
 
   final QuestionnaireQuestion state;
+  final bool isSubmitting;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final cubit = context.read<QuestionnaireCubit>();
     final question = state.question;
+    final cubit = context.read<QuestionnaireCubit>();
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.md,
+        AppSpacing.xl,
+        AppSpacing.md,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ProgressBar(progress: state.progress),
-          const SizedBox(height: 24),
+          const SizedBox(height: AppSpacing.md),
+          Divider(
+            color: AppColors.border.withValues(alpha: 0.9),
+            height: 1,
+          ),
+          const SizedBox(height: AppSpacing.xl),
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -91,7 +178,7 @@ class _QuestionBody extends StatelessWidget {
                 children: [
                   Text(question.title, style: theme.textTheme.headlineMedium),
                   if (question.helpText != null) ...[
-                    const SizedBox(height: 8),
+                    const SizedBox(height: AppSpacing.sm),
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -100,61 +187,54 @@ class _QuestionBody extends StatelessWidget {
                       ),
                     ),
                   ],
-                  const SizedBox(height: 24),
-                  switch (question) {
-                    SingleChoiceQuestion(:final options) => SingleChoiceWidget(
-                      options: options,
-                      selectedId:
-                          state.selectedOptionIds.isEmpty
-                              ? null
-                              : state.selectedOptionIds.first,
-                      onSelect: cubit.selectSingle,
-                    ),
-                    MultipleChoiceQuestion(:final options) =>
-                      MultipleChoiceWidget(
-                        options: options,
-                        selectedIds: state.selectedOptionIds,
-                        onToggle: cubit.toggleMulti,
+                  if (question is MultipleChoiceQuestion &&
+                      question.helpText == null) ...[
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      AppStrings.questionnaire.multiSelectHint,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.textSecondary.withValues(alpha: 0.9),
+                        fontWeight: FontWeight.w500,
                       ),
-                    DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
-                      userId: _userIdFromContext(context),
-                      questionId: id,
-                      selected: state.dynamicSelected,
-                      onSelect: cubit.selectDynamic,
-                      onClear: cubit.clearDynamic,
                     ),
-                    UnknownQuestion(:final questionType) =>
-                      _UnsupportedQuestionView(questionType: questionType),
-                  },
+                  ],
+                  const SizedBox(height: AppSpacing.xxl),
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 180),
+                    curve: Curves.easeOut,
+                    opacity: isSubmitting ? 0.75 : 1,
+                    child: IgnorePointer(
+                      ignoring: isSubmitting,
+                      child: switch (question) {
+                        SingleChoiceQuestion(:final options) => SingleChoiceWidget(
+                          options: options,
+                          selectedId:
+                              state.selectedOptionIds.isEmpty
+                                  ? null
+                                  : state.selectedOptionIds.first,
+                          onSelect: cubit.selectSingle,
+                        ),
+                        MultipleChoiceQuestion(:final options) =>
+                          MultipleChoiceWidget(
+                            options: options,
+                            selectedIds: state.selectedOptionIds,
+                            onToggle: cubit.toggleMulti,
+                          ),
+                        DynamicOptionsQuestion(:final id) => DynamicOptionsWidget(
+                          userId: _userIdFromContext(context),
+                          questionId: id,
+                          selected: state.dynamicSelected,
+                          onSelect: cubit.selectDynamic,
+                          enabled: !isSubmitting,
+                        ),
+                        UnknownQuestion(:final questionType) =>
+                          _UnsupportedQuestionView(questionType: questionType),
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          QuestionFooter(
-            canSubmit: state.canSubmit,
-            onSubmit: cubit.submit,
-            canSkip: question.isOptional,
-            onSkip: cubit.skipCurrent,
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.lock_outline_rounded,
-                size: 14,
-                color: AppColors.textSecondary.withValues(alpha: 0.7),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                'Ваши ответы конфиденциальны',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontSize: 12,
-                  color: AppColors.textSecondary.withValues(alpha: 0.85),
-                ),
-              ),
-            ],
           ),
         ],
       ),
@@ -175,6 +255,46 @@ class _QuestionBody extends StatelessWidget {
   }
 }
 
+class _QuestionBottomBar extends StatelessWidget {
+  const _QuestionBottomBar({
+    required this.canSubmit,
+    required this.isSubmitting,
+    required this.onSubmit,
+    required this.canSkip,
+    required this.onSkip,
+  });
+
+  final bool canSubmit;
+  final bool isSubmitting;
+  final VoidCallback onSubmit;
+  final bool canSkip;
+  final VoidCallback onSkip;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      minimum: const EdgeInsets.fromLTRB(
+        AppSpacing.xl,
+        AppSpacing.sm,
+        AppSpacing.xl,
+        AppSpacing.md,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          QuestionFooter(
+            canSubmit: canSubmit,
+            isSubmitting: isSubmitting,
+            onSubmit: onSubmit,
+            canSkip: canSkip,
+            onSkip: onSkip,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// Fallback для неизвестного `question_type` — лучше явный «не поддерживается»,
 /// чем тихий рендер пустого single-choice с возможностью отправить мусор.
 class _UnsupportedQuestionView extends StatelessWidget {
@@ -185,13 +305,8 @@ class _UnsupportedQuestionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.border),
-      ),
+    return UiCard(
+      showShadow: false,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -202,25 +317,22 @@ class _UnsupportedQuestionView extends StatelessWidget {
                 size: 22,
                 color: AppColors.warning,
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.smd),
               Text(
-                'Тип вопроса не поддерживается',
-                style: theme.textTheme.titleLarge?.copyWith(fontSize: 15),
+                AppStrings.questionnaire.unsupportedTitle,
+                style: theme.textTheme.titleMedium,
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Text(
-            'Похоже, эта версия приложения устарела. Если вопрос '
-            'опциональный — пропустите его кнопкой ниже. Иначе обновите '
-            'приложение и попробуйте снова.',
+            AppStrings.questionnaire.unsupportedBody,
             style: theme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: AppSpacing.s),
           Text(
             'question_type: $questionType',
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 11,
+            style: theme.textTheme.bodySmall?.copyWith(
               color: AppColors.textSecondary,
               fontFamily: 'monospace',
             ),

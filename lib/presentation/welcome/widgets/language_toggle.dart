@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/motion.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Минимальный текстовый переключатель «RU / EN».
@@ -27,6 +30,7 @@ class _LanguageToggleState extends State<LanguageToggle> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -35,15 +39,11 @@ class _LanguageToggleState extends State<LanguageToggle> {
           active: _selected == AppLang.ru,
           onTap: () => _set(AppLang.ru),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
           child: Text(
             '/',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-            ),
+            style: theme.textTheme.bodyMedium,
           ),
         ),
         _LangText(
@@ -71,18 +71,20 @@ class _LangText extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(6),
+      borderRadius: BorderRadius.circular(AppRadius.xs),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.xs,
+          vertical: AppSpacing.s,
+        ),
         child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 180),
-          style: TextStyle(
+          duration: AppMotion.normal,
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
             color:
                 active
                     ? AppColors.primary
                     : AppColors.textSecondary.withValues(alpha: 0.55),
             fontWeight: active ? FontWeight.w700 : FontWeight.w500,
-            fontSize: 14,
             letterSpacing: 0.4,
           ),
           child: Text(label),

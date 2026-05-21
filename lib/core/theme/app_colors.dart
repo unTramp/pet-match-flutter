@@ -20,4 +20,7 @@ class AppColors {
   static const Color border = Color(0xFFECE5D5);
   static const Color error = Color(0xFFE74C3C);
   static const Color warning = Color(0xFFF39C12);
+  static const Color warningSurface = Color(0xFFFFF6E0);
+  static const Color warningBorder = Color(0xFFF0E1B8);
+  static const Color overlayDark = Color(0x80000000);
 }

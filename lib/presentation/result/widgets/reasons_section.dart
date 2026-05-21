@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Одна строка в [ReasonsSection]: иконка + текст.
@@ -22,7 +24,7 @@ class ReasonsSection extends StatelessWidget {
     super.key,
     required this.title,
     required this.items,
-    this.spacing = 12,
+    this.spacing = AppSpacing.md,
   });
 
   final String title;
@@ -38,13 +40,9 @@ class ReasonsSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
-          ),
+          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.md),
         ...List.generate(items.length, (i) {
           final item = items[i];
           return Padding(
@@ -75,18 +73,16 @@ class _ReasonRow extends StatelessWidget {
           margin: const EdgeInsets.only(top: 2),
           decoration: BoxDecoration(
             color: item.color.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(AppRadius.sm),
           ),
           alignment: Alignment.center,
           child: Icon(item.icon, size: 14, color: item.color),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: AppSpacing.md),
         Expanded(
           child: Text(
             item.text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontSize: 14,
-              height: 1.45,
               color: AppColors.textPrimary,
             ),
           ),

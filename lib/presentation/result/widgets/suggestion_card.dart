@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/compatibility.dart';
 
@@ -18,18 +20,18 @@ class SuggestionCard extends StatelessWidget {
     final imageUrl = suggestion.imageUrl;
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppRadius.xl),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.surface,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppRadius.xl),
           border: Border.all(color: AppColors.border),
         ),
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(AppSpacing.md),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(AppRadius.md),
               child: SizedBox(
                 width: 72,
                 height: 72,
@@ -60,7 +62,7 @@ class SuggestionCard extends StatelessWidget {
                         ),
               ),
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: AppSpacing.lg),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,12 +79,12 @@ class SuggestionCard extends StatelessWidget {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 3,
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xxs,
                         ),
                         decoration: BoxDecoration(
                           color: AppColors.primary.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(AppRadius.md),
                         ),
                         child: Text(
                           scoreLabel,
@@ -95,7 +97,7 @@ class SuggestionCard extends StatelessWidget {
                     ],
                   ),
                   if (suggestion.summary != null) ...[
-                    const SizedBox(height: 4),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       suggestion.summary!,
                       style: theme.textTheme.bodyMedium,

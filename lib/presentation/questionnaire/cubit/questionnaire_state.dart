@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 import '../../../core/failures.dart';
+import '../../../domain/entities/compatibility.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/entities/progress.dart';
 import '../../../domain/entities/question.dart';
@@ -28,12 +29,14 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     required this.progress,
     this.selectedOptionIds = const {},
     this.dynamicSelected,
+    this.isSubmitting = false,
   });
 
   final Question question;
   final Progress progress;
   final Set<int> selectedOptionIds;
   final DynamicOption? dynamicSelected;
+  final bool isSubmitting;
 
   bool get canSubmit => switch (question) {
     SingleChoiceQuestion() => selectedOptionIds.length == 1,
@@ -47,16 +50,14 @@ final class QuestionnaireQuestion extends QuestionnaireState {
   QuestionnaireQuestion copyWith({
     Set<int>? selectedOptionIds,
     DynamicOption? dynamicSelected,
-    bool clearDynamicSelected = false,
+    bool? isSubmitting,
   }) {
     return QuestionnaireQuestion(
       question: question,
       progress: progress,
       selectedOptionIds: selectedOptionIds ?? this.selectedOptionIds,
-      dynamicSelected:
-          clearDynamicSelected
-              ? null
-              : (dynamicSelected ?? this.dynamicSelected),
+      dynamicSelected: dynamicSelected ?? this.dynamicSelected,
+      isSubmitting: isSubmitting ?? this.isSubmitting,
     );
   }
 
@@ -66,17 +67,18 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     progress,
     selectedOptionIds,
     dynamicSelected,
+    isSubmitting,
   ];
 }
 
-/// Анкета завершена, переходим на /analyzing для polling совместимости.
-final class QuestionnaireCompleted extends QuestionnaireState {
-  const QuestionnaireCompleted({required this.userId});
+/// Совместимость готова, UI делает redirect на /result.
+final class QuestionnaireResultReady extends QuestionnaireState {
+  const QuestionnaireResultReady({required this.compatibility});
 
-  final int userId;
+  final Compatibility compatibility;
 
   @override
-  List<Object?> get props => [userId];
+  List<Object?> get props => [compatibility];
 }
 
 final class QuestionnaireError extends QuestionnaireState {

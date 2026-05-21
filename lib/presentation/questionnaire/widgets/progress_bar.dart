@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/progress.dart';
 
@@ -17,27 +20,44 @@ class ProgressBar extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Вопрос ${progress.answered + 1} из ${progress.total}',
+              '${AppStrings.questionnaire.progressLabel} ${progress.answered + 1} из ${progress.total}',
               style: theme.textTheme.bodyMedium,
             ),
             const Spacer(),
             Text(
               '${progress.percentInt}%',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.primary,
+                color: AppColors.primary.withValues(alpha: 0.85),
                 fontWeight: FontWeight.w600,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppSpacing.sm),
         ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: LinearProgressIndicator(
-            value: progress.percent,
-            minHeight: 6,
-            backgroundColor: AppColors.border,
-            valueColor: const AlwaysStoppedAnimation(AppColors.primary),
+          borderRadius: BorderRadius.circular(AppRadius.sm),
+          child: SizedBox(
+            height: 6,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Container(color: AppColors.border),
+                FractionallySizedBox(
+                  widthFactor: progress.percent.clamp(0.0, 1.0),
+                  alignment: Alignment.centerLeft,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.primary.withValues(alpha: 0.82),
+                          AppColors.primary,
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/design/tokens/motion.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Универсальная плашка ответа: белая карточка с радиусом 20, тонкой границей,
@@ -23,52 +26,60 @@ class OptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(20);
-    return Material(
-      color: Colors.transparent,
-      borderRadius: radius,
-      child: InkWell(
-        onTap: onTap,
+    final radius = BorderRadius.circular(AppRadius.xxl);
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: label,
+      child: Material(
+        color: Colors.transparent,
         borderRadius: radius,
-        splashColor: AppColors.primary.withValues(alpha: 0.06),
-        highlightColor: AppColors.primary.withValues(alpha: 0.04),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: radius,
-            border: Border.all(
-              color: selected ? AppColors.primary : AppColors.border,
-              width: selected ? 1.5 : 1,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: radius,
+          splashColor: AppColors.primary.withValues(alpha: 0.06),
+          highlightColor: AppColors.primary.withValues(alpha: 0.04),
+          child: AnimatedContainer(
+            duration: AppMotion.normal,
+            curve: Curves.easeOut,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.xl,
+              vertical: 18,
             ),
-            boxShadow: [
-              BoxShadow(
-                color:
-                    selected
-                        ? AppColors.primary.withValues(alpha: 0.18)
-                        : Colors.black.withValues(alpha: 0.04),
-                offset: const Offset(0, 6),
-                blurRadius: selected ? 18 : 12,
-                spreadRadius: -2,
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: radius,
+              border: Border.all(
+                color: selected ? AppColors.primary : AppColors.border,
+                width: selected ? 1.5 : 1,
               ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  label,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-                    color: AppColors.textPrimary,
+              boxShadow: [
+                BoxShadow(
+                  color:
+                      selected
+                          ? AppColors.primary.withValues(alpha: 0.18)
+                          : Colors.black.withValues(alpha: 0.04),
+                  offset: const Offset(0, 6),
+                  blurRadius: selected ? 18 : 12,
+                  spreadRadius: -2,
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    label,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              trailing,
-            ],
+                const SizedBox(width: AppSpacing.md),
+                ExcludeSemantics(child: trailing),
+              ],
+            ),
           ),
         ),
       ),
@@ -86,7 +97,7 @@ class OptionRadio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
+      duration: AppMotion.normal,
       width: 24,
       height: 24,
       decoration: BoxDecoration(
@@ -102,7 +113,7 @@ class OptionRadio extends StatelessWidget {
       alignment: Alignment.center,
       child: AnimatedScale(
         scale: selected ? 1 : 0,
-        duration: const Duration(milliseconds: 180),
+        duration: AppMotion.normal,
         curve: Curves.easeOutBack,
         child: Container(
           width: 12,
@@ -127,7 +138,7 @@ class OptionCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
+      duration: AppMotion.normal,
       width: 24,
       height: 24,
       decoration: BoxDecoration(
@@ -144,7 +155,7 @@ class OptionCheck extends StatelessWidget {
       alignment: Alignment.center,
       child: AnimatedOpacity(
         opacity: selected ? 1 : 0,
-        duration: const Duration(milliseconds: 180),
+        duration: AppMotion.normal,
         child: const Icon(Icons.check_rounded, size: 16, color: Colors.white),
       ),
     );

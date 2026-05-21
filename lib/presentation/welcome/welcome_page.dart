@@ -1,11 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/cache/session_cache.dart';
+import '../../core/design/components/ui_button.dart';
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/motion.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
+import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
-import '../widgets/gradient_button.dart';
+import '../../domain/usecases/start_session.dart';
 import 'widgets/app_logo.dart';
 import 'widgets/decorations.dart';
 import 'widgets/language_toggle.dart';
@@ -26,14 +33,80 @@ class WelcomePage extends StatefulWidget {
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends State<WelcomePage>
+    with SingleTickerProviderStateMixin {
+  static const _prefetchTimeout = Duration(seconds: 15);
   late Future<bool> _hasActiveSession;
+  late final AnimationController _introController;
+  late final Animation<double> _headlineFade;
+  late final Animation<Offset> _headlineSlide;
+  late final Animation<double> _subtitleFade;
+  late final Animation<Offset> _subtitleSlide;
+  late final Animation<double> _ctaFade;
+  late final Animation<Offset> _ctaSlide;
   bool _imagePrecached = false;
+  bool _isContinuing = false;
 
   @override
   void initState() {
     super.initState();
     _hasActiveSession = sl<SessionCache>().hasActiveSession();
+    _introController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    _headlineFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
+    );
+    _headlineSlide = Tween<Offset>(
+      begin: const Offset(0, 0.08),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.0, 0.55, curve: Curves.easeOutCubic),
+      ),
+    );
+    _subtitleFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
+    );
+    _subtitleSlide = Tween<Offset>(
+      begin: const Offset(0, 0.08),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.28, 0.84, curve: Curves.easeOutQuart),
+      ),
+    );
+    _ctaFade = CurvedAnimation(
+      parent: _introController,
+      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+    );
+    _ctaSlide = Tween<Offset>(
+      begin: const Offset(0, 0.06),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _introController,
+        curve: const Interval(0.5, 1.0, curve: Curves.easeOutCubic),
+      ),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // На iOS первый layout/paint может "съесть" начало анимации.
+      // Стартуем после первого кадра с короткой паузой.
+      await Future<void>.delayed(const Duration(milliseconds: 40));
+      if (!mounted) return;
+      unawaited(_introController.forward(from: 0));
+    });
+  }
+
+  @override
+  void dispose() {
+    _introController.dispose();
+    super.dispose();
   }
 
   @override
@@ -52,6 +125,24 @@ class _WelcomePageState extends State<WelcomePage> {
     setState(() {
       _hasActiveSession = Future.value(false);
     });
+  }
+
+  Future<void> _onContinueToQuestionnaire() async {
+    if (_isContinuing) return;
+    setState(() => _isContinuing = true);
+    try {
+      final session = await sl<StartSession>()().timeout(
+        _prefetchTimeout,
+        onTimeout: () => throw const TimeoutFailure(),
+      );
+      if (!mounted) return;
+      context.go('/questionnaire', extra: session);
+    } catch (_) {
+      if (!mounted) return;
+      context.go('/questionnaire');
+    } finally {
+      if (mounted) setState(() => _isContinuing = false);
+    }
   }
 
   @override
@@ -79,7 +170,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 'assets/images/cat.png',
                 fit: BoxFit.contain,
                 alignment: Alignment.bottomRight,
-                semanticLabel: 'Иллюстрация кота',
+                semanticLabel: AppStrings.welcome.catImageSemantic,
               ),
             ),
             const Positioned.fill(
@@ -102,7 +193,12 @@ class _WelcomePageState extends State<WelcomePage> {
             ),
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.xxl,
+                  AppSpacing.md,
+                  AppSpacing.xxl,
+                  AppSpacing.md,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -111,34 +207,46 @@ class _WelcomePageState extends State<WelcomePage> {
                       children: [AppLogo(), LanguageToggle()],
                     ),
                     const Spacer(flex: 1),
-                    _HeroHeadline(theme: theme),
-                    const SizedBox(height: 14),
-                    Text(
-                      'Несколько коротких вопросов о вашем образе жизни '
-                      '— и мы покажем, какие породы подойдут именно вам.',
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 14,
-                        height: 1.45,
+                    _AnimatedTextEntrance(
+                      fade: _headlineFade,
+                      slide: _headlineSlide,
+                      child: _HeroHeadline(theme: theme),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    _AnimatedTextEntrance(
+                      fade: _subtitleFade,
+                      slide: _subtitleSlide,
+                      child: Text(
+                        AppStrings.welcome.subtitle,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: AppColors.textSecondary,
+                          fontSize: 15,
+                          height: 1.5,
+                        ),
                       ),
                     ),
                     const Spacer(flex: 5),
-                    FutureBuilder<bool>(
-                      future: _hasActiveSession,
-                      builder: (context, snapshot) {
-                        // Оптимистичный рендер: всегда показываем кнопку.
-                        // Когда hasActiveSession резолвится — мягко
-                        // обновляем label.
-                        final hasSession = snapshot.data ?? false;
-                        return _BottomActions(
-                          hasSession: hasSession,
-                          onPressed:
-                              () => context.go(
-                                hasSession ? '/questionnaire' : '/intro',
-                              ),
-                          onRestart: hasSession ? _onRestart : null,
-                        );
-                      },
+                    _AnimatedTextEntrance(
+                      fade: _ctaFade,
+                      slide: _ctaSlide,
+                      child: FutureBuilder<bool>(
+                        future: _hasActiveSession,
+                        builder: (context, snapshot) {
+                          // Оптимистичный рендер: всегда показываем кнопку.
+                          // Когда hasActiveSession резолвится — мягко
+                          // обновляем label.
+                          final hasSession = snapshot.data ?? false;
+                          return _BottomActions(
+                            hasSession: hasSession,
+                            loading: _isContinuing,
+                            onPressed:
+                                hasSession
+                                    ? _onContinueToQuestionnaire
+                                    : () => context.go('/intro'),
+                            onRestart: hasSession ? _onRestart : null,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -151,6 +259,26 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 }
 
+class _AnimatedTextEntrance extends StatelessWidget {
+  const _AnimatedTextEntrance({
+    required this.fade,
+    required this.slide,
+    required this.child,
+  });
+
+  final Animation<double> fade;
+  final Animation<Offset> slide;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: fade,
+      child: SlideTransition(position: slide, child: child),
+    );
+  }
+}
+
 class _HeroHeadline extends StatelessWidget {
   const _HeroHeadline({required this.theme});
 
@@ -159,9 +287,10 @@ class _HeroHeadline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseStyle = theme.textTheme.headlineLarge?.copyWith(
-      fontSize: 34,
+      fontSize: 36,
       fontWeight: FontWeight.w800,
       height: 1.1,
+      letterSpacing: -0.45,
       color: AppColors.textPrimary,
     );
     return ConstrainedBox(
@@ -170,12 +299,12 @@ class _HeroHeadline extends StatelessWidget {
         text: TextSpan(
           style: baseStyle,
           children: [
-            const TextSpan(text: 'Найдём питомца,\n'),
+            TextSpan(text: AppStrings.welcome.heroLine1),
             TextSpan(
-              text: 'который \nподойдёт\n',
+              text: AppStrings.welcome.heroLine2,
               style: baseStyle?.copyWith(color: AppColors.primary),
             ),
-            const TextSpan(text: 'именно вам.'),
+            TextSpan(text: AppStrings.welcome.heroLine3),
           ],
         ),
       ),
@@ -186,11 +315,13 @@ class _HeroHeadline extends StatelessWidget {
 class _BottomActions extends StatelessWidget {
   const _BottomActions({
     required this.hasSession,
+    required this.loading,
     required this.onPressed,
     required this.onRestart,
   });
 
   final bool hasSession;
+  final bool loading;
   final VoidCallback onPressed;
   final VoidCallback? onRestart;
 
@@ -200,16 +331,23 @@ class _BottomActions extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AnimatedSwitcher(
-          duration: const Duration(milliseconds: 200),
-          child: GradientButton(
+          duration: AppMotion.normal,
+          child: UiButton(
             key: ValueKey<bool>(hasSession),
-            label: hasSession ? 'Продолжить' : 'Подобрать питомца',
+            label:
+                hasSession
+                    ? AppStrings.welcome.ctaContinue
+                    : AppStrings.welcome.ctaStart,
             onPressed: onPressed,
+            loading: loading,
           ),
         ),
         if (onRestart != null) ...[
-          const SizedBox(height: 6),
-          TextButton(onPressed: onRestart, child: const Text('Начать заново')),
+          const SizedBox(height: AppSpacing.s),
+          TextButton(
+            onPressed: onRestart,
+            child: Text(AppStrings.common.restart),
+          ),
         ],
       ],
     );

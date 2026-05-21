@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/spacing.dart';
 import '../../core/di/injection.dart';
 import '../../core/failures.dart';
 import '../../core/theme/app_colors.dart';
@@ -66,11 +68,11 @@ class _AnalyzingPageState extends State<AnalyzingPage>
                   failure: _failure!,
                   onRetry: _start,
                   onSecondary: () => context.go('/welcome'),
-                  secondaryLabel: 'Начать заново',
+                  secondaryLabel: AppStrings.common.restart,
                 )
                 : Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(AppSpacing.xxl),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -95,14 +97,14 @@ class _AnalyzingPageState extends State<AnalyzingPage>
                             ),
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: AppSpacing.xxxl),
                         Text(
-                          'Анализируем ответы',
+                          AppStrings.analyzing.title,
                           style: theme.textTheme.headlineMedium,
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AppSpacing.sm),
                         Text(
-                          'Подбираем подходящую породу под ваш профиль…',
+                          AppStrings.analyzing.subtitle,
                           style: theme.textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),

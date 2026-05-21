@@ -4,9 +4,11 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pet_match/core/failures.dart';
 import 'package:pet_match/domain/entities/answer.dart';
 import 'package:pet_match/domain/entities/option.dart';
+import 'package:pet_match/domain/entities/compatibility.dart';
 import 'package:pet_match/domain/entities/progress.dart';
 import 'package:pet_match/domain/entities/question.dart';
 import 'package:pet_match/domain/entities/session.dart';
+import 'package:pet_match/domain/usecases/poll_compatibility.dart';
 import 'package:pet_match/domain/usecases/skip_question.dart';
 import 'package:pet_match/domain/usecases/start_session.dart';
 import 'package:pet_match/domain/usecases/submit_answer.dart';
@@ -18,6 +20,8 @@ class _MockStart extends Mock implements StartSession {}
 class _MockSubmit extends Mock implements SubmitAnswer {}
 
 class _MockSkip extends Mock implements SkipQuestion {}
+
+class _MockPoll extends Mock implements PollCompatibility {}
 
 const _firstQuestion = SingleChoiceQuestion(
   id: 101,
@@ -41,10 +45,13 @@ Session _sessionWithQuestion(Question? q, {int answered = 0, int total = 2}) =>
       nextQuestion: q,
     );
 
+const _readyCompatibility = Compatibility(status: CompatibilityStatus.ready);
+
 void main() {
   late _MockStart start;
   late _MockSubmit submit;
   late _MockSkip skip;
+  late _MockPoll poll;
 
   setUpAll(() {
     registerFallbackValue(const SingleAnswer(questionId: 0, optionId: 0));
@@ -54,6 +61,10 @@ void main() {
     start = _MockStart();
     submit = _MockSubmit();
     skip = _MockSkip();
+    poll = _MockPoll();
+    when(
+      () => poll(userId: any(named: 'userId')),
+    ).thenAnswer((_) async => _readyCompatibility);
   });
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
@@ -63,7 +74,7 @@ void main() {
         start.call,
       ).thenAnswer((_) async => _sessionWithQuestion(_firstQuestion));
     },
-    build: () => QuestionnaireCubit(start, submit, skip),
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
     act: (cubit) => cubit.start(),
     expect:
         () => [
@@ -77,7 +88,7 @@ void main() {
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
-    'submit on non-last question emits [Loading, Question(next)]',
+    'submit on non-last question keeps question visible and emits Question(next)',
     setUp: () {
       when(
         start.call,
@@ -89,7 +100,7 @@ void main() {
         (_) async => _sessionWithQuestion(_secondQuestion, answered: 1),
       );
     },
-    build: () => QuestionnaireCubit(start, submit, skip),
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
     act: (cubit) async {
       await cubit.start();
       cubit.selectSingle(1);
@@ -103,7 +114,11 @@ void main() {
             'selection',
             {1},
           ),
-          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
           isA<QuestionnaireQuestion>().having(
             (s) => s.question.id,
             'next question id',
@@ -113,7 +128,7 @@ void main() {
   );
 
   blocTest<QuestionnaireCubit, QuestionnaireState>(
-    'submit on last question emits Completed',
+    'submit on last question emits ResultReady',
     setUp: () {
       when(
         start.call,
@@ -125,7 +140,7 @@ void main() {
         (_) async => _sessionWithQuestion(null, answered: 2, total: 2),
       );
     },
-    build: () => QuestionnaireCubit(start, submit, skip),
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
     act: (cubit) async {
       await cubit.start();
       cubit.selectSingle(1);
@@ -135,8 +150,12 @@ void main() {
     expect:
         () => [
           isA<QuestionnaireQuestion>(),
-          isA<QuestionnaireLoading>(),
-          isA<QuestionnaireCompleted>().having((s) => s.userId, 'userId', 7),
+          isA<QuestionnaireQuestion>().having(
+            (s) => s.isSubmitting,
+            'isSubmitting',
+            true,
+          ),
+          isA<QuestionnaireResultReady>(),
         ],
   );
 
@@ -145,13 +164,29 @@ void main() {
     setUp: () {
       when(start.call).thenThrow(const NetworkFailure());
     },
-    build: () => QuestionnaireCubit(start, submit, skip),
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
     act: (cubit) => cubit.start(),
     expect:
         () => [
           isA<QuestionnaireLoading>(),
           isA<QuestionnaireError>()
               .having((s) => s.failure, 'failure', isA<NetworkFailure>())
+              .having((s) => s.canRetry, 'canRetry', true),
+        ],
+  );
+
+  blocTest<QuestionnaireCubit, QuestionnaireState>(
+    'start unexpected exception emits generic ServerFailure instead of infinite loading',
+    setUp: () {
+      when(start.call).thenThrow(const FormatException('bad json'));
+    },
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
+    act: (cubit) => cubit.start(),
+    expect:
+        () => [
+          isA<QuestionnaireLoading>(),
+          isA<QuestionnaireError>()
+              .having((s) => s.failure, 'failure', isA<ServerFailure>())
               .having((s) => s.canRetry, 'canRetry', true),
         ],
   );
@@ -179,7 +214,7 @@ void main() {
       setUp: () {
         when(start.call).thenAnswer((_) async => sessionWithMulti());
       },
-      build: () => QuestionnaireCubit(start, submit, skip),
+      build: () => QuestionnaireCubit(start, submit, skip, poll),
       act: (cubit) async {
         await cubit.start();
         cubit.toggleMulti(30); // Собака
@@ -198,7 +233,7 @@ void main() {
       setUp: () {
         when(start.call).thenAnswer((_) async => sessionWithMulti());
       },
-      build: () => QuestionnaireCubit(start, submit, skip),
+      build: () => QuestionnaireCubit(start, submit, skip, poll),
       act: (cubit) async {
         await cubit.start();
         cubit.toggleMulti(29); // Нет (exclusive)
@@ -216,7 +251,7 @@ void main() {
       setUp: () {
         when(start.call).thenAnswer((_) async => sessionWithMulti());
       },
-      build: () => QuestionnaireCubit(start, submit, skip),
+      build: () => QuestionnaireCubit(start, submit, skip, poll),
       act: (cubit) async {
         await cubit.start();
         cubit.toggleMulti(30);
@@ -243,7 +278,7 @@ void main() {
         return _sessionWithQuestion(_firstQuestion);
       });
     },
-    build: () => QuestionnaireCubit(start, submit, skip),
+    build: () => QuestionnaireCubit(start, submit, skip, poll),
     act: (cubit) async {
       await cubit.start();
       await cubit.retry();
@@ -256,4 +291,5 @@ void main() {
           isA<QuestionnaireQuestion>(),
         ],
   );
+
 }

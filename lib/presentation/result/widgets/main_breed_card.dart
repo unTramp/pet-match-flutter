@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/content/app_strings.dart';
+import '../../../core/design/tokens/radius.dart';
+import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../domain/entities/compatibility.dart';
 
@@ -22,6 +25,17 @@ class MainBreedCard extends StatelessWidget {
     return AppColors.accent;
   }
 
+  String _statusText() {
+    if (compatibility.compatible == false ||
+        compatibility.risk == CompatibilityRisk.high) {
+      return AppStrings.result.chipRefused;
+    }
+    if (compatibility.risk == CompatibilityRisk.medium) {
+      return AppStrings.result.chipMedium;
+    }
+    return AppStrings.result.chipGood;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -32,11 +46,11 @@ class MainBreedCard extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(AppRadius.xxl),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.surface,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppRadius.xxl),
           border: Border.all(color: AppColors.border),
         ),
         clipBehavior: Clip.antiAlias,
@@ -45,15 +59,28 @@ class MainBreedCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 16 / 10,
-              child:
-                  imageUrl != null
-                      ? CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        fit: BoxFit.cover,
-                        placeholder:
-                            (_, __) => Container(color: AppColors.border),
-                        errorWidget:
-                            (_, __, ___) => Container(
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child:
+                        imageUrl != null
+                            ? CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  (_, __) => Container(color: AppColors.border),
+                              errorWidget:
+                                  (_, __, ___) => Container(
+                                    color: AppColors.border,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Icons.pets_rounded,
+                                      size: 48,
+                                      color: AppColors.textSecondary,
+                                    ),
+                                  ),
+                            )
+                            : Container(
                               color: AppColors.border,
                               alignment: Alignment.center,
                               child: const Icon(
@@ -62,19 +89,36 @@ class MainBreedCard extends StatelessWidget {
                                 color: AppColors.textSecondary,
                               ),
                             ),
-                      )
-                      : Container(
-                        color: AppColors.border,
-                        alignment: Alignment.center,
-                        child: const Icon(
-                          Icons.pets_rounded,
-                          size: 48,
-                          color: AppColors.textSecondary,
+                  ),
+                  Positioned(
+                    top: AppSpacing.md,
+                    right: AppSpacing.md,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.overlayDark,
+                        borderRadius: BorderRadius.circular(AppRadius.md),
+                        border: Border.all(
+                          color: AppColors.surface.withValues(alpha: 0.24),
                         ),
                       ),
+                      child: Text(
+                        _statusText(),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: AppColors.surface,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(AppSpacing.xl),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -82,52 +126,44 @@ class MainBreedCard extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          compatibility.breedName ?? 'Порода',
+                          compatibility.breedName ?? AppStrings.common.unknownBreed,
                           style: theme.textTheme.headlineMedium,
                         ),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
+                          horizontal: AppSpacing.md,
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: accent.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(20),
+                          color: accent.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(AppRadius.xxl),
                         ),
                         child: Text(
                           scoreLabel,
-                          style: theme.textTheme.labelLarge?.copyWith(
+                          style: theme.textTheme.bodyMedium?.copyWith(
                             color: accent,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                     ],
                   ),
                   if (compatibility.summary != null) ...[
-                    const SizedBox(height: 12),
+                    const SizedBox(height: AppSpacing.md),
                     Text(
                       compatibility.summary!,
                       style: theme.textTheme.bodyMedium,
                     ),
                   ],
                   if (onTap != null) ...[
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Text(
-                          'Подробнее о породе',
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: AppColors.primary,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        const Icon(
-                          Icons.arrow_forward_rounded,
-                          size: 18,
-                          color: AppColors.primary,
-                        ),
-                      ],
+                    const SizedBox(height: AppSpacing.lg),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: onTap,
+                        child: Text(AppStrings.result.ctaViewBreed),
+                      ),
                     ),
                   ],
                 ],

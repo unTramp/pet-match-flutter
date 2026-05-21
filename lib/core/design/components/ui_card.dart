@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+import '../../theme/app_colors.dart';
+import '../tokens/radius.dart';
+import '../tokens/spacing.dart';
+
+class UiCard extends StatelessWidget {
+  const UiCard({
+    super.key,
+    required this.child,
+    this.padding = const EdgeInsets.all(AppSpacing.xl),
+    this.borderRadius = AppRadius.xxl,
+    this.showShadow = true,
+  });
+
+  final Widget child;
+  final EdgeInsets padding;
+  final double borderRadius;
+  final bool showShadow;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(borderRadius),
+        border: Border.all(color: AppColors.border),
+        boxShadow:
+            showShadow
+                ? [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.03),
+                    offset: const Offset(0, 4),
+                    blurRadius: 12,
+                    spreadRadius: -4,
+                  ),
+                ]
+                : const [],
+      ),
+      child: child,
+    );
+  }
+}
