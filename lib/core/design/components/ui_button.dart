@@ -119,7 +119,18 @@ class UiButton extends StatelessWidget {
                 minSize: AppControlSize.buttonHeight,
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
                 onPressed: effectiveOnPressed,
-                child: child,
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.1,
+                  ),
+                  child: IconTheme(
+                    data: const IconThemeData(color: Colors.white),
+                    child: child,
+                  ),
+                ),
               ),
             ),
           ),
