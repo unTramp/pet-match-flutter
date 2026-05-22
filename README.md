@@ -1,5 +1,7 @@
 # Pet Match - Flutter
 
+![Pet Match AI — обзор](docs/screenshots/hero.png)
+
 Flutter-приложение с Android-first фокусом, реализующее полный пользовательский сценарий Pet Match AI: Welcome, анкета, результаты совместимости, детали породы и галерея.
 
 ## Запуск
@@ -92,6 +94,3 @@ flutter test
 - Чек-лист ТЗ: [docs/tz-compliance.md](docs/tz-compliance.md)
 - Дизайн-система: [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)
 
-## Скриншоты
-
-![Pet Match AI — обзор](docs/screenshots/hero.png)
