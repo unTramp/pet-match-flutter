@@ -61,31 +61,66 @@ class UiButton extends StatelessWidget {
       final button = switch (variant) {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
-          child: DecoratedBox(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),
+              gradient:
+                  effectiveOnPressed == null && !loading
+                      ? null
+                      : const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          AppColors.primaryGradientStart,
+                          AppColors.primary,
+                          AppColors.primaryGradientEnd,
+                        ],
+                      ),
+              color:
+                  effectiveOnPressed == null && !loading
+                      ? AppColors.border
+                      : null,
               boxShadow:
-                  effectiveOnPressed == null
+                  effectiveOnPressed == null && !loading
                       ? const []
                       : [
                         BoxShadow(
                           color: AppColors.primary.withValues(
                             alpha: AppAlpha.borderMuted,
                           ),
-                          offset: const Offset(0, 8),
-                          blurRadius: 18,
-                          spreadRadius: -4,
+                          offset: const Offset(0, 10),
+                          blurRadius: 24,
+                          spreadRadius: -6,
                         ),
                       ],
             ),
-            child: CupertinoButton(
-              color: AppColors.primary,
-              disabledColor: AppColors.border,
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              minSize: AppControlSize.buttonHeight,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-              onPressed: effectiveOnPressed,
-              child: child,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                gradient:
+                    effectiveOnPressed == null && !loading
+                        ? null
+                        : LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.white.withValues(alpha: AppAlpha.highlight),
+                            Colors.white.withValues(
+                              alpha: AppAlpha.transparent,
+                            ),
+                          ],
+                        ),
+              ),
+              child: CupertinoButton(
+                color: Colors.transparent,
+                disabledColor: Colors.transparent,
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                minSize: AppControlSize.buttonHeight,
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                onPressed: effectiveOnPressed,
+                child: child,
+              ),
             ),
           ),
         ),

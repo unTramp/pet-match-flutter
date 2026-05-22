@@ -13,7 +13,7 @@ class AppColors {
   static const Color lavenderTint = Color(0xFFEEE9F8);
   static const Color surface = Color(0xFFFFFFFF);
   static const Color textPrimary = Color(0xFF1F2330);
-  static const Color textSecondary = Color(0xFF6E7079);
+  static const Color textSecondary = Color(0xFF5F6470);
   static const Color border = Color(0xFFE8EBF3);
   static const Color error = Color(0xFFE74C3C);
   static const Color warning = Color(0xFFF39C12);

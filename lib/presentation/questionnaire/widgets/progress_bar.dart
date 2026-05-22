@@ -31,7 +31,9 @@ class ProgressBar extends StatelessWidget {
             Text(
               '${progress.percentInt}%',
               style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
+                color: AppColors.primary.withValues(
+                  alpha: AppAlpha.textOverSurface,
+                ),
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -53,7 +55,9 @@ class ProgressBar extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          AppColors.primary.withValues(alpha: AppAlpha.textOverSurface),
+                          AppColors.primary.withValues(
+                            alpha: AppAlpha.textOverSurface,
+                          ),
                           AppColors.primary,
                         ],
                       ),
@@ -63,6 +67,24 @@ class ProgressBar extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        const SizedBox(height: AppSpacing.md),
+        Row(
+          children: [
+            Icon(
+              Icons.schedule_rounded,
+              size: AppIconSize.md,
+              color: AppColors.primary.withValues(alpha: AppAlpha.muted),
+            ),
+            const SizedBox(width: AppSpacing.xs),
+            Text(
+              AppStrings.questionnaire.timeEstimate,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: AppColors.textSecondary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ],
     );

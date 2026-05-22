@@ -79,19 +79,19 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.w400,
           color: AppColors.textPrimary,
-          height: 1.52,
+          height: 1.56,
         ),
         bodyMedium: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
           color: AppColors.textSecondary,
-          height: 1.5,
+          height: 1.56,
         ),
         bodySmall: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.w400,
           color: AppColors.textSecondary,
-          height: 1.45,
+          height: 1.5,
         ),
         labelLarge: TextStyle(
           fontSize: 16,

@@ -46,6 +46,7 @@ class AppStrings {
     skipCta: 'Пропустить',
     progressLabel: 'Вопрос',
     progressOf: 'из',
+    timeEstimate: 'Это займёт около 1 минуты',
     multiSelectHint: 'Можно выбрать несколько вариантов',
     searchHint: 'Поиск породы',
     searchEmpty: 'Ничего не найдено',
@@ -160,6 +161,7 @@ class QuestionnaireStrings {
     required this.skipCta,
     required this.progressLabel,
     required this.progressOf,
+    required this.timeEstimate,
     required this.multiSelectHint,
     required this.searchHint,
     required this.searchEmpty,
@@ -172,6 +174,7 @@ class QuestionnaireStrings {
   final String skipCta;
   final String progressLabel;
   final String progressOf;
+  final String timeEstimate;
   final String multiSelectHint;
   final String searchHint;
   final String searchEmpty;

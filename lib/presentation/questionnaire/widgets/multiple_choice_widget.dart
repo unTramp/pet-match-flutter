@@ -29,7 +29,7 @@ class MultipleChoiceWidget extends StatelessWidget {
             label: opt.label,
             selected: selected,
             onTap: () => onToggle(opt.id),
-            trailing: OptionCheck(selected: selected),
+            trailing: selected ? const OptionCheck(selected: true) : null,
           ),
         );
       }),

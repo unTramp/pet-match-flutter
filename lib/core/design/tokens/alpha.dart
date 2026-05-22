@@ -19,6 +19,7 @@ class AppAlpha {
   // Borders / outlines / soft tinted shadows.
   static const double borderSubtle = 0.18;
   static const double borderMuted = 0.24;
+  static const double highlight = 0.20;
 
   // Muted/disabled foreground.
   static const double mutedHeavy = 0.45;
@@ -27,6 +28,7 @@ class AppAlpha {
   static const double divider = 0.9;
 
   // Overlay / gradient stops.
+  static const double transparent = 0.00;
   static const double overlayMid = 0.80;
 
   // Drop shadows on neutral surfaces.
