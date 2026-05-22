@@ -130,7 +130,7 @@ void main() {
   });
 
   group('UiButton — Cupertino (iOS)', () {
-    testWidgets('primary — градиентная CTA с белым label', (tester) async {
+    testWidgets('primary — solid CTA с белым label', (tester) async {
       var taps = 0;
       await tester.pumpWidget(
         _wrap(

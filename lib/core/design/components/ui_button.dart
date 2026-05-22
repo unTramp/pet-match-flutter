@@ -65,22 +65,10 @@ class UiButton extends StatelessWidget {
             duration: const Duration(milliseconds: 160),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),
-              gradient:
-                  effectiveOnPressed == null && !loading
-                      ? null
-                      : const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          AppColors.primaryGradientStart,
-                          AppColors.primary,
-                          AppColors.primaryGradientEnd,
-                        ],
-                      ),
               color:
                   effectiveOnPressed == null && !loading
                       ? AppColors.border
-                      : null,
+                      : AppColors.primary,
               boxShadow:
                   effectiveOnPressed == null && !loading
                       ? const []
@@ -95,41 +83,23 @@ class UiButton extends StatelessWidget {
                         ),
                       ],
             ),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                gradient:
-                    effectiveOnPressed == null && !loading
-                        ? null
-                        : LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.white.withValues(alpha: AppAlpha.highlight),
-                            Colors.white.withValues(
-                              alpha: AppAlpha.transparent,
-                            ),
-                          ],
-                        ),
-              ),
-              child: CupertinoButton(
-                color: Colors.transparent,
-                disabledColor: Colors.transparent,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                minSize: AppControlSize.buttonHeight,
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-                onPressed: effectiveOnPressed,
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.1,
-                  ),
-                  child: IconTheme(
-                    data: const IconThemeData(color: Colors.white),
-                    child: child,
-                  ),
+            child: CupertinoButton(
+              color: Colors.transparent,
+              disabledColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              minSize: AppControlSize.buttonHeight,
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              onPressed: effectiveOnPressed,
+              child: DefaultTextStyle(
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.1,
+                ),
+                child: IconTheme(
+                  data: const IconThemeData(color: Colors.white),
+                  child: child,
                 ),
               ),
             ),

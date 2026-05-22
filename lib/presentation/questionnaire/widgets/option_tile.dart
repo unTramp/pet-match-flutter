@@ -39,51 +39,43 @@ class OptionTile extends StatelessWidget {
           highlightColor: AppColors.primary.withValues(
             alpha: AppAlpha.tintFaint,
           ),
-          child: AnimatedScale(
-            scale: selected ? 1.01 : 1,
+          child: AnimatedContainer(
             duration: AppMotion.normal,
             curve: Curves.easeOutCubic,
-            child: AnimatedContainer(
-              duration: AppMotion.normal,
-              curve: Curves.easeOutCubic,
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.xl,
-                vertical: AppSpacing.lg,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.xl,
+              vertical: AppSpacing.lg,
+            ),
+            decoration: BoxDecoration(
+              color:
+                  selected
+                      ? AppColors.primary.withValues(alpha: AppAlpha.tintSubtle)
+                      : AppColors.surface,
+              borderRadius: radius,
+              border: Border.all(
+                color: selected ? AppColors.primary : AppColors.border,
               ),
-              decoration: BoxDecoration(
-                color:
-                    selected
-                        ? AppColors.primary.withValues(
-                          alpha: AppAlpha.tintSubtle,
-                        )
-                        : AppColors.surface,
-                borderRadius: radius,
-                border: Border.all(
-                  color: selected ? AppColors.primary : AppColors.border,
-                ),
-                boxShadow:
-                    selected
-                        ? AppShadows.optionSelected(AppColors.primary)
-                        : AppShadows.option,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      label,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight:
-                            selected ? FontWeight.w700 : FontWeight.w500,
-                        color: AppColors.textPrimary,
-                      ),
+              boxShadow:
+                  selected
+                      ? AppShadows.optionSelected(AppColors.primary)
+                      : AppShadows.option,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    label,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                      color: AppColors.textPrimary,
                     ),
                   ),
-                  if (trailing != null) ...[
-                    const SizedBox(width: AppSpacing.md),
-                    ExcludeSemantics(child: trailing),
-                  ],
+                ),
+                if (trailing != null) ...[
+                  const SizedBox(width: AppSpacing.md),
+                  ExcludeSemantics(child: trailing),
                 ],
-              ),
+              ],
             ),
           ),
         ),
