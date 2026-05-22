@@ -2,11 +2,18 @@
   {
     "id": 101,
     "code": "pet_type",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Какой питомец вам интересен?",
     "help_text": "Это поможет подобрать подходящую породу.",
     "question_type": "single_choice",
-    "is_optional": false,
     "sort_order": 1,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "1",
+      "question_weight": 1,
+      "sequence": 1
+    },
     "options": [
       {"id": 1, "code": "dog", "label": "Собака", "sort_order": 1},
       {"id": 2, "code": "cat", "label": "Кошка", "sort_order": 2}
@@ -15,11 +22,18 @@
   {
     "id": 102,
     "code": "living_space",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Где вы живёте?",
     "help_text": null,
     "question_type": "single_choice",
-    "is_optional": false,
     "sort_order": 2,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "2",
+      "question_weight": 1,
+      "sequence": 2
+    },
     "options": [
       {"id": 11, "code": "studio", "label": "Студия / маленькая квартира", "sort_order": 1},
       {"id": 12, "code": "apartment", "label": "Просторная квартира", "sort_order": 2},
@@ -29,11 +43,18 @@
   {
     "id": 103,
     "code": "activity_level",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Насколько вы активный человек?",
     "help_text": "Питомец будет разделять ваш образ жизни.",
     "question_type": "single_choice",
-    "is_optional": false,
     "sort_order": 3,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "3",
+      "question_weight": 1,
+      "sequence": 3
+    },
     "options": [
       {"id": 21, "code": "low", "label": "Спокойный, домашний", "sort_order": 1},
       {"id": 22, "code": "medium", "label": "Прогулки и активность", "sort_order": 2},
@@ -43,11 +64,18 @@
   {
     "id": 104,
     "code": "experience",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Что для вас важно в питомце?",
     "help_text": "Можно выбрать несколько вариантов.",
     "question_type": "multiple_choice",
-    "is_optional": false,
     "sort_order": 4,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "4",
+      "question_weight": 1,
+      "sequence": 4
+    },
     "options": [
       {"id": 31, "code": "calm", "label": "Спокойный темперамент", "sort_order": 1},
       {"id": 32, "code": "kids_friendly", "label": "Дружелюбен к детям", "sort_order": 2},
@@ -59,11 +87,18 @@
   {
     "id": 105,
     "code": "allergies",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Есть ли у вас аллергии?",
     "help_text": "Влияет на выбор гипоаллергенных пород.",
     "question_type": "single_choice",
-    "is_optional": true,
     "sort_order": 5,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "5",
+      "question_weight": 1,
+      "sequence": 5
+    },
     "options": [
       {"id": 41, "code": "yes", "label": "Да", "sort_order": 1},
       {"id": 42, "code": "no", "label": "Нет", "sort_order": 2}
@@ -72,11 +107,19 @@
   {
     "id": 106,
     "code": "preferred_breed",
+    "scope_code": "people",
+    "tag": "Mock",
     "title": "Есть ли порода, которая вас вдохновляет?",
     "help_text": "Можно пропустить и довериться рекомендации.",
-    "question_type": "dynamic_options",
-    "is_optional": true,
+    "question_type": "search_select",
     "sort_order": 6,
+    "config_json": {
+      "source_scope": "people",
+      "source_number": "6",
+      "question_weight": 1,
+      "sequence": 6,
+      "options_source": "breeds"
+    },
     "options": []
   }
 ]

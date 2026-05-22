@@ -5,6 +5,7 @@
   "pet_type": "dog",
   "summary": "Одна из самых умных пород в мире. Требует постоянной умственной и физической нагрузки.",
   "image_url": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=1200",
+  "gallery_url": null,
   "gallery_images": [
     "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=1200",
     "https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?w=1200",
@@ -12,10 +13,12 @@
   ],
   "sections": [
     {
+      "key": "character",
       "title": "Характер",
       "body": "Энергичный, очень умный, нуждается в работе и постоянных задачах."
     },
     {
+      "key": "care",
       "title": "Уход",
       "body": "Регулярные тренировки и активные прогулки несколько раз в день обязательны."
     }

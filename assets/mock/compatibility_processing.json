@@ -1,5 +1,24 @@
 {
   "status": "processing",
+  "updated_at": null,
+  "profile_id": 1,
+  "pet_type": null,
+  "breed_id": null,
+  "breed_code": null,
+  "image_url": null,
+  "breed_name": null,
+  "compatible": null,
+  "risk_level": null,
+  "score": null,
+  "hard_fail_count": 0,
+  "risk_score": 0,
+  "summary": null,
   "insights": [],
-  "suggestions": []
+  "requirement_highlights": [],
+  "hard_reasons": [],
+  "risks": [],
+  "refusal": null,
+  "suggestions": [],
+  "rules_version": "mock-rule-payload-v1",
+  "error": null
 }
