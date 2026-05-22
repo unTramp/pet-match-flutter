@@ -4,6 +4,7 @@ import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
+import '../../../core/design/tokens/strokes.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Короткий alert-блок «Важно» на Result-экране — иконка + заголовок + текст.
@@ -25,7 +26,7 @@ class AlertBlock extends StatelessWidget {
         color: AppColors.error.withValues(alpha: AppAlpha.tintSubtle),
         borderRadius: BorderRadius.circular(AppRadius.xl),
         border: const Border(
-          left: BorderSide(color: AppColors.error, width: 3),
+          left: BorderSide(color: AppColors.error, width: AppStroke.strong),
         ),
       ),
       child: Row(

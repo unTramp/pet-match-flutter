@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
+import '../content/app_strings.dart';
 import '../tokens/sizes.dart';
 import '../tokens/spacing.dart';
+import '../tokens/strokes.dart';
 import 'ui_button.dart';
 
 class UiStateView extends StatelessWidget {
@@ -36,9 +38,18 @@ class UiStateView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (loading)
-              const CircularProgressIndicator(strokeWidth: 3)
+              Semantics(
+                label: AppStrings.common.loadingDefault,
+                child: const CircularProgressIndicator(
+                  strokeWidth: AppStroke.strong,
+                ),
+              )
             else if (icon != null)
-              Icon(icon, size: AppIconSize.emptyState, color: AppColors.textSecondary),
+              Icon(
+                icon,
+                size: AppIconSize.emptyState,
+                color: AppColors.textSecondary,
+              ),
             if (message != null) ...[
               const SizedBox(height: AppSpacing.lg),
               Text(

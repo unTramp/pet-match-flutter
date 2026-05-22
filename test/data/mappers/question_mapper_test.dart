@@ -66,6 +66,36 @@ void main() {
       expect(result, isA<DynamicOptionsQuestion>());
     });
 
+    test(
+      'search_select breeds source is not optional without explicit flag',
+      () {
+        const dto = QuestionDto(
+          id: 41,
+          title: 'Какая порода собаки вам ближе?',
+          questionType: 'search_select',
+          configJson: {'options_source': 'breeds'},
+        );
+
+        final result = QuestionMapper.fromDto(dto);
+
+        expect(result, isA<DynamicOptionsQuestion>());
+        expect(result.isOptional, isFalse);
+      },
+    );
+
+    test('config_json can_skip=true marks any question as optional', () {
+      const dto = QuestionDto(
+        id: 42,
+        title: 'Можно пропустить?',
+        questionType: 'single_choice',
+        configJson: {'can_skip': true},
+      );
+
+      final result = QuestionMapper.fromDto(dto);
+
+      expect(result.isOptional, isTrue);
+    });
+
     test('exclusive_option_codes пробрасываются в MultipleChoiceQuestion', () {
       const dto = QuestionDto(
         id: 8,

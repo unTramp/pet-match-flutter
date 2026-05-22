@@ -6,6 +6,7 @@ import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/shadows.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
+import '../../../core/design/tokens/strokes.dart';
 import '../../../core/theme/app_colors.dart';
 
 class OptionTile extends StatelessWidget {
@@ -105,7 +106,7 @@ class OptionCheck extends StatelessWidget {
                   : AppColors.textSecondary.withValues(
                     alpha: AppAlpha.mutedHeavy,
                   ),
-          width: 1.5,
+          width: AppStroke.regular,
         ),
       ),
       alignment: Alignment.center,

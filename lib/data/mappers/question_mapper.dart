@@ -11,6 +11,7 @@ class QuestionMapper {
   /// пользователю кривой пустой single-choice. UI рендерит explicit fallback
   /// с предложением пропустить.
   static Question fromDto(QuestionDto dto) {
+    final isOptional = _isOptional(dto);
     final options = (dto.options.toList()
           ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder)))
         .map(OptionMapper.fromDto)
@@ -21,14 +22,14 @@ class QuestionMapper {
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
-        isOptional: dto.isOptional,
+        isOptional: isOptional,
         options: options,
       ),
       'multiple_choice' => MultipleChoiceQuestion(
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
-        isOptional: dto.isOptional,
+        isOptional: isOptional,
         options: options,
         exclusiveOptionCodes: _readExclusiveCodes(dto.configJson),
       ),
@@ -38,16 +39,40 @@ class QuestionMapper {
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
-        isOptional: dto.isOptional,
+        isOptional: isOptional,
       ),
       _ => UnknownQuestion(
         id: dto.id,
         title: dto.title,
         helpText: dto.helpText,
-        isOptional: dto.isOptional,
+        isOptional: isOptional,
         questionType: dto.questionType,
       ),
     };
+  }
+
+  static bool _isOptional(QuestionDto dto) {
+    if (dto.isOptional) return true;
+    final configJson = dto.configJson;
+    if (configJson == null) return false;
+
+    final explicit = _readBool(configJson, const [
+      'is_optional',
+      'optional',
+      'can_skip',
+      'skippable',
+    ]);
+    if (explicit != null) return explicit;
+
+    return false;
+  }
+
+  static bool? _readBool(Map<String, dynamic> json, List<String> keys) {
+    for (final key in keys) {
+      final value = json[key];
+      if (value is bool) return value;
+    }
+    return null;
   }
 
   static Set<String> _readExclusiveCodes(Map<String, dynamic>? configJson) {

@@ -16,77 +16,84 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text(
-              '${AppStrings.questionnaire.progressLabel} '
-              '${progress.answered + 1} '
-              '${AppStrings.questionnaire.progressOf} ${progress.total}',
-              style: theme.textTheme.bodyMedium,
-            ),
-            const Spacer(),
-            Text(
-              '${progress.percentInt}%',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.primary.withValues(
-                  alpha: AppAlpha.textOverSurface,
-                ),
-                fontWeight: FontWeight.w600,
+    return Semantics(
+      container: true,
+      label:
+          '${AppStrings.questionnaire.progressLabel} ${progress.answered + 1} '
+          '${AppStrings.questionnaire.progressOf} ${progress.total}, '
+          '${progress.percentInt}%. ${AppStrings.questionnaire.timeEstimate}.',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                '${AppStrings.questionnaire.progressLabel} '
+                '${progress.answered + 1} '
+                '${AppStrings.questionnaire.progressOf} ${progress.total}',
+                style: theme.textTheme.bodyMedium,
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(AppRadius.sm),
-          child: SizedBox(
-            height: AppControlSize.progressBarHeight,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(color: AppColors.border),
-                FractionallySizedBox(
-                  widthFactor: progress.percent.clamp(0.0, 1.0),
-                  alignment: Alignment.centerLeft,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.primary.withValues(
-                            alpha: AppAlpha.textOverSurface,
-                          ),
-                          AppColors.primary,
-                        ],
+              const Spacer(),
+              Text(
+                '${progress.percentInt}%',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: AppColors.primary.withValues(
+                    alpha: AppAlpha.textOverSurface,
+                  ),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.sm),
+            child: SizedBox(
+              height: AppControlSize.progressBarHeight,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(color: AppColors.border),
+                  FractionallySizedBox(
+                    widthFactor: progress.percent.clamp(0.0, 1.0),
+                    alignment: Alignment.centerLeft,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.primary.withValues(
+                              alpha: AppAlpha.textOverSurface,
+                            ),
+                            AppColors.primary,
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.md),
-        Row(
-          children: [
-            Icon(
-              Icons.schedule_rounded,
-              size: AppIconSize.md,
-              color: AppColors.primary.withValues(alpha: AppAlpha.muted),
-            ),
-            const SizedBox(width: AppSpacing.xs),
-            Text(
-              AppStrings.questionnaire.timeEstimate,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: AppColors.textSecondary,
-                fontWeight: FontWeight.w500,
+                ],
               ),
             ),
-          ],
-        ),
-      ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Row(
+            children: [
+              Icon(
+                Icons.schedule_rounded,
+                size: AppIconSize.md,
+                color: AppColors.primary.withValues(alpha: AppAlpha.muted),
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                AppStrings.questionnaire.timeEstimate,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: AppColors.textSecondary,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
