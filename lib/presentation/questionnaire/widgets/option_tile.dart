@@ -116,7 +116,7 @@ class OptionCheck extends StatelessWidget {
         child: const Icon(
           Icons.check_rounded,
           size: AppIconSize.sm,
-          color: Colors.white,
+          color: AppColors.surface,
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
 import '../content/app_strings.dart';
 import '../tokens/alpha.dart';
+import '../tokens/motion.dart';
 import '../tokens/radius.dart';
 import '../tokens/sizes.dart';
 import '../tokens/spacing.dart';
@@ -67,7 +68,7 @@ class UiButton extends StatelessWidget {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 160),
+            duration: AppMotion.fast,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),
               color:
