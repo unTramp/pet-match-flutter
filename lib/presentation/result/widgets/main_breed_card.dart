@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/components/animated_score_label.dart';
 import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
@@ -159,8 +160,8 @@ class MainBreedCard extends StatelessWidget {
                             color: accent.withValues(alpha: AppAlpha.tintSoft),
                             borderRadius: BorderRadius.circular(AppRadius.xxl),
                           ),
-                          child: Text(
-                            scoreLabel,
+                          child: AnimatedScoreLabel(
+                            score: compatibility.score,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: accent,
                               fontWeight: FontWeight.w600,
