@@ -8,7 +8,7 @@ import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Универсальная плашка ответа: белая карточка с радиусом 20, тонкой границей,
+/// Универсальная плашка ответа: белая карточка с радиусом 16, тонкой границей,
 /// текстом слева и `trailing`-виджетом (radio / checkbox) справа.
 ///
 /// Used by [SingleChoiceWidget] и [MultipleChoiceWidget]. Контент слева
@@ -29,7 +29,7 @@ class OptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(AppRadius.xxl);
+    final radius = BorderRadius.circular(AppRadius.xl);
     return Semantics(
       button: true,
       selected: selected,
@@ -52,11 +52,14 @@ class OptionTile extends StatelessWidget {
               vertical: 18,
             ),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color:
+                  selected
+                      ? AppColors.primary.withValues(alpha: AppAlpha.tintFaint)
+                      : AppColors.surface,
               borderRadius: radius,
               border: Border.all(
                 color: selected ? AppColors.primary : AppColors.border,
-                width: selected ? 1.5 : 1,
+                width: 1,
               ),
               boxShadow:
                   selected
@@ -160,7 +163,7 @@ class OptionCheck extends StatelessWidget {
         duration: AppMotion.normal,
         child: const Icon(
           Icons.check_rounded,
-          size: AppIconSize.md,
+          size: AppIconSize.sm,
           color: Colors.white,
         ),
       ),

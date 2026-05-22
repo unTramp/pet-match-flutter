@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../design/tokens/alpha.dart';
 import '../design/tokens/radius.dart';
 import '../design/tokens/sizes.dart';
 import 'app_colors.dart';
@@ -111,6 +112,12 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
+          disabledBackgroundColor: AppColors.border,
+          disabledForegroundColor: Colors.white,
+          elevation: 8,
+          shadowColor: AppColors.primary.withValues(
+            alpha: AppAlpha.borderMuted,
+          ),
           minimumSize: const Size.fromHeight(AppControlSize.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.lg),
