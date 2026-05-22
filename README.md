@@ -79,6 +79,13 @@ flutter test
 - Polling совместимости встроен в flow анкеты и корректно доводит пользователя до результата.
 - Android-сборка подготовлена для локальной проверки и ручного демо.
 
+## Компромиссы и границы scope
+
+- Реализован основной flow из ТЗ: onboarding, анкета, анализ, результат, детали породы и галерея.
+- Feedback/post-result flow не добавлялся, так как он прямо исключён из задания.
+- Release APK собирается локально стандартными Flutter-шагами; отдельная production-подпись не требуется для тестового задания.
+- Mock-режим оставлен как вспомогательный сценарий для оффлайн-демо, основная проверка рассчитана на dev API.
+
 ## Архитектурные акценты
 
 - **Источник данных переключается build-флагом.** По умолчанию используется реальный dev API; mock-режим (`assets/mock/*.json`) подключается через `--dart-define=USE_MOCK=true` для offline-демо и тестов.
@@ -88,9 +95,10 @@ flutter test
 
 ## Документация
 
-- Архитектура и соответствие ТЗ: [docs/АРХИТЕКТУРА_И_СООТВЕТСТВИЕ_ТЗ.md](docs/АРХИТЕКТУРА_И_СООТВЕТСТВИЕ_ТЗ.md)
-- Чек-лист ТЗ: [docs/tz-compliance.md](docs/tz-compliance.md)
-- Дизайн-система: [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)
+- Архитектура и соответствие ТЗ: [docs/architecture-and-requirements.md](docs/architecture-and-requirements.md)
+- Чек-лист ТЗ: [docs/requirements-checklist.md](docs/requirements-checklist.md)
+- Дизайн-система: [docs/design-system.md](docs/design-system.md)
+- Пользовательский сценарий: [docs/user-flow.md](docs/user-flow.md)
 
 ## Скриншоты
 
