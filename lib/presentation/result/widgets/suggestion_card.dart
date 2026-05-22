@@ -40,31 +40,35 @@ class SuggestionCard extends StatelessWidget {
                 child: SizedBox(
                   width: AppControlSize.thumb,
                   height: AppControlSize.thumb,
-                  child:
-                      imageUrl != null
-                          ? CachedNetworkImage(
-                            imageUrl: imageUrl,
-                            fit: BoxFit.cover,
-                            placeholder:
-                                (_, __) => Container(color: AppColors.border),
-                            errorWidget:
-                                (_, __, ___) => Container(
-                                  color: AppColors.border,
-                                  alignment: Alignment.center,
-                                  child: const Icon(
-                                    Icons.pets_rounded,
-                                    color: AppColors.textSecondary,
+                  child: Hero(
+                    tag: 'breed_image_${suggestion.breedId}',
+                    child:
+                        imageUrl != null
+                            ? CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  (_, __) =>
+                                      Container(color: AppColors.border),
+                              errorWidget:
+                                  (_, __, ___) => Container(
+                                    color: AppColors.border,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Icons.pets_rounded,
+                                      color: AppColors.textSecondary,
+                                    ),
                                   ),
-                                ),
-                          )
-                          : Container(
-                            color: AppColors.border,
-                            alignment: Alignment.center,
-                            child: const Icon(
-                              Icons.pets_rounded,
-                              color: AppColors.textSecondary,
+                            )
+                            : Container(
+                              color: AppColors.border,
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.pets_rounded,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
-                          ),
+                  ),
                 ),
               ),
               const SizedBox(width: AppSpacing.lg),

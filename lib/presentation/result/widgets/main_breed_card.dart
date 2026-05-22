@@ -46,8 +46,16 @@ class MainBreedCard extends StatelessWidget {
     final scoreLabel = formatScorePercent(compatibility.score);
     final imageUrl = compatibility.imageUrl;
     final accent = _scoreColor();
+    final breedId = compatibility.breedId;
 
     final breedName = compatibility.breedName ?? AppStrings.common.unknownBreed;
+    Widget wrapHero(Widget child) {
+      // Hero только когда есть стабильный breedId — иначе теги
+      // могут конфликтовать (на /result может оказаться несколько
+      // карточек без id, и transition сломается).
+      if (breedId == null) return child;
+      return Hero(tag: 'breed_image_$breedId', child: child);
+    }
     return Semantics(
       button: onTap != null,
       label: '$breedName, $scoreLabel, ${_statusText()}',
@@ -69,34 +77,35 @@ class MainBreedCard extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      child:
-                          imageUrl != null
-                              ? CachedNetworkImage(
-                                imageUrl: imageUrl,
-                                fit: BoxFit.cover,
-                                placeholder:
-                                    (_, __) =>
-                                        Container(color: AppColors.border),
-                                errorWidget:
-                                    (_, __, ___) => Container(
-                                      color: AppColors.border,
-                                      alignment: Alignment.center,
-                                      child: const Icon(
-                                        Icons.pets_rounded,
-                                        size: AppIconSize.xxxl,
-                                        color: AppColors.textSecondary,
-                                      ),
+                      child: wrapHero(
+                        imageUrl != null
+                            ? CachedNetworkImage(
+                              imageUrl: imageUrl,
+                              fit: BoxFit.cover,
+                              placeholder:
+                                  (_, __) =>
+                                      Container(color: AppColors.border),
+                              errorWidget:
+                                  (_, __, ___) => Container(
+                                    color: AppColors.border,
+                                    alignment: Alignment.center,
+                                    child: const Icon(
+                                      Icons.pets_rounded,
+                                      size: AppIconSize.xxxl,
+                                      color: AppColors.textSecondary,
                                     ),
-                              )
-                              : Container(
-                                color: AppColors.border,
-                                alignment: Alignment.center,
-                                child: const Icon(
-                                  Icons.pets_rounded,
-                                  size: AppIconSize.xxxl,
-                                  color: AppColors.textSecondary,
-                                ),
+                                  ),
+                            )
+                            : Container(
+                              color: AppColors.border,
+                              alignment: Alignment.center,
+                              child: const Icon(
+                                Icons.pets_rounded,
+                                size: AppIconSize.xxxl,
+                                color: AppColors.textSecondary,
                               ),
+                            ),
+                      ),
                     ),
                     Positioned(
                       top: AppSpacing.md,

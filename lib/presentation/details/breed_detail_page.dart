@@ -83,11 +83,15 @@ class _BreedDetailContent extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.xl),
             child: AspectRatio(
               aspectRatio: 16 / 10,
-              child: CachedNetworkImage(
-                imageUrl: detail.imageUrl!,
-                fit: BoxFit.cover,
-                placeholder: (_, __) => Container(color: AppColors.border),
-                errorWidget: (_, __, ___) => Container(color: AppColors.border),
+              child: Hero(
+                tag: 'breed_image_${detail.breedId}',
+                child: CachedNetworkImage(
+                  imageUrl: detail.imageUrl!,
+                  fit: BoxFit.cover,
+                  placeholder: (_, __) => Container(color: AppColors.border),
+                  errorWidget:
+                      (_, __, ___) => Container(color: AppColors.border),
+                ),
               ),
             ),
           ),

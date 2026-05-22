@@ -7,6 +7,7 @@ import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
+import '../../../core/design/tokens/strokes.dart';
 import '../../../core/failures.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/usecases/get_dynamic_options.dart';
@@ -111,7 +112,9 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                         child: SizedBox(
                           width: AppControlSize.selector,
                           height: AppControlSize.selector,
-                          child: CircularProgressIndicator(strokeWidth: 2),
+                          child: CircularProgressIndicator(
+                            strokeWidth: AppStroke.indicator,
+                          ),
                         ),
                       ),
                     ),

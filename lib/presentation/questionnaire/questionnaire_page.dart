@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/app_dialog.dart';
 import '../../core/design/components/ui_card.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/alpha.dart';
@@ -57,23 +58,19 @@ class _QuestionnaireView extends StatelessWidget {
   const _QuestionnaireView();
 
   Future<void> _confirmExit(BuildContext context) async {
-    final shouldLeave = await showDialog<bool>(
-      context: context,
-      builder:
-          (dialogCtx) => AlertDialog(
-            title: Text(AppStrings.questionnaire.exitConfirmTitle),
-            content: Text(AppStrings.questionnaire.exitConfirmBody),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(dialogCtx).pop(false),
-                child: Text(AppStrings.questionnaire.exitConfirmStay),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(dialogCtx).pop(true),
-                child: Text(AppStrings.questionnaire.exitConfirmLeave),
-              ),
-            ],
-          ),
+    final shouldLeave = await AppDialog.show(
+      context,
+      title: AppStrings.questionnaire.exitConfirmTitle,
+      body: AppStrings.questionnaire.exitConfirmBody,
+      secondaryAction: AppDialogAction(
+        label: AppStrings.questionnaire.exitConfirmStay,
+        value: false,
+      ),
+      primaryAction: AppDialogAction(
+        label: AppStrings.questionnaire.exitConfirmLeave,
+        value: true,
+        isDestructive: true,
+      ),
     );
     if (shouldLeave == true && context.mounted) {
       context.go(AppRoutes.welcome);
