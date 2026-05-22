@@ -59,20 +59,21 @@ class _QuestionnaireView extends StatelessWidget {
   Future<void> _confirmExit(BuildContext context) async {
     final shouldLeave = await showDialog<bool>(
       context: context,
-      builder: (dialogCtx) => AlertDialog(
-        title: Text(AppStrings.questionnaire.exitConfirmTitle),
-        content: Text(AppStrings.questionnaire.exitConfirmBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogCtx).pop(false),
-            child: Text(AppStrings.questionnaire.exitConfirmStay),
+      builder:
+          (dialogCtx) => AlertDialog(
+            title: Text(AppStrings.questionnaire.exitConfirmTitle),
+            content: Text(AppStrings.questionnaire.exitConfirmBody),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogCtx).pop(false),
+                child: Text(AppStrings.questionnaire.exitConfirmStay),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(dialogCtx).pop(true),
+                child: Text(AppStrings.questionnaire.exitConfirmLeave),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(dialogCtx).pop(true),
-            child: Text(AppStrings.questionnaire.exitConfirmLeave),
-          ),
-        ],
-      ),
     );
     if (shouldLeave == true && context.mounted) {
       context.go(AppRoutes.welcome);
@@ -92,28 +93,29 @@ class _QuestionnaireView extends StatelessWidget {
         final cubit = context.read<QuestionnaireCubit>();
         return PopScope(
           canPop: false,
-          onPopInvoked: (didPop) {
+          onPopInvokedWithResult: (didPop, _) {
             if (didPop) return;
             _confirmExit(context);
           },
           child: Scaffold(
-            bottomNavigationBar: questionState == null
-                ? null
-                : SafeArea(
-                    minimum: const EdgeInsets.fromLTRB(
-                      AppSpacing.xl,
-                      AppSpacing.sm,
-                      AppSpacing.xl,
-                      AppSpacing.md,
+            bottomNavigationBar:
+                questionState == null
+                    ? null
+                    : SafeArea(
+                      minimum: const EdgeInsets.fromLTRB(
+                        AppSpacing.xl,
+                        AppSpacing.sm,
+                        AppSpacing.xl,
+                        AppSpacing.md,
+                      ),
+                      child: QuestionFooter(
+                        canSubmit: questionState.canSubmit,
+                        isSubmitting: questionState.isSubmitting,
+                        onSubmit: cubit.submit,
+                        canSkip: questionState.question.isOptional,
+                        onSkip: cubit.skipCurrent,
+                      ),
                     ),
-                    child: QuestionFooter(
-                      canSubmit: questionState.canSubmit,
-                      isSubmitting: questionState.isSubmitting,
-                      onSubmit: cubit.submit,
-                      canSkip: questionState.question.isOptional,
-                      onSkip: cubit.skipCurrent,
-                    ),
-                  ),
             body: SafeArea(
               child: Column(
                 children: [
@@ -134,10 +136,7 @@ class _QuestionnaireView extends StatelessWidget {
                         onRetry:
                             () => context.read<QuestionnaireCubit>().retry(),
                       ),
-                      // Финальное состояние — listener уже инициировал
-                      // переход на /result. Показываем тот же LoadingView,
-                      // чтобы экран не «мигнул» пустотой во время transition.
-                      QuestionnaireResultReady() => const LoadingView(),
+                      QuestionnaireResultReady() => const SizedBox.shrink(),
                     },
                   ),
                 ],
@@ -222,9 +221,10 @@ class _QuestionBody extends StatelessWidget {
                         SingleChoiceQuestion(:final options) =>
                           SingleChoiceWidget(
                             options: options,
-                            selectedId: state.selectedOptionIds.isEmpty
-                                ? null
-                                : state.selectedOptionIds.first,
+                            selectedId:
+                                state.selectedOptionIds.isEmpty
+                                    ? null
+                                    : state.selectedOptionIds.first,
                             onSelect: cubit.selectSingle,
                           ),
                         MultipleChoiceQuestion(:final options) =>
