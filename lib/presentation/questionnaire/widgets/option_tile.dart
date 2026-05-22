@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/motion.dart';
@@ -34,7 +35,10 @@ class OptionTile extends StatelessWidget {
         color: Colors.transparent,
         borderRadius: radius,
         child: InkWell(
-          onTap: onTap,
+          onTap: () {
+            HapticFeedback.selectionClick();
+            onTap();
+          },
           borderRadius: radius,
           splashColor: AppColors.primary.withValues(alpha: AppAlpha.splash),
           highlightColor: AppColors.primary.withValues(

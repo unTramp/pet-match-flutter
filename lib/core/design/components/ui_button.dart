@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../theme/app_colors.dart';
 import '../content/app_strings.dart';
@@ -35,7 +36,14 @@ class UiButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isIos = Theme.of(context).platform == TargetPlatform.iOS;
-    final effectiveOnPressed = loading ? null : onPressed;
+    final rawOnPressed = loading ? null : onPressed;
+    final effectiveOnPressed =
+        rawOnPressed == null
+            ? null
+            : () {
+              HapticFeedback.lightImpact();
+              rawOnPressed();
+            };
     final spinnerColor =
         variant == UiButtonVariant.primary ? Colors.white : AppColors.primary;
     final spinner = Semantics(
