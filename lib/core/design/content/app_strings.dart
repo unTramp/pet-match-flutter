@@ -55,6 +55,10 @@ class AppStrings {
         'Похоже, эта версия приложения устарела. Если вопрос '
         'опциональный - пропустите его кнопкой ниже. Иначе обновите '
         'приложение и попробуйте снова.',
+    exitConfirmTitle: 'Выйти из анкеты?',
+    exitConfirmBody: 'Текущие ответы сохранятся — вы сможете продолжить позже.',
+    exitConfirmStay: 'Остаться',
+    exitConfirmLeave: 'Выйти',
   );
 
   static const ResultStrings result = ResultStrings(
@@ -167,6 +171,10 @@ class QuestionnaireStrings {
     required this.searchEmpty,
     required this.unsupportedTitle,
     required this.unsupportedBody,
+    required this.exitConfirmTitle,
+    required this.exitConfirmBody,
+    required this.exitConfirmStay,
+    required this.exitConfirmLeave,
   });
 
   final String loading;
@@ -180,6 +188,10 @@ class QuestionnaireStrings {
   final String searchEmpty;
   final String unsupportedTitle;
   final String unsupportedBody;
+  final String exitConfirmTitle;
+  final String exitConfirmBody;
+  final String exitConfirmStay;
+  final String exitConfirmLeave;
 }
 
 class ResultStrings {

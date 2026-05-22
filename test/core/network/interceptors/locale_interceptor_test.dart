@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pet_match/core/localization/locale_provider.dart';
 import 'package:pet_match/core/network/interceptors/locale_interceptor.dart';
 
 class _FakeHandler extends RequestInterceptorHandler {
@@ -10,19 +13,23 @@ class _FakeHandler extends RequestInterceptorHandler {
   }
 }
 
+LocaleInterceptor _interceptor(String code) =>
+    LocaleInterceptor(StaticLocaleProvider(Locale(code)));
+
 void main() {
-  test('LocaleInterceptor добавляет locale по умолчанию', () {
-    final interceptor = LocaleInterceptor();
+  test('LocaleInterceptor добавляет locale из provider', () {
+    final interceptor = _interceptor('ru');
     final options = RequestOptions(path: '/test');
     final handler = _FakeHandler();
 
     interceptor.onRequest(options, handler);
 
     expect(handler.captured?.queryParameters['locale'], 'ru');
+    expect(handler.captured?.headers['Accept-Language'], 'ru');
   });
 
   test('LocaleInterceptor не перезатирает уже-присутствующий locale', () {
-    final interceptor = LocaleInterceptor();
+    final interceptor = _interceptor('ru');
     final options = RequestOptions(
       path: '/test',
       queryParameters: {'locale': 'fr'},
@@ -34,13 +41,14 @@ void main() {
     expect(handler.captured?.queryParameters['locale'], 'fr');
   });
 
-  test('LocaleInterceptor позволяет переопределить localeCode', () {
-    final interceptor = LocaleInterceptor(localeCode: 'en');
+  test('LocaleInterceptor берёт код из provider', () {
+    final interceptor = _interceptor('en');
     final options = RequestOptions(path: '/test');
     final handler = _FakeHandler();
 
     interceptor.onRequest(options, handler);
 
     expect(handler.captured?.queryParameters['locale'], 'en');
+    expect(handler.captured?.headers['Accept-Language'], 'en');
   });
 }

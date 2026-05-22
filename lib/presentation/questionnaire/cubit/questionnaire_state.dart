@@ -29,8 +29,13 @@ final class QuestionnaireAnalyzing extends QuestionnaireState {
 
 /// Активный вопрос. Холдит локальный выбор пользователя и — для
 /// `DynamicOptionsQuestion` — текущий список подгруженных опций.
+///
+/// `userId` хранится в state, а не как поле Cubit'а: это делает
+/// зависимость явной для UI (DynamicOptionsWidget берёт userId из state),
+/// и снимает риск дёрнуть запрос до того, как сессия стартовала.
 final class QuestionnaireQuestion extends QuestionnaireState {
   const QuestionnaireQuestion({
+    required this.userId,
     required this.question,
     required this.progress,
     this.selectedOptionIds = const {},
@@ -38,6 +43,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     this.isSubmitting = false,
   });
 
+  final int userId;
   final Question question;
   final Progress progress;
   final Set<int> selectedOptionIds;
@@ -61,6 +67,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
     bool? isSubmitting,
   }) {
     return QuestionnaireQuestion(
+      userId: userId,
       question: question,
       progress: progress,
       selectedOptionIds: selectedOptionIds ?? this.selectedOptionIds,
@@ -73,6 +80,7 @@ final class QuestionnaireQuestion extends QuestionnaireState {
 
   @override
   List<Object?> get props => [
+    userId,
     question,
     progress,
     selectedOptionIds,

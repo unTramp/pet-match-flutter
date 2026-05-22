@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:get_it/get_it.dart';
 
 import '../../data/repositories/breed_repository_impl.dart';
@@ -5,6 +7,7 @@ import '../../data/repositories/questionnaire_repository_impl.dart';
 import '../../data/sources/http_pet_match_remote_source.dart';
 import '../../data/sources/mock_pet_match_remote_source.dart';
 import '../../data/sources/pet_match_remote_source.dart';
+import '../localization/locale_provider.dart';
 import '../../domain/repositories/breed_repository.dart';
 import '../../domain/repositories/questionnaire_repository.dart';
 import '../../domain/usecases/get_breed_detail.dart';
@@ -13,6 +16,8 @@ import '../../domain/usecases/poll_compatibility.dart';
 import '../../domain/usecases/skip_question.dart';
 import '../../domain/usecases/start_session.dart';
 import '../../domain/usecases/submit_answer.dart';
+import '../../presentation/details/cubit/breed_detail_cubit.dart';
+import '../../presentation/questionnaire/cubit/questionnaire_cubit.dart';
 import '../cache/session_cache.dart';
 import '../network/dio_client.dart';
 
@@ -38,13 +43,15 @@ Future<void> configureDependencies() async {
 
   // Core singletons.
   sl.registerLazySingleton<SessionCache>(SessionCache.new);
+  sl.registerLazySingleton<LocaleProvider>(
+    () => const StaticLocaleProvider(Locale('ru')),
+  );
 
   // Remote source — Mock or Http depending on build-time flag.
   sl.registerLazySingleton<PetMatchRemoteSource>(
-    () =>
-        useMock
-            ? MockPetMatchRemoteSource()
-            : HttpPetMatchRemoteSource(buildDio(baseUrl)),
+    () => useMock
+        ? MockPetMatchRemoteSource()
+        : HttpPetMatchRemoteSource(buildDio(baseUrl, sl<LocaleProvider>())),
   );
 
   // Repositories.
@@ -69,4 +76,15 @@ Future<void> configureDependencies() async {
   sl.registerFactory(() => GetDynamicOptions(sl<QuestionnaireRepository>()));
   sl.registerFactory(() => PollCompatibility(sl<QuestionnaireRepository>()));
   sl.registerFactory(() => GetBreedDetail(sl<BreedRepository>()));
+
+  // Cubits — также factory, новый инстанс на каждый экран.
+  sl.registerFactory(
+    () => QuestionnaireCubit(
+      sl<StartSession>(),
+      sl<SubmitAnswer>(),
+      sl<SkipQuestion>(),
+      sl<PollCompatibility>(),
+    ),
+  );
+  sl.registerFactory(() => BreedDetailCubit(sl<GetBreedDetail>()));
 }

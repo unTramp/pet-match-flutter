@@ -24,7 +24,7 @@ final class SingleAnswer extends UserAnswer {
 final class MultipleAnswer extends UserAnswer {
   const MultipleAnswer({required super.questionId, required this.optionIds});
 
-  final List<int> optionIds;
+  final Set<int> optionIds;
 
   @override
   List<Object?> get props => [...super.props, optionIds];

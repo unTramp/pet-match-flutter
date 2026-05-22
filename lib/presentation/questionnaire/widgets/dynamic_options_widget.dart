@@ -7,7 +7,6 @@ import '../../../core/design/components/ui_button.dart';
 import '../../../core/design/content/app_strings.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
-import '../../../core/di/injection.dart';
 import '../../../core/failures.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/usecases/get_dynamic_options.dart';
@@ -16,6 +15,9 @@ import 'option_tile.dart';
 /// Виджет с поисковым полем и подгружаемым списком опций. Локальный
 /// `ValueNotifier` хранит загруженные варианты — отдельный Cubit избыточен
 /// для одной операции (как в архитектурном документе раздел DynamicOptionsWidget).
+///
+/// Usecase инжектится через конструктор, чтобы виджет не зависел от
+/// сервис-локатора и легко мокался в widget-тестах.
 class DynamicOptionsWidget extends StatefulWidget {
   const DynamicOptionsWidget({
     super.key,
@@ -23,6 +25,7 @@ class DynamicOptionsWidget extends StatefulWidget {
     required this.questionId,
     required this.selected,
     required this.onSelect,
+    required this.getDynamicOptions,
     this.enabled = true,
   });
 
@@ -30,6 +33,7 @@ class DynamicOptionsWidget extends StatefulWidget {
   final int questionId;
   final DynamicOption? selected;
   final ValueChanged<DynamicOption> onSelect;
+  final GetDynamicOptions getDynamicOptions;
   final bool enabled;
 
   @override
@@ -42,7 +46,6 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
     const _OptionsState.idle(),
   );
   Timer? _debounce;
-  GetDynamicOptions get _useCase => sl<GetDynamicOptions>();
 
   @override
   void initState() {
@@ -67,7 +70,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
   Future<void> _load(String? query) async {
     _state.value = const _OptionsState.loading();
     try {
-      final items = await _useCase(
+      final items = await widget.getDynamicOptions(
         userId: widget.userId,
         questionId: widget.questionId,
         query: query,
