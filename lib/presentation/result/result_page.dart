@@ -80,16 +80,9 @@ class _ResultPageState extends State<ResultPage> {
         breedName: s.breedName,
         imageUrl: s.imageUrl,
         score: s.score,
-        risk: _riskFromSuggestion(s.riskLevel),
+        risk: s.risk,
         summary: s.summary,
       );
-
-  CompatibilityRisk _riskFromSuggestion(String? raw) => switch (raw) {
-    'low' => CompatibilityRisk.low,
-    'medium' => CompatibilityRisk.medium,
-    'high' => CompatibilityRisk.high,
-    _ => CompatibilityRisk.unknown,
-  };
 
   List<ReasonItem> _visibleItems(List<ReasonItem> source, bool showAll) {
     if (showAll || source.length <= _collapsedLimit) return source;

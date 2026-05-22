@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pet_match/core/cache/session_cache.dart';
 import 'package:pet_match/core/di/injection.dart';
+import 'package:pet_match/core/localization/locale_provider.dart';
 import 'package:pet_match/data/repositories/breed_repository_impl.dart';
 import 'package:pet_match/data/repositories/questionnaire_repository_impl.dart';
 import 'package:pet_match/data/sources/mock_pet_match_remote_source.dart';
@@ -32,6 +33,9 @@ void main() {
   Future<void> setupDi() async {
     await sl.reset();
     sl.registerSingleton<SessionCache>(cache);
+    sl.registerLazySingleton<LocaleProvider>(
+      () => const StaticLocaleProvider(Locale('ru')),
+    );
     sl.registerLazySingleton<PetMatchRemoteSource>(
       MockPetMatchRemoteSource.new,
     );

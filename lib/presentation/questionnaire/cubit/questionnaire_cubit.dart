@@ -2,21 +2,23 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants.dart';
 import '../../../core/failures.dart';
 import '../../../core/logger.dart';
 import '../../../domain/entities/answer.dart';
 import '../../../domain/entities/option.dart';
 import '../../../domain/entities/question.dart';
 import '../../../domain/entities/session.dart';
-import '../../../domain/usecases/skip_question.dart';
 import '../../../domain/usecases/poll_compatibility.dart';
+import '../../../domain/usecases/skip_question.dart';
 import '../../../domain/usecases/start_session.dart';
 import '../../../domain/usecases/submit_answer.dart';
 import 'questionnaire_state.dart';
 
 /// Центральный Cubit анкеты. Управляет переходами Question → Question
 /// и финальным результатом, после которого UI делает redirect на /result.
+///
+/// Таймауты сетевых вызовов настроены на уровне Dio (`receiveTimeout`);
+/// здесь дополнительный `.timeout()` не вешаем, чтобы не плодить гонки.
 class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   QuestionnaireCubit(
     this._startSession,
@@ -33,39 +35,17 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
   int? _userId;
   _LastAction? _lastAction;
 
-  /// Публичный геттер для DynamicOptionsWidget (он сам вызывает usecase через DI,
-  /// но ему нужен userId текущей сессии).
-  int get userId => _userId ?? 0;
-
-  /// Стартует или возобновляет анкету. `_userId` сохраняется для последующих
-  /// submit/skip-вызовов.
+  /// Стартует или возобновляет анкету.
   Future<void> start() async {
     _lastAction = const _StartAction();
     emit(const QuestionnaireLoading());
-    try {
-      final session = await _startSession().timeout(
-        kRequestTimeout,
-        onTimeout: () => throw const TimeoutFailure(),
-      );
-      _userId = session.userId;
-      await _emitFromSession(session);
-    } on AppFailure catch (f) {
-      appLogger.w('start() failed: $f');
-      emit(QuestionnaireError(failure: f, canRetry: true));
-    } catch (e, st) {
-      appLogger.e('start() unexpected error', error: e, stackTrace: st);
-      emit(
-        const QuestionnaireError(
-          failure: ServerFailure.unexpected(),
-          canRetry: true,
-        ),
-      );
-    }
+    await _runSessionOp(_startSession.call);
   }
 
   /// Инициализация из уже предзагруженной сессии (например, prefetch на welcome),
   /// чтобы не показывать промежуточный полноэкранный loading.
   Future<void> startWithSession(Session session) async {
+    _lastAction = const _StartAction();
     _userId = session.userId;
     await _emitFromSession(session);
   }
@@ -134,27 +114,9 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
     _lastAction = _SubmitAction(answer);
     emit(s.copyWith(isSubmitting: true));
-    try {
-      final session = await _submitAnswer(
-        userId: userId,
-        answer: answer,
-      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
-      if (isClosed) return;
-      await _emitFromSession(session);
-    } on AppFailure catch (f) {
-      if (isClosed) return;
-      appLogger.w('submit() failed: $f');
-      emit(QuestionnaireError(failure: f, canRetry: true));
-    } catch (e, st) {
-      if (isClosed) return;
-      appLogger.e('submit() unexpected error', error: e, stackTrace: st);
-      emit(
-        const QuestionnaireError(
-          failure: ServerFailure.unexpected(),
-          canRetry: true,
-        ),
-      );
-    }
+    await _runSessionOp(
+      () => _submitAnswer(userId: userId, answer: answer),
+    );
   }
 
   Future<void> skipCurrent() async {
@@ -166,27 +128,9 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
 
     _lastAction = _SkipAction(s.question.id);
     emit(s.copyWith(isSubmitting: true));
-    try {
-      final session = await _skipQuestion(
-        userId: userId,
-        questionId: s.question.id,
-      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
-      if (isClosed) return;
-      await _emitFromSession(session);
-    } on AppFailure catch (f) {
-      if (isClosed) return;
-      appLogger.w('skipCurrent() failed: $f');
-      emit(QuestionnaireError(failure: f, canRetry: true));
-    } catch (e, st) {
-      if (isClosed) return;
-      appLogger.e('skipCurrent() unexpected error', error: e, stackTrace: st);
-      emit(
-        const QuestionnaireError(
-          failure: ServerFailure.unexpected(),
-          canRetry: true,
-        ),
-      );
-    }
+    await _runSessionOp(
+      () => _skipQuestion(userId: userId, questionId: s.question.id),
+    );
   }
 
   /// Повторяет последнее действие, которое привело к ошибке. Если ошибка
@@ -200,9 +144,11 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
         emit(const QuestionnaireAnalyzing());
         await _resolveCompatibility(userId);
       case _SubmitAction(:final answer) when uid != null:
-        await _replaySubmit(uid, answer);
+        await _runSessionOp(() => _submitAnswer(userId: uid, answer: answer));
       case _SkipAction(:final questionId) when uid != null:
-        await _replaySkip(uid, questionId);
+        await _runSessionOp(
+          () => _skipQuestion(userId: uid, questionId: questionId),
+        );
       case _StartAction():
       case _SubmitAction():
       case _SkipAction():
@@ -211,55 +157,21 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     }
   }
 
-  Future<void> _replaySubmit(int userId, UserAnswer answer) async {
-    final s = state;
-    final base =
-        s is QuestionnaireQuestion
-            ? s.copyWith(isSubmitting: true)
-            : null;
-    if (base != null) emit(base);
+  /// Единый раннер сессионных операций: выполняет [op], при успехе
+  /// эмитит следующий state, при ошибке — `QuestionnaireError`.
+  Future<void> _runSessionOp(Future<Session> Function() op) async {
     try {
-      final session = await _submitAnswer(
-        userId: userId,
-        answer: answer,
-      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
+      final session = await op();
       if (isClosed) return;
+      _userId = session.userId;
       await _emitFromSession(session);
     } on AppFailure catch (f) {
       if (isClosed) return;
+      appLogger.w('Session op failed: $f');
       emit(QuestionnaireError(failure: f, canRetry: true));
     } catch (e, st) {
       if (isClosed) return;
-      appLogger.e('retry submit unexpected error', error: e, stackTrace: st);
-      emit(
-        const QuestionnaireError(
-          failure: ServerFailure.unexpected(),
-          canRetry: true,
-        ),
-      );
-    }
-  }
-
-  Future<void> _replaySkip(int userId, int questionId) async {
-    final s = state;
-    final base =
-        s is QuestionnaireQuestion
-            ? s.copyWith(isSubmitting: true)
-            : null;
-    if (base != null) emit(base);
-    try {
-      final session = await _skipQuestion(
-        userId: userId,
-        questionId: questionId,
-      ).timeout(kRequestTimeout, onTimeout: () => throw const TimeoutFailure());
-      if (isClosed) return;
-      await _emitFromSession(session);
-    } on AppFailure catch (f) {
-      if (isClosed) return;
-      emit(QuestionnaireError(failure: f, canRetry: true));
-    } catch (e, st) {
-      if (isClosed) return;
-      appLogger.e('retry skip unexpected error', error: e, stackTrace: st);
+      appLogger.e('Session op unexpected error', error: e, stackTrace: st);
       emit(
         const QuestionnaireError(
           failure: ServerFailure.unexpected(),
@@ -277,7 +189,7 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       ),
       MultipleChoiceQuestion(:final id) => MultipleAnswer(
         questionId: id,
-        optionIds: s.selectedOptionIds.toList(),
+        optionIds: Set<int>.unmodifiable(s.selectedOptionIds),
       ),
       DynamicOptionsQuestion(:final id) => () {
         final selected = s.dynamicSelected;
@@ -309,7 +221,13 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       await _resolveCompatibility(session.userId);
       return;
     }
-    emit(QuestionnaireQuestion(question: next, progress: session.progress));
+    emit(
+      QuestionnaireQuestion(
+        userId: session.userId,
+        question: next,
+        progress: session.progress,
+      ),
+    );
   }
 
   Future<void> _resolveCompatibility(int userId) async {

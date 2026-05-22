@@ -15,6 +15,7 @@ import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/question.dart';
 import '../../domain/entities/session.dart';
+import '../../domain/usecases/get_dynamic_options.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
 import '../widgets/top_brand_bar.dart';
@@ -55,6 +56,29 @@ class QuestionnairePage extends StatelessWidget {
 class _QuestionnaireView extends StatelessWidget {
   const _QuestionnaireView();
 
+  Future<void> _confirmExit(BuildContext context) async {
+    final shouldLeave = await showDialog<bool>(
+      context: context,
+      builder: (dialogCtx) => AlertDialog(
+        title: Text(AppStrings.questionnaire.exitConfirmTitle),
+        content: Text(AppStrings.questionnaire.exitConfirmBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogCtx).pop(false),
+            child: Text(AppStrings.questionnaire.exitConfirmStay),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogCtx).pop(true),
+            child: Text(AppStrings.questionnaire.exitConfirmLeave),
+          ),
+        ],
+      ),
+    );
+    if (shouldLeave == true && context.mounted) {
+      context.go(AppRoutes.welcome);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<QuestionnaireCubit, QuestionnaireState>(
@@ -68,23 +92,34 @@ class _QuestionnaireView extends StatelessWidget {
         final cubit = context.read<QuestionnaireCubit>();
         return PopScope(
           canPop: false,
+          onPopInvoked: (didPop) {
+            if (didPop) return;
+            _confirmExit(context);
+          },
           child: Scaffold(
-            bottomNavigationBar:
-                questionState == null
-                    ? null
-                    : _QuestionBottomBar(
+            bottomNavigationBar: questionState == null
+                ? null
+                : SafeArea(
+                    minimum: const EdgeInsets.fromLTRB(
+                      AppSpacing.xl,
+                      AppSpacing.sm,
+                      AppSpacing.xl,
+                      AppSpacing.md,
+                    ),
+                    child: QuestionFooter(
                       canSubmit: questionState.canSubmit,
                       isSubmitting: questionState.isSubmitting,
                       onSubmit: cubit.submit,
                       canSkip: questionState.question.isOptional,
                       onSkip: cubit.skipCurrent,
                     ),
+                  ),
             body: SafeArea(
               child: Column(
                 children: [
                   TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
                   if (questionState?.isSubmitting == true)
-                    const _SubmittingTopProgress(),
+                    const LinearProgressIndicator(minHeight: 2),
                   Expanded(
                     child: switch (state) {
                       QuestionnaireInitial() || QuestionnaireLoading() =>
@@ -99,6 +134,9 @@ class _QuestionnaireView extends StatelessWidget {
                         onRetry:
                             () => context.read<QuestionnaireCubit>().retry(),
                       ),
+                      // Финальное состояние — listener уже инициировал
+                      // переход на /result. Показываем тот же LoadingView,
+                      // чтобы экран не «мигнул» пустотой во время transition.
                       QuestionnaireResultReady() => const LoadingView(),
                     },
                   ),
@@ -109,15 +147,6 @@ class _QuestionnaireView extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class _SubmittingTopProgress extends StatelessWidget {
-  const _SubmittingTopProgress();
-
-  @override
-  Widget build(BuildContext context) {
-    return const LinearProgressIndicator(minHeight: 2);
   }
 }
 
@@ -193,10 +222,9 @@ class _QuestionBody extends StatelessWidget {
                         SingleChoiceQuestion(:final options) =>
                           SingleChoiceWidget(
                             options: options,
-                            selectedId:
-                                state.selectedOptionIds.isEmpty
-                                    ? null
-                                    : state.selectedOptionIds.first,
+                            selectedId: state.selectedOptionIds.isEmpty
+                                ? null
+                                : state.selectedOptionIds.first,
                             onSelect: cubit.selectSingle,
                           ),
                         MultipleChoiceQuestion(:final options) =>
@@ -207,11 +235,12 @@ class _QuestionBody extends StatelessWidget {
                           ),
                         DynamicOptionsQuestion(:final id) =>
                           DynamicOptionsWidget(
-                            userId: _userIdFromContext(context),
+                            userId: state.userId,
                             questionId: id,
                             selected: state.dynamicSelected,
                             onSelect: cubit.selectDynamic,
                             enabled: !isSubmitting,
+                            getDynamicOptions: sl<GetDynamicOptions>(),
                           ),
                         UnknownQuestion(:final questionType) =>
                           _UnsupportedQuestionView(questionType: questionType),
@@ -221,51 +250,6 @@ class _QuestionBody extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  int _userIdFromContext(BuildContext context) {
-    // Dynamic-options появляются только после старта сессии, когда userId уже известен.
-    return context.read<QuestionnaireCubit>().userId;
-  }
-}
-
-class _QuestionBottomBar extends StatelessWidget {
-  const _QuestionBottomBar({
-    required this.canSubmit,
-    required this.isSubmitting,
-    required this.onSubmit,
-    required this.canSkip,
-    required this.onSkip,
-  });
-
-  final bool canSubmit;
-  final bool isSubmitting;
-  final VoidCallback onSubmit;
-  final bool canSkip;
-  final VoidCallback onSkip;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      minimum: const EdgeInsets.fromLTRB(
-        AppSpacing.xl,
-        AppSpacing.sm,
-        AppSpacing.xl,
-        AppSpacing.md,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          QuestionFooter(
-            canSubmit: canSubmit,
-            isSubmitting: isSubmitting,
-            onSubmit: onSubmit,
-            canSkip: canSkip,
-            onSkip: onSkip,
           ),
         ],
       ),

@@ -40,7 +40,7 @@ class CompatibilitySuggestion extends Equatable {
     required this.breedId,
     required this.breedName,
     this.score,
-    this.riskLevel,
+    this.risk = CompatibilityRisk.unknown,
     this.summary,
     this.imageUrl,
   });
@@ -48,7 +48,7 @@ class CompatibilitySuggestion extends Equatable {
   final int breedId;
   final String breedName;
   final double? score;
-  final String? riskLevel;
+  final CompatibilityRisk risk;
   final String? summary;
   final String? imageUrl;
 
@@ -57,7 +57,7 @@ class CompatibilitySuggestion extends Equatable {
     breedId,
     breedName,
     score,
-    riskLevel,
+    risk,
     summary,
     imageUrl,
   ];

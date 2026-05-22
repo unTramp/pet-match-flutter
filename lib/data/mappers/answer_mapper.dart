@@ -11,7 +11,7 @@ class AnswerMapper {
     ),
     MultipleAnswer(:final questionId, :final optionIds) => AnswerSubmitDto(
       questionId: questionId,
-      optionIds: optionIds,
+      optionIds: optionIds.toList(growable: false),
     ),
     DynamicAnswer(
       :final questionId,

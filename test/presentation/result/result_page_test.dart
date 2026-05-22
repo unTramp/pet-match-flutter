@@ -178,14 +178,14 @@ void main() {
             breedId: 139,
             breedName: 'Бордер-терьер',
             score: 1,
-            riskLevel: 'low',
+            risk: CompatibilityRisk.low,
             summary: 'Хорошо соответствует выбранным критериям.',
           ),
           CompatibilitySuggestion(
             breedId: 242,
             breedName: 'Мальтезе',
             score: 0.92,
-            riskLevel: 'low',
+            risk: CompatibilityRisk.low,
           ),
         ],
       );

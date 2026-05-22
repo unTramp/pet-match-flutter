@@ -68,7 +68,7 @@ class CompatibilityMapper {
             breedId: s.breedId,
             breedName: s.breedName,
             score: _normalizeScore(s.score),
-            riskLevel: s.riskLevel,
+            risk: _parseRisk(s.riskLevel),
             summary: s.summary,
             imageUrl: s.imageUrl,
           ),
