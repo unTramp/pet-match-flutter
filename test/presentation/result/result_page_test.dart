@@ -38,7 +38,6 @@ void main() {
       ),
     );
 
-    // Score анимируется от 0 — даём tween отыграть.
     await tester.pumpAndSettle();
 
     expect(find.text('Лабрадор'), findsOneWidget);
@@ -114,7 +113,6 @@ void main() {
           ),
         ),
       );
-      // Score-counter tween — даём отыграть до final percent.
       await tester.pumpAndSettle();
     }
 

@@ -1,19 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Staggered fade + slide entrance.
-///
-/// Принимает один [controller] и [interval] (0..1 over the controller's
-/// timeline). Внутри строит CurvedAnimation + Tween&lt;Offset&gt; и оборачивает
-/// [child] в `FadeTransition` + `SlideTransition`.
-///
-/// Удобен для последовательных «втеканий» секций экрана: каждой секции
-/// даём свой `Interval(begin, end)`, и они появляются с задержкой относительно
-/// друг друга, при этом анимация остаётся «одной общей волной» (один
-/// controller, одна длительность).
-///
-/// `MediaQuery.disableAnimations` уважается — если у пользователя
-/// включён reduce-motion, child рендерится сразу в финальном состоянии
-/// (opacity 1, offset zero).
+/// Shared fade + slide entrance for staggered screen sections.
 class AppStaggeredEntrance extends StatelessWidget {
   const AppStaggeredEntrance({
     super.key,
@@ -27,7 +14,6 @@ class AppStaggeredEntrance extends StatelessWidget {
   final Interval interval;
   final Widget child;
 
-  /// Сдвиг в долях высоты child — 0.08 ≈ 8% высоты блока, незаметный пуш снизу.
   final Offset slideOffset;
 
   @override

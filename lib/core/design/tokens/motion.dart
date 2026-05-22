@@ -14,9 +14,6 @@ class AppMotion {
   static const Duration heroIntro = Duration(milliseconds: 900);
   static const Duration pulse = Duration(milliseconds: 1400);
 
-  /// Tween-длительность для «оживающего» score counter на breed-карточках.
-  /// 800 мс — достаточно чтобы было видно тик, не слишком много чтобы
-  /// раздражать при возврате на экран.
   static const Duration scoreTicker = Duration(milliseconds: 800);
 
   static const Curve standardCurve = Curves.easeInOut;

@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../tokens/motion.dart';
 
-/// Animated «N%» label.
-///
-/// Тикает от 0 до [score] (0..1) за [AppMotion.scoreTicker]. Эффект:
-/// результат «оживает» при первом отображении карточки. Если у
-/// пользователя включён reduce-motion — рендерит финальное значение
-/// без анимации.
-///
-/// Для `score == null` рендерит [emptyLabel] (по умолчанию em-dash).
+/// Animated score percent label.
 class AnimatedScoreLabel extends StatelessWidget {
   const AnimatedScoreLabel({
     super.key,
