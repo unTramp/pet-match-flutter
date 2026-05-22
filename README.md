@@ -37,8 +37,6 @@ flutter build apk --release
 |---|---|---|
 | `USE_MOCK` | `false` | `false` - реальный dev API, `true` - данные из `assets/mock/` |
 | `API_BASE_URL` | `https://app-api.dev.pet-match.app/api/v1` | Базовый URL API |
-| `PET_MATCH_EXTERNAL_ID` | пусто | Фиксированный `uid` для проверки resume-flow через dev API |
-| `MOCK_FAIL_RATE` | `0` | Вероятность сетевой ошибки в mock-режиме |
 
 ## Архитектура
 
