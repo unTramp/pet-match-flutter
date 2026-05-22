@@ -29,7 +29,7 @@ class SingleChoiceWidget extends StatelessWidget {
             label: opt.label,
             selected: selected,
             onTap: () => onSelect(opt.id),
-            trailing: OptionRadio(selected: selected),
+            trailing: selected ? const OptionCheck(selected: true) : null,
           ),
         );
       }),

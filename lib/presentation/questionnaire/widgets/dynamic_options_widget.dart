@@ -181,7 +181,7 @@ class _OptionRow extends StatelessWidget {
       label: label,
       selected: selected,
       onTap: onTap,
-      trailing: OptionCheck(selected: selected),
+      trailing: selected ? const OptionCheck(selected: true) : null,
     );
   }
 }

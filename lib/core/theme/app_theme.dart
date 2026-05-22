@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../design/tokens/alpha.dart';
 import '../design/tokens/radius.dart';
 import '../design/tokens/sizes.dart';
 import 'app_colors.dart';
@@ -78,19 +79,19 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.w400,
           color: AppColors.textPrimary,
-          height: 1.52,
+          height: 1.56,
         ),
         bodyMedium: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
           color: AppColors.textSecondary,
-          height: 1.5,
+          height: 1.56,
         ),
         bodySmall: TextStyle(
           fontSize: 13,
           fontWeight: FontWeight.w400,
           color: AppColors.textSecondary,
-          height: 1.45,
+          height: 1.5,
         ),
         labelLarge: TextStyle(
           fontSize: 16,
@@ -111,6 +112,12 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
+          disabledBackgroundColor: AppColors.border,
+          disabledForegroundColor: Colors.white,
+          elevation: 8,
+          shadowColor: AppColors.primary.withValues(
+            alpha: AppAlpha.borderMuted,
+          ),
           minimumSize: const Size.fromHeight(AppControlSize.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.lg),

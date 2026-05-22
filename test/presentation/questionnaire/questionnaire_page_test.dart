@@ -82,7 +82,9 @@ void main() {
     expect(tapped, 11);
   });
 
-  testWidgets('SingleChoiceWidget marks selected radio', (tester) async {
+  testWidgets('SingleChoiceWidget marks selected option with check', (
+    tester,
+  ) async {
     const options = [
       QuestionOption(id: 1, code: 'a', label: 'A'),
       QuestionOption(id: 2, code: 'b', label: 'B'),
@@ -99,9 +101,8 @@ void main() {
       ),
     );
 
-    final radios = tester.widgetList<OptionRadio>(find.byType(OptionRadio));
-    expect(radios.length, 2);
-    expect(radios.elementAt(0).selected, isFalse);
-    expect(radios.elementAt(1).selected, isTrue);
+    final checks = tester.widgetList<OptionCheck>(find.byType(OptionCheck));
+    expect(checks.length, 1);
+    expect(checks.single.selected, isTrue);
   });
 }

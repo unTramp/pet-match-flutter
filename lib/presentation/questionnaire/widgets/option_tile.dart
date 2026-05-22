@@ -8,28 +8,23 @@ import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Универсальная плашка ответа: белая карточка с радиусом 20, тонкой границей,
-/// текстом слева и `trailing`-виджетом (radio / checkbox) справа.
-///
-/// Used by [SingleChoiceWidget] и [MultipleChoiceWidget]. Контент слева
-/// намеренно текстовый, без дополнительных декоративных иконок.
 class OptionTile extends StatelessWidget {
   const OptionTile({
     super.key,
     required this.label,
     required this.selected,
     required this.onTap,
-    required this.trailing,
+    this.trailing,
   });
 
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  final Widget trailing;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
-    final radius = BorderRadius.circular(AppRadius.xxl);
+    final radius = BorderRadius.circular(AppRadius.xl);
     return Semantics(
       button: true,
       selected: selected,
@@ -46,17 +41,19 @@ class OptionTile extends StatelessWidget {
           ),
           child: AnimatedContainer(
             duration: AppMotion.normal,
-            curve: Curves.easeOut,
+            curve: Curves.easeOutCubic,
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.xl,
-              vertical: 18,
+              vertical: AppSpacing.lg,
             ),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color:
+                  selected
+                      ? AppColors.primary.withValues(alpha: AppAlpha.tintSubtle)
+                      : AppColors.surface,
               borderRadius: radius,
               border: Border.all(
                 color: selected ? AppColors.primary : AppColors.border,
-                width: selected ? 1.5 : 1,
               ),
               boxShadow:
                   selected
@@ -69,13 +66,15 @@ class OptionTile extends StatelessWidget {
                   child: Text(
                     label,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                       color: AppColors.textPrimary,
                     ),
                   ),
                 ),
-                const SizedBox(width: AppSpacing.md),
-                ExcludeSemantics(child: trailing),
+                if (trailing != null) ...[
+                  const SizedBox(width: AppSpacing.md),
+                  ExcludeSemantics(child: trailing),
+                ],
               ],
             ),
           ),
@@ -85,51 +84,6 @@ class OptionTile extends StatelessWidget {
   }
 }
 
-/// Кружочек radio в стиле дизайна: outlined серый круг → выбранный имеет
-/// фиолетовую заливку внутри.
-class OptionRadio extends StatelessWidget {
-  const OptionRadio({super.key, required this.selected});
-
-  final bool selected;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: AppMotion.normal,
-      width: AppControlSize.selector,
-      height: AppControlSize.selector,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color:
-              selected
-                  ? AppColors.primary
-                  : AppColors.textSecondary.withValues(
-                    alpha: AppAlpha.mutedHeavy,
-                  ),
-          width: 1.5,
-        ),
-      ),
-      alignment: Alignment.center,
-      child: AnimatedScale(
-        scale: selected ? 1 : 0,
-        duration: AppMotion.normal,
-        curve: Curves.easeOutBack,
-        child: Container(
-          width: AppControlSize.selectorDot,
-          height: AppControlSize.selectorDot,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppColors.primary,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Чекбокс в стиле дизайна для multi-choice: тот же круг + галочка вместо
-/// заливки. Цвета совпадают с [OptionRadio] для единообразия.
 class OptionCheck extends StatelessWidget {
   const OptionCheck({super.key, required this.selected});
 
@@ -160,7 +114,7 @@ class OptionCheck extends StatelessWidget {
         duration: AppMotion.normal,
         child: const Icon(
           Icons.check_rounded,
-          size: AppIconSize.md,
+          size: AppIconSize.sm,
           color: Colors.white,
         ),
       ),

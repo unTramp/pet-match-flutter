@@ -130,7 +130,7 @@ void main() {
   });
 
   group('UiButton — Cupertino (iOS)', () {
-    testWidgets('primary — CupertinoButton.filled с label', (tester) async {
+    testWidgets('primary — solid CTA с белым label', (tester) async {
       var taps = 0;
       await tester.pumpWidget(
         _wrap(
@@ -141,6 +141,10 @@ void main() {
 
       expect(find.byType(CupertinoButton), findsOneWidget);
       expect(find.text('Continue'), findsOneWidget);
+      final styles = tester.widgetList<DefaultTextStyle>(
+        find.byType(DefaultTextStyle),
+      );
+      expect(styles.any((style) => style.style.color == Colors.white), isTrue);
 
       await tester.tap(find.byType(CupertinoButton));
       expect(taps, 1);

@@ -44,8 +44,8 @@ class AppControlSize {
   /// 12 — inner dot выбранного radio.
   static const double selectorDot = 12;
 
-  /// 6 — высота тонкого progress-bar внутри questionnaire.
-  static const double progressBarHeight = 6;
+  /// 8 — высота progress-bar внутри questionnaire.
+  static const double progressBarHeight = 8;
 
   /// 72 — thumbnail в `SuggestionCard`.
   static const double thumb = 72;

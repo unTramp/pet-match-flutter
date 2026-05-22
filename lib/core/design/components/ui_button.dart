@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
+import '../tokens/alpha.dart';
 import '../tokens/radius.dart';
 import '../tokens/sizes.dart';
 import '../tokens/spacing.dart';
@@ -60,9 +61,48 @@ class UiButton extends StatelessWidget {
       final button = switch (variant) {
         UiButtonVariant.primary => SizedBox(
           width: double.infinity,
-          child: CupertinoButton.filled(
-            onPressed: effectiveOnPressed,
-            child: child,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              color:
+                  effectiveOnPressed == null && !loading
+                      ? AppColors.border
+                      : AppColors.primary,
+              boxShadow:
+                  effectiveOnPressed == null && !loading
+                      ? const []
+                      : [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(
+                            alpha: AppAlpha.borderMuted,
+                          ),
+                          offset: const Offset(0, 10),
+                          blurRadius: 24,
+                          spreadRadius: -6,
+                        ),
+                      ],
+            ),
+            child: CupertinoButton(
+              color: Colors.transparent,
+              disabledColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(AppRadius.lg),
+              minSize: AppControlSize.buttonHeight,
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              onPressed: effectiveOnPressed,
+              child: DefaultTextStyle(
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 0.1,
+                ),
+                child: IconTheme(
+                  data: const IconThemeData(color: Colors.white),
+                  child: child,
+                ),
+              ),
+            ),
           ),
         ),
         UiButtonVariant.secondary => CupertinoButton(
@@ -70,7 +110,9 @@ class UiButton extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: Container(
             width: double.infinity,
-            constraints: const BoxConstraints(minHeight: AppControlSize.buttonHeight),
+            constraints: const BoxConstraints(
+              minHeight: AppControlSize.buttonHeight,
+            ),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),
