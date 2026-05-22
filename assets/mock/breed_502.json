@@ -5,6 +5,7 @@
   "pet_type": "dog",
   "summary": "Дружелюбный, мягкий, спокойнее лабрадора. Отлично подходит для семей с детьми.",
   "image_url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200",
+  "gallery_url": null,
   "gallery_images": [
     "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200",
     "https://images.unsplash.com/photo-1633722715534-3a6087b21ee6?w=1200",
@@ -12,10 +13,12 @@
   ],
   "sections": [
     {
+      "key": "character",
       "title": "Характер",
       "body": "Терпеливый, добродушный, легко идёт на контакт."
     },
     {
+      "key": "care",
       "title": "Уход",
       "body": "Длинная шерсть требует расчёсывания. Активные прогулки и плавание."
     }

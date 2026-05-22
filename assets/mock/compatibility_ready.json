@@ -1,7 +1,11 @@
 {
   "status": "completed",
+  "updated_at": null,
+  "profile_id": 1,
+  "pet_type": "dog",
   "compatible": true,
   "hard_fail_count": 0,
+  "risk_score": 0,
   "breed_id": 501,
   "breed_code": "labrador",
   "breed_name": "Лабрадор-ретривер",
@@ -27,19 +31,37 @@
       "breed_id": 502,
       "breed_code": "golden_retriever",
       "breed_name": "Голден-ретривер",
+      "compatible": true,
       "risk_level": "low",
       "score": 88,
+      "hard_fail_count": 0,
+      "risk_score": 0,
       "summary": "Очень близкий по характеру к лабрадору, чуть спокойнее.",
-      "image_url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=800"
+      "note": null,
+      "image_url": "https://images.unsplash.com/photo-1552053831-71594a27632d?w=800",
+      "requirement_highlights": [
+        "Активные прогулки 1+ час в день",
+        "Регулярный уход за шерстью"
+      ]
     },
     {
       "breed_id": 503,
       "breed_code": "border_collie",
       "breed_name": "Бордер-колли",
+      "compatible": true,
       "risk_level": "medium",
       "score": 81,
+      "hard_fail_count": 0,
+      "risk_score": 1,
       "summary": "Очень умная и активная порода. Требует много занятости.",
-      "image_url": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=800"
+      "note": null,
+      "image_url": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?w=800",
+      "requirement_highlights": [
+        "Высокая физическая активность",
+        "Регулярные задачи и обучение"
+      ]
     }
-  ]
+  ],
+  "rules_version": "mock-rule-payload-v1",
+  "error": null
 }
