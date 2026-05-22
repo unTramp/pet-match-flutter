@@ -57,7 +57,7 @@ class _AnalyzingViewState extends State<AnalyzingView>
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
-                  Icons.psychology_alt_rounded,
+                  Icons.auto_awesome_rounded,
                   size: AppIconSize.hero,
                   color: AppColors.primary,
                 ),

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "app.pet_match.pet_match"
+    namespace = "app.petmatch.ai"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -19,7 +19,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "app.pet_match.pet_match"
+        applicationId = "app.petmatch.ai"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
