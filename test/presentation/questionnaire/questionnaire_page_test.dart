@@ -33,6 +33,9 @@ void main() {
       ),
     );
 
+    // Percent тикает от 0 до 50% — даём анимации доиграть.
+    await tester.pumpAndSettle();
+
     expect(find.textContaining('50%'), findsOneWidget);
   });
 
