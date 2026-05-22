@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/assets.dart';
 import '../../core/cache/session_cache.dart';
 import '../../core/constants.dart';
+import '../../core/design/components/app_staggered_entrance.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/alpha.dart';
@@ -41,12 +42,6 @@ class _WelcomePageState extends State<WelcomePage>
     with SingleTickerProviderStateMixin {
   late Future<bool> _hasActiveSession;
   late final AnimationController _introController;
-  late final Animation<double> _headlineFade;
-  late final Animation<Offset> _headlineSlide;
-  late final Animation<double> _subtitleFade;
-  late final Animation<Offset> _subtitleSlide;
-  late final Animation<double> _ctaFade;
-  late final Animation<Offset> _ctaSlide;
   bool _imagePrecached = false;
   bool _isContinuing = false;
 
@@ -57,45 +52,6 @@ class _WelcomePageState extends State<WelcomePage>
     _introController = AnimationController(
       vsync: this,
       duration: AppMotion.heroIntro,
-    );
-    _headlineFade = CurvedAnimation(
-      parent: _introController,
-      curve: const Interval(0.0, 0.55, curve: Curves.easeOut),
-    );
-    _headlineSlide = Tween<Offset>(
-      begin: const Offset(0, 0.08),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _introController,
-        curve: const Interval(0.0, 0.55, curve: Curves.easeOutCubic),
-      ),
-    );
-    _subtitleFade = CurvedAnimation(
-      parent: _introController,
-      curve: const Interval(0.3, 1.0, curve: Curves.easeOut),
-    );
-    _subtitleSlide = Tween<Offset>(
-      begin: const Offset(0, 0.08),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _introController,
-        curve: const Interval(0.28, 0.84, curve: Curves.easeOutQuart),
-      ),
-    );
-    _ctaFade = CurvedAnimation(
-      parent: _introController,
-      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
-    );
-    _ctaSlide = Tween<Offset>(
-      begin: const Offset(0, 0.06),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _introController,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeOutCubic),
-      ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // На iOS первый layout/paint может "съесть" начало анимации.
@@ -227,15 +183,23 @@ class _WelcomePageState extends State<WelcomePage>
                   children: [
                     const TopBrandBar(padding: EdgeInsets.zero),
                     const Spacer(flex: 1),
-                    _AnimatedTextEntrance(
-                      fade: _headlineFade,
-                      slide: _headlineSlide,
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(
+                        0.0,
+                        0.55,
+                        curve: Curves.easeOutCubic,
+                      ),
                       child: _HeroHeadline(theme: theme),
                     ),
                     const SizedBox(height: AppSpacing.lg),
-                    _AnimatedTextEntrance(
-                      fade: _subtitleFade,
-                      slide: _subtitleSlide,
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(
+                        0.28,
+                        0.84,
+                        curve: Curves.easeOutQuart,
+                      ),
                       child: Text(
                         AppStrings.welcome.subtitle,
                         style: theme.textTheme.bodyLarge?.copyWith(
@@ -246,9 +210,14 @@ class _WelcomePageState extends State<WelcomePage>
                       ),
                     ),
                     const Spacer(flex: 5),
-                    _AnimatedTextEntrance(
-                      fade: _ctaFade,
-                      slide: _ctaSlide,
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(
+                        0.5,
+                        1.0,
+                        curve: Curves.easeOutCubic,
+                      ),
+                      slideOffset: const Offset(0, 0.06),
                       child: FutureBuilder<bool>(
                         future: _hasActiveSession,
                         builder: (context, snapshot) {
@@ -275,26 +244,6 @@ class _WelcomePageState extends State<WelcomePage>
           ],
         ),
       ),
-    );
-  }
-}
-
-class _AnimatedTextEntrance extends StatelessWidget {
-  const _AnimatedTextEntrance({
-    required this.fade,
-    required this.slide,
-    required this.child,
-  });
-
-  final Animation<double> fade;
-  final Animation<Offset> slide;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: fade,
-      child: SlideTransition(position: slide, child: child),
     );
   }
 }
