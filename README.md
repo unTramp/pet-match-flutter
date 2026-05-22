@@ -1,4 +1,4 @@
-# Pet Match - Flutter
+# Pet Match AI - Flutter (Тестовое задание)
 
 ![Pet Match AI — обзор](docs/screenshots/hero.png)
 
