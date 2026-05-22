@@ -1,4 +1,4 @@
-package app.pet_match.pet_match
+package app.petmatch.ai
 
 import io.flutter.embedding.android.FlutterActivity
 
