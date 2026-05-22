@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../design/tokens/alpha.dart';
 import '../design/tokens/radius.dart';
 import '../design/tokens/sizes.dart';
+import '../design/tokens/strokes.dart';
 import 'app_colors.dart';
 
 class AppTheme {
@@ -132,7 +133,10 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
-          side: const BorderSide(color: AppColors.primary, width: 1.5),
+          side: const BorderSide(
+            color: AppColors.primary,
+            width: AppStroke.regular,
+          ),
           minimumSize: const Size.fromHeight(AppControlSize.buttonHeight),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -175,7 +179,10 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
-          borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+          borderSide: const BorderSide(
+            color: AppColors.primary,
+            width: AppStroke.regular,
+          ),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,

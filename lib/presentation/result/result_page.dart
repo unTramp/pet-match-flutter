@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
@@ -169,6 +170,13 @@ class _ResultPageState extends State<ResultPage> {
               ),
             )
             .toList();
+    final hasVisibleContent =
+        primaryCompatibility != null ||
+        influences.isNotEmpty ||
+        refusal != null ||
+        insightItems.isNotEmpty ||
+        requirementItems.isNotEmpty ||
+        suggestions.isNotEmpty;
 
     return Scaffold(
       bottomNavigationBar: SafeArea(
@@ -180,11 +188,15 @@ class _ResultPageState extends State<ResultPage> {
         ),
         child: UiButton(
           label:
-              primaryCompatibility != null
+              !hasVisibleContent
+                  ? AppStrings.common.restart
+                  : primaryCompatibility != null
                   ? AppStrings.result.ctaViewBreed
                   : AppStrings.result.ctaViewAlternatives,
           onPressed:
-              bottomCtaBreedId != null
+              !hasVisibleContent
+                  ? () => context.go(AppRoutes.welcome)
+                  : bottomCtaBreedId != null
                   ? () => _openPrimaryAction(context)
                   : null,
         ),
@@ -203,6 +215,7 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
+                  if (!hasVisibleContent) const _EmptyResultView(),
                   if (primaryCompatibility != null)
                     MainBreedCard(
                       compatibility: primaryCompatibility,
@@ -288,6 +301,41 @@ class _ResultPageState extends State<ResultPage> {
                   ],
                 ],
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _EmptyResultView extends StatelessWidget {
+  const _EmptyResultView();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return UiCard(
+      child: Semantics(
+        container: true,
+        child: Column(
+          children: [
+            const Icon(
+              Icons.pets_outlined,
+              size: AppIconSize.emptyState,
+              color: AppColors.textSecondary,
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            Text(
+              AppStrings.result.emptyTitle,
+              style: theme.textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            Text(
+              AppStrings.result.emptyBody,
+              style: theme.textTheme.bodyMedium,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

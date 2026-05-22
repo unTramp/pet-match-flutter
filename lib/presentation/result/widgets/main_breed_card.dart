@@ -6,6 +6,7 @@ import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
+import '../../../core/design/tokens/strokes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/score_format.dart';
 import '../../../domain/entities/compatibility.dart';
@@ -46,132 +47,141 @@ class MainBreedCard extends StatelessWidget {
     final imageUrl = compatibility.imageUrl;
     final accent = _scoreColor();
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppRadius.xxl),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(AppRadius.xxl),
-          border: Border.all(color: AppColors.border),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AspectRatio(
-              aspectRatio: 16 / 10,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child:
-                        imageUrl != null
-                            ? CachedNetworkImage(
-                              imageUrl: imageUrl,
-                              fit: BoxFit.cover,
-                              placeholder:
-                                  (_, __) => Container(color: AppColors.border),
-                              errorWidget:
-                                  (_, __, ___) => Container(
-                                    color: AppColors.border,
-                                    alignment: Alignment.center,
-                                    child: const Icon(
-                                      Icons.pets_rounded,
-                                      size: AppIconSize.xxxl,
-                                      color: AppColors.textSecondary,
+    final breedName = compatibility.breedName ?? AppStrings.common.unknownBreed;
+    return Semantics(
+      button: onTap != null,
+      label: '$breedName, $scoreLabel, ${_statusText()}',
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.xxl),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.circular(AppRadius.xxl),
+            border: Border.all(color: AppColors.border),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 10,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child:
+                          imageUrl != null
+                              ? CachedNetworkImage(
+                                imageUrl: imageUrl,
+                                fit: BoxFit.cover,
+                                placeholder:
+                                    (_, __) =>
+                                        Container(color: AppColors.border),
+                                errorWidget:
+                                    (_, __, ___) => Container(
+                                      color: AppColors.border,
+                                      alignment: Alignment.center,
+                                      child: const Icon(
+                                        Icons.pets_rounded,
+                                        size: AppIconSize.xxxl,
+                                        color: AppColors.textSecondary,
+                                      ),
                                     ),
-                                  ),
-                            )
-                            : Container(
-                              color: AppColors.border,
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.pets_rounded,
-                                size: 48,
-                                color: AppColors.textSecondary,
+                              )
+                              : Container(
+                                color: AppColors.border,
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.pets_rounded,
+                                  size: AppIconSize.xxxl,
+                                  color: AppColors.textSecondary,
+                                ),
                               ),
-                            ),
-                  ),
-                  Positioned(
-                    top: AppSpacing.md,
-                    right: AppSpacing.md,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.sm,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.overlayDark,
-                        borderRadius: BorderRadius.circular(AppRadius.md),
-                        border: Border.all(
-                          color: AppColors.surface.withValues(alpha: AppAlpha.borderMuted),
-                        ),
-                      ),
-                      child: Text(
-                        _statusText(),
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColors.surface,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.xl),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          compatibility.breedName ?? AppStrings.common.unknownBreed,
-                          style: theme.textTheme.headlineMedium,
-                        ),
-                      ),
-                      Container(
+                    Positioned(
+                      top: AppSpacing.md,
+                      right: AppSpacing.md,
+                      child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.md,
-                          vertical: AppSpacing.s,
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xxs,
                         ),
                         decoration: BoxDecoration(
-                          color: accent.withValues(alpha: AppAlpha.tintSoft),
-                          borderRadius: BorderRadius.circular(AppRadius.xxl),
+                          color: AppColors.overlayDark,
+                          borderRadius: BorderRadius.circular(AppRadius.md),
+                          border: Border.all(
+                            color: AppColors.surface.withValues(
+                              alpha: AppAlpha.borderMuted,
+                            ),
+                            width: AppStroke.hairline,
+                          ),
                         ),
                         child: Text(
-                          scoreLabel,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: accent,
-                            fontWeight: FontWeight.w600,
+                          _statusText(),
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: AppColors.surface,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  if (compatibility.summary != null) ...[
-                    const SizedBox(height: AppSpacing.md),
-                    Text(
-                      compatibility.summary!,
-                      style: theme.textTheme.bodyMedium,
                     ),
                   ],
-                  if (onTap != null) ...[
-                    const SizedBox(height: AppSpacing.lg),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton(
-                        onPressed: onTap,
-                        child: Text(AppStrings.result.ctaViewBreed),
-                      ),
-                    ),
-                  ],
-                ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(AppSpacing.xl),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            breedName,
+                            style: theme.textTheme.headlineMedium,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.md,
+                            vertical: AppSpacing.s,
+                          ),
+                          decoration: BoxDecoration(
+                            color: accent.withValues(alpha: AppAlpha.tintSoft),
+                            borderRadius: BorderRadius.circular(AppRadius.xxl),
+                          ),
+                          child: Text(
+                            scoreLabel,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: accent,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (compatibility.summary != null) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      Text(
+                        compatibility.summary!,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                    if (onTap != null) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextButton(
+                          onPressed: onTap,
+                          child: Text(AppStrings.result.ctaViewBreed),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

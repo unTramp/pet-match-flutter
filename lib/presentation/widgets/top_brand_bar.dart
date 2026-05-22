@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../welcome/widgets/app_logo.dart';
 import '../welcome/widgets/locale_badge.dart';
@@ -30,10 +31,14 @@ class TopBrandBar extends StatelessWidget {
           if (onLogoTap == null)
             logo
           else
-            GestureDetector(
-              onTap: onLogoTap,
-              behavior: HitTestBehavior.opaque,
-              child: logo,
+            Semantics(
+              button: true,
+              label: AppStrings.common.homeSemantic,
+              child: GestureDetector(
+                onTap: onLogoTap,
+                behavior: HitTestBehavior.opaque,
+                child: logo,
+              ),
             ),
           const LocaleBadge(),
         ],

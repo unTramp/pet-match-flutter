@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
+import '../content/app_strings.dart';
 import '../tokens/alpha.dart';
 import '../tokens/radius.dart';
 import '../tokens/sizes.dart';
 import '../tokens/spacing.dart';
+import '../tokens/strokes.dart';
 
 enum UiButtonVariant { primary, secondary, text }
 
@@ -35,12 +37,15 @@ class UiButton extends StatelessWidget {
     final effectiveOnPressed = loading ? null : onPressed;
     final spinnerColor =
         variant == UiButtonVariant.primary ? Colors.white : AppColors.primary;
-    final spinner = SizedBox(
-      width: 18,
-      height: 18,
-      child: CircularProgressIndicator(
-        strokeWidth: 2.2,
-        valueColor: AlwaysStoppedAnimation<Color>(spinnerColor),
+    final spinner = Semantics(
+      label: AppStrings.common.loadingDefault,
+      child: SizedBox(
+        width: AppControlSize.spinner,
+        height: AppControlSize.spinner,
+        child: CircularProgressIndicator(
+          strokeWidth: AppStroke.loader,
+          valueColor: AlwaysStoppedAnimation<Color>(spinnerColor),
+        ),
       ),
     );
     final child =
@@ -116,7 +121,10 @@ class UiButton extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppRadius.lg),
-              border: Border.all(color: AppColors.primary, width: 1.5),
+              border: Border.all(
+                color: AppColors.primary,
+                width: AppStroke.regular,
+              ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
             child: DefaultTextStyle(
@@ -151,6 +159,11 @@ class UiButton extends StatelessWidget {
         child: child,
       ),
     };
-    return button;
+    return Semantics(
+      button: true,
+      enabled: effectiveOnPressed != null,
+      label: loading ? AppStrings.common.loadingDefault : label,
+      child: button,
+    );
   }
 }

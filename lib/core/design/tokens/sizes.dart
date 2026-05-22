@@ -41,6 +41,9 @@ class AppControlSize {
   /// 24 — outer radio/check круг в `OptionTile`.
   static const double selector = 24;
 
+  /// 18 — компактный spinner внутри CTA.
+  static const double spinner = 18;
+
   /// 12 — inner dot выбранного radio.
   static const double selectorDot = 12;
 

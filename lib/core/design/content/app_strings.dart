@@ -14,6 +14,7 @@ class AppStrings {
     errorEmpty: 'Нет данных. Попробуйте снова.',
     unknownBreed: 'Порода',
     appBrand: 'PET MATCH AI',
+    homeSemantic: 'На главный экран',
   );
 
   static const WelcomeStrings welcome = WelcomeStrings(
@@ -76,6 +77,10 @@ class AppStrings {
     chipGood: 'Подходит',
     chipMedium: 'С оговорками',
     chipRefused: 'Не рекомендуем',
+    emptyTitle: 'Результат пока недоступен',
+    emptyBody:
+        'Мы не получили данные о подходящих породах. Можно начать анкету заново '
+        'или попробовать позже.',
   );
 
   static const DetailsStrings details = DetailsStrings(
@@ -101,6 +106,7 @@ class CommonStrings {
     required this.errorEmpty,
     required this.unknownBreed,
     required this.appBrand,
+    required this.homeSemantic,
   });
 
   final String retry;
@@ -112,6 +118,7 @@ class CommonStrings {
   final String errorEmpty;
   final String unknownBreed;
   final String appBrand;
+  final String homeSemantic;
 }
 
 class WelcomeStrings {
@@ -210,6 +217,8 @@ class ResultStrings {
     required this.chipGood,
     required this.chipMedium,
     required this.chipRefused,
+    required this.emptyTitle,
+    required this.emptyBody,
   });
 
   final String influences;
@@ -226,6 +235,8 @@ class ResultStrings {
   final String chipGood;
   final String chipMedium;
   final String chipRefused;
+  final String emptyTitle;
+  final String emptyBody;
 }
 
 class DetailsStrings {
