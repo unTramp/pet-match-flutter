@@ -38,6 +38,8 @@ void main() {
       ),
     );
 
+    await tester.pumpAndSettle();
+
     expect(find.text('Лабрадор'), findsOneWidget);
     expect(find.text('90%'), findsOneWidget);
     expect(find.text('Отличный выбор'), findsOneWidget);
@@ -79,6 +81,8 @@ void main() {
       ),
     );
 
+    await tester.pumpAndSettle();
+
     expect(find.text('Голден'), findsOneWidget);
     expect(find.text('85%'), findsOneWidget);
     expect(find.text('Похожая порода'), findsOneWidget);
@@ -101,14 +105,15 @@ void main() {
       return text.style!.color!;
     }
 
-    Future<void> pumpCard(WidgetTester tester, Compatibility c) {
-      return tester.pumpWidget(
+    Future<void> pumpCard(WidgetTester tester, Compatibility c) async {
+      await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: SingleChildScrollView(child: MainBreedCard(compatibility: c)),
           ),
         ),
       );
+      await tester.pumpAndSettle();
     }
 
     testWidgets('compatible=true, risk=low → зелёный', (tester) async {
@@ -195,6 +200,8 @@ void main() {
           home: ResultPage(compatibility: skippedCompatibility),
         ),
       );
+
+      await tester.pumpAndSettle();
 
       expect(find.byType(MainBreedCard), findsOneWidget);
       expect(find.text('Бордер-терьер'), findsOneWidget);

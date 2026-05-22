@@ -14,5 +14,7 @@ class AppMotion {
   static const Duration heroIntro = Duration(milliseconds: 900);
   static const Duration pulse = Duration(milliseconds: 1400);
 
+  static const Duration scoreTicker = Duration(milliseconds: 800);
+
   static const Curve standardCurve = Curves.easeInOut;
 }

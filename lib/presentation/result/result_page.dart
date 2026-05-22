@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/design/components/app_staggered_entrance.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
+import '../../core/design/tokens/motion.dart';
 import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../../core/routing/app_routes.dart';
@@ -34,12 +36,33 @@ class ResultPage extends StatefulWidget {
   State<ResultPage> createState() => _ResultPageState();
 }
 
-class _ResultPageState extends State<ResultPage> {
+class _ResultPageState extends State<ResultPage>
+    with SingleTickerProviderStateMixin {
   static const int _collapsedLimit = 3;
 
   bool _showAllInfluences = false;
   bool _showAllInsights = false;
   bool _showAllRequirements = false;
+  late final AnimationController _introController;
+
+  @override
+  void initState() {
+    super.initState();
+    _introController = AnimationController(
+      vsync: this,
+      duration: AppMotion.heroIntro,
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _introController.forward(from: 0);
+    });
+  }
+
+  @override
+  void dispose() {
+    _introController.dispose();
+    super.dispose();
+  }
 
   void _openBreed(BuildContext context, int? breedId) {
     if (breedId == null) return;
@@ -215,87 +238,130 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  if (!hasVisibleContent) const _EmptyResultView(),
+                  if (!hasVisibleContent)
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.0, 0.4),
+                      child: const _EmptyResultView(),
+                    ),
                   if (primaryCompatibility != null)
-                    MainBreedCard(
-                      compatibility: primaryCompatibility,
-                      onTap:
-                          () =>
-                              _openBreed(context, primaryCompatibility.breedId),
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.0, 0.4),
+                      child: MainBreedCard(
+                        compatibility: primaryCompatibility,
+                        onTap:
+                            () => _openBreed(
+                              context,
+                              primaryCompatibility.breedId,
+                            ),
+                      ),
                     ),
                   if (influences.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xxl),
-                    _sectionWithExpand(
-                      title: AppStrings.result.influences,
-                      items: influences,
-                      showAll: _showAllInfluences,
-                      onToggle:
-                          () => setState(
-                            () => _showAllInfluences = !_showAllInfluences,
-                          ),
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.15, 0.55),
+                      child: _sectionWithExpand(
+                        title: AppStrings.result.influences,
+                        items: influences,
+                        showAll: _showAllInfluences,
+                        onToggle:
+                            () => setState(
+                              () => _showAllInfluences = !_showAllInfluences,
+                            ),
+                      ),
                     ),
                   ],
                   if (refusal != null &&
                       (refusal.title?.isNotEmpty ?? false)) ...[
                     const SizedBox(height: AppSpacing.xxl),
-                    AlertBlock(
-                      title: AppStrings.result.important,
-                      message: refusal.title!,
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.25, 0.65),
+                      child: AlertBlock(
+                        title: AppStrings.result.important,
+                        message: refusal.title!,
+                      ),
                     ),
                   ],
                   if (refusal != null &&
                       (refusal.message?.isNotEmpty ?? false)) ...[
                     const SizedBox(height: AppSpacing.lg),
-                    RefusalBlock(
-                      title: AppStrings.result.refusalTitle,
-                      message: refusal.message!,
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.3, 0.7),
+                      child: RefusalBlock(
+                        title: AppStrings.result.refusalTitle,
+                        message: refusal.message!,
+                      ),
                     ),
                   ],
                   if (insightItems.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xxl),
-                    _sectionWithExpand(
-                      title: AppStrings.result.insights,
-                      items: insightItems,
-                      showAll: _showAllInsights,
-                      onToggle:
-                          () => setState(
-                            () => _showAllInsights = !_showAllInsights,
-                          ),
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.35, 0.75),
+                      child: _sectionWithExpand(
+                        title: AppStrings.result.insights,
+                        items: insightItems,
+                        showAll: _showAllInsights,
+                        onToggle:
+                            () => setState(
+                              () => _showAllInsights = !_showAllInsights,
+                            ),
+                      ),
                     ),
                   ],
                   if (requirementItems.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xxl),
-                    _sectionWithExpand(
-                      title: AppStrings.result.requirements,
-                      items: requirementItems,
-                      showAll: _showAllRequirements,
-                      onToggle:
-                          () => setState(
-                            () => _showAllRequirements = !_showAllRequirements,
-                          ),
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.45, 0.85),
+                      child: _sectionWithExpand(
+                        title: AppStrings.result.requirements,
+                        items: requirementItems,
+                        showAll: _showAllRequirements,
+                        onToggle:
+                            () => setState(
+                              () =>
+                                  _showAllRequirements = !_showAllRequirements,
+                            ),
+                      ),
                     ),
                   ],
                   if (suggestions.isNotEmpty) ...[
                     const SizedBox(height: AppSpacing.xxxl),
-                    Text(
-                      AppStrings.result.suggestionsTitle,
-                      style: theme.textTheme.titleLarge,
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      AppStrings.result.suggestionsSubtitle,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.md),
-                    ...suggestions.map(
-                      (s) => Padding(
-                        padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                        child: SuggestionCard(
-                          suggestion: s,
-                          onTap: () => _openBreed(context, s.breedId),
-                        ),
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.55, 1.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppStrings.result.suggestionsTitle,
+                            style: theme.textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: AppSpacing.xs),
+                          Text(
+                            AppStrings.result.suggestionsSubtitle,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          ...suggestions.map(
+                            (s) => Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: AppSpacing.md,
+                              ),
+                              child: SuggestionCard(
+                                suggestion: s,
+                                onTap: () => _openBreed(context, s.breedId),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

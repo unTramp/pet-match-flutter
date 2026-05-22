@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/design/components/animated_score_label.dart';
 import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/sizes.dart';
@@ -97,8 +98,8 @@ class SuggestionCard extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(AppRadius.md),
                           ),
-                          child: Text(
-                            scoreLabel,
+                          child: AnimatedScoreLabel(
+                            score: suggestion.score,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               color: AppColors.primary,
                               fontWeight: FontWeight.w600,

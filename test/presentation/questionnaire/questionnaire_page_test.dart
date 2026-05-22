@@ -33,6 +33,8 @@ void main() {
       ),
     );
 
+    await tester.pumpAndSettle();
+
     expect(find.textContaining('50%'), findsOneWidget);
   });
 
