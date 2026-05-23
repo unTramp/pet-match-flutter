@@ -1,6 +1,11 @@
 # 🐾 Pet Match AI — Flutter (Тестовое Задание)
-
-<a href="https://ibb.co/RxCkgq4"><img src="https://i.ibb.co/XhzrWqk/Chat-GPT-Image-24-2026-00-26-41.png" alt="Chat-GPT-Image-24-2026-00-26-41" border="0"></a>
+<p align="center">
+  <img 
+    src="https://i.ibb.co/3D09TnY/Chat-GPT-Image-24-2026-00-26-41.png"
+    width="100%"
+    alt="Pet Match AI"
+  />
+</p>
 
 Flutter-приложение с Android-first фокусом, реализующее полный пользовательский сценарий Pet Match AI: welcome screen, анкету, анализ совместимости, результаты, детали породы и галерею.
 
