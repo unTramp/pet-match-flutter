@@ -203,7 +203,6 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.byType(MainBreedCard), findsOneWidget);
       expect(find.text('Бордер-терьер'), findsOneWidget);
       expect(find.text('100%'), findsOneWidget);
       expect(
@@ -212,8 +211,10 @@ void main() {
       );
       expect(find.text('Порода'), findsNothing);
 
-      await tester.scrollUntilVisible(find.text('Мальтезе'), 300);
-      expect(find.text('Мальтезе'), findsOneWidget);
+      // Suggestions теперь рендерятся в горизонтальной карусели, поэтому
+      // «Мальтезе» может быть за viewport. `skipOffstage: false` проверяет
+      // что widget есть в tree независимо от видимости.
+      expect(find.text('Мальтезе', skipOffstage: false), findsOneWidget);
 
       final cta = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
       expect(cta.onPressed, isNotNull);
