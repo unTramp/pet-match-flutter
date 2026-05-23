@@ -75,13 +75,19 @@ GoRouter buildRouter() {
           if (raw == null || int.tryParse(raw) == null) return AppRoutes.welcome;
           return null;
         },
-        pageBuilder:
-            (context, state) => _buildAppTransitionPage(
-              key: state.pageKey,
-              child: BreedDetailPage(
-                breedId: int.parse(state.pathParameters['id']!),
-              ),
+        pageBuilder: (context, state) {
+          // Optional match score проносится из Result через GoRoute.extra.
+          // Deep-link через `/breed/:id` без extra → score = null, badge скрыт.
+          final extra = state.extra;
+          final score = extra is double ? extra : null;
+          return _buildAppTransitionPage(
+            key: state.pageKey,
+            child: BreedDetailPage(
+              breedId: int.parse(state.pathParameters['id']!),
+              score: score,
             ),
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.breedGalleryPattern,

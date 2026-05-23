@@ -64,13 +64,26 @@ class _ResultPageState extends State<ResultPage>
     super.dispose();
   }
 
-  void _openBreed(BuildContext context, int? breedId) {
+  void _openBreed(BuildContext context, int? breedId, {double? score}) {
     if (breedId == null) return;
-    context.push(AppRoutes.breed(breedId));
+    context.push(AppRoutes.breed(breedId), extra: score);
   }
 
   void _openPrimaryAction(BuildContext context) {
-    _openBreed(context, _bottomCtaBreedId(widget.compatibility));
+    final compat = widget.compatibility;
+    final id = _bottomCtaBreedId(compat);
+    if (id == null) return;
+    final primary = _primaryCompatibility(compat);
+    final score = primary?.breedId == id ? primary?.score : null;
+    _openBreed(context, id, score: score ?? _scoreForId(compat, id));
+  }
+
+  double? _scoreForId(Compatibility compat, int id) {
+    if (compat.breedId == id) return compat.score;
+    for (final s in compat.suggestions) {
+      if (s.breedId == id) return s.score;
+    }
+    return null;
   }
 
   Compatibility? _primaryCompatibility(Compatibility compatibility) {
@@ -254,6 +267,7 @@ class _ResultPageState extends State<ResultPage>
                             () => _openBreed(
                               context,
                               primaryCompatibility.breedId,
+                              score: primaryCompatibility.score,
                             ),
                       ),
                     ),
@@ -357,7 +371,12 @@ class _ResultPageState extends State<ResultPage>
                               ),
                               child: SuggestionCard(
                                 suggestion: s,
-                                onTap: () => _openBreed(context, s.breedId),
+                                onTap:
+                                    () => _openBreed(
+                                      context,
+                                      s.breedId,
+                                      score: s.score,
+                                    ),
                               ),
                             ),
                           ),

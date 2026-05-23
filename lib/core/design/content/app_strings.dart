@@ -87,6 +87,9 @@ class AppStrings {
     appBarTitle: 'О породе',
     galleryLabelPrefix: 'Галерея',
     photosSuffix: 'фото',
+    matchBadge: 'совпадение',
+    ctaBack: 'Вернуться к подбору',
+    backSemantic: 'Назад к подбору',
   );
 
   static const AnalyzingStrings analyzing = AnalyzingStrings(
@@ -244,11 +247,17 @@ class DetailsStrings {
     required this.appBarTitle,
     required this.galleryLabelPrefix,
     required this.photosSuffix,
+    required this.matchBadge,
+    required this.ctaBack,
+    required this.backSemantic,
   });
 
   final String appBarTitle;
   final String galleryLabelPrefix;
   final String photosSuffix;
+  final String matchBadge;
+  final String ctaBack;
+  final String backSemantic;
 }
 
 class AnalyzingStrings {
