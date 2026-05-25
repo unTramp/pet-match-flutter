@@ -40,4 +40,27 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
   end
+
+  target_support_dir = File.join(
+    __dir__,
+    'Pods',
+    'Target Support Files',
+    'Pods-Runner',
+  )
+
+  Dir.glob(File.join(target_support_dir, 'Pods-Runner-frameworks-*-input-files.xcfilelist')).each do |path|
+    contents = File.read(path)
+    patched = contents.gsub('${BUILT_PRODUCTS_DIR}/', '${PODS_CONFIGURATION_BUILD_DIR}/')
+    File.write(path, patched) if patched != contents
+  end
+
+  frameworks_script = File.join(target_support_dir, 'Pods-Runner-frameworks.sh')
+  if File.exist?(frameworks_script)
+    contents = File.read(frameworks_script)
+    patched = contents.gsub(
+      'install_framework "${BUILT_PRODUCTS_DIR}/',
+      'install_framework "${PODS_CONFIGURATION_BUILD_DIR}/',
+    )
+    File.write(frameworks_script, patched) if patched != contents
+  end
 end

@@ -112,17 +112,6 @@ class _ResultPageState extends State<ResultPage>
         summary: s.summary,
       );
 
-  String _matchLabel(Compatibility compatibility) {
-    if (compatibility.compatible == false ||
-        compatibility.risk == CompatibilityRisk.high) {
-      return AppStrings.result.chipRefused;
-    }
-    if (compatibility.risk == CompatibilityRisk.medium) {
-      return AppStrings.result.chipMedium;
-    }
-    return AppStrings.result.chipGood;
-  }
-
   List<ReasonItem> _visibleItems(List<ReasonItem> source, bool showAll) {
     if (showAll || source.length <= _collapsedLimit) return source;
     return source.take(_collapsedLimit).toList(growable: false);
@@ -326,7 +315,6 @@ class _ResultPageState extends State<ResultPage>
                       interval: const Interval(0.0, 0.45),
                       child: _LifestyleHero(
                         compatibility: primary,
-                        matchLabel: _matchLabel(primary),
                       ),
                     ),
           Padding(
@@ -339,6 +327,20 @@ class _ResultPageState extends State<ResultPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // if (primary != null) ...[
+                //   AppStaggeredEntrance(
+                //     controller: _introController,
+                //     interval: const Interval(0.2, 0.6),
+                //     child: const _WhyMatchSection(),
+                //   ),
+                //   const SizedBox(height: AppSpacing.xxl),
+                //   AppStaggeredEntrance(
+                //     controller: _introController,
+                //     interval: const Interval(0.28, 0.68),
+                //     child: const _ImportantNotesSection(),
+                //   ),
+                //   const SizedBox(height: AppSpacing.xxl),
+                // ],
                 if (primary?.summary != null) ...[
                   AppStaggeredEntrance(
                     controller: _introController,
@@ -430,13 +432,9 @@ class _ResultPageState extends State<ResultPage>
 }
 
 class _LifestyleHero extends StatelessWidget {
-  const _LifestyleHero({
-    required this.compatibility,
-    required this.matchLabel,
-  });
+  const _LifestyleHero({required this.compatibility});
 
   final Compatibility compatibility;
-  final String matchLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -461,8 +459,8 @@ class _LifestyleHero extends StatelessWidget {
                 ? 36.0
                 : 40.0;
 
-final heroHeight = titleLength > 42 ? 390.0 : 355.0;
-final imageHeight = isSmall ? 235.0 : 255.0;
+final heroHeight = titleLength > 42 ? 510.0 : 485.0;
+final imageHeight = isSmall ? 260.0 : 292.0;
 final percentFontSize = isSmall ? 38.0 : 44.0;
 
         final scorePct =
@@ -476,25 +474,26 @@ final percentFontSize = isSmall ? 38.0 : 44.0;
             clipBehavior: Clip.none,
             children: [
 Positioned(
-  right: -64,
-  top: 42,
+  right: -84,
+  top: 16,
   child: Container(
-    width: 270,
-    height: 270,
+    width: 320,
+    height: 320,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      gradient: LinearGradient(
+      gradient: RadialGradient(
         colors: [
-          AppColors.lavenderTint,
-          AppColors.lavenderTint.withValues(alpha: 0.55),
+          AppColors.primary.withValues(alpha: 0.18),
+          AppColors.lavenderTint.withValues(alpha: 0.58),
+          AppColors.lavenderTint.withValues(alpha: 0.12),
         ],
       ),
     ),
   ),
 ),
 Positioned(
-  right: -8,
-  top: 78,
+  right: -22,
+  top: 42,
   child: Hero(
     tag: 'breed_image_${compatibility.breedId}',
     child: Image.asset(
@@ -523,18 +522,7 @@ Positioned(
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      matchLabel,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 15,
-                        height: 1.25,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+
                     if (scorePct != null) ...[
                       const SizedBox(height: 22),
                       Row(
@@ -581,52 +569,351 @@ Positioned(
                         ],
                       ),
                     ],
+                                        const SizedBox(height: 14),
+                    const _AiRecommendationBadge(),
                   ],
                 ),
               ),
-              if (compatibility.compatible != false &&
-                  compatibility.risk != CompatibilityRisk.high)
-                Positioned(
-                  left: AppSpacing.xl,
-                  bottom: 20,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.md,
-                      vertical: 7,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(AppRadius.xxl),
-                      border: Border.all(
-                        color: AppColors.primary.withValues(alpha: 0.2),
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.check_circle_rounded,
-                          size: 14,
-                          color: AppColors.primary,
-                        ),
-                        SizedBox(width: 6),
-                        Text(
-                          'Рекомендовано AI',
-                          style: TextStyle(
-                            color: AppColors.primary,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.3,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              Positioned(
+                left: AppSpacing.xl,
+                right: AppSpacing.xl,
+                bottom: 0,
+                child: const _ResultTraitGrid(),
+              ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+
+
+class _AiRecommendationBadge extends StatelessWidget {
+  const _AiRecommendationBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: 7,
+      ),
+      decoration: BoxDecoration(
+        color: AppColors.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(AppRadius.xxl),
+        border: Border.all(
+          color: AppColors.primary.withValues(alpha: 0.2),
+          width: AppStroke.hairline,
+        ),
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.auto_awesome_rounded,
+            size: 14,
+            color: AppColors.primary,
+          ),
+          SizedBox(width: 6),
+          Text(
+            'Рекомендовано AI',
+            style: TextStyle(
+              color: AppColors.primary,
+              fontSize: 12,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 0.2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ResultTraitGrid extends StatelessWidget {
+  const _ResultTraitGrid();
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final itemWidth = (constraints.maxWidth - AppSpacing.sm) / 2;
+
+        return Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
+          children: const [
+            _TraitGridItem(
+              icon: Icons.flash_on_rounded,
+              label: 'Активность',
+              value: 'Высокая',
+            ),
+            _TraitGridItem(
+              icon: Icons.content_cut_rounded,
+              label: 'Уход',
+              value: 'Средний',
+            ),
+            _TraitGridItem(
+              icon: Icons.home_rounded,
+              label: 'Жильё',
+              value: 'Квартира',
+            ),
+            _TraitGridItem(
+              icon: Icons.psychology_rounded,
+              label: 'Опыт',
+              value: 'Желателен',
+            ),
+          ].map((item) => SizedBox(width: itemWidth, child: item)).toList(),
+        );
+      },
+    );
+  }
+}
+
+class _TraitGridItem extends StatelessWidget {
+  const _TraitGridItem({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      constraints: const BoxConstraints(minHeight: 72),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
+      decoration: BoxDecoration(
+        color: AppColors.surface.withValues(alpha: 0.92),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        border: Border.all(
+          color: AppColors.surface.withValues(alpha: AppAlpha.borderMuted),
+          width: AppStroke.hairline,
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 18,
+            offset: Offset(0, 8),
+            spreadRadius: -4,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 34,
+            height: 34,
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: AppAlpha.tint),
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+            alignment: Alignment.center,
+            child: Icon(icon, size: 18, color: AppColors.primary),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w700,
+                    height: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  value,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w900,
+                    height: 1.1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WhyMatchSection extends StatelessWidget {
+  const _WhyMatchSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return _SoftSectionCard(
+      icon: Icons.auto_awesome_rounded,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Почему это совпадение?',
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          const Wrap(
+            spacing: AppSpacing.lg,
+            runSpacing: AppSpacing.md,
+            children: [
+              _CheckReason(text: 'Ритм жизни совпадает'),
+              _CheckReason(text: 'Условия жилья подходят'),
+              _CheckReason(text: 'Активность учтена'),
+              _CheckReason(text: 'Готовность к уходу учтена'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CheckReason extends StatelessWidget {
+  const _CheckReason({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return SizedBox(
+      //width: 130,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: AppAlpha.tint),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.check_rounded,
+              size: 16,
+              color: AppColors.primary,
+            ),
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(
+              text,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: AppColors.textPrimary,
+                height: 1.25,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ImportantNotesSection extends StatelessWidget {
+  const _ImportantNotesSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return _SoftSectionCard(
+      icon: Icons.pets_rounded,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Что важно знать',
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          const Row(
+            children: [
+              Expanded(
+                child: _MiniNote(
+                  icon: Icons.directions_walk_rounded,
+                  text: 'Нужны регулярные прогулки',
+                ),
+              ),
+              SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: _MiniNote(
+                  icon: Icons.psychology_rounded,
+                  text: 'Требует умственной нагрузки',
+                ),
+              ),
+              SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: _MiniNote(
+                  icon: Icons.favorite_border_rounded,
+                  text: 'Может быть чувствительной',
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MiniNote extends StatelessWidget {
+  const _MiniNote({required this.icon, required this.text});
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.sm),
+      decoration: BoxDecoration(
+        color: AppColors.lavenderTint.withValues(alpha: 0.55),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 20, color: AppColors.primary),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            text,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.w600,
+              height: 1.2,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -904,8 +1191,8 @@ class _ScoreChip extends StatelessWidget {
                 color: AppColors.accent,
               ),
               const SizedBox(width: AppSpacing.xs),
-              AnimatedScoreLabel(
-                score: score,
+              Text(
+                '${(score * 100).round()}%',
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w800,
