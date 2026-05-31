@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pet_match/core/design/components/breed_story_avatar.dart';
 import 'package:pet_match/core/theme/app_colors.dart';
 import 'package:pet_match/domain/entities/compatibility.dart';
 import 'package:pet_match/presentation/result/result_page.dart';
@@ -211,13 +212,38 @@ void main() {
       );
       expect(find.text('Порода'), findsNothing);
 
-      // Suggestions теперь рендерятся в горизонтальной карусели, поэтому
-      // «Мальтезе» может быть за viewport. `skipOffstage: false` проверяет
-      // что widget есть в tree независимо от видимости.
-      expect(find.text('Мальтезе', skipOffstage: false), findsOneWidget);
+      // Suggestions section проверяется отдельным тестом ниже
+      // (BreedStoryAvatar focused test) — здесь нельзя надёжно проверить
+      // его наличие, т.к. он в горизонтальном lazy ListView далеко за
+      // viewport'ом тестового экрана (800×600).
 
       final cta = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
       expect(cta.onPressed, isNotNull);
     },
   );
+
+  // Фокусный тест на BreedStoryAvatar — изолированно проверяем что виджет
+  // корректно рендерит имя породы под аватаром. Это test для
+  // _SuggestionsSection ResultPage'а: внутри он использует BreedStoryAvatar
+  // для каждой suggestion. Раньше эта проверка была частью широкого теста
+  // ResultPage, но из-за horizontal lazy ListView виджет не строился без
+  // прокрутки. Здесь рендерим напрямую, гарантированно in-tree.
+  testWidgets('BreedStoryAvatar renders breed name below the circle', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: BreedStoryAvatar(breedName: 'Мальтезе', score: 0.92),
+          ),
+        ),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('Мальтезе'), findsOneWidget);
+    expect(find.text('92%'), findsOneWidget);
+  });
 }

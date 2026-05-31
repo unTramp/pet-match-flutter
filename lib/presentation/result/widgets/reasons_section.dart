@@ -7,16 +7,21 @@ import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Одна строка в [ReasonsSection]: иконка + текст.
+///
+/// `plainIcon: true` отключает tinted-подложку под иконкой — нужно для
+/// чек-листов (Requirements), где галочка читается лучше без рамки.
 class ReasonItem {
   const ReasonItem({
     required this.text,
     required this.icon,
     required this.color,
+    this.plainIcon = false,
   });
 
   final String text;
   final IconData icon;
   final Color color;
+  final bool plainIcon;
 }
 
 /// Переиспользуемая секция «Что влияет на совпадение?», «Что важно знать»,
@@ -69,16 +74,25 @@ class _ReasonRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           width: AppControlSize.selector,
           height: AppControlSize.selector,
-          margin: const EdgeInsets.only(top: AppSpacing.xxs),
-          decoration: BoxDecoration(
-            color: item.color.withValues(alpha: AppAlpha.tint),
-            borderRadius: BorderRadius.circular(AppRadius.sm),
+          child: Container(
+            margin: const EdgeInsets.only(top: AppSpacing.xxs),
+            decoration:
+                item.plainIcon
+                    ? null
+                    : BoxDecoration(
+                      color: item.color.withValues(alpha: AppAlpha.tint),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
+                    ),
+            alignment: Alignment.center,
+            child: Icon(
+              item.icon,
+              size: item.plainIcon ? AppIconSize.lg : AppIconSize.sm,
+              color: item.color,
+            ),
           ),
-          alignment: Alignment.center,
-          child: Icon(item.icon, size: AppIconSize.sm, color: item.color),
         ),
         const SizedBox(width: AppSpacing.md),
         Expanded(

@@ -349,6 +349,18 @@ class _LifestyleHero extends StatelessWidget {
   const _LifestyleHero({required this.compatibility});
 
   final Compatibility compatibility;
+  static const double _smallScreenBreakpoint = 380;
+  static const double _longTitleHeroHeight = 383;
+  static const double _defaultHeroHeight = 358;
+  static const double _smallImageHeight = 260;
+  static const double _defaultImageHeight = 292;
+  static const double _heroGlowOffsetRight = -134;
+  static const double _heroGlowOffsetTop = 10;
+  static const double _heroGlowSize = 440;
+  static const double _heroImageOffsetRight = -32;
+  static const double _heroImageOffsetTop = 60;
+  static const double _titleColumnRightFactor = 0.35;
+  static const double _titleLineHeight = 1.05;
 
   /// Подпись под процентом совпадения. Делит шкалу 0-100 на 4 диапазона,
   /// чтобы число обретало смысл («92%» само по себе не говорит, насколько
@@ -365,7 +377,7 @@ class _LifestyleHero extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final screenWidth = constraints.maxWidth;
-        final isSmall = screenWidth < 380;
+        final isSmall = screenWidth < _smallScreenBreakpoint;
         final breedName =
             compatibility.breedName ?? AppStrings.common.unknownBreed;
         final titleLength = breedName.length;
@@ -383,8 +395,9 @@ class _LifestyleHero extends StatelessWidget {
                 ? 36.0
                 : 40.0;
 
-        final heroHeight = titleLength > 42 ? 383.0 : 358.0;
-        final imageHeight = isSmall ? 260.0 : 292.0;
+        final heroHeight =
+            titleLength > 42 ? _longTitleHeroHeight : _defaultHeroHeight;
+        final imageHeight = isSmall ? _smallImageHeight : _defaultImageHeight;
         // Score намеренно того же размера что и titleFontSize — визуальный
         // ритм «имя и оценка равноценны», отличие только в цвете (primary).
         final percentFontSize = titleFontSize;
@@ -400,11 +413,11 @@ class _LifestyleHero extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Positioned(
-                right: -134,
-                top: 10,
+                right: _heroGlowOffsetRight,
+                top: _heroGlowOffsetTop,
                 child: Container(
-                  width: 440,
-                  height: 440,
+                  width: _heroGlowSize,
+                  height: _heroGlowSize,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
@@ -418,8 +431,8 @@ class _LifestyleHero extends StatelessWidget {
                 ),
               ),
               Positioned(
-                right: -32,
-                top: 60,
+                right: _heroImageOffsetRight,
+                top: _heroImageOffsetTop,
                 child: Hero(
                   tag: 'breed_image_${compatibility.breedId}',
                   child: Image.asset(
@@ -432,7 +445,7 @@ class _LifestyleHero extends StatelessWidget {
               Positioned(
                 left: AppSpacing.xl,
                 top: AppSpacing.sm,
-                right: screenWidth * 0.35,
+                right: screenWidth * _titleColumnRightFactor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -444,7 +457,7 @@ class _LifestyleHero extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: titleFontSize,
-                        height: 1.05,
+                        height: _titleLineHeight,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
