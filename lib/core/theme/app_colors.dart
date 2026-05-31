@@ -18,6 +18,11 @@ class AppColors {
   static const Color warningSurface = Color(0xFFFFF6E0);
   static const Color warningBorder = Color(0xFFF0E1B8);
   static const Color overlayDark = Color(0x80000000);
+  static const Color shadowBase = Color(0xFF000000);
+  static const Color gaugeNeedle = Color(0xFF5B6170);
+  static const Color gaugeGradientStart = Color(0xFFBFAEFF);
+  static const Color gaugeGradientMid = Color(0xFF8D74FF);
+  static const Color gaugeGradientEnd = Color(0xFF6F5DF0);
 
   /// Полупрозрачный белый для иконок/текста на тёмных или фото-фонах
   /// (например, broken-image fallback в галерее). Совпадает с устаревшим
