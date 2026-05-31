@@ -83,10 +83,10 @@ class _IntroPageState extends State<IntroPage> {
     return Scaffold(
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(
-          AppSpacing.xl,
-          AppSpacing.sm,
-          AppSpacing.xl,
+          AppSpacing.xxxl,
           AppSpacing.md,
+          AppSpacing.xxxl,
+          AppSpacing.xl,
         ),
         child: UiButton(
           label: AppStrings.intro.ctaStart,
@@ -97,30 +97,30 @@ class _IntroPageState extends State<IntroPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xxl,
-            AppSpacing.sm,
-            AppSpacing.xxl,
+            AppSpacing.xxxxl,
             AppSpacing.md,
+            AppSpacing.xxxxl,
+            AppSpacing.xl,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const TopBrandBar(padding: EdgeInsets.zero),
-              const SizedBox(height: AppSpacing.xxl),
+              const SizedBox(height: AppSpacing.xxxxl),
               Text(
                 AppStrings.intro.title,
                 style: theme.textTheme.headlineMedium,
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: AppSpacing.md),
               Text(
                 AppStrings.intro.subtitle,
                 style: theme.textTheme.bodyMedium,
               ),
-              const SizedBox(height: AppSpacing.xxxl),
+              const SizedBox(height: AppSpacing.xxxxxl),
               ...List.generate(
                 _bullets.length,
                 (i) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                  padding: const EdgeInsets.only(bottom: AppSpacing.xxxl),
                   child: _bullets[i],
                 ),
               ),
@@ -159,7 +159,7 @@ class _IntroBullet extends StatelessWidget {
           ),
           child: Icon(icon, color: AppColors.primary),
         ),
-        const SizedBox(width: AppSpacing.lg),
+        const SizedBox(width: AppSpacing.xxl),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

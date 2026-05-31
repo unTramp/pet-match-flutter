@@ -100,10 +100,10 @@ class _QuestionnaireView extends StatelessWidget {
                     ? null
                     : SafeArea(
                       minimum: const EdgeInsets.fromLTRB(
-                        AppSpacing.xl,
-                        AppSpacing.sm,
-                        AppSpacing.xl,
+                        AppSpacing.xxxl,
                         AppSpacing.md,
+                        AppSpacing.xxxl,
+                        AppSpacing.xl,
                       ),
                       child: QuestionFooter(
                         canSubmit: questionState.canSubmit,
@@ -158,21 +158,21 @@ class _QuestionBody extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xxxl,
         AppSpacing.xl,
-        AppSpacing.md,
+        AppSpacing.xxxl,
         AppSpacing.xl,
-        AppSpacing.md,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ProgressBar(progress: state.progress),
-          const SizedBox(height: AppSpacing.md),
+          const SizedBox(height: AppSpacing.xl),
           Divider(
             color: AppColors.border.withValues(alpha: AppAlpha.divider),
             height: 1,
           ),
-          const SizedBox(height: AppSpacing.xl),
+          const SizedBox(height: AppSpacing.xxxl),
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -181,7 +181,7 @@ class _QuestionBody extends StatelessWidget {
                 children: [
                   Text(question.title, style: theme.textTheme.headlineMedium),
                   if (question.helpText != null) ...[
-                    const SizedBox(height: AppSpacing.sm),
+                    const SizedBox(height: AppSpacing.md),
                     Text(
                       question.helpText!,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -194,7 +194,7 @@ class _QuestionBody extends StatelessWidget {
                   ],
                   if (question is MultipleChoiceQuestion &&
                       question.helpText == null) ...[
-                    const SizedBox(height: AppSpacing.sm),
+                    const SizedBox(height: AppSpacing.md),
                     Text(
                       AppStrings.questionnaire.multiSelectHint,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -205,7 +205,7 @@ class _QuestionBody extends StatelessWidget {
                       ),
                     ),
                   ],
-                  const SizedBox(height: AppSpacing.xxl),
+                  const SizedBox(height: AppSpacing.xxxxl),
                   AnimatedOpacity(
                     duration: AppMotion.normal,
                     curve: Curves.easeOut,
@@ -274,19 +274,19 @@ class _UnsupportedQuestionView extends StatelessWidget {
                 size: AppIconSize.xxl,
                 color: AppColors.warning,
               ),
-              const SizedBox(width: AppSpacing.smd),
+              const SizedBox(width: AppSpacing.lg),
               Text(
                 AppStrings.questionnaire.unsupportedTitle,
                 style: theme.textTheme.titleMedium,
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: AppSpacing.md),
           Text(
             AppStrings.questionnaire.unsupportedBody,
             style: theme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: AppSpacing.s),
+          const SizedBox(height: AppSpacing.sm),
           Text(
             'question_type: $questionType',
             style: theme.textTheme.bodySmall?.copyWith(

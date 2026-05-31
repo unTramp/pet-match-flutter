@@ -57,6 +57,7 @@ class MainBreedCard extends StatelessWidget {
       if (breedId == null) return child;
       return Hero(tag: 'breed_image_$breedId', child: child);
     }
+
     return Semantics(
       button: onTap != null,
       label: '$breedName, $scoreLabel, ${_statusText()}',
@@ -84,8 +85,7 @@ class MainBreedCard extends StatelessWidget {
                               imageUrl: imageUrl,
                               fit: BoxFit.cover,
                               placeholder:
-                                  (_, __) =>
-                                      Container(color: AppColors.border),
+                                  (_, __) => Container(color: AppColors.border),
                               errorWidget:
                                   (_, __, ___) => Container(
                                     color: AppColors.border,
@@ -109,11 +109,11 @@ class MainBreedCard extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: AppSpacing.md,
-                      right: AppSpacing.md,
+                      top: AppSpacing.xl,
+                      right: AppSpacing.xl,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.sm,
+                          horizontal: AppSpacing.md,
                           vertical: AppSpacing.xxs,
                         ),
                         decoration: BoxDecoration(
@@ -139,7 +139,7 @@ class MainBreedCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(AppSpacing.xl),
+                padding: const EdgeInsets.all(AppSpacing.xxxl),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -153,8 +153,8 @@ class MainBreedCard extends StatelessWidget {
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.md,
-                            vertical: AppSpacing.s,
+                            horizontal: AppSpacing.xl,
+                            vertical: AppSpacing.sm,
                           ),
                           decoration: BoxDecoration(
                             color: accent.withValues(alpha: AppAlpha.tintSoft),
@@ -171,14 +171,14 @@ class MainBreedCard extends StatelessWidget {
                       ],
                     ),
                     if (compatibility.summary != null) ...[
-                      const SizedBox(height: AppSpacing.md),
+                      const SizedBox(height: AppSpacing.xl),
                       Text(
                         compatibility.summary!,
                         style: theme.textTheme.bodyMedium,
                       ),
                     ],
                     if (onTap != null) ...[
-                      const SizedBox(height: AppSpacing.lg),
+                      const SizedBox(height: AppSpacing.xxl),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: TextButton(

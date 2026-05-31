@@ -18,7 +18,7 @@ class RefusalBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
+      padding: const EdgeInsets.all(AppSpacing.xxl),
       decoration: BoxDecoration(
         color: AppColors.warningSurface,
         borderRadius: BorderRadius.circular(AppRadius.xl),
@@ -34,11 +34,13 @@ class RefusalBlock extends StatelessWidget {
               color: AppColors.textPrimary,
             ),
           ),
-          const SizedBox(height: AppSpacing.smd),
+          const SizedBox(height: AppSpacing.lg),
           Text(
             message,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: AppColors.textPrimary.withValues(alpha: AppAlpha.textOverSurface),
+              color: AppColors.textPrimary.withValues(
+                alpha: AppAlpha.textOverSurface,
+              ),
             ),
           ),
         ],

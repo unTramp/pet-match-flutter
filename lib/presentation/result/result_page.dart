@@ -57,7 +57,7 @@ class _ResultPageState extends State<ResultPage>
     final offset = _scrollController.offset.clamp(0.0, double.infinity);
     final delta = offset - _lastScrollOffset;
 
-    if (offset <= AppSpacing.sm) {
+    if (offset <= AppSpacing.md) {
       if (!_showTopBar) {
         setState(() => _showTopBar = true);
       }
@@ -172,10 +172,10 @@ class _ResultPageState extends State<ResultPage>
         backgroundColor: AppColors.cream,
         bottomNavigationBar: SafeArea(
           minimum: const EdgeInsets.fromLTRB(
-            AppSpacing.xl,
-            AppSpacing.sm,
-            AppSpacing.xl,
+            AppSpacing.xxxl,
             AppSpacing.md,
+            AppSpacing.xxxl,
+            AppSpacing.xl,
           ),
           child: UiButton(
             label: AppStrings.common.restart,
@@ -184,7 +184,7 @@ class _ResultPageState extends State<ResultPage>
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(AppSpacing.xl),
+            padding: const EdgeInsets.all(AppSpacing.xxxl),
             child: AppStaggeredEntrance(
               controller: _introController,
               interval: const Interval(0.0, 0.4),
@@ -201,10 +201,10 @@ class _ResultPageState extends State<ResultPage>
       backgroundColor: AppColors.cream,
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(
-          AppSpacing.xl,
-          AppSpacing.sm,
-          AppSpacing.xl,
+          AppSpacing.xxxl,
           AppSpacing.md,
+          AppSpacing.xxxl,
+          AppSpacing.xl,
         ),
         child: UiButton(
           label:
@@ -263,9 +263,9 @@ class _ResultPageState extends State<ResultPage>
                       interval: const Interval(0.08, 0.50),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(
-                          AppSpacing.xl,
+                          AppSpacing.xxxl,
                           0,
-                          AppSpacing.xl,
+                          AppSpacing.xxxl,
                           0,
                         ),
                         child: _SummarySection(summary: primary!.summary!),
@@ -276,9 +276,9 @@ class _ResultPageState extends State<ResultPage>
                     interval: const Interval(0.16, 0.56),
                     child: const Padding(
                       padding: EdgeInsets.fromLTRB(
-                        AppSpacing.xl,
-                        AppSpacing.xxl,
-                        AppSpacing.xl,
+                        AppSpacing.xxxl,
+                        AppSpacing.xxxxl,
+                        AppSpacing.xxxl,
                         0,
                       ),
                       child: _ResultCharacteristicsSection(),
@@ -286,10 +286,10 @@ class _ResultPageState extends State<ResultPage>
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(
-                      AppSpacing.xl,
-                      AppSpacing.xxl,
-                      AppSpacing.xl,
                       AppSpacing.xxxl,
+                      AppSpacing.xxxxl,
+                      AppSpacing.xxxl,
+                      AppSpacing.xxxxxl,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,13 +300,13 @@ class _ResultPageState extends State<ResultPage>
                         //     interval: const Interval(0.2, 0.6),
                         //     child: const _WhyMatchSection(),
                         //   ),
-                        //   const SizedBox(height: AppSpacing.xxl),
+                        //   const SizedBox(height: AppSpacing.xxxxl),
                         //   AppStaggeredEntrance(
                         //     controller: _introController,
                         //     interval: const Interval(0.28, 0.68),
                         //     child: const _ImportantNotesSection(),
                         //   ),
-                        //   const SizedBox(height: AppSpacing.xxl),
+                        //   const SizedBox(height: AppSpacing.xxxxl),
                         // ],
                         if (refusal != null &&
                             ((refusal.title?.isNotEmpty ?? false) ||
@@ -316,7 +316,7 @@ class _ResultPageState extends State<ResultPage>
                             interval: const Interval(0.32, 0.72),
                             child: _RefusalSection(refusal: refusal),
                           ),
-                          const SizedBox(height: AppSpacing.xxl),
+                          const SizedBox(height: AppSpacing.xxxxl),
                         ],
                         if (suggestions.isNotEmpty)
                           AppStaggeredEntrance(
@@ -443,8 +443,8 @@ class _LifestyleHero extends StatelessWidget {
                 ),
               ),
               Positioned(
-                left: AppSpacing.xl,
-                top: AppSpacing.sm,
+                left: AppSpacing.xxxl,
+                top: AppSpacing.md,
                 right: screenWidth * _titleColumnRightFactor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -463,7 +463,7 @@ class _LifestyleHero extends StatelessWidget {
                     ),
 
                     if (scorePct != null) ...[
-                      const SizedBox(height: AppSpacing.xxxl),
+                      const SizedBox(height: AppSpacing.xxxxxl),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -483,11 +483,11 @@ class _LifestyleHero extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(width: AppSpacing.xl),
+                          const SizedBox(width: AppSpacing.xxxl),
                           const _FavoritePawButton(),
                         ],
                       ),
-                      const SizedBox(height: AppSpacing.sm),
+                      const SizedBox(height: AppSpacing.md),
                       Text(
                         _scoreLabel(scorePct),
                         style: const TextStyle(
@@ -547,7 +547,7 @@ class _RefusalSection extends StatelessWidget {
             ),
           if (message != null && message.isNotEmpty) ...[
             if (title != null && title.isNotEmpty)
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: AppSpacing.md),
             Text(message, style: Theme.of(context).textTheme.bodyLarge),
           ],
         ],
@@ -584,7 +584,7 @@ class _SuggestionsSection extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: AppSpacing.sm),
+                    const SizedBox(height: AppSpacing.md),
                     Container(
                       width: 40,
                       height: 4,
@@ -595,10 +595,10 @@ class _SuggestionsSection extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.xxxl,
+                        AppSpacing.xxl,
+                        AppSpacing.xxxl,
                         AppSpacing.xl,
-                        AppSpacing.lg,
-                        AppSpacing.xl,
-                        AppSpacing.md,
                       ),
                       child: Row(
                         children: [
@@ -623,14 +623,14 @@ class _SuggestionsSection extends StatelessWidget {
                       child: ListView.separated(
                         controller: scrollController,
                         padding: const EdgeInsets.fromLTRB(
-                          AppSpacing.xl,
-                          0,
-                          AppSpacing.xl,
                           AppSpacing.xxxl,
+                          0,
+                          AppSpacing.xxxl,
+                          AppSpacing.xxxxxl,
                         ),
                         itemCount: suggestions.length,
                         separatorBuilder:
-                            (_, __) => const SizedBox(height: AppSpacing.md),
+                            (_, __) => const SizedBox(height: AppSpacing.xl),
                         itemBuilder: (context, index) {
                           final suggestion = suggestions[index];
                           return UiCard(
@@ -643,7 +643,7 @@ class _SuggestionsSection extends StatelessWidget {
                                 AppRadius.xxl,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(AppSpacing.lg),
+                                padding: const EdgeInsets.all(AppSpacing.xxl),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -656,7 +656,7 @@ class _SuggestionsSection extends StatelessWidget {
                                             ),
                                       ),
                                     ),
-                                    const SizedBox(width: AppSpacing.md),
+                                    const SizedBox(width: AppSpacing.xl),
                                     Text(
                                       '${((suggestion.score ?? 0) * 100).round()}%',
                                       style: theme.textTheme.labelMedium
@@ -704,7 +704,7 @@ class _SuggestionsSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: AppSpacing.xl),
         SizedBox(
           height: BreedStoryAvatar.estimatedHeight,
           child: ListView.separated(
@@ -712,7 +712,7 @@ class _SuggestionsSection extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             clipBehavior: Clip.none,
             itemCount: suggestions.length,
-            separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.md),
+            separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) {
               final suggestion = suggestions[index];
               return BreedStoryAvatar(
@@ -743,7 +743,7 @@ class _SoftSectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.xl),
+      padding: const EdgeInsets.all(AppSpacing.xxxl),
       decoration: BoxDecoration(
         color: AppColors.surface.withValues(alpha: 0.96),
         borderRadius: BorderRadius.circular(AppRadius.xxl),
@@ -763,7 +763,7 @@ class _SoftSectionCard extends StatelessWidget {
             alignment: Alignment.center,
             child: Icon(icon, size: AppIconSize.sm, color: iconColor),
           ),
-          const SizedBox(width: AppSpacing.md),
+          const SizedBox(width: AppSpacing.xl),
           Expanded(child: child),
         ],
       ),
@@ -787,13 +787,13 @@ class _EmptyResultView extends StatelessWidget {
               size: AppIconSize.emptyState,
               color: AppColors.textSecondary,
             ),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: AppSpacing.xxl),
             Text(
               AppStrings.result.emptyTitle,
               style: theme.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.md),
             Text(
               AppStrings.result.emptyBody,
               style: theme.textTheme.bodyMedium,

@@ -51,7 +51,7 @@ class UiStateView extends StatelessWidget {
                 color: AppColors.textSecondary,
               ),
             if (message != null) ...[
-              const SizedBox(height: AppSpacing.lg),
+              const SizedBox(height: AppSpacing.xxl),
               Text(
                 message!,
                 style: theme.textTheme.bodyLarge,
@@ -59,7 +59,7 @@ class UiStateView extends StatelessWidget {
               ),
             ],
             if (primaryAction != null && primaryLabel != null) ...[
-              const SizedBox(height: AppSpacing.xxl),
+              const SizedBox(height: AppSpacing.xxxxl),
               UiButton(label: primaryLabel!, onPressed: primaryAction),
             ],
           ],

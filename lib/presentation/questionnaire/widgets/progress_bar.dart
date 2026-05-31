@@ -56,7 +56,7 @@ class ProgressBar extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: AppSpacing.md),
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppRadius.sm),
                 child: SizedBox(
@@ -85,7 +85,7 @@ class ProgressBar extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.xl),
               Row(
                 children: [
                   Icon(

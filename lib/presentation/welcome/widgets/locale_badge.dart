@@ -16,7 +16,7 @@ class LocaleBadge extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.xs,
-          vertical: AppSpacing.s,
+          vertical: AppSpacing.sm,
         ),
         child: Text(
           'RU',

@@ -6,14 +6,14 @@ class AppSpacing {
 
   static const double xxs = 2;
   static const double xs = 4;
-  static const double s = 6;
-  static const double sm = 8;
-  static const double smd = 10;
-  static const double md = 12;
-  static const double lg = 16;
-  static const double xl = 20;
-  static const double xxl = 24;
-  static const double xxxl = 32;
+  static const double sm = 6;
+  static const double md = 8;
+  static const double lg = 10;
+  static const double xl = 12;
+  static const double xxl = 16;
+  static const double xxxl = 20;
+  static const double xxxxl = 24;
+  static const double xxxxxl = 32;
 
-  static const EdgeInsets screenPadding = EdgeInsets.all(xxl);
+  static const EdgeInsets screenPadding = EdgeInsets.all(xxxxl);
 }

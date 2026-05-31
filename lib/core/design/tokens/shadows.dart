@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'alpha.dart';
 
-/// Теневая шкала: единообразные drop-shadow для карточек и выбранных опций.
-/// Получатели — `UiCard` (`card`) и `OptionTile` (`option` / `optionSelected`).
+/// Теневая шкала: единообразные drop-shadow для карточек и приподнятых
+/// интерактивных surfaces.
 class AppShadows {
   AppShadows._();
 
@@ -16,7 +16,7 @@ class AppShadows {
     ),
   ];
 
-  static List<BoxShadow> get option => const [
+  static List<BoxShadow> get elevatedCard => const [
     BoxShadow(
       color: Color.fromRGBO(0, 0, 0, AppAlpha.shadowSoft),
       offset: Offset(0, 6),
@@ -25,10 +25,10 @@ class AppShadows {
     ),
   ];
 
-  /// Выбранный option: тень окрашивается primary-цветом для подчёркивания
-  /// выделения. Цвет приходит снаружи, чтобы держать карточку в нейтральном
-  /// токен-слое.
-  static List<BoxShadow> optionSelected(Color tint) => [
+  /// Выбранная приподнятая surface: тень окрашивается primary-цветом для
+  /// подчёркивания выделения. Цвет приходит снаружи, чтобы держать карточку в
+  /// нейтральном токен-слое.
+  static List<BoxShadow> elevatedCardSelected(Color tint) => [
     BoxShadow(
       color: tint.withValues(alpha: AppAlpha.borderSubtle),
       offset: const Offset(0, 6),

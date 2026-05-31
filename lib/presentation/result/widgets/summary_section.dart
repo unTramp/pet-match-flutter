@@ -19,9 +19,9 @@ class SummarySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const AiRecommendationBadge(),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: AppSpacing.xl),
         Container(
-          padding: const EdgeInsets.all(AppSpacing.xl),
+          padding: const EdgeInsets.all(AppSpacing.xxxl),
           decoration: BoxDecoration(
             color: AppColors.surface.withValues(alpha: 0.96),
             borderRadius: BorderRadius.circular(AppRadius.xxl),
@@ -37,7 +37,7 @@ class SummarySection extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.xl),
               Text(summary, style: theme.textTheme.bodyLarge),
             ],
           ),

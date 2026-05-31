@@ -66,7 +66,7 @@ class UiButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(icon, size: AppIconSize.lg),
-                    const SizedBox(width: AppSpacing.sm),
+                    const SizedBox(width: AppSpacing.md),
                     Text(label),
                   ],
                 ));
@@ -102,7 +102,7 @@ class UiButton extends StatelessWidget {
               disabledColor: Colors.transparent,
               borderRadius: BorderRadius.circular(AppRadius.lg),
               minSize: AppControlSize.buttonHeight,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
               onPressed: effectiveOnPressed,
               child: DefaultTextStyle(
                 style: const TextStyle(
@@ -135,7 +135,7 @@ class UiButton extends StatelessWidget {
                 width: AppStroke.regular,
               ),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
             child: DefaultTextStyle(
               style: const TextStyle(color: AppColors.primary),
               child: IconTheme(

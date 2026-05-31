@@ -9,7 +9,7 @@ class UiCard extends StatelessWidget {
   const UiCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(AppSpacing.xl),
+    this.padding = const EdgeInsets.all(AppSpacing.xxxl),
     this.borderRadius = AppRadius.xxl,
     this.showShadow = true,
   });

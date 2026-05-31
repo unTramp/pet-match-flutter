@@ -24,7 +24,7 @@ class MultipleChoiceWidget extends StatelessWidget {
         final opt = options[i];
         final selected = selectedIds.contains(opt.id);
         return Padding(
-          padding: const EdgeInsets.only(bottom: AppSpacing.md),
+          padding: const EdgeInsets.only(bottom: AppSpacing.xl),
           child: OptionTile(
             label: opt.label,
             selected: selected,

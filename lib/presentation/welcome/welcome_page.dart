@@ -182,10 +182,10 @@ class _WelcomePageState extends State<WelcomePage>
             SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.xxl,
-                  AppSpacing.md,
-                  AppSpacing.xxl,
-                  AppSpacing.md,
+                  AppSpacing.xxxxl,
+                  AppSpacing.xl,
+                  AppSpacing.xxxxl,
+                  AppSpacing.xl,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -201,7 +201,7 @@ class _WelcomePageState extends State<WelcomePage>
                       ),
                       child: _HeroHeadline(theme: theme),
                     ),
-                    const SizedBox(height: AppSpacing.lg),
+                    const SizedBox(height: AppSpacing.xxl),
                     AppStaggeredEntrance(
                       controller: _introController,
                       interval: const Interval(
@@ -239,9 +239,8 @@ class _WelcomePageState extends State<WelcomePage>
                             loading: _isContinuing,
                             onPressed:
                                 hasSession
-                                    ? () => unawaited(
-                                      _onContinueToQuestionnaire(),
-                                    )
+                                    ? () =>
+                                        unawaited(_onContinueToQuestionnaire())
                                     : () => unawaited(_onStartFromWelcome()),
                             onRestart: hasSession ? _onRestart : null,
                           );
@@ -317,7 +316,7 @@ class _BottomActions extends StatelessWidget {
           ),
         ),
         if (onRestart != null) ...[
-          const SizedBox(height: AppSpacing.s),
+          const SizedBox(height: AppSpacing.sm),
           TextButton(
             onPressed: onRestart,
             child: Text(AppStrings.common.restart),

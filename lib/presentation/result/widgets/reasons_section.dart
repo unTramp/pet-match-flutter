@@ -31,7 +31,7 @@ class ReasonsSection extends StatelessWidget {
     super.key,
     required this.title,
     required this.items,
-    this.spacing = AppSpacing.md,
+    this.spacing = AppSpacing.xl,
   });
 
   final String title;
@@ -47,9 +47,11 @@ class ReasonsSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: AppSpacing.xl),
         ...List.generate(items.length, (i) {
           final item = items[i];
           return Padding(
@@ -94,13 +96,13 @@ class _ReasonRow extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: AppSpacing.md),
+        const SizedBox(width: AppSpacing.xl),
         Expanded(
           child: Text(
             item.text,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.textPrimary,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.textPrimary),
           ),
         ),
       ],

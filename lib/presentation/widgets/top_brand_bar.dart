@@ -10,10 +10,10 @@ class TopBrandBar extends StatelessWidget {
     super.key,
     this.onLogoTap,
     this.padding = const EdgeInsets.fromLTRB(
-      AppSpacing.xxl,
-      AppSpacing.md,
-      AppSpacing.xxl,
-      AppSpacing.md,
+      AppSpacing.xxxxl,
+      AppSpacing.xl,
+      AppSpacing.xxxxl,
+      AppSpacing.xl,
     ),
   });
 

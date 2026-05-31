@@ -37,14 +37,16 @@ class _AnalyzingViewState extends State<AnalyzingView>
     final theme = Theme.of(context);
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.xxl),
+        padding: const EdgeInsets.all(AppSpacing.xxxxl),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             AnimatedBuilder(
               animation: _pulseController,
               builder: (context, _) {
-                final pulse = Curves.easeInOut.transform(_pulseController.value);
+                final pulse = Curves.easeInOut.transform(
+                  _pulseController.value,
+                );
                 final scale = 0.96 + (pulse * 0.08);
                 final glowOpacity = 0.16 + (pulse * 0.14);
 
@@ -78,7 +80,7 @@ class _AnalyzingViewState extends State<AnalyzingView>
               style: theme.textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.md),
             Text(
               AppStrings.analyzing.subtitle,
               style: theme.textTheme.bodyMedium,

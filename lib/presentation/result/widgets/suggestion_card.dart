@@ -33,7 +33,7 @@ class SuggestionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.xl),
             border: Border.all(color: AppColors.border),
           ),
-          padding: const EdgeInsets.all(AppSpacing.md),
+          padding: const EdgeInsets.all(AppSpacing.xl),
           child: Row(
             children: [
               ClipRRect(
@@ -49,8 +49,7 @@ class SuggestionCard extends StatelessWidget {
                               imageUrl: imageUrl,
                               fit: BoxFit.cover,
                               placeholder:
-                                  (_, __) =>
-                                      Container(color: AppColors.border),
+                                  (_, __) => Container(color: AppColors.border),
                               errorWidget:
                                   (_, __, ___) => Container(
                                     color: AppColors.border,
@@ -72,7 +71,7 @@ class SuggestionCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: AppSpacing.lg),
+              const SizedBox(width: AppSpacing.xxl),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +88,7 @@ class SuggestionCard extends StatelessWidget {
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.sm,
+                            horizontal: AppSpacing.md,
                             vertical: AppSpacing.xxs,
                           ),
                           decoration: BoxDecoration(

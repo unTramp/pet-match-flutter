@@ -80,7 +80,7 @@ class BreedStoryAvatar extends StatelessWidget {
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.shadowBase.withValues(
+                                color: AppColors.avatarShadowBase.withValues(
                                   alpha: AppAlpha.shadowMedium,
                                 ),
                                 blurRadius: 16,
@@ -134,7 +134,7 @@ class BreedStoryAvatar extends StatelessWidget {
                 );
               },
             ),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.md),
             Text(
               breedName,
               maxLines: 2,
@@ -197,7 +197,7 @@ class _ScorePill extends StatelessWidget {
     final pct = (score * 100).round();
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.sm,
+        horizontal: AppSpacing.md,
         vertical: AppSpacing.xs,
       ),
       decoration: BoxDecoration(

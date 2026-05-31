@@ -48,8 +48,8 @@ class OptionTile extends StatelessWidget {
             duration: AppMotion.normal,
             curve: Curves.easeOutCubic,
             padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.xl,
-              vertical: AppSpacing.lg,
+              horizontal: AppSpacing.xxxl,
+              vertical: AppSpacing.xxl,
             ),
             decoration: BoxDecoration(
               color:
@@ -62,8 +62,8 @@ class OptionTile extends StatelessWidget {
               ),
               boxShadow:
                   selected
-                      ? AppShadows.optionSelected(AppColors.primary)
-                      : AppShadows.option,
+                      ? AppShadows.elevatedCardSelected(AppColors.primary)
+                      : AppShadows.elevatedCard,
             ),
             child: Row(
               children: [
@@ -77,7 +77,7 @@ class OptionTile extends StatelessWidget {
                   ),
                 ),
                 if (trailing != null) ...[
-                  const SizedBox(width: AppSpacing.md),
+                  const SizedBox(width: AppSpacing.xl),
                   ExcludeSemantics(child: trailing),
                 ],
               ],

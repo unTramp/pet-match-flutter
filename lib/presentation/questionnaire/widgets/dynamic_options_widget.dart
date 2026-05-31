@@ -99,7 +99,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
             prefixIcon: const Icon(Icons.search_rounded),
           ),
         ),
-        const SizedBox(height: AppSpacing.md),
+        const SizedBox(height: AppSpacing.xl),
         ValueListenableBuilder<_OptionsState>(
           valueListenable: _state,
           builder:
@@ -107,7 +107,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                 idle: () => const SizedBox.shrink(),
                 loading:
                     () => const Padding(
-                      padding: EdgeInsets.symmetric(vertical: AppSpacing.xxl),
+                      padding: EdgeInsets.symmetric(vertical: AppSpacing.xxxxl),
                       child: Center(
                         child: SizedBox(
                           width: AppControlSize.selector,
@@ -123,7 +123,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                         items.isEmpty
                             ? Padding(
                               padding: const EdgeInsets.symmetric(
-                                vertical: AppSpacing.xxl,
+                                vertical: AppSpacing.xxxxl,
                               ),
                               child: Center(
                                 child: Text(
@@ -139,7 +139,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                                     selected?.code == option.code;
                                 return Padding(
                                   padding: const EdgeInsets.only(
-                                    bottom: AppSpacing.md,
+                                    bottom: AppSpacing.xl,
                                   ),
                                   child: _OptionRow(
                                     label: option.label,
@@ -152,7 +152,7 @@ class _DynamicOptionsWidgetState extends State<DynamicOptionsWidget> {
                 error:
                     (f) => Padding(
                       padding: const EdgeInsets.symmetric(
-                        vertical: AppSpacing.lg,
+                        vertical: AppSpacing.xxl,
                       ),
                       child: Center(
                         child: UiButton(

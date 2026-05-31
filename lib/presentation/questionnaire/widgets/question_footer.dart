@@ -32,7 +32,7 @@ class QuestionFooter extends StatelessWidget {
           loading: isSubmitting,
         ),
         if (canSkip) ...[
-          const SizedBox(height: AppSpacing.sm),
+          const SizedBox(height: AppSpacing.md),
           TextButton(
             onPressed: isSubmitting ? null : onSkip,
             child: Text(AppStrings.questionnaire.skipCta),

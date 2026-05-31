@@ -81,10 +81,10 @@ class CharacteristicsSection extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
-        const SizedBox(height: AppSpacing.lg),
+        const SizedBox(height: AppSpacing.xxl),
         for (final item in _items)
           Padding(
-            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+            padding: const EdgeInsets.only(bottom: AppSpacing.md),
             child: _ResultCharacteristicCard(item: item),
           ),
       ],
@@ -117,10 +117,10 @@ class _ResultCharacteristicCard extends StatelessWidget {
         ],
       ),
       padding: const EdgeInsets.fromLTRB(
-        AppSpacing.lg,
-        AppSpacing.lg,
-        AppSpacing.lg,
-        AppSpacing.lg,
+        AppSpacing.xxl,
+        AppSpacing.xxl,
+        AppSpacing.xxl,
+        AppSpacing.xxl,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,7 +131,7 @@ class _ResultCharacteristicCard extends StatelessWidget {
             height: _iconSize,
             fit: BoxFit.contain,
           ),
-          const SizedBox(width: AppSpacing.lg),
+          const SizedBox(width: AppSpacing.xxl),
           Expanded(
             child: Text(
               item.title,
@@ -144,7 +144,7 @@ class _ResultCharacteristicCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: AppSpacing.lg),
+          const SizedBox(width: AppSpacing.xxl),
           BreedMiniGauge(value: item.level.clamp(0, 5)),
         ],
       ),

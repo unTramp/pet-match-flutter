@@ -14,7 +14,7 @@ class AiRecommendationBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
+        horizontal: AppSpacing.xl,
         vertical: 7,
       ),
       decoration: BoxDecoration(
@@ -39,11 +39,7 @@ class AiRecommendationBadge extends StatelessWidget {
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.auto_awesome_rounded,
-            size: 14,
-            color: AppColors.primary,
-          ),
+          Icon(Icons.auto_awesome_rounded, size: 14, color: AppColors.primary),
           SizedBox(width: 6),
           Text(
             'Рекомендовано AI',

@@ -55,9 +55,8 @@ class _BreedDetailView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: switch (state) {
-            BreedDetailInitial() || BreedDetailLoading() => const SafeArea(
-              child: LoadingView(),
-            ),
+            BreedDetailInitial() ||
+            BreedDetailLoading() => const SafeArea(child: LoadingView()),
             BreedDetailError(:final failure) => SafeArea(
               child: ErrorView(
                 failure: failure,
@@ -87,16 +86,16 @@ class _LoadedBody extends StatelessWidget {
     // Hero занимает ≈42% экрана, content начинается на `bleed` выше нижнего
     // края image — лёгкая перекрышка без rounded-corner card.
     final heroHeight = media.size.height * 0.42;
-    const bleed = AppSpacing.lg;
+    const bleed = AppSpacing.xxl;
 
     return Scaffold(
       backgroundColor: AppColors.cream,
       bottomNavigationBar: SafeArea(
         minimum: const EdgeInsets.fromLTRB(
-          AppSpacing.xl,
-          AppSpacing.sm,
-          AppSpacing.xl,
+          AppSpacing.xxxl,
           AppSpacing.md,
+          AppSpacing.xxxl,
+          AppSpacing.xl,
         ),
         child: UiButton(
           label: AppStrings.details.ctaBack,
@@ -117,8 +116,8 @@ class _LoadedBody extends StatelessWidget {
             child: _Content(detail: detail, score: score),
           ),
           Positioned(
-            top: media.padding.top + AppSpacing.sm,
-            left: AppSpacing.lg,
+            top: media.padding.top + AppSpacing.md,
+            left: AppSpacing.xxl,
             child: const _FloatingBackButton(),
           ),
         ],
@@ -183,24 +182,24 @@ class _Content extends StatelessWidget {
       ),
       child: ListView(
         padding: const EdgeInsets.fromLTRB(
-          AppSpacing.xl,
-          AppSpacing.xl,
-          AppSpacing.xl,
-          AppSpacing.xl,
+          AppSpacing.xxxl,
+          AppSpacing.xxxl,
+          AppSpacing.xxxl,
+          AppSpacing.xxxl,
         ),
         physics: const BouncingScrollPhysics(),
         children: [
           Text(detail.breedName, style: theme.textTheme.headlineLarge),
           if (score != null) ...[
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.md),
             _ScoreBadge(score: score!),
           ],
           if (summary != null) ...[
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: AppSpacing.xl),
             Text(summary, style: theme.textTheme.bodyLarge),
           ],
           if (detail.hasGallery) ...[
-            const SizedBox(height: AppSpacing.xl),
+            const SizedBox(height: AppSpacing.xxxl),
             UiButton(
               onPressed:
                   () => context.push(
@@ -215,21 +214,21 @@ class _Content extends StatelessWidget {
                   '${AppStrings.details.photosSuffix}',
             ),
           ],
-          const SizedBox(height: AppSpacing.xxl),
+          const SizedBox(height: AppSpacing.xxxxl),
           for (var i = 0; i < sections.length; i++) ...[
             Text(sections[i].title, style: theme.textTheme.titleLarge),
-            const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: AppSpacing.md),
             Text(sections[i].body, style: theme.textTheme.bodyLarge),
             if (i < sections.length - 1) ...[
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: AppSpacing.xxxl),
               Divider(
                 color: AppColors.border.withValues(alpha: AppAlpha.divider),
                 height: 1,
               ),
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: AppSpacing.xxxl),
             ],
           ],
-          const SizedBox(height: AppSpacing.xxl),
+          const SizedBox(height: AppSpacing.xxxxl),
         ],
       ),
     );
@@ -254,7 +253,7 @@ class _ScoreBadge extends StatelessWidget {
             height: 1.0,
           ),
         ),
-        const SizedBox(width: AppSpacing.sm),
+        const SizedBox(width: AppSpacing.md),
         Padding(
           padding: const EdgeInsets.only(bottom: AppSpacing.xs),
           child: Text(
