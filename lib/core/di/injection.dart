@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../data/repositories/breed_repository_impl.dart';
@@ -27,7 +28,7 @@ final GetIt sl = GetIt.instance;
 /// `--dart-define=API_BASE_URL=...` for staging/local servers.
 const String _defaultBaseUrl = 'https://app-api.dev.pet-match.app/api/v1';
 
-const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: true);
+const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: false);
 const String baseUrl = String.fromEnvironment(
   'API_BASE_URL',
   defaultValue: _defaultBaseUrl,
@@ -47,12 +48,15 @@ Future<void> configureDependencies() async {
     () => const StaticLocaleProvider(Locale('ru')),
   );
 
-  // Remote source — Mock or Http depending on build-time flag.
-  sl.registerLazySingleton<PetMatchRemoteSource>(
-    () => useMock
+  // Remote source — Mock или Http в зависимости от build-time флага.
+  // Release-build всегда форсит HTTP (даже если случайно передали USE_MOCK=true)
+  // — это защита от утечки mock-данных в production.
+  sl.registerLazySingleton<PetMatchRemoteSource>(() {
+    const shouldMock = useMock && !kReleaseMode;
+    return shouldMock
         ? MockPetMatchRemoteSource()
-        : HttpPetMatchRemoteSource(buildDio(baseUrl, sl<LocaleProvider>())),
-  );
+        : HttpPetMatchRemoteSource(buildDio(baseUrl, sl<LocaleProvider>()));
+  });
 
   // Repositories.
   sl.registerLazySingleton<QuestionnaireRepository>(

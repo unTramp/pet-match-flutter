@@ -8,7 +8,13 @@ class AppRoutes {
   static const String intro = '/intro';
   static const String questionnaire = '/questionnaire';
   static const String result = '/result';
+
+  /// Debug/profile-only — регистрируется в router'е через `if (!kReleaseMode)`.
+  /// В release-build этот route физически отсутствует, навигация по нему
+  /// упирается в `_RouterErrorFallback` → редирект на Welcome.
   static const String statePreview = '/test/state-preview';
+
+  /// Debug/profile-only — см. комментарий к [statePreview].
   static const String resultPreview = '/test/result-preview';
 
   static const String breedPattern = '/breed/:id';

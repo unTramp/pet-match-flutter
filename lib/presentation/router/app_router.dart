@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,12 +14,13 @@ import '../details/breed_gallery_page.dart';
 import '../intro/intro_page.dart';
 import '../questionnaire/questionnaire_page.dart';
 import '../result/result_page.dart';
+import '../test/preview_fixtures.dart';
 import '../test/state_screens_preview_page.dart';
 import '../welcome/welcome_page.dart';
 
 GoRouter buildRouter() {
   return GoRouter(
-    initialLocation: AppRoutes.resultPreview,
+    initialLocation: '/',
     redirect: (context, state) async {
       final hasSession = await sl<SessionCache>().hasActiveSession();
       final isOnboarding =
@@ -47,24 +49,29 @@ GoRouter buildRouter() {
               child: const IntroPage(),
             ),
       ),
-      GoRoute(
-        path: AppRoutes.statePreview,
-        pageBuilder:
-            (context, state) => _buildAppTransitionPage(
-              key: state.pageKey,
-              child: const StateScreensPreviewPage(),
-            ),
-      ),
-      GoRoute(
-        path: AppRoutes.resultPreview,
-        pageBuilder:
-            (context, state) => _buildAppTransitionPage(
-              key: state.pageKey,
-              child: const ResultPage(
-                compatibility: _resultPreviewCompatibility,
+      // Preview-routes доступны только в debug/profile сборках.
+      // В release физически отсутствуют в GoRouter — переход даёт
+      // `_RouterErrorFallback`, который ведёт на Welcome.
+      if (!kReleaseMode) ...[
+        GoRoute(
+          path: AppRoutes.statePreview,
+          pageBuilder:
+              (context, state) => _buildAppTransitionPage(
+                key: state.pageKey,
+                child: const StateScreensPreviewPage(),
               ),
-            ),
-      ),
+        ),
+        GoRoute(
+          path: AppRoutes.resultPreview,
+          pageBuilder:
+              (context, state) => _buildAppTransitionPage(
+                key: state.pageKey,
+                child: const ResultPage(
+                  compatibility: kResultPreviewCompatibility,
+                ),
+              ),
+        ),
+      ],
       GoRoute(
         path: AppRoutes.questionnaire,
         pageBuilder:
@@ -133,52 +140,6 @@ GoRouter buildRouter() {
     },
   );
 }
-
-const _resultPreviewCompatibility = Compatibility(
-  status: CompatibilityStatus.ready,
-  breedId: 501,
-  breedName: 'Лабрадор-ретривер',
-  score: 0.92,
-  risk: CompatibilityRisk.low,
-  compatible: true,
-  summary:
-      'Лабрадор — отличный выбор для активной семьи. Дружелюбный, легко '
-      'обучается, прекрасно ладит с детьми и другими питомцами.',
-  insights: [
-    'Подходит для активного образа жизни.',
-    'Дружелюбен к детям и другим животным.',
-    'Требует регулярных нагрузок и общения.',
-  ],
-  requirementHighlights: [
-    'Активные прогулки 1+ час в день',
-    'Минимальный груминг — расчёсывание 2-3 раза в неделю',
-    'Подходит для семей с детьми',
-  ],
-  suggestions: [
-    CompatibilitySuggestion(
-      breedId: 502,
-      breedName: 'Голден-ретривер',
-      score: 0.88,
-      risk: CompatibilityRisk.low,
-      summary: 'Очень близкий по характеру к лабрадору, чуть спокойнее.',
-    ),
-    CompatibilitySuggestion(
-      breedId: 503,
-      breedName: 'Бордер-колли',
-      score: 0.81,
-      risk: CompatibilityRisk.medium,
-      summary: 'Очень умная и активная порода. Требует много занятости.',
-    ),
-    CompatibilitySuggestion(
-      breedId: 504,
-      breedName: 'Самоед',
-      score: 0.79,
-      risk: CompatibilityRisk.medium,
-      summary:
-          'Дружелюбный и семейный, но требует больше ухода за шерстью и общения.',
-    ),
-  ],
-);
 
 CustomTransitionPage<void> _buildAppTransitionPage({
   required LocalKey key,
