@@ -14,8 +14,8 @@ class AiRecommendationBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.xl,
-        vertical: 7,
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.xs,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -23,30 +23,30 @@ class AiRecommendationBadge extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.surface.withValues(alpha: 0.94),
-            AppColors.lavenderTint.withValues(alpha: 0.9),
+            AppColors.surface.withValues(alpha: 0.9),
+            AppColors.lavenderTint.withValues(alpha: 0.72),
           ],
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.08),
-            blurRadius: 18,
+            color: AppColors.primary.withValues(alpha: 0.04),
+            blurRadius: 14,
             spreadRadius: -8,
-            offset: const Offset(0, 6),
+            offset: const Offset(0, 5),
           ),
         ],
       ),
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.auto_awesome_rounded, size: 14, color: AppColors.primary),
+          Icon(Icons.auto_awesome_rounded, size: 13, color: AppColors.primary),
           SizedBox(width: 6),
           Text(
             'Рекомендовано AI',
             style: TextStyle(
               color: AppColors.primary,
               fontSize: 12,
-              fontWeight: FontWeight.w800,
+              fontWeight: FontWeight.w700,
               letterSpacing: 0.2,
             ),
           ),

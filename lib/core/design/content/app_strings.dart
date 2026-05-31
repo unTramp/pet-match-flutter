@@ -77,6 +77,7 @@ class AppStrings {
     requirements: 'Требования породы',
     suggestionsTitle: 'Похожие варианты',
     suggestionsSubtitle: 'Альтернативные породы по вашему профилю.',
+    suggestionsHint: 'Нажмите на породу, чтобы посмотреть подробнее.',
     suggestionsAction: 'Показать',
     showMore: 'Показать все',
     showLess: 'Свернуть',
@@ -228,6 +229,7 @@ class ResultStrings {
     required this.requirements,
     required this.suggestionsTitle,
     required this.suggestionsSubtitle,
+    required this.suggestionsHint,
     required this.suggestionsAction,
     required this.showMore,
     required this.showLess,
@@ -252,6 +254,7 @@ class ResultStrings {
   final String requirements;
   final String suggestionsTitle;
   final String suggestionsSubtitle;
+  final String suggestionsHint;
   final String suggestionsAction;
   final String showMore;
   final String showLess;

@@ -81,10 +81,10 @@ class CharacteristicsSection extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
-        const SizedBox(height: AppSpacing.xxl),
+        const SizedBox(height: AppSpacing.xl),
         for (final item in _items)
           Padding(
-            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: _ResultCharacteristicCard(item: item),
           ),
       ],
@@ -118,9 +118,9 @@ class _ResultCharacteristicCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.xxl,
+        AppSpacing.xl,
         AppSpacing.xxl,
-        AppSpacing.xxl,
-        AppSpacing.xxl,
+        AppSpacing.xl,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

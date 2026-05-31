@@ -704,6 +704,14 @@ class _SuggestionsSection extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: AppSpacing.xs),
+        Text(
+          AppStrings.result.suggestionsHint,
+          style: theme.textTheme.labelMedium?.copyWith(
+            color: AppColors.textSecondary.withValues(alpha: AppAlpha.muted),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
           height: BreedStoryAvatar.estimatedHeight,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/motion.dart';
+import '../../../core/design/tokens/strokes.dart';
 import '../../../core/theme/app_colors.dart';
 
 class FavoritePawButton extends StatefulWidget {
@@ -30,17 +31,21 @@ class _FavoritePawButtonState extends State<FavoritePawButton> {
           onTap: _toggle,
           customBorder: const CircleBorder(),
           child: Container(
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              color: AppColors.surface,
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: AppColors.surface.withValues(alpha: 0.92),
               shape: BoxShape.circle,
-              boxShadow: [
+              border: Border.all(
+                color: AppColors.border.withValues(alpha: AppAlpha.borderSubtle),
+                width: AppStroke.hairline,
+              ),
+              boxShadow: const [
                 BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, AppAlpha.shadowEmphasis),
-                  blurRadius: 18,
-                  offset: Offset(0, 8),
-                  spreadRadius: -2,
+                  color: Color.fromRGBO(0, 0, 0, AppAlpha.shadowMedium),
+                  blurRadius: 14,
+                  offset: Offset(0, 6),
+                  spreadRadius: -4,
                 ),
               ],
             ),
@@ -55,7 +60,7 @@ class _FavoritePawButtonState extends State<FavoritePawButton> {
                     ? Icons.favorite_rounded
                     : Icons.favorite_border_rounded,
                 key: ValueKey<bool>(_isFavorite),
-                size: 21,
+                size: 19,
                 color: AppColors.primary,
               ),
             ),
