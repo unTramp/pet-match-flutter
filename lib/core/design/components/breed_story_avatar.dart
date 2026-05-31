@@ -1,9 +1,6 @@
-import 'dart:math' as math;
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../tokens/motion.dart';
 import '../../theme/app_colors.dart';
 import '../tokens/alpha.dart';
 import '../tokens/radius.dart';
@@ -60,79 +57,70 @@ class BreedStoryAvatar extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: clampedScore),
-              duration: AppMotion.storyRingIntro,
-              curve: Curves.easeOutCubic,
-              builder: (_, animatedProgress, __) {
-                return SizedBox(
-                  width: diameter,
-                  height: diameter,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      // Soft drop shadow под кругом — даёт IG-Highlights-стайл
-                      // elevation. Сам DecoratedBox без color, поэтому видна
-                      // только тень снаружи окружности.
-                      Positioned.fill(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.avatarShadowBase.withValues(
-                                  alpha: AppAlpha.shadowMedium,
-                                ),
-                                blurRadius: 16,
-                                offset: const Offset(0, 6),
-                                spreadRadius: -4,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      // Прогресс-кольцо с зазором под pill: track-дуга +
-                      // active-дуга обе стартуют сразу за бейджем.
-                      Positioned.fill(
-                        child: CustomPaint(
-                          painter: _StoryArcPainter(
-                            progress: animatedProgress,
-                            activeColor: activeColor,
-                            trackColor: activeColor.withValues(
-                              alpha: AppAlpha.tint,
+            SizedBox(
+              width: diameter,
+              height: diameter,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  // Soft drop shadow под кругом — даёт IG-Highlights-стайл
+                  // elevation. Сам DecoratedBox без color, поэтому видна
+                  // только тень снаружи окружности.
+                  Positioned.fill(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.avatarShadowBase.withValues(
+                              alpha: AppAlpha.shadowMedium,
                             ),
-                            strokeWidth: _ringStroke,
+                            blurRadius: 16,
+                            offset: const Offset(0, 6),
+                            spreadRadius: -4,
                           ),
-                        ),
+                        ],
                       ),
-                      // Белая прокладка + фото.
-                      Center(
-                        child: Container(
-                          width: diameter - 2 * _ringStroke,
-                          height: diameter - 2 * _ringStroke,
-                          padding: const EdgeInsets.all(_whiteInset),
-                          decoration: const BoxDecoration(
-                            color: AppColors.surface,
-                            shape: BoxShape.circle,
-                          ),
-                          child: ClipOval(child: _buildImage(imageDiameter)),
-                        ),
-                      ),
-                      // Score pill — свешивается за пределы круга как
-                      // notification-badge. Зазор в дуге (36°) уже
-                      // подготовлен под него.
-                      Positioned(
-                        top: -6,
-                        right: -8,
-                        child: _ScorePill(
-                          score: clampedScore,
-                          color: activeColor,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                );
-              },
+                  // Декоративная статичная track-обводка (без active arc) —
+                  // score доносится через pill-бейдж, дублирование убрано.
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: _StoryArcPainter(
+                        trackColor: activeColor.withValues(
+                          alpha: AppAlpha.tint,
+                        ),
+                        strokeWidth: _ringStroke,
+                      ),
+                    ),
+                  ),
+                  // Белая прокладка + фото.
+                  Center(
+                    child: Container(
+                      width: diameter - 2 * _ringStroke,
+                      height: diameter - 2 * _ringStroke,
+                      padding: const EdgeInsets.all(_whiteInset),
+                      decoration: const BoxDecoration(
+                        color: AppColors.surface,
+                        shape: BoxShape.circle,
+                      ),
+                      child: ClipOval(child: _buildImage(imageDiameter)),
+                    ),
+                  ),
+                  // Score pill — свешивается за пределы круга как
+                  // notification-badge. Зазор в дуге (36°) уже
+                  // подготовлен под него.
+                  Positioned(
+                    top: -6,
+                    right: -8,
+                    child: _ScorePill(
+                      score: clampedScore,
+                      color: activeColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
@@ -217,67 +205,34 @@ class _ScorePill extends StatelessWidget {
   }
 }
 
-/// Прогресс-кольцо с разрывом в верхнем-правом секторе под pill-бейджем.
-/// Длина активной дуги пропорциональна `progress` (0..1) — позволяет
-/// сравнивать варианты по высоте match-score «глазом» без чтения цифр.
+/// Декоративная статичная обводка-кольцо вокруг фото в стиле
+/// instagram-stories. Не отражает score — это просто рамка. Информация о
+/// match-score доносится через pill-бейдж (pill сидит поверх ring'а и
+/// перекрывает соответствующий сегмент).
 class _StoryArcPainter extends CustomPainter {
   const _StoryArcPainter({
-    required this.progress,
-    required this.activeColor,
     required this.trackColor,
     required this.strokeWidth,
   });
 
-  final double progress;
-  final Color activeColor;
   final Color trackColor;
   final double strokeWidth;
 
-  // Центр разрыва — на 1-2 часах (под pill-бейджем в Positioned top-right).
-  static const double _gapCenter = -math.pi / 4;
-
-  // Половина углового размера разрыва. ≈ 18° с каждой стороны = 36° total —
-  // концы дуги подъезжают почти вплотную к pill-бейджу, оставляя только
-  // тонкую «прорезь» вокруг него.
-  static const double _gapHalf = math.pi / 10;
-
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Rect.fromLTWH(
-      strokeWidth / 2,
-      strokeWidth / 2,
-      size.width - strokeWidth,
-      size.height - strokeWidth,
-    );
-
-    // Старт — сразу за разрывом по часовой; sweep — почти полный круг
-    // минус двойная половина разрыва.
-    const startAngle = _gapCenter + _gapHalf;
-    const sweepAngle = 2 * math.pi - 2 * _gapHalf;
-
-    final trackPaint =
+    final paint =
         Paint()
           ..color = trackColor
           ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth
-          ..strokeCap = StrokeCap.round;
+          ..strokeWidth = strokeWidth;
 
-    final activePaint =
-        Paint()
-          ..color = activeColor
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = strokeWidth
-          ..strokeCap = StrokeCap.round;
-
-    canvas.drawArc(rect, startAngle, sweepAngle, false, trackPaint);
-    canvas.drawArc(rect, startAngle, sweepAngle * progress, false, activePaint);
+    final radius = (size.shortestSide - strokeWidth) / 2;
+    canvas.drawCircle(size.center(Offset.zero), radius, paint);
   }
 
   @override
   bool shouldRepaint(covariant _StoryArcPainter oldDelegate) {
-    return oldDelegate.progress != progress ||
-        oldDelegate.activeColor != activeColor ||
-        oldDelegate.trackColor != trackColor ||
+    return oldDelegate.trackColor != trackColor ||
         oldDelegate.strokeWidth != strokeWidth;
   }
 }
