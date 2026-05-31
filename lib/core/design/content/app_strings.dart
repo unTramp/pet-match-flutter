@@ -81,7 +81,7 @@ class AppStrings {
     suggestionsAction: 'Показать',
     showMore: 'Показать все',
     showLess: 'Свернуть',
-    ctaViewBreed: 'Подробнее о породе',
+    ctaViewBreed: 'Узнать больше',
     ctaViewAlternatives: 'Смотреть альтернативы',
     chipGood: 'Подходит',
     chipMedium: 'С оговорками',

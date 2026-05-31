@@ -31,7 +31,6 @@ class BreedMiniGauge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final progress = (value / max).clamp(0.0, 1.0);
-    final needleProgress = ((value - 0.5) / max).clamp(0.0, 1.0);
     const labelHeight = 17.0;
 
     return TweenAnimationBuilder<double>(
@@ -49,11 +48,6 @@ class BreedMiniGauge extends StatelessWidget {
                 child: CustomPaint(
                   painter: _MiniGaugePainter(
                     progress: animatedProgress,
-                    needleProgress:
-                        animatedProgress == 0
-                            ? 0
-                            : needleProgress *
-                                (animatedProgress / progress).clamp(0.0, 1.0),
                     activeColor: activeColor,
                     trackColor: trackColor,
                     strokeWidth: strokeWidth,
@@ -85,14 +79,12 @@ class BreedMiniGauge extends StatelessWidget {
 class _MiniGaugePainter extends CustomPainter {
   const _MiniGaugePainter({
     required this.progress,
-    required this.needleProgress,
     required this.activeColor,
     required this.trackColor,
     required this.strokeWidth,
   });
 
   final double progress;
-  final double needleProgress;
   final Color activeColor;
   final Color trackColor;
   final double strokeWidth;
@@ -135,56 +127,11 @@ class _MiniGaugePainter extends CustomPainter {
 
     canvas.drawArc(rect, startAngle, sweepAngle, false, trackPaint);
     canvas.drawArc(rect, startAngle, sweepAngle * progress, false, activePaint);
-
-    _drawNeedle(canvas, rect);
-  }
-
-  /// Рисует компактную стрелку: короткий треугольный носик и округлое
-  /// основание у pivot, чтобы shape был ближе к реальному прибору.
-  void _drawNeedle(Canvas canvas, Rect arcRect) {
-    final pivot = arcRect.center;
-    final radiusX = arcRect.width / 2;
-    final radiusY = arcRect.height / 2;
-
-    final needleAngle = math.pi + math.pi * needleProgress;
-
-    const tipFactor = 0.52;
-    final tip = Offset(
-      pivot.dx + radiusX * tipFactor * math.cos(needleAngle),
-      pivot.dy + radiusY * tipFactor * math.sin(needleAngle),
-    );
-    final dx = math.cos(needleAngle);
-    final dy = math.sin(needleAngle);
-    final nx = -dy;
-    final ny = dx;
-
-    const halfBase = 2.8;
-    final baseLeft = Offset(pivot.dx + nx * halfBase, pivot.dy + ny * halfBase);
-    final baseRight = Offset(
-      pivot.dx - nx * halfBase,
-      pivot.dy - ny * halfBase,
-    );
-
-    final needlePath =
-        Path()
-          ..moveTo(baseLeft.dx, baseLeft.dy)
-          ..lineTo(tip.dx, tip.dy)
-          ..lineTo(baseRight.dx, baseRight.dy)
-          ..close();
-
-    final needlePaint =
-        Paint()
-          ..color = AppColors.gaugeNeedle
-          ..style = PaintingStyle.fill;
-
-    canvas.drawPath(needlePath, needlePaint);
-    canvas.drawCircle(pivot, 3.4, needlePaint);
   }
 
   @override
   bool shouldRepaint(covariant _MiniGaugePainter oldDelegate) {
     return oldDelegate.progress != progress ||
-        oldDelegate.needleProgress != needleProgress ||
         oldDelegate.activeColor != activeColor ||
         oldDelegate.trackColor != trackColor ||
         oldDelegate.strokeWidth != strokeWidth;

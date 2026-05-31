@@ -491,9 +491,9 @@ class _LifestyleHero extends StatelessWidget {
                       Text(
                         _scoreLabel(scorePct),
                         style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
+                          color: AppColors.textPrimary,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
                           letterSpacing: 0.1,
                         ),
                       ),
