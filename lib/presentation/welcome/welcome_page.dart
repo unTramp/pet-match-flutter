@@ -56,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage>
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // На iOS первый layout/paint может "съесть" начало анимации.
       // Стартуем после первого кадра с короткой паузой.
-      await Future<void>.delayed(const Duration(milliseconds: 40));
+      await Future<void>.delayed(AppMotion.instant);
       if (!mounted) return;
       unawaited(_introController.forward(from: 0));
     });
@@ -109,6 +109,15 @@ class _WelcomePageState extends State<WelcomePage>
         setState(() => _isContinuing = false);
       }
     }
+  }
+
+  Future<void> _onStartFromWelcome() async {
+    if (_isContinuing) return;
+    setState(() => _isContinuing = true);
+    await Future<void>.delayed(AppMotion.slow);
+    if (!mounted) return;
+    context.go(AppRoutes.intro);
+    setState(() => _isContinuing = false);
   }
 
   void _showStartError(AppFailure failure) {
@@ -230,8 +239,10 @@ class _WelcomePageState extends State<WelcomePage>
                             loading: _isContinuing,
                             onPressed:
                                 hasSession
-                                    ? _onContinueToQuestionnaire
-                                    : () => context.go(AppRoutes.intro),
+                                    ? () => unawaited(
+                                      _onContinueToQuestionnaire(),
+                                    )
+                                    : () => unawaited(_onStartFromWelcome()),
                             onRestart: hasSession ? _onRestart : null,
                           );
                         },

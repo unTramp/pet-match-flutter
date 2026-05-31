@@ -56,7 +56,7 @@ class _BreedGalleryPageState extends State<BreedGalleryPage> {
                     errorWidget:
                         (_, __, ___) => const Icon(
                           Icons.broken_image_outlined,
-                          color: Colors.white54,
+                          color: AppColors.onDarkMuted,
                           size: AppIconSize.hero,
                         ),
                   ),

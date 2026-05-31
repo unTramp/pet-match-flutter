@@ -8,6 +8,8 @@ class AppRoutes {
   static const String intro = '/intro';
   static const String questionnaire = '/questionnaire';
   static const String result = '/result';
+  static const String statePreview = '/test/state-preview';
+  static const String resultPreview = '/test/result-preview';
 
   static const String breedPattern = '/breed/:id';
   static const String breedGalleryPattern = '/breed/:id/gallery';

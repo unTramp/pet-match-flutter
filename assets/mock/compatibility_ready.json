@@ -60,6 +60,40 @@
         "Высокая физическая активность",
         "Регулярные задачи и обучение"
       ]
+    },
+    {
+      "breed_id": 504,
+      "breed_code": "samoyed",
+      "breed_name": "Самоед",
+      "compatible": true,
+      "risk_level": "medium",
+      "score": 79,
+      "hard_fail_count": 0,
+      "risk_score": 1,
+      "summary": "Дружелюбный и семейный, но требует больше ухода за шерстью и общения.",
+      "note": null,
+      "image_url": "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800",
+      "requirement_highlights": [
+        "Регулярный уход за густой шерстью",
+        "Нуждается в общении и активности"
+      ]
+    },
+    {
+      "breed_id": 505,
+      "breed_code": "australian_shepherd",
+      "breed_name": "Австралийская овчарка",
+      "compatible": true,
+      "risk_level": "medium",
+      "score": 77,
+      "hard_fail_count": 0,
+      "risk_score": 1,
+      "summary": "Очень вовлечённая и умная порода для тех, кто любит активный ритм и занятия с собакой.",
+      "note": null,
+      "image_url": "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800",
+      "requirement_highlights": [
+        "Ежедневная активность и задачи",
+        "Лучше раскрывается при регулярной дрессировке"
+      ]
     }
   ],
   "rules_version": "mock-rule-payload-v1",

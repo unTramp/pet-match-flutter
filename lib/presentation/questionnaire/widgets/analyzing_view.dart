@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/assets.dart';
 import '../../../core/design/content/app_strings.dart';
-import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/motion.dart';
-import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -42,28 +41,38 @@ class _AnalyzingViewState extends State<AnalyzingView>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ScaleTransition(
-              scale: Tween<double>(begin: 0.92, end: 1.08).animate(
-                CurvedAnimation(
-                  parent: _pulseController,
-                  curve: Curves.easeInOut,
-                ),
-              ),
-              child: Container(
-                width: AppControlSize.heroBadge,
-                height: AppControlSize.heroBadge,
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: AppAlpha.tint),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.auto_awesome_rounded,
-                  size: AppIconSize.hero,
-                  color: AppColors.primary,
-                ),
-              ),
+            AnimatedBuilder(
+              animation: _pulseController,
+              builder: (context, _) {
+                final pulse = Curves.easeInOut.transform(_pulseController.value);
+                final scale = 0.96 + (pulse * 0.08);
+                final glowOpacity = 0.16 + (pulse * 0.14);
+
+                return Transform.scale(
+                  scale: scale,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(
+                            alpha: glowOpacity,
+                          ),
+                          blurRadius: 44,
+                          spreadRadius: 6,
+                        ),
+                      ],
+                    ),
+                    child: Image.asset(
+                      AppAssets.analyzingImage,
+                      width: 165,
+                      height: 165,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                );
+              },
             ),
-            const SizedBox(height: AppSpacing.xxxl),
+            const SizedBox(height: 44),
             Text(
               AppStrings.analyzing.title,
               style: theme.textTheme.headlineMedium,

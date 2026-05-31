@@ -32,6 +32,9 @@ class AppAlpha {
   // Drop shadows on neutral surfaces.
   static const double shadowFaint = 0.03;
   static const double shadowSoft = 0.04;
+  static const double shadowMedium = 0.07;
+  static const double shadowStrong = 0.08;
+  static const double shadowEmphasis = 0.12;
 
   // Splash/hover/highlight.
   static const double splash = 0.06;

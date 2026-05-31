@@ -117,8 +117,6 @@ class _QuestionnaireView extends StatelessWidget {
               child: Column(
                 children: [
                   TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
-                  if (questionState?.isSubmitting == true)
-                    const LinearProgressIndicator(minHeight: 2),
                   Expanded(
                     child: switch (state) {
                       QuestionnaireInitial() || QuestionnaireLoading() =>

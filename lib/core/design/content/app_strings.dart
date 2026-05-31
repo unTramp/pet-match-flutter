@@ -13,7 +13,7 @@ class AppStrings {
     errorServer: 'Что-то пошло не так. Попробуйте снова.',
     errorEmpty: 'Нет данных. Попробуйте снова.',
     unknownBreed: 'Порода',
-    appBrand: 'PET MATCH AI',
+    appBrand: 'PetWise',
     homeSemantic: 'На главный экран',
   );
 

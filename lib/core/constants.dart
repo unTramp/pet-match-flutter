@@ -7,5 +7,5 @@ const Duration kRequestTimeout = Duration(seconds: 15);
 const Duration kSearchDebounce = Duration(milliseconds: 400);
 
 /// Имя приложения в task-switcher'е и Material accessibility hints.
-/// Отдельно от `AppStrings.common.appBrand` (тот — стилизованный uppercase лого).
-const String kAppTitle = 'Pet Match AI';
+/// Отдельно от `AppStrings.common.appBrand` (тот — текст внутри верхнего бренда).
+const String kAppTitle = 'PetWise';

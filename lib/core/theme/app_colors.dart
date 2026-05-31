@@ -18,4 +18,9 @@ class AppColors {
   static const Color warningSurface = Color(0xFFFFF6E0);
   static const Color warningBorder = Color(0xFFF0E1B8);
   static const Color overlayDark = Color(0x80000000);
+
+  /// Полупрозрачный белый для иконок/текста на тёмных или фото-фонах
+  /// (например, broken-image fallback в галерее). Совпадает с устаревшим
+  /// `Colors.white54` (0x8AFFFFFF), но используется как семантический токен.
+  static const Color onDarkMuted = Color(0x8AFFFFFF);
 }

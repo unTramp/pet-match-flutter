@@ -1,11 +1,7 @@
-import 'dart:ui';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../core/design/components/animated_score_label.dart';
 import '../../core/design/components/app_staggered_entrance.dart';
+import '../../core/design/components/breed_story_avatar.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/components/ui_card.dart';
 import '../../core/design/content/app_strings.dart';
@@ -15,12 +11,14 @@ import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/shadows.dart';
 import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
-import '../../core/design/tokens/strokes.dart';
 import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/compatibility.dart';
 import '../widgets/top_brand_bar.dart';
+import 'widgets/characteristics_section.dart';
+import 'widgets/favorite_paw_button.dart';
 import 'widgets/reasons_section.dart';
+import 'widgets/summary_section.dart';
 
 class ResultPage extends StatefulWidget {
   const ResultPage({super.key, required this.compatibility});
@@ -33,12 +31,12 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage>
     with SingleTickerProviderStateMixin {
-  static const int _collapsedLimit = 3;
+  static const double _topBarScrollThreshold = 6;
 
-  bool _showAllInfluences = false;
-  bool _showAllInsights = false;
-  bool _showAllRequirements = false;
+  bool _showTopBar = true;
+  double _lastScrollOffset = 0;
   late final AnimationController _introController;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {
@@ -47,14 +45,40 @@ class _ResultPageState extends State<ResultPage>
       vsync: this,
       duration: AppMotion.heroIntro,
     );
+    _scrollController = ScrollController()..addListener(_handleScroll);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _introController.forward(from: 0);
     });
   }
 
+  void _handleScroll() {
+    if (!_scrollController.hasClients) return;
+    final offset = _scrollController.offset.clamp(0.0, double.infinity);
+    final delta = offset - _lastScrollOffset;
+
+    if (offset <= AppSpacing.sm) {
+      if (!_showTopBar) {
+        setState(() => _showTopBar = true);
+      }
+      _lastScrollOffset = offset;
+      return;
+    }
+
+    if (delta > _topBarScrollThreshold && _showTopBar) {
+      setState(() => _showTopBar = false);
+    } else if (delta < -_topBarScrollThreshold && !_showTopBar) {
+      setState(() => _showTopBar = true);
+    }
+
+    _lastScrollOffset = offset;
+  }
+
   @override
   void dispose() {
+    _scrollController
+      ..removeListener(_handleScroll)
+      ..dispose();
     _introController.dispose();
     super.dispose();
   }
@@ -112,97 +136,6 @@ class _ResultPageState extends State<ResultPage>
         summary: s.summary,
       );
 
-  List<ReasonItem> _visibleItems(List<ReasonItem> source, bool showAll) {
-    if (showAll || source.length <= _collapsedLimit) return source;
-    return source.take(_collapsedLimit).toList(growable: false);
-  }
-
-  Widget _sectionWithExpand({
-    required String title,
-    required List<ReasonItem> items,
-    required bool showAll,
-    required VoidCallback onToggle,
-    required IconData icon,
-  }) {
-    final visible = _visibleItems(items, showAll);
-    final canExpand = items.length > _collapsedLimit;
-    return _SoftSectionCard(
-      icon: icon,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ReasonsSection(title: title, items: visible),
-          if (canExpand) ...[
-            const SizedBox(height: AppSpacing.md),
-            UiButton(
-              label:
-                  showAll
-                      ? AppStrings.result.showLess
-                      : AppStrings.result.showMore,
-              onPressed: onToggle,
-              variant: UiButtonVariant.text,
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  /// Insights — единственная секция без icon-rows: все её пункты имели одну
-  /// и ту же декоративную иконку (lightbulb), визуально перегружали блок и
-  /// смещались относительно multiline-текста. Рендерим как буллит-лист.
-  Widget _buildInsightsSection({
-    required List<String> insights,
-    required bool showAll,
-    required VoidCallback onToggle,
-  }) {
-    final canExpand = insights.length > _collapsedLimit;
-    final visible =
-        showAll || !canExpand
-            ? insights
-            : insights.take(_collapsedLimit).toList(growable: false);
-
-    return _SoftSectionCard(
-      icon: Icons.pets_rounded,
-      child: Builder(
-        builder: (context) {
-          final theme = Theme.of(context);
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppStrings.result.insights,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              ...List.generate(visible.length, (i) {
-                return Padding(
-                  padding: EdgeInsets.only(
-                    bottom: i == visible.length - 1 ? 0 : AppSpacing.md,
-                  ),
-                  child: _BulletRow(text: visible[i]),
-                );
-              }),
-              if (canExpand) ...[
-                const SizedBox(height: AppSpacing.md),
-                UiButton(
-                  label:
-                      showAll
-                          ? AppStrings.result.showLess
-                          : AppStrings.result.showMore,
-                  onPressed: onToggle,
-                  variant: UiButtonVariant.text,
-                ),
-              ],
-            ],
-          );
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final compatibility = widget.compatibility;
@@ -228,25 +161,10 @@ class _ResultPageState extends State<ResultPage>
       ),
     ];
 
-    final insights = compatibility.insights;
-
-    final requirementItems =
-        compatibility.requirementHighlights
-            .map(
-              (text) => ReasonItem(
-                text: text,
-                icon: Icons.check_rounded,
-                color: AppColors.textSecondary,
-              ),
-            )
-            .toList();
-
     final hasVisibleContent =
         primaryCompatibility != null ||
         influences.isNotEmpty ||
         refusal != null ||
-        insights.isNotEmpty ||
-        requirementItems.isNotEmpty ||
         suggestions.isNotEmpty;
 
     if (!hasVisibleContent) {
@@ -303,9 +221,33 @@ class _ResultPageState extends State<ResultPage>
         bottom: false,
         child: Column(
           children: [
-            TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
+            ClipRect(
+              child: AnimatedSize(
+                duration: AppMotion.normal,
+                curve: AppMotion.standardCurve,
+                alignment: Alignment.topCenter,
+                child: Align(
+                  heightFactor: _showTopBar ? 1 : 0,
+                  alignment: Alignment.topCenter,
+                  child: AnimatedSlide(
+                    duration: AppMotion.normal,
+                    curve: AppMotion.standardCurve,
+                    offset: _showTopBar ? Offset.zero : const Offset(0, -1),
+                    child: AnimatedOpacity(
+                      duration: AppMotion.fast,
+                      curve: AppMotion.standardCurve,
+                      opacity: _showTopBar ? 1 : 0,
+                      child: TopBrandBar(
+                        onLogoTap: () => context.go(AppRoutes.welcome),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: ListView(
+                controller: _scrollController,
                 padding: EdgeInsets.zero,
                 physics: const BouncingScrollPhysics(),
                 children: [
@@ -313,116 +255,88 @@ class _ResultPageState extends State<ResultPage>
                     AppStaggeredEntrance(
                       controller: _introController,
                       interval: const Interval(0.0, 0.45),
-                      child: _LifestyleHero(
-                        compatibility: primary,
+                      child: _LifestyleHero(compatibility: primary),
+                    ),
+                  if (primary?.summary != null)
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.08, 0.50),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.xl,
+                          0,
+                          AppSpacing.xl,
+                          0,
+                        ),
+                        child: _SummarySection(summary: primary!.summary!),
                       ),
                     ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.xl,
-              AppSpacing.xl,
-              AppSpacing.xl,
-              AppSpacing.xxxl,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // if (primary != null) ...[
-                //   AppStaggeredEntrance(
-                //     controller: _introController,
-                //     interval: const Interval(0.2, 0.6),
-                //     child: const _WhyMatchSection(),
-                //   ),
-                //   const SizedBox(height: AppSpacing.xxl),
-                //   AppStaggeredEntrance(
-                //     controller: _introController,
-                //     interval: const Interval(0.28, 0.68),
-                //     child: const _ImportantNotesSection(),
-                //   ),
-                //   const SizedBox(height: AppSpacing.xxl),
-                // ],
-                if (primary?.summary != null) ...[
                   AppStaggeredEntrance(
                     controller: _introController,
-                    interval: const Interval(0.18, 0.58),
-                    child: _SummarySection(summary: primary!.summary!),
+                    interval: const Interval(0.16, 0.56),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        AppSpacing.xl,
+                        AppSpacing.xxl,
+                        AppSpacing.xl,
+                        0,
+                      ),
+                      child: _ResultCharacteristicsSection(),
+                    ),
                   ),
-                  const SizedBox(height: AppSpacing.xxl),
-                ],
-                if (influences.isNotEmpty) ...[
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.25, 0.65),
-                    child: _sectionWithExpand(
-                      title: AppStrings.result.influences,
-                      items: influences,
-                      showAll: _showAllInfluences,
-                      icon: Icons.auto_awesome_rounded,
-                      onToggle:
-                          () => setState(
-                            () => _showAllInfluences = !_showAllInfluences,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      AppSpacing.xl,
+                      AppSpacing.xxl,
+                      AppSpacing.xl,
+                      AppSpacing.xxxl,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // if (primary != null) ...[
+                        //   AppStaggeredEntrance(
+                        //     controller: _introController,
+                        //     interval: const Interval(0.2, 0.6),
+                        //     child: const _WhyMatchSection(),
+                        //   ),
+                        //   const SizedBox(height: AppSpacing.xxl),
+                        //   AppStaggeredEntrance(
+                        //     controller: _introController,
+                        //     interval: const Interval(0.28, 0.68),
+                        //     child: const _ImportantNotesSection(),
+                        //   ),
+                        //   const SizedBox(height: AppSpacing.xxl),
+                        // ],
+                        if (refusal != null &&
+                            ((refusal.title?.isNotEmpty ?? false) ||
+                                (refusal.message?.isNotEmpty ?? false))) ...[
+                          AppStaggeredEntrance(
+                            controller: _introController,
+                            interval: const Interval(0.32, 0.72),
+                            child: _RefusalSection(refusal: refusal),
                           ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.xxl),
-                ],
-                if (refusal != null &&
-                    ((refusal.title?.isNotEmpty ?? false) ||
-                        (refusal.message?.isNotEmpty ?? false))) ...[
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.32, 0.72),
-                    child: _RefusalSection(refusal: refusal),
-                  ),
-                  const SizedBox(height: AppSpacing.xxl),
-                ],
-                if (insights.isNotEmpty) ...[
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.38, 0.78),
-                    child: _buildInsightsSection(
-                      insights: insights,
-                      showAll: _showAllInsights,
-                      onToggle:
-                          () => setState(
-                            () => _showAllInsights = !_showAllInsights,
+                          const SizedBox(height: AppSpacing.xxl),
+                        ],
+                        if (suggestions.isNotEmpty)
+                          AppStaggeredEntrance(
+                            controller: _introController,
+                            interval: const Interval(0.55, 1.0),
+                            child: _SuggestionsSection(
+                              suggestions: suggestions,
+                              onTap:
+                                  (s) => _openBreed(
+                                    context,
+                                    s.breedId,
+                                    score: s.score,
+                                  ),
+                            ),
                           ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: AppSpacing.xxl),
                 ],
-                if (requirementItems.isNotEmpty) ...[
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.45, 0.85),
-                    child: _sectionWithExpand(
-                      title: AppStrings.result.requirements,
-                      items: requirementItems,
-                      showAll: _showAllRequirements,
-                      icon: Icons.fact_check_rounded,
-                      onToggle:
-                          () => setState(
-                            () => _showAllRequirements = !_showAllRequirements,
-                          ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.xxl),
-                ],
-                if (suggestions.isNotEmpty)
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.55, 1.0),
-                    child: _SuggestionsSection(
-                      suggestions: suggestions,
-                      onTap:
-                          (s) => _openBreed(context, s.breedId, score: s.score),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
+              ),
             ),
           ],
         ),
@@ -435,6 +349,16 @@ class _LifestyleHero extends StatelessWidget {
   const _LifestyleHero({required this.compatibility});
 
   final Compatibility compatibility;
+
+  /// Подпись под процентом совпадения. Делит шкалу 0-100 на 4 диапазона,
+  /// чтобы число обретало смысл («92%» само по себе не говорит, насколько
+  /// это хорошо).
+  static String _scoreLabel(int pct) {
+    if (pct >= 85) return AppStrings.result.scoreLabelPerfect;
+    if (pct >= 70) return AppStrings.result.scoreLabelGood;
+    if (pct >= 50) return AppStrings.result.scoreLabelMedium;
+    return AppStrings.result.scoreLabelWeak;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -459,9 +383,11 @@ class _LifestyleHero extends StatelessWidget {
                 ? 36.0
                 : 40.0;
 
-final heroHeight = titleLength > 42 ? 510.0 : 485.0;
-final imageHeight = isSmall ? 260.0 : 292.0;
-final percentFontSize = isSmall ? 38.0 : 44.0;
+        final heroHeight = titleLength > 42 ? 383.0 : 358.0;
+        final imageHeight = isSmall ? 260.0 : 292.0;
+        // Score намеренно того же размера что и titleFontSize — визуальный
+        // ритм «имя и оценка равноценны», отличие только в цвете (primary).
+        final percentFontSize = titleFontSize;
 
         final scorePct =
             compatibility.score == null
@@ -473,39 +399,39 @@ final percentFontSize = isSmall ? 38.0 : 44.0;
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-Positioned(
-  right: -84,
-  top: 16,
-  child: Container(
-    width: 320,
-    height: 320,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      gradient: RadialGradient(
-        colors: [
-          AppColors.primary.withValues(alpha: 0.18),
-          AppColors.lavenderTint.withValues(alpha: 0.58),
-          AppColors.lavenderTint.withValues(alpha: 0.12),
-        ],
-      ),
-    ),
-  ),
-),
-Positioned(
-  right: -22,
-  top: 42,
-  child: Hero(
-    tag: 'breed_image_${compatibility.breedId}',
-    child: Image.asset(
-      'assets/images/dog_bg.png',
-      height: imageHeight,
-      fit: BoxFit.contain,
-    ),
-  ),
-),
+              Positioned(
+                right: -134,
+                top: 10,
+                child: Container(
+                  width: 440,
+                  height: 440,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        AppColors.primary.withValues(alpha: 0.32),
+                        AppColors.lavenderTint.withValues(alpha: 0.72),
+                        AppColors.lavenderTint.withValues(alpha: 0.12),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: -32,
+                top: 60,
+                child: Hero(
+                  tag: 'breed_image_${compatibility.breedId}',
+                  child: Image.asset(
+                    'assets/images/dog_bg.png',
+                    height: imageHeight,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
               Positioned(
                 left: AppSpacing.xl,
-                top: 0,
+                top: AppSpacing.sm,
                 right: screenWidth * 0.35,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -524,7 +450,7 @@ Positioned(
                     ),
 
                     if (scorePct != null) ...[
-                      const SizedBox(height: 22),
+                      const SizedBox(height: AppSpacing.xxxl),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -544,42 +470,24 @@ Positioned(
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              color: AppColors.surface,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x1F000000),
-                                  blurRadius: 18,
-                                  offset: Offset(0, 8),
-                                  spreadRadius: -2,
-                                ),
-                              ],
-                            ),
-                            child: const Icon(
-                              Icons.favorite_border_rounded,
-                              size: 21,
-                              color: AppColors.primary,
-                            ),
-                          ),
+                          const SizedBox(width: AppSpacing.xl),
+                          const _FavoritePawButton(),
                         ],
                       ),
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        _scoreLabel(scorePct),
+                        style: const TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.1,
+                        ),
+                      ),
                     ],
-                                        const SizedBox(height: 14),
-                    const _AiRecommendationBadge(),
                   ],
                 ),
               ),
-              Positioned(
-                left: AppSpacing.xl,
-                right: AppSpacing.xl,
-                bottom: 0,
-                child: const _ResultTraitGrid(),
-              ),
             ],
           ),
         );
@@ -588,361 +496,18 @@ Positioned(
   }
 }
 
-
-
-class _AiRecommendationBadge extends StatelessWidget {
-  const _AiRecommendationBadge();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-        vertical: 7,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(AppRadius.xxl),
-        border: Border.all(
-          color: AppColors.primary.withValues(alpha: 0.2),
-          width: AppStroke.hairline,
-        ),
-      ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.auto_awesome_rounded,
-            size: 14,
-            color: AppColors.primary,
-          ),
-          SizedBox(width: 6),
-          Text(
-            'Рекомендовано AI',
-            style: TextStyle(
-              color: AppColors.primary,
-              fontSize: 12,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 0.2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+/// Toggle-кнопка «в избранное» рядом с процентом в hero. Состояние локальное
+/// (имитация без бэка), но сам control полноценный и tappable.
+class _FavoritePawButton extends FavoritePawButton {
+  const _FavoritePawButton();
 }
 
-class _ResultTraitGrid extends StatelessWidget {
-  const _ResultTraitGrid();
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final itemWidth = (constraints.maxWidth - AppSpacing.sm) / 2;
-
-        return Wrap(
-          spacing: AppSpacing.sm,
-          runSpacing: AppSpacing.sm,
-          children: const [
-            _TraitGridItem(
-              icon: Icons.flash_on_rounded,
-              label: 'Активность',
-              value: 'Высокая',
-            ),
-            _TraitGridItem(
-              icon: Icons.content_cut_rounded,
-              label: 'Уход',
-              value: 'Средний',
-            ),
-            _TraitGridItem(
-              icon: Icons.home_rounded,
-              label: 'Жильё',
-              value: 'Квартира',
-            ),
-            _TraitGridItem(
-              icon: Icons.psychology_rounded,
-              label: 'Опыт',
-              value: 'Желателен',
-            ),
-          ].map((item) => SizedBox(width: itemWidth, child: item)).toList(),
-        );
-      },
-    );
-  }
+class _ResultCharacteristicsSection extends CharacteristicsSection {
+  const _ResultCharacteristicsSection();
 }
 
-class _TraitGridItem extends StatelessWidget {
-  const _TraitGridItem({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
-
-  final IconData icon;
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Container(
-      constraints: const BoxConstraints(minHeight: 72),
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-        vertical: AppSpacing.sm,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.surface.withValues(alpha: 0.92),
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border.all(
-          color: AppColors.surface.withValues(alpha: AppAlpha.borderMuted),
-          width: AppStroke.hairline,
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x14000000),
-            blurRadius: 18,
-            offset: Offset(0, 8),
-            spreadRadius: -4,
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 34,
-            height: 34,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: AppAlpha.tint),
-              borderRadius: BorderRadius.circular(AppRadius.md),
-            ),
-            alignment: Alignment.center,
-            child: Icon(icon, size: 18, color: AppColors.primary),
-          ),
-          const SizedBox(width: AppSpacing.sm),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: AppColors.textSecondary,
-                    fontWeight: FontWeight.w700,
-                    height: 1.1,
-                  ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  value,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textPrimary,
-                    fontWeight: FontWeight.w900,
-                    height: 1.1,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _WhyMatchSection extends StatelessWidget {
-  const _WhyMatchSection();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return _SoftSectionCard(
-      icon: Icons.auto_awesome_rounded,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Почему это совпадение?',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          const Wrap(
-            spacing: AppSpacing.lg,
-            runSpacing: AppSpacing.md,
-            children: [
-              _CheckReason(text: 'Ритм жизни совпадает'),
-              _CheckReason(text: 'Условия жилья подходят'),
-              _CheckReason(text: 'Активность учтена'),
-              _CheckReason(text: 'Готовность к уходу учтена'),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CheckReason extends StatelessWidget {
-  const _CheckReason({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return SizedBox(
-      //width: 130,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: AppAlpha.tint),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.check_rounded,
-              size: 16,
-              color: AppColors.primary,
-            ),
-          ),
-          const SizedBox(width: AppSpacing.sm),
-          Expanded(
-            child: Text(
-              text,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: AppColors.textPrimary,
-                height: 1.25,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ImportantNotesSection extends StatelessWidget {
-  const _ImportantNotesSection();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return _SoftSectionCard(
-      icon: Icons.pets_rounded,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Что важно знать',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          const Row(
-            children: [
-              Expanded(
-                child: _MiniNote(
-                  icon: Icons.directions_walk_rounded,
-                  text: 'Нужны регулярные прогулки',
-                ),
-              ),
-              SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: _MiniNote(
-                  icon: Icons.psychology_rounded,
-                  text: 'Требует умственной нагрузки',
-                ),
-              ),
-              SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: _MiniNote(
-                  icon: Icons.favorite_border_rounded,
-                  text: 'Может быть чувствительной',
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MiniNote extends StatelessWidget {
-  const _MiniNote({required this.icon, required this.text});
-
-  final IconData icon;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.sm),
-      decoration: BoxDecoration(
-        color: AppColors.lavenderTint.withValues(alpha: 0.55),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(icon, size: 20, color: AppColors.primary),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            text,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: AppColors.textPrimary,
-              fontWeight: FontWeight.w600,
-              height: 1.2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SummarySection extends StatelessWidget {
-  const _SummarySection({required this.summary});
-
-  final String summary;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return _SoftSectionCard(
-      icon: Icons.auto_awesome_rounded,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            AppStrings.result.influences,
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          Text(summary, style: theme.textTheme.bodyLarge),
-        ],
-      ),
-    );
-  }
+class _SummarySection extends SummarySection {
+  const _SummarySection({required super.summary});
 }
 
 class _RefusalSection extends StatelessWidget {
@@ -984,259 +549,166 @@ class _SuggestionsSection extends StatelessWidget {
   final List<CompatibilitySuggestion> suggestions;
   final ValueChanged<CompatibilitySuggestion> onTap;
 
+  void _showAllSuggestions(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder:
+          (context) => DraggableScrollableSheet(
+            expand: false,
+            initialChildSize: 0.72,
+            minChildSize: 0.52,
+            maxChildSize: 0.92,
+            builder: (context, scrollController) {
+              final theme = Theme.of(context);
+              return Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.cream,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(AppRadius.xxl),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: AppSpacing.sm),
+                    Container(
+                      width: 40,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: AppColors.border,
+                        borderRadius: BorderRadius.circular(AppRadius.pill),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.xl,
+                        AppSpacing.lg,
+                        AppSpacing.xl,
+                        AppSpacing.md,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              AppStrings.result.suggestionsTitle,
+                              style: theme.textTheme.titleLarge?.copyWith(
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            icon: const Icon(Icons.close_rounded),
+                            color: AppColors.textSecondary,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        controller: scrollController,
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.xl,
+                          0,
+                          AppSpacing.xl,
+                          AppSpacing.xxxl,
+                        ),
+                        itemCount: suggestions.length,
+                        separatorBuilder:
+                            (_, __) => const SizedBox(height: AppSpacing.md),
+                        itemBuilder: (context, index) {
+                          final suggestion = suggestions[index];
+                          return UiCard(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                                onTap(suggestion);
+                              },
+                              borderRadius: BorderRadius.circular(
+                                AppRadius.xxl,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(AppSpacing.lg),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        suggestion.breedName,
+                                        style: theme.textTheme.titleMedium
+                                            ?.copyWith(
+                                              color: AppColors.textPrimary,
+                                              fontWeight: FontWeight.w800,
+                                            ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: AppSpacing.md),
+                                    Text(
+                                      '${((suggestion.score ?? 0) * 100).round()}%',
+                                      style: theme.textTheme.labelMedium
+                                          ?.copyWith(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppStrings.result.suggestionsTitle,
-          style: theme.textTheme.titleLarge,
-        ),
-        const SizedBox(height: AppSpacing.xs),
-        Text(
-          AppStrings.result.suggestionsSubtitle,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: AppColors.textSecondary,
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                AppStrings.result.suggestionsTitle,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () => _showAllSuggestions(context),
+              child: Text(AppStrings.result.suggestionsAction),
+            ),
+          ],
         ),
         const SizedBox(height: AppSpacing.md),
         SizedBox(
-          height: 210,
+          height: BreedStoryAvatar.estimatedHeight,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
+            clipBehavior: Clip.none,
             itemCount: suggestions.length,
             separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.md),
-            itemBuilder:
-                (context, index) => _LifestyleSuggestionCard(
-                  suggestion: suggestions[index],
-                  onTap: () => onTap(suggestions[index]),
-                ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _LifestyleSuggestionCard extends StatelessWidget {
-  const _LifestyleSuggestionCard({
-    required this.suggestion,
-    required this.onTap,
-  });
-
-  final CompatibilitySuggestion suggestion;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final imageUrl = suggestion.imageUrl;
-    return Semantics(
-      button: true,
-      label:
-          suggestion.score == null
-              ? suggestion.breedName
-              : '${suggestion.breedName}, ${(suggestion.score! * 100).round()}%',
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppRadius.xl),
-        child: Container(
-          width: 160,
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: BorderRadius.circular(AppRadius.xl),
-            border: Border.all(color: AppColors.border),
-            boxShadow: AppShadows.card,
-          ),
-          clipBehavior: Clip.antiAlias,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Hero(
-                tag: 'breed_image_${suggestion.breedId}',
-                child:
-                    imageUrl == null
-                        ? Container(
-                          color: AppColors.lavenderTint,
-                          alignment: Alignment.center,
-                          child: const Icon(
-                            Icons.pets_rounded,
-                            size: AppIconSize.xxxl,
-                            color: AppColors.primary,
-                          ),
-                        )
-                        : CachedNetworkImage(
-                          imageUrl: imageUrl,
-                          fit: BoxFit.cover,
-                          placeholder:
-                              (_, __) => Container(color: AppColors.border),
-                          errorWidget:
-                              (_, __, ___) => Container(
-                                color: AppColors.lavenderTint,
-                                alignment: Alignment.center,
-                                child: const Icon(
-                                  Icons.pets_rounded,
-                                  size: AppIconSize.xxxl,
-                                  color: AppColors.primary,
-                                ),
-                              ),
-                        ),
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppColors.overlayDark.withValues(alpha: 0.06),
-                      AppColors.overlayDark.withValues(alpha: 0.04),
-                      AppColors.overlayDark.withValues(alpha: 0.72),
-                    ],
-                    stops: const [0.0, 0.42, 1.0],
-                  ),
-                ),
-              ),
-              if (suggestion.score != null)
-                Positioned(
-                  top: AppSpacing.sm,
-                  left: AppSpacing.sm,
-                  child: _ScoreChip(score: suggestion.score!),
-                ),
-              Positioned(
-                left: AppSpacing.md,
-                right: AppSpacing.md,
-                bottom: AppSpacing.md,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      suggestion.breedName,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: AppColors.surface,
-                        fontWeight: FontWeight.w800,
-                        height: 1.08,
-                      ),
-                    ),
-                    if (suggestion.summary != null) ...[
-                      const SizedBox(height: AppSpacing.xs),
-                      Text(
-                        suggestion.summary!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColors.surface.withValues(alpha: 0.84),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Frosted-glass score chip over a suggestion image.
-///
-/// BackdropFilter даёт «iOS glass» эффект — сквозь chip просвечивает image
-/// + светлый tint поверх делает текст читаемым на любой palette. Тонкий
-/// surface-border + лёгкая тень визуально приподнимают chip над фото.
-class _ScoreChip extends StatelessWidget {
-  const _ScoreChip({required this.score});
-
-  final double score;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.xxl),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.sm,
-            vertical: AppSpacing.xxs,
-          ),
-          decoration: BoxDecoration(
-            color: AppColors.surface.withValues(alpha: 0.7),
-            borderRadius: BorderRadius.circular(AppRadius.xxl),
-            border: Border.all(
-              color: AppColors.surface.withValues(alpha: AppAlpha.borderMuted),
-              width: AppStroke.hairline,
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x14000000),
-                blurRadius: 10,
-                offset: Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.check_circle_rounded,
-                size: AppIconSize.md,
-                color: AppColors.accent,
-              ),
-              const SizedBox(width: AppSpacing.xs),
-              Text(
-                '${(score * 100).round()}%',
-                style: theme.textTheme.labelMedium?.copyWith(
-                  color: AppColors.textPrimary,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 0.2,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _BulletRow extends StatelessWidget {
-  const _BulletRow({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 2),
-          child: Text(
-            '•',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w900,
-              color: AppColors.textPrimary,
-              height: 1.2,
-            ),
-          ),
-        ),
-        const SizedBox(width: AppSpacing.md),
-        Expanded(
-          child: Text(
-            text,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: AppColors.textPrimary,
-            ),
+            itemBuilder: (context, index) {
+              final suggestion = suggestions[index];
+              return BreedStoryAvatar(
+                breedName: suggestion.breedName,
+                score: suggestion.score ?? 0,
+                imageUrl: suggestion.imageUrl,
+                onTap: () => onTap(suggestion),
+              );
+            },
           ),
         ),
       ],

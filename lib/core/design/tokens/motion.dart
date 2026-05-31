@@ -5,8 +5,14 @@ class AppMotion {
   AppMotion._();
 
   // Базовые длительности контролов и transitions.
+  /// Микро-пауза перед стартом тяжёлой анимации (нужна, чтобы первый layout
+  /// успел отрисоваться и не «съел» начало).
+  static const Duration instant = Duration(milliseconds: 40);
   static const Duration fast = Duration(milliseconds: 150);
   static const Duration normal = Duration(milliseconds: 200);
+  /// Между обычным переходом и hero — для тактильных задержек перед
+  /// навигацией, чтобы пользователь успел увидеть отклик на тап.
+  static const Duration slow = Duration(milliseconds: 400);
 
   // Семантические длительности экранов и hero-анимаций.
   static const Duration routeIn = Duration(milliseconds: 240);

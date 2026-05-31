@@ -8,7 +8,7 @@ import '../../../core/design/tokens/sizes.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
 
-/// Бренд-знак: квадратный badge с иконкой + текст «PET MATCH AI».
+/// Бренд-знак: квадратный badge со старой иконкой + текст бренда.
 /// Используется в `TopBrandBar` в верхней панели экранов.
 class AppLogo extends StatelessWidget {
   const AppLogo({super.key});
