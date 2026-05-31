@@ -9,6 +9,7 @@ class TopBrandBar extends StatelessWidget {
   const TopBrandBar({
     super.key,
     this.onLogoTap,
+    this.showLocaleBadge = true,
     this.padding = const EdgeInsets.fromLTRB(
       AppSpacing.xxxxl,
       AppSpacing.xl,
@@ -18,6 +19,7 @@ class TopBrandBar extends StatelessWidget {
   });
 
   final VoidCallback? onLogoTap;
+  final bool showLocaleBadge;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -40,7 +42,7 @@ class TopBrandBar extends StatelessWidget {
                 child: logo,
               ),
             ),
-          const LocaleBadge(),
+          if (showLocaleBadge) const LocaleBadge(),
         ],
       ),
     );

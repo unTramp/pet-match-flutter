@@ -20,8 +20,10 @@ class AppStrings {
   static const WelcomeStrings welcome = WelcomeStrings(
     catImageSemantic: 'Иллюстрация кота',
     subtitle:
-        'Несколько коротких вопросов о вашем образе жизни - '
-        'и мы покажем, какие породы подойдут именно вам.',
+        'Ответьте на несколько коротких вопросов — и мы подберём породу, '
+        'которая подойдёт именно вашему образу жизни.',
+    activeSessionHint:
+        'Вы уже начали подбор — можно продолжить с последнего вопроса.',
     ctaContinue: 'Продолжить',
     ctaStart: 'Подобрать питомца',
     heroLine1: 'Найдём питомца,\n',
@@ -63,6 +65,11 @@ class AppStrings {
   );
 
   static const ResultStrings result = ResultStrings(
+    summaryTitle: 'Почему эта порода вам подходит',
+    scoreLabelPerfect: 'Идеальное совпадение',
+    scoreLabelGood: 'Хорошее совпадение',
+    scoreLabelMedium: 'Среднее совпадение',
+    scoreLabelWeak: 'Слабое совпадение',
     influences: 'Что влияет на совпадение?',
     important: 'Важно',
     refusalTitle: 'Что важно учесть перед выбором',
@@ -70,6 +77,7 @@ class AppStrings {
     requirements: 'Требования породы',
     suggestionsTitle: 'Похожие варианты',
     suggestionsSubtitle: 'Альтернативные породы по вашему профилю.',
+    suggestionsAction: 'Показать',
     showMore: 'Показать все',
     showLess: 'Свернуть',
     ctaViewBreed: 'Подробнее о породе',
@@ -128,6 +136,7 @@ class WelcomeStrings {
   const WelcomeStrings({
     required this.catImageSemantic,
     required this.subtitle,
+    required this.activeSessionHint,
     required this.ctaContinue,
     required this.ctaStart,
     required this.heroLine1,
@@ -137,6 +146,7 @@ class WelcomeStrings {
 
   final String catImageSemantic;
   final String subtitle;
+  final String activeSessionHint;
   final String ctaContinue;
   final String ctaStart;
   final String heroLine1;
@@ -206,6 +216,11 @@ class QuestionnaireStrings {
 
 class ResultStrings {
   const ResultStrings({
+    required this.summaryTitle,
+    required this.scoreLabelPerfect,
+    required this.scoreLabelGood,
+    required this.scoreLabelMedium,
+    required this.scoreLabelWeak,
     required this.influences,
     required this.important,
     required this.refusalTitle,
@@ -213,6 +228,7 @@ class ResultStrings {
     required this.requirements,
     required this.suggestionsTitle,
     required this.suggestionsSubtitle,
+    required this.suggestionsAction,
     required this.showMore,
     required this.showLess,
     required this.ctaViewBreed,
@@ -224,6 +240,11 @@ class ResultStrings {
     required this.emptyBody,
   });
 
+  final String summaryTitle;
+  final String scoreLabelPerfect;
+  final String scoreLabelGood;
+  final String scoreLabelMedium;
+  final String scoreLabelWeak;
   final String influences;
   final String important;
   final String refusalTitle;
@@ -231,6 +252,7 @@ class ResultStrings {
   final String requirements;
   final String suggestionsTitle;
   final String suggestionsSubtitle;
+  final String suggestionsAction;
   final String showMore;
   final String showLess;
   final String ctaViewBreed;
