@@ -80,21 +80,30 @@ BASE_URL=http://127.0.0.1:8081 sh backend/deploy/smoke-test.sh
 Скрипт делает:
 
 1. ждёт `health`
-2. вызывает `POST /questionnaire/profile`
-3. вызывает `POST /match/preview`
-4. читает `GET /matches/{resultId}`
-5. проверяет, что сохранённый `match_result` читается обратно
+2. берёт baseline из `docs/backend/examples/answers.apartment_quiet_beginner.json`
+3. вызывает `POST /questionnaire/profile`
+4. вызывает `POST /match/preview`
+5. читает `GET /matches/{resultId}`
+6. проверяет, что сохранённый `match_result` читается обратно
 
 Если хочешь дополнительно зафиксировать ожидаемый top breed для конкретного baseline:
 
 ```bash
-BASE_URL=http://127.0.0.1:8081 EXPECTED_TOP_BREED=italian_greyhound sh backend/deploy/smoke-test.sh
+BASE_URL=http://127.0.0.1:8081 EXPECTED_TOP_BREED=whippet sh backend/deploy/smoke-test.sh
 ```
 
 Если сервис доступен не на localhost:
 
 ```bash
 BASE_URL=http://your-host sh backend/deploy/smoke-test.sh
+```
+
+Если хочешь прогнать другой answer fixture:
+
+```bash
+BASE_URL=http://127.0.0.1:8081 \
+ANSWERS_FIXTURE_PATH=docs/backend/examples/answers.family_friendly.json \
+sh backend/deploy/smoke-test.sh
 ```
 
 ## 5. Verify Postgres persistence

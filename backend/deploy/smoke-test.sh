@@ -4,6 +4,7 @@ set -eu
 BASE_URL="${BASE_URL:-http://127.0.0.1}"
 EXPECTED_TOP_BREED="${EXPECTED_TOP_BREED:-}"
 WAIT_SECONDS="${WAIT_SECONDS:-60}"
+ANSWERS_FIXTURE_PATH="${ANSWERS_FIXTURE_PATH:-docs/backend/examples/answers.apartment_quiet_beginner.json}"
 
 need_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -41,30 +42,21 @@ MATCH_RESPONSE="$(mktemp)"
 STORED_RESPONSE="$(mktemp)"
 trap 'rm -f "$PROFILE_RESPONSE" "$MATCH_RESPONSE" "$STORED_RESPONSE"' EXIT
 
-curl -sS -X POST "$BASE_URL/questionnaire/profile" \
+jq '
+  {
+    questionnaireVersion,
+    answers: (
+      .answers
+      | group_by(.questionId)
+      | map({
+          questionId: .[0].questionId,
+          selectedOptionIds: map(.optionId)
+        })
+    )
+  }
+' "$ANSWERS_FIXTURE_PATH" | curl -sS -X POST "$BASE_URL/questionnaire/profile" \
   -H "Content-Type: application/json" \
-  --data @- >"$PROFILE_RESPONSE" <<'EOF'
-{
-  "questionnaireVersion": 1,
-  "answers": [
-    { "questionId": "pet_type", "selectedOptionIds": ["dog"] },
-    { "questionId": "home_type", "selectedOptionIds": ["apartment"] },
-    { "questionId": "daily_activity", "selectedOptionIds": ["30_60"] },
-    { "questionId": "alone_time", "selectedOptionIds": ["4_8"] },
-    { "questionId": "children", "selectedOptionIds": ["no"] },
-    { "questionId": "other_pets", "selectedOptionIds": ["cat"] },
-    { "questionId": "grooming_tolerance", "selectedOptionIds": ["minimal"] },
-    { "questionId": "shedding_tolerance", "selectedOptionIds": ["hate_it"] },
-    { "questionId": "preferred_size", "selectedOptionIds": ["medium"] },
-    { "questionId": "experience", "selectedOptionIds": ["first_pet"] },
-    { "questionId": "budget", "selectedOptionIds": ["medium"] },
-    {
-      "questionId": "priorities",
-      "selectedOptionIds": ["apartment_friendly", "low_grooming", "quiet"]
-    }
-  ]
-}
-EOF
+  --data @- >"$PROFILE_RESPONSE"
 
 echo "Profile response:"
 cat "$PROFILE_RESPONSE" | jq
