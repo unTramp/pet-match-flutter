@@ -1,0 +1,42 @@
+{
+  "breedId": "shih_tzu",
+  "petType": "dog",
+  "name": "Shih Tzu",
+  "aliases": ["Shih-Tzu"],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 1,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Небольшой домашний компаньон для спокойного ритма жизни, особенно хорош в квартире.",
+    "strengths": ["спокойный характер", "очень хорош для квартиры", "низкая потребность в активности"],
+    "watchouts": ["нужен регулярный уход за шерстью", "не лучший вариант для долгого одиночества"],
+    "adaptationTips": ["держать стабильный домашний ритм", "закладывать время на уход за шерстью"]
+  },
+  "quality": {
+    "confidenceScore": 0.8,
+    "sourceCount": 3,
+    "sourceNotes": ["breed profile", "toy breed notes", "editor review"],
+    "needsReview": false,
+    "version": 1
+  }
+}

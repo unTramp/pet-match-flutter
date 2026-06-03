@@ -1,0 +1,47 @@
+{
+  "fixtureId": "small_calm_apartment",
+  "description": "Пользователь ищет небольшого, спокойного и тихого квартирного компаньона для размеренного домашнего ритма.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [1, 2],
+    "exerciseNeeds": 1,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 4,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "priorities": ["quiet", "calm_temperament"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "shih_tzu",
+    "topMatchPercentRange": {
+      "min": 91,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "shih_tzu",
+      "cavalier_king_charles_spaniel",
+      "french_bulldog"
+    ],
+    "mustRankAbove": [
+      { "higher": "shih_tzu", "lower": "miniature_poodle" },
+      { "higher": "shih_tzu", "lower": "whippet" },
+      { "higher": "shih_tzu", "lower": "golden_retriever" }
+    ],
+    "notes": [
+      "Shih Tzu должен быть одним из главных победителей спокойного квартирного сценария.",
+      "Более активные и крупные породы не должны обгонять его при таком профиле."
+    ]
+  }
+}

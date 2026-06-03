@@ -45,6 +45,8 @@ Ranking fixtures нужны, чтобы проверять не только в�
 - [ranking_case.active_trainable.json](./examples/ranking_case.active_trainable.json)
 - [ranking_case.family_friendly.json](./examples/ranking_case.family_friendly.json)
 - [ranking_case.house_yard_quiet_beginner.json](./examples/ranking_case.house_yard_quiet_beginner.json)
+- [ranking_case.apartment_low_shedding_trainable.json](./examples/ranking_case.apartment_low_shedding_trainable.json)
+- [ranking_case.small_calm_apartment.json](./examples/ranking_case.small_calm_apartment.json)
 
 ## Executable reference spec
 

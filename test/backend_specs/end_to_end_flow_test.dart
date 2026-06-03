@@ -44,11 +44,11 @@ void main() {
       final profile = profileBuilder.buildFromJson(payload).userProfile;
       final results = matcher.rank(profile);
 
-      expect(results.first.breedId, 'labrador_retriever');
+      expect(results.first.breedId, 'golden_retriever');
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        contains('border_collie'),
+        containsAll(<String>['labrador_retriever', 'border_collie']),
       );
     });
 

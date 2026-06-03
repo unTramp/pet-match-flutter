@@ -8,6 +8,11 @@
     { "breedId": "basenji", "file": "breed.basenji.json" },
     { "breedId": "border_collie", "file": "breed.border_collie.json" },
     { "breedId": "french_bulldog", "file": "breed.french_bulldog.json" },
-    { "breedId": "labrador_retriever", "file": "breed.labrador_retriever.json" }
+    { "breedId": "labrador_retriever", "file": "breed.labrador_retriever.json" },
+    { "breedId": "miniature_poodle", "file": "breed.miniature_poodle.json" },
+    { "breedId": "shih_tzu", "file": "breed.shih_tzu.json" },
+    { "breedId": "golden_retriever", "file": "breed.golden_retriever.json" },
+    { "breedId": "german_shepherd", "file": "breed.german_shepherd.json" },
+    { "breedId": "dachshund", "file": "breed.dachshund.json" }
   ]
 }

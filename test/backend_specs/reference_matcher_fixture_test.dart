@@ -10,8 +10,11 @@ void main() {
     });
 
     test('backend docs examples stay internally consistent', () {
+      final fixturePaths = rankingFixturePaths();
+
       expect(bundle.breeds, isNotEmpty);
-      expect(bundle.fixtures, hasLength(4));
+      expect(bundle.fixtures, isNotEmpty);
+      expect(bundle.fixtures, hasLength(fixturePaths.length));
       expect(
         bundle.fixtures.every(
           (fixture) => fixture.scoringVersion == bundle.config.version,

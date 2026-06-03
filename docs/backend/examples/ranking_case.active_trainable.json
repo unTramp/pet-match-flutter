@@ -31,8 +31,9 @@
     },
     "acceptableTop3": [
       "border_collie",
+      "golden_retriever",
       "labrador_retriever",
-      "whippet"
+      "german_shepherd"
     ],
     "mustRankAbove": [
       { "higher": "border_collie", "lower": "cavalier_king_charles_spaniel" },

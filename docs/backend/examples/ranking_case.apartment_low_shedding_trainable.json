@@ -1,0 +1,47 @@
+{
+  "fixtureId": "apartment_low_shedding_trainable",
+  "description": "Пользователь живет в квартире, хочет минимальную линьку и высокую обучаемость, готов к регулярному грумингу.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [1, 2, 3],
+    "exerciseNeeds": 3,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "priorities": ["trainable", "low_grooming", "apartment_friendly"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": true,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "miniature_poodle",
+    "topMatchPercentRange": {
+      "min": 91,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "miniature_poodle",
+      "cavalier_king_charles_spaniel",
+      "shih_tzu"
+    ],
+    "mustRankAbove": [
+      { "higher": "miniature_poodle", "lower": "french_bulldog" },
+      { "higher": "miniature_poodle", "lower": "whippet" },
+      { "higher": "miniature_poodle", "lower": "golden_retriever" }
+    ],
+    "notes": [
+      "Miniature Poodle должен побеждать за счет low shedding + trainability + apartment fit.",
+      "Крупные и сильнее линяющие породы не должны подниматься выше него в этом сценарии."
+    ]
+  }
+}

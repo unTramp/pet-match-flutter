@@ -1,0 +1,42 @@
+{
+  "breedId": "dachshund",
+  "petType": "dog",
+  "name": "Dachshund",
+  "aliases": ["Sausage Dog", "Doxie"],
+  "group": "hound",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 2,
+    "noiseLevel": 4,
+    "trainability": 3,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Компактная и яркая по характеру порода, удобная по размеру, но часто более шумная и упрямая, чем кажется.",
+    "strengths": ["компактный размер", "подходит для квартиры", "умеренные расходы"],
+    "watchouts": ["может быть шумным", "есть упрямство и охотничий инстинкт"],
+    "adaptationTips": ["нужна последовательность в обучении", "важно контролировать прыжки и нагрузку на спину"]
+  },
+  "quality": {
+    "confidenceScore": 0.79,
+    "sourceCount": 3,
+    "sourceNotes": ["breed profile", "owner notes", "editor review"],
+    "needsReview": false,
+    "version": 1
+  }
+}
