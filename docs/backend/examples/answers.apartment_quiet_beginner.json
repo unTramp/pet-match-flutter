@@ -1,0 +1,20 @@
+{
+  "questionnaireVersion": 1,
+  "answers": [
+    { "questionId": "pet_type", "optionId": "dog" },
+    { "questionId": "home_type", "optionId": "apartment" },
+    { "questionId": "daily_activity", "optionId": "30_60" },
+    { "questionId": "alone_time", "optionId": "4_8" },
+    { "questionId": "children", "optionId": "no" },
+    { "questionId": "other_pets", "optionId": "cat" },
+    { "questionId": "grooming_tolerance", "optionId": "minimal" },
+    { "questionId": "shedding_tolerance", "optionId": "a_little_ok" },
+    { "questionId": "refinement_gate", "optionId": "continue" },
+    { "questionId": "preferred_size", "optionId": "medium" },
+    { "questionId": "experience", "optionId": "first_pet" },
+    { "questionId": "budget", "optionId": "medium" },
+    { "questionId": "priorities", "optionId": "apartment_friendly" },
+    { "questionId": "priorities", "optionId": "low_grooming" },
+    { "questionId": "priorities", "optionId": "quiet" }
+  ]
+}

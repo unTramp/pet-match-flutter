@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Breed {
+  id             String          @id
+  petType        PetType
+  name           String
+  aliases        Json
+  breedGroup     String?
+  status         BreedStatus     @default(active)
+  qualityVersion Int             @default(1)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  attributes     BreedAttributes?
+  content        BreedContent?
+}
+
+model BreedAttributes {
+  breedId               String   @id
+  breed                 Breed    @relation(fields: [breedId], references: [id], onDelete: Cascade)
+  size                  Int
+  apartmentSuitability  Int
+  exerciseNeeds         Int
+  aloneTolerance        Int
+  goodWithChildren      Int
+  goodWithOtherPets     Int
+  groomingNeeds         Int
+  sheddingLevel         Int
+  beginnerFriendly      Int
+  maintenanceCost       Int
+  noiseLevel            Int?
+  trainability          Int?
+  temperamentCalm       Int?
+  affectionLevel        Int?
+  healthComplexity      Int?
+  flags                 Json
+}
+
+model BreedContent {
+  breedId         String   @id
+  breed           Breed    @relation(fields: [breedId], references: [id], onDelete: Cascade)
+  summaryShort    String
+  strengths       Json
+  watchouts       Json
+  adaptationTips  Json
+  sourceNotes     Json?
+}
+
+model QuestionnaireDefinition {
+  id                   String   @id
+  questionnaireVersion Int
+  order                Int
+  kind                 QuestionKind
+  required             Boolean
+  title                String
+  description          String?
+  maxSelections        Int?
+  options              Json
+
+  @@index([questionnaireVersion, order])
+}
+
+model AnswerToProfileMapping {
+  id                   String   @id
+  questionnaireVersion Int
+  questionId           String
+  optionId             String
+  effects              Json
+
+  @@index([questionnaireVersion, questionId])
+}
+
+model ScoringConfig {
+  version          Int      @id
+  baseWeights      Json
+  priorityBoosts   Json
+  criticalCaps     Json
+  priorityBonuses  Json
+  displayCap       Int
+  labels           Json
+  changelogReason  String
+  publishedAt      DateTime
+}
+
+model StoredMatchResult {
+  id                   String   @id
+  questionnaireVersion Int
+  scoringVersion       Int
+  topBreedId           String
+  topMatchPercent      Int
+  userProfile          Json
+  resultPayload        Json
+  createdAt            DateTime @default(now())
+}
+
+enum PetType {
+  dog
+  cat
+}
+
+enum BreedStatus {
+  active
+  draft
+  archived
+}
+
+enum QuestionKind {
+  single_choice
+  multi_choice
+}

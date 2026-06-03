@@ -1,0 +1,42 @@
+{
+  "breedId": "french_bulldog",
+  "petType": "dog",
+  "name": "French Bulldog",
+  "aliases": ["Frenchie"],
+  "group": "non-sporting",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Популярный квартирный компаньон: компактный, спокойный и не слишком требовательный к активности.",
+    "strengths": ["очень хорош для квартиры", "подходит для спокойного ритма", "простой уход"],
+    "watchouts": ["может быть дорогим в содержании", "здоровье требует внимательности"],
+    "adaptationTips": ["избегать перегрева", "планировать ветеринарные расходы"]
+  },
+  "quality": {
+    "confidenceScore": 0.8,
+    "sourceCount": 3,
+    "sourceNotes": ["breed profile", "veterinary notes", "editor review"],
+    "needsReview": false,
+    "version": 1
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "breedId": "cavalier_king_charles_spaniel",
+  "petType": "dog",
+  "name": "Cavalier King Charles Spaniel",
+  "aliases": ["Cavalier", "CKCS"],
+  "group": "toy",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 2,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 3,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 5,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 4,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Мягкий семейный компаньон, хорошо живет в квартире и обычно подходит новичкам.",
+    "strengths": ["подходит для квартиры", "дружелюбен к детям", "хорош для новичков"],
+    "watchouts": ["тяжело переносит долгое одиночество", "шерсть требует регулярного ухода"],
+    "adaptationTips": ["не оставлять надолго одного", "держать стабильный режим ухода"]
+  },
+  "quality": {
+    "confidenceScore": 0.82,
+    "sourceCount": 3,
+    "sourceNotes": ["breed club summary", "editor review", "veterinary reference"],
+    "needsReview": false,
+    "version": 1
+  }
+}

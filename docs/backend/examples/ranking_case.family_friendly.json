@@ -1,0 +1,47 @@
+{
+  "fixtureId": "family_friendly",
+  "description": "Семья с детьми и другими животными ищет дружелюбную, обучаемую и достаточно универсальную собаку.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [3, 4],
+    "exerciseNeeds": 4,
+    "apartmentSuitability": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 5,
+    "groomingNeeds": 2,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "priorities": ["good_with_children", "trainable"],
+    "criticalContext": {
+      "hasYoungChildren": true,
+      "hasOtherPets": true,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "labrador_retriever",
+    "topMatchPercentRange": {
+      "min": 84,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "labrador_retriever",
+      "cavalier_king_charles_spaniel",
+      "whippet"
+    ],
+    "mustRankAbove": [
+      { "higher": "labrador_retriever", "lower": "basenji" },
+      { "higher": "labrador_retriever", "lower": "border_collie" },
+      { "higher": "cavalier_king_charles_spaniel", "lower": "basenji" }
+    ],
+    "notes": [
+      "Basenji не должен подниматься высоко из-за конфликта по детям и другим животным.",
+      "Labrador Retriever должен быть главным эталоном семейного сценария."
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "breedId": "border_collie",
+  "petType": "dog",
+  "name": "Border Collie",
+  "aliases": ["BC"],
+  "group": "herding",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 3,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "trainability": 5,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень умная и рабочая собака, которой нужен высокий уровень активности и вовлеченности.",
+    "strengths": ["максимальная обучаемость", "подходит для активного образа жизни", "хороший рабочий потенциал"],
+    "watchouts": ["слишком активна для спокойного квартирного ритма", "не лучший выбор для новичка"],
+    "adaptationTips": ["нужны ежедневные нагрузки", "без задач быстро скучает"]
+  },
+  "quality": {
+    "confidenceScore": 0.86,
+    "sourceCount": 3,
+    "sourceNotes": ["breed club summary", "working dog notes", "editor review"],
+    "needsReview": false,
+    "version": 1
+  }
+}

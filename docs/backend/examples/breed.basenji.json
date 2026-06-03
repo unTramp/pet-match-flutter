@@ -1,0 +1,42 @@
+{
+  "breedId": "basenji",
+  "petType": "dog",
+  "name": "Basenji",
+  "aliases": ["African Barkless Dog"],
+  "group": "hound",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 1,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 3,
+    "noiseLevel": 1,
+    "trainability": 2,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень тихая и чистоплотная собака, но со сложным независимым характером.",
+    "strengths": ["очень низкая шумность", "минимальный уход", "чистоплотность"],
+    "watchouts": ["сложнее для новичков", "может быть непростой с другими животными"],
+    "adaptationTips": ["нужна структура и безопасные прогулки", "важен опыт и терпение"]
+  },
+  "quality": {
+    "confidenceScore": 0.74,
+    "sourceCount": 3,
+    "sourceNotes": ["breed profile", "editor review", "training notes"],
+    "needsReview": false,
+    "version": 1
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "fixtureId": "active_trainable",
+  "description": "Опытный пользователь ищет очень активную, обучаемую собаку и готов подстраивать образ жизни под нее.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [3, 4, 5],
+    "exerciseNeeds": 5,
+    "apartmentSuitability": 2,
+    "aloneTolerance": 2,
+    "goodWithChildren": null,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 3,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "priorities": ["trainable", "active_companion"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "border_collie",
+    "topMatchPercentRange": {
+      "min": 84,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "border_collie",
+      "labrador_retriever",
+      "whippet"
+    ],
+    "mustRankAbove": [
+      { "higher": "border_collie", "lower": "cavalier_king_charles_spaniel" },
+      { "higher": "border_collie", "lower": "french_bulldog" },
+      { "higher": "border_collie", "lower": "italian_greyhound" }
+    ],
+    "notes": [
+      "Border Collie должен быть первым из-за сочетания exerciseNeeds=5 и trainability=5.",
+      "Компактные спокойные породы не должны подниматься выше Border Collie в этом сценарии."
+    ]
+  }
+}

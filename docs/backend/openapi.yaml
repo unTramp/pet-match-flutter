@@ -1,0 +1,452 @@
+openapi: 3.1.0
+info:
+  title: PetWise Matching API
+  version: 0.1.0
+  description: >
+    Draft backend contract for PetWise Matching V1.
+servers:
+  - url: https://api.petwise.app
+paths:
+  /questionnaire/definition:
+    get:
+      summary: Get active questionnaire definition
+      operationId: getQuestionnaireDefinition
+      responses:
+        '200':
+          description: Active questionnaire definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionnaireDefinitionResponse'
+  /questionnaire/profile:
+    post:
+      summary: Build user profile from questionnaire answers
+      operationId: buildUserProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildProfileRequest'
+      responses:
+        '200':
+          description: Built user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileResponse'
+  /match/preview:
+    post:
+      summary: Rank breeds and return result payload
+      operationId: previewMatch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPreviewRequest'
+      responses:
+        '200':
+          description: Match preview result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchResult'
+  /matches/{resultId}:
+    get:
+      summary: Get persisted match result by id
+      operationId: getMatchResultById
+      parameters:
+        - in: path
+          name: resultId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Persisted match result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchResult'
+  /breeds/{breedId}:
+    get:
+      summary: Get breed details
+      operationId: getBreedById
+      parameters:
+        - in: path
+          name: breedId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Breed details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+
+components:
+  schemas:
+    QuestionnaireDefinitionResponse:
+      type: object
+      required:
+        - questionnaireVersion
+        - questions
+      properties:
+        questionnaireVersion:
+          type: integer
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionDefinition'
+    QuestionDefinition:
+      type: object
+      required:
+        - id
+        - order
+        - kind
+        - required
+        - title
+        - options
+      properties:
+        id:
+          type: string
+        order:
+          type: integer
+        kind:
+          type: string
+          enum: [single_choice, multi_choice]
+        required:
+          type: boolean
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        maxSelections:
+          type: integer
+          nullable: true
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionOption'
+    QuestionOption:
+      type: object
+      required:
+        - id
+        - label
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+    BuildProfileRequest:
+      type: object
+      required:
+        - questionnaireVersion
+        - answers
+      properties:
+        questionnaireVersion:
+          type: integer
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionAnswer'
+    QuestionAnswer:
+      type: object
+      required:
+        - questionId
+        - selectedOptionIds
+      properties:
+        questionId:
+          type: string
+        selectedOptionIds:
+          type: array
+          items:
+            type: string
+    UserProfileResponse:
+      type: object
+      required:
+        - questionnaireVersion
+        - userProfile
+      properties:
+        questionnaireVersion:
+          type: integer
+        userProfile:
+          $ref: '#/components/schemas/UserProfile'
+    MatchPreviewRequest:
+      type: object
+      required:
+        - questionnaireVersion
+        - userProfile
+      properties:
+        questionnaireVersion:
+          type: integer
+        userProfile:
+          $ref: '#/components/schemas/UserProfile'
+    UserProfile:
+      type: object
+      required:
+        - petType
+        - priorities
+        - criticalContext
+      properties:
+        petType:
+          type: string
+          enum: [dog, cat]
+        sizePreference:
+          type: array
+          items:
+            type: integer
+        exerciseNeeds:
+          type: integer
+          nullable: true
+        apartmentSuitability:
+          type: integer
+          nullable: true
+        aloneTolerance:
+          type: integer
+          nullable: true
+        goodWithChildren:
+          type: integer
+          nullable: true
+        goodWithOtherPets:
+          type: integer
+          nullable: true
+        groomingNeeds:
+          type: integer
+          nullable: true
+        sheddingLevel:
+          type: integer
+          nullable: true
+        beginnerFriendly:
+          type: integer
+          nullable: true
+        maintenanceCost:
+          type: integer
+          nullable: true
+        noiseLevel:
+          type: integer
+          nullable: true
+        priorities:
+          type: array
+          items:
+            type: string
+        criticalContext:
+          $ref: '#/components/schemas/CriticalContext'
+    CriticalContext:
+      type: object
+      required:
+        - hasYoungChildren
+        - hasOtherPets
+        - livesInApartment
+      properties:
+        hasYoungChildren:
+          type: boolean
+        hasOtherPets:
+          type: boolean
+        livesInApartment:
+          type: boolean
+    Breed:
+      type: object
+      required:
+        - breedId
+        - petType
+        - name
+        - attributes
+        - flags
+        - content
+        - quality
+      properties:
+        breedId:
+          type: string
+        petType:
+          type: string
+          enum: [dog, cat]
+        name:
+          type: string
+        aliases:
+          type: array
+          items:
+            type: string
+        group:
+          type: string
+          nullable: true
+        attributes:
+          $ref: '#/components/schemas/BreedAttributes'
+        flags:
+          $ref: '#/components/schemas/BreedFlags'
+        content:
+          $ref: '#/components/schemas/BreedContent'
+        quality:
+          $ref: '#/components/schemas/BreedQuality'
+    BreedAttributes:
+      type: object
+      properties:
+        size:
+          type: integer
+        apartmentSuitability:
+          type: integer
+        exerciseNeeds:
+          type: integer
+        aloneTolerance:
+          type: integer
+        goodWithChildren:
+          type: integer
+        goodWithOtherPets:
+          type: integer
+        groomingNeeds:
+          type: integer
+        sheddingLevel:
+          type: integer
+        beginnerFriendly:
+          type: integer
+        maintenanceCost:
+          type: integer
+        noiseLevel:
+          type: integer
+          nullable: true
+        trainability:
+          type: integer
+          nullable: true
+        temperamentCalm:
+          type: integer
+          nullable: true
+    BreedFlags:
+      type: object
+      properties:
+        isVocal:
+          type: boolean
+        isHighPreyDrive:
+          type: boolean
+        isSensitive:
+          type: boolean
+        isEscapeProne:
+          type: boolean
+        isSuitableForFirstTimeOwners:
+          type: boolean
+    BreedContent:
+      type: object
+      properties:
+        summaryShort:
+          type: string
+        strengths:
+          type: array
+          items:
+            type: string
+        watchouts:
+          type: array
+          items:
+            type: string
+        adaptationTips:
+          type: array
+          items:
+            type: string
+    BreedQuality:
+      type: object
+      properties:
+        confidenceScore:
+          type: number
+          format: float
+        sourceCount:
+          type: integer
+        sourceNotes:
+          type: array
+          items:
+            type: string
+        needsReview:
+          type: boolean
+        version:
+          type: integer
+    MatchResult:
+      type: object
+      required:
+        - resultId
+        - storedAt
+        - questionnaireVersion
+        - scoringVersion
+        - userProfile
+        - topMatch
+        - alternatives
+      properties:
+        resultId:
+          type: string
+        storedAt:
+          type: string
+          format: date-time
+        questionnaireVersion:
+          type: integer
+        scoringVersion:
+          type: integer
+        userProfile:
+          $ref: '#/components/schemas/UserProfile'
+        topMatch:
+          $ref: '#/components/schemas/RankedBreed'
+        alternatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlternativeBreed'
+        debug:
+          $ref: '#/components/schemas/MatchDebug'
+    RankedBreed:
+      type: object
+      required:
+        - breedId
+        - name
+        - matchPercent
+        - label
+        - summary
+        - strongMatches
+        - weakMatches
+      properties:
+        breedId:
+          type: string
+        name:
+          type: string
+        matchPercent:
+          type: integer
+        label:
+          type: string
+        summary:
+          type: string
+        warning:
+          type: string
+          nullable: true
+        strongMatches:
+          type: array
+          items:
+            type: string
+        weakMatches:
+          type: array
+          items:
+            type: string
+    AlternativeBreed:
+      type: object
+      required:
+        - breedId
+        - name
+        - matchPercent
+      properties:
+        breedId:
+          type: string
+        name:
+          type: string
+        matchPercent:
+          type: integer
+    MatchDebug:
+      type: object
+      properties:
+        weightsUsed:
+          type: object
+          additionalProperties:
+            type: integer
+        criticalCapApplied:
+          type: integer
+        baseScore:
+          type: number
+          format: float
+        priorityBonus:
+          type: number
+          format: float

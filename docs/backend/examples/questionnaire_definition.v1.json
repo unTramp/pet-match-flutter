@@ -1,0 +1,197 @@
+{
+  "questionnaireVersion": 1,
+  "questions": [
+    {
+      "id": "pet_type",
+      "order": 1,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Какой питомец вас интересует?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "dog", "label": "Собака" },
+        { "id": "cat", "label": "Кошка" },
+        { "id": "unknown", "label": "Пока не знаю" }
+      ]
+    },
+    {
+      "id": "home_type",
+      "order": 2,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Где вы живете?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "apartment", "label": "Квартира" },
+        { "id": "house_no_yard", "label": "Дом без двора" },
+        { "id": "house_yard", "label": "Дом с двором" }
+      ]
+    },
+    {
+      "id": "daily_activity",
+      "order": 3,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Сколько времени готовы уделять активности каждый день?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "under_30", "label": "До 30 минут" },
+        { "id": "30_60", "label": "30–60 минут" },
+        { "id": "60_120", "label": "1–2 часа" },
+        { "id": "120_plus", "label": "Более 2 часов" }
+      ]
+    },
+    {
+      "id": "alone_time",
+      "order": 4,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Сколько часов питомец будет оставаться один?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "never", "label": "Почти никогда" },
+        { "id": "up_to_4", "label": "До 4 часов" },
+        { "id": "4_8", "label": "4–8 часов" },
+        { "id": "8_plus", "label": "Более 8 часов" }
+      ]
+    },
+    {
+      "id": "children",
+      "order": 5,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Есть ли у вас дети?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "no", "label": "Нет" },
+        { "id": "older_10", "label": "Да, старше 10 лет" },
+        { "id": "younger_10", "label": "Да, младше 10 лет" }
+      ]
+    },
+    {
+      "id": "other_pets",
+      "order": 6,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Есть ли другие животные?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "none", "label": "Нет" },
+        { "id": "cat", "label": "Кошка" },
+        { "id": "dog", "label": "Собака" },
+        { "id": "multiple", "label": "Несколько животных" }
+      ]
+    },
+    {
+      "id": "grooming_tolerance",
+      "order": 7,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Насколько вы готовы заниматься уходом?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "minimal", "label": "Минимально" },
+        { "id": "sometimes", "label": "Иногда" },
+        { "id": "regular", "label": "Регулярно" },
+        { "id": "love_it", "label": "Мне это нравится" }
+      ]
+    },
+    {
+      "id": "shedding_tolerance",
+      "order": 8,
+      "kind": "single_choice",
+      "required": true,
+      "title": "Как вы относитесь к шерсти дома?",
+      "description": null,
+      "maxSelections": null,
+      "options": [
+        { "id": "hate_it", "label": "Терпеть не могу" },
+        { "id": "a_little_ok", "label": "Немного нормально" },
+        { "id": "no_problem", "label": "Не проблема" }
+      ]
+    },
+    {
+      "id": "refinement_gate",
+      "order": 9,
+      "kind": "single_choice",
+      "required": false,
+      "title": "Мы уже нашли подходящие варианты. Хотите ответить еще на 4 вопроса и повысить точность подбора?",
+      "description": "Этот экран не влияет на профиль пользователя, а только управляет optional refinement flow.",
+      "maxSelections": null,
+      "options": [
+        { "id": "continue", "label": "Да, повысить точность" },
+        { "id": "skip", "label": "Нет, показать результат" }
+      ]
+    },
+    {
+      "id": "preferred_size",
+      "order": 10,
+      "kind": "single_choice",
+      "required": false,
+      "title": "Какой размер питомца вам ближе?",
+      "description": "Optional refinement question",
+      "maxSelections": null,
+      "options": [
+        { "id": "small", "label": "Маленький" },
+        { "id": "medium", "label": "Средний" },
+        { "id": "large", "label": "Крупный" },
+        { "id": "any", "label": "Без разницы" }
+      ]
+    },
+    {
+      "id": "experience",
+      "order": 11,
+      "kind": "single_choice",
+      "required": false,
+      "title": "Ваш опыт содержания питомцев?",
+      "description": "Optional refinement question",
+      "maxSelections": null,
+      "options": [
+        { "id": "first_pet", "label": "Первый питомец" },
+        { "id": "one_before", "label": "Был один" },
+        { "id": "several_before", "label": "Было несколько" }
+      ]
+    },
+    {
+      "id": "budget",
+      "order": 12,
+      "kind": "single_choice",
+      "required": false,
+      "title": "Какой уровень расходов комфортен?",
+      "description": "Optional refinement question",
+      "maxSelections": null,
+      "options": [
+        { "id": "minimal", "label": "Минимальный" },
+        { "id": "medium", "label": "Средний" },
+        { "id": "above_average", "label": "Выше среднего" },
+        { "id": "not_important", "label": "Не важно" }
+      ]
+    },
+    {
+      "id": "priorities",
+      "order": 13,
+      "kind": "multi_choice",
+      "required": false,
+      "title": "Что для вас важнее всего?",
+      "description": "Выберите до 3 пунктов. Optional refinement question",
+      "maxSelections": 3,
+      "options": [
+        { "id": "trainable", "label": "Легко обучается" },
+        { "id": "good_with_children", "label": "Любит детей" },
+        { "id": "apartment_friendly", "label": "Подходит для квартиры" },
+        { "id": "low_grooming", "label": "Минимум ухода" },
+        { "id": "quiet", "label": "Редко лает" },
+        { "id": "alone_tolerance", "label": "Хорошо переносит одиночество" },
+        { "id": "active_companion", "label": "Активный компаньон" },
+        { "id": "calm_temperament", "label": "Спокойный характер" }
+      ]
+    }
+  ]
+}

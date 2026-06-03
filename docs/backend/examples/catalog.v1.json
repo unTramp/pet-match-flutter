@@ -1,0 +1,13 @@
+{
+  "catalogVersion": 1,
+  "petType": "dog",
+  "breeds": [
+    { "breedId": "whippet", "file": "breed.whippet.json" },
+    { "breedId": "cavalier_king_charles_spaniel", "file": "breed.cavalier_king_charles_spaniel.json" },
+    { "breedId": "italian_greyhound", "file": "breed.italian_greyhound.json" },
+    { "breedId": "basenji", "file": "breed.basenji.json" },
+    { "breedId": "border_collie", "file": "breed.border_collie.json" },
+    { "breedId": "french_bulldog", "file": "breed.french_bulldog.json" },
+    { "breedId": "labrador_retriever", "file": "breed.labrador_retriever.json" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "breedId": "whippet",
+  "petType": "dog",
+  "name": "Whippet",
+  "aliases": ["Whippet Dog"],
+  "group": "hound",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 2,
+    "noiseLevel": 1,
+    "trainability": 4,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Спокойная дома, умеренно активная, проста в уходе.",
+    "strengths": ["подходит для квартиры", "низкая шумность", "минимальный уход"],
+    "watchouts": ["может тяжело переносить одиночество", "сильный prey drive"],
+    "adaptationTips": ["планировать прогулки", "аккуратно знакомить с кошками"]
+  },
+  "quality": {
+    "confidenceScore": 0.78,
+    "sourceCount": 3,
+    "sourceNotes": ["breed club summary", "veterinary reference", "editor review"],
+    "needsReview": false,
+    "version": 1
+  }
+}

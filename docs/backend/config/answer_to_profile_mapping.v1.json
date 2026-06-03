@@ -1,0 +1,348 @@
+{
+  "questionnaireVersion": 1,
+  "mappings": [
+    {
+      "questionId": "pet_type",
+      "optionId": "dog",
+      "effects": [
+        { "field": "petType", "operator": "set", "value": "dog" }
+      ]
+    },
+    {
+      "questionId": "pet_type",
+      "optionId": "cat",
+      "effects": [
+        { "field": "petType", "operator": "set", "value": "cat" }
+      ]
+    },
+    {
+      "questionId": "pet_type",
+      "optionId": "unknown",
+      "effects": [
+        { "field": "petType", "operator": "set", "value": "dog" }
+      ]
+    },
+    {
+      "questionId": "home_type",
+      "optionId": "apartment",
+      "effects": [
+        { "field": "apartmentSuitability", "operator": "set", "value": 5 },
+        { "field": "sizePreference", "operator": "allow", "value": [1, 2, 3] },
+        { "field": "exerciseNeeds", "operator": "cap_max", "value": 3 },
+        { "field": "criticalContext.livesInApartment", "operator": "set", "value": true }
+      ]
+    },
+    {
+      "questionId": "home_type",
+      "optionId": "house_no_yard",
+      "effects": [
+        { "field": "apartmentSuitability", "operator": "set", "value": 3 },
+        { "field": "sizePreference", "operator": "allow", "value": [1, 2, 3, 4] },
+        { "field": "criticalContext.livesInApartment", "operator": "set", "value": false }
+      ]
+    },
+    {
+      "questionId": "home_type",
+      "optionId": "house_yard",
+      "effects": [
+        { "field": "apartmentSuitability", "operator": "set", "value": 2 },
+        { "field": "sizePreference", "operator": "allow", "value": [2, 3, 4, 5] },
+        { "field": "criticalContext.livesInApartment", "operator": "set", "value": false }
+      ]
+    },
+    {
+      "questionId": "daily_activity",
+      "optionId": "under_30",
+      "effects": [
+        { "field": "exerciseNeeds", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "daily_activity",
+      "optionId": "30_60",
+      "effects": [
+        { "field": "exerciseNeeds", "operator": "set", "value": 3 }
+      ]
+    },
+    {
+      "questionId": "daily_activity",
+      "optionId": "60_120",
+      "effects": [
+        { "field": "exerciseNeeds", "operator": "set", "value": 4 }
+      ]
+    },
+    {
+      "questionId": "daily_activity",
+      "optionId": "120_plus",
+      "effects": [
+        { "field": "exerciseNeeds", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "alone_time",
+      "optionId": "never",
+      "effects": [
+        { "field": "aloneTolerance", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "alone_time",
+      "optionId": "up_to_4",
+      "effects": [
+        { "field": "aloneTolerance", "operator": "set", "value": 2 }
+      ]
+    },
+    {
+      "questionId": "alone_time",
+      "optionId": "4_8",
+      "effects": [
+        { "field": "aloneTolerance", "operator": "set", "value": 3 }
+      ]
+    },
+    {
+      "questionId": "alone_time",
+      "optionId": "8_plus",
+      "effects": [
+        { "field": "aloneTolerance", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "children",
+      "optionId": "no",
+      "effects": [
+        { "field": "goodWithChildren", "operator": "set", "value": null },
+        { "field": "criticalContext.hasYoungChildren", "operator": "set", "value": false }
+      ]
+    },
+    {
+      "questionId": "children",
+      "optionId": "older_10",
+      "effects": [
+        { "field": "goodWithChildren", "operator": "set", "value": 3 },
+        { "field": "criticalContext.hasYoungChildren", "operator": "set", "value": false }
+      ]
+    },
+    {
+      "questionId": "children",
+      "optionId": "younger_10",
+      "effects": [
+        { "field": "goodWithChildren", "operator": "set", "value": 5 },
+        { "field": "criticalContext.hasYoungChildren", "operator": "set", "value": true }
+      ]
+    },
+    {
+      "questionId": "other_pets",
+      "optionId": "none",
+      "effects": [
+        { "field": "goodWithOtherPets", "operator": "set", "value": null },
+        { "field": "criticalContext.hasOtherPets", "operator": "set", "value": false }
+      ]
+    },
+    {
+      "questionId": "other_pets",
+      "optionId": "cat",
+      "effects": [
+        { "field": "goodWithOtherPets", "operator": "set", "value": 4 },
+        { "field": "criticalContext.hasOtherPets", "operator": "set", "value": true }
+      ]
+    },
+    {
+      "questionId": "other_pets",
+      "optionId": "dog",
+      "effects": [
+        { "field": "goodWithOtherPets", "operator": "set", "value": 4 },
+        { "field": "criticalContext.hasOtherPets", "operator": "set", "value": true }
+      ]
+    },
+    {
+      "questionId": "other_pets",
+      "optionId": "multiple",
+      "effects": [
+        { "field": "goodWithOtherPets", "operator": "set", "value": 5 },
+        { "field": "criticalContext.hasOtherPets", "operator": "set", "value": true }
+      ]
+    },
+    {
+      "questionId": "grooming_tolerance",
+      "optionId": "minimal",
+      "effects": [
+        { "field": "groomingNeeds", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "grooming_tolerance",
+      "optionId": "sometimes",
+      "effects": [
+        { "field": "groomingNeeds", "operator": "set", "value": 2 }
+      ]
+    },
+    {
+      "questionId": "grooming_tolerance",
+      "optionId": "regular",
+      "effects": [
+        { "field": "groomingNeeds", "operator": "set", "value": 4 }
+      ]
+    },
+    {
+      "questionId": "grooming_tolerance",
+      "optionId": "love_it",
+      "effects": [
+        { "field": "groomingNeeds", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "shedding_tolerance",
+      "optionId": "hate_it",
+      "effects": [
+        { "field": "sheddingLevel", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "shedding_tolerance",
+      "optionId": "a_little_ok",
+      "effects": [
+        { "field": "sheddingLevel", "operator": "set", "value": 3 }
+      ]
+    },
+    {
+      "questionId": "shedding_tolerance",
+      "optionId": "no_problem",
+      "effects": [
+        { "field": "sheddingLevel", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "preferred_size",
+      "optionId": "small",
+      "effects": [
+        { "field": "sizePreference", "operator": "allow", "value": [1, 2] }
+      ]
+    },
+    {
+      "questionId": "preferred_size",
+      "optionId": "medium",
+      "effects": [
+        { "field": "sizePreference", "operator": "allow", "value": [3] }
+      ]
+    },
+    {
+      "questionId": "preferred_size",
+      "optionId": "large",
+      "effects": [
+        { "field": "sizePreference", "operator": "allow", "value": [4, 5] }
+      ]
+    },
+    {
+      "questionId": "preferred_size",
+      "optionId": "any",
+      "effects": [
+        { "field": "sizePreference", "operator": "allow", "value": [1, 2, 3, 4, 5] }
+      ]
+    },
+    {
+      "questionId": "experience",
+      "optionId": "first_pet",
+      "effects": [
+        { "field": "beginnerFriendly", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "experience",
+      "optionId": "one_before",
+      "effects": [
+        { "field": "beginnerFriendly", "operator": "set", "value": 3 }
+      ]
+    },
+    {
+      "questionId": "experience",
+      "optionId": "several_before",
+      "effects": [
+        { "field": "beginnerFriendly", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "budget",
+      "optionId": "minimal",
+      "effects": [
+        { "field": "maintenanceCost", "operator": "set", "value": 1 }
+      ]
+    },
+    {
+      "questionId": "budget",
+      "optionId": "medium",
+      "effects": [
+        { "field": "maintenanceCost", "operator": "set", "value": 3 }
+      ]
+    },
+    {
+      "questionId": "budget",
+      "optionId": "above_average",
+      "effects": [
+        { "field": "maintenanceCost", "operator": "set", "value": 4 }
+      ]
+    },
+    {
+      "questionId": "budget",
+      "optionId": "not_important",
+      "effects": [
+        { "field": "maintenanceCost", "operator": "set", "value": 5 }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "trainable",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "trainable" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "good_with_children",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "good_with_children" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "apartment_friendly",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "apartment_friendly" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "low_grooming",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "low_grooming" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "quiet",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "quiet" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "alone_tolerance",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "alone_tolerance" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "active_companion",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "active_companion" }
+      ]
+    },
+    {
+      "questionId": "priorities",
+      "optionId": "calm_temperament",
+      "effects": [
+        { "field": "priorities", "operator": "append", "value": "calm_temperament" }
+      ]
+    }
+  ]
+}

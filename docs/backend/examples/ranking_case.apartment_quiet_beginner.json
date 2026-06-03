@@ -1,0 +1,48 @@
+{
+  "fixtureId": "apartment_quiet_beginner",
+  "description": "Пользователь живет в квартире, хочет тихого и простого в уходе компаньона, опыта мало.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [2, 3],
+    "exerciseNeeds": 3,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": null,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 5,
+    "maintenanceCost": 3,
+    "noiseLevel": 1,
+    "priorities": ["apartment_friendly", "low_grooming", "quiet"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": true,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "whippet",
+    "topMatchPercentRange": {
+      "min": 82,
+      "max": 92
+    },
+    "acceptableTop3": [
+      "whippet",
+      "italian_greyhound",
+      "cavalier_king_charles_spaniel",
+      "french_bulldog"
+    ],
+    "mustRankAbove": [
+      { "higher": "whippet", "lower": "border_collie" },
+      { "higher": "whippet", "lower": "labrador_retriever" },
+      { "higher": "italian_greyhound", "lower": "border_collie" }
+    ],
+    "notes": [
+      "Border Collie должен проигрывать из-за квартиры, активности и beginner fit.",
+      "Whippet и Italian Greyhound должны быть в очень сильной зоне из-за квартиры, тишины и простого ухода."
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "questionnaireVersion": 1,
+  "answers": [
+    { "questionId": "pet_type", "optionId": "dog" },
+    { "questionId": "home_type", "optionId": "house_yard" },
+    { "questionId": "daily_activity", "optionId": "120_plus" },
+    { "questionId": "alone_time", "optionId": "up_to_4" },
+    { "questionId": "children", "optionId": "no" },
+    { "questionId": "other_pets", "optionId": "none" },
+    { "questionId": "grooming_tolerance", "optionId": "regular" },
+    { "questionId": "shedding_tolerance", "optionId": "a_little_ok" },
+    { "questionId": "refinement_gate", "optionId": "continue" },
+    { "questionId": "preferred_size", "optionId": "large" },
+    { "questionId": "experience", "optionId": "several_before" },
+    { "questionId": "budget", "optionId": "medium" },
+    { "questionId": "priorities", "optionId": "trainable" },
+    { "questionId": "priorities", "optionId": "active_companion" }
+  ]
+}

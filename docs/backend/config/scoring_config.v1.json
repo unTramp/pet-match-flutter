@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "baseWeights": {
+    "size": 4,
+    "exerciseNeeds": 5,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 5,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 3,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 6,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "trainability": 2,
+    "temperamentCalm": 2
+  },
+  "priorityWeightBoosts": {
+    "trainable": {
+      "trainability": 4
+    },
+    "good_with_children": {
+      "goodWithChildren": 2
+    },
+    "apartment_friendly": {
+      "apartmentSuitability": 2
+    },
+    "low_grooming": {
+      "groomingNeeds": 2,
+      "sheddingLevel": 1
+    },
+    "quiet": {
+      "noiseLevel": 2
+    },
+    "alone_tolerance": {
+      "aloneTolerance": 2
+    },
+    "active_companion": {
+      "exerciseNeeds": 2
+    },
+    "calm_temperament": {
+      "temperamentCalm": 2
+    }
+  },
+  "priorityTargetValues": {
+    "trainable": {
+      "trainability": 5
+    },
+    "good_with_children": {
+      "goodWithChildren": 5
+    },
+    "apartment_friendly": {
+      "apartmentSuitability": 5
+    },
+    "low_grooming": {
+      "groomingNeeds": 1,
+      "sheddingLevel": 1
+    },
+    "quiet": {
+      "noiseLevel": 1,
+      "temperamentCalm": 5
+    },
+    "alone_tolerance": {
+      "aloneTolerance": 5
+    },
+    "active_companion": {
+      "exerciseNeeds": 5
+    },
+    "calm_temperament": {
+      "temperamentCalm": 5
+    }
+  },
+  "criticalCaps": [
+    {
+      "when": {
+        "userField": "criticalContext.livesInApartment",
+        "equals": true,
+        "breedField": "apartmentSuitability",
+        "lte": 2
+      },
+      "cap": 70,
+      "reason": "low_apartment_fit"
+    },
+    {
+      "when": {
+        "userField": "criticalContext.hasYoungChildren",
+        "equals": true,
+        "breedField": "goodWithChildren",
+        "lte": 2
+      },
+      "cap": 65,
+      "reason": "low_children_fit"
+    },
+    {
+      "when": {
+        "userField": "criticalContext.hasOtherPets",
+        "equals": true,
+        "breedField": "goodWithOtherPets",
+        "lte": 2
+      },
+      "cap": 68,
+      "reason": "low_other_pets_fit"
+    },
+    {
+      "when": {
+        "userField": "aloneTolerance",
+        "gte": 4,
+        "breedField": "aloneTolerance",
+        "lte": 2
+      },
+      "cap": 72,
+      "reason": "low_alone_tolerance_fit"
+    },
+    {
+      "when": {
+        "userField": "beginnerFriendly",
+        "gte": 4,
+        "breedField": "beginnerFriendly",
+        "lte": 2
+      },
+      "cap": 76,
+      "reason": "low_beginner_fit"
+    }
+  ],
+  "priorityBonusRules": [
+    {
+      "priority": "apartment_friendly",
+      "breedField": "apartmentSuitability",
+      "gte": 4,
+      "bonus": 0.01
+    },
+    {
+      "priority": "low_grooming",
+      "breedField": "groomingNeeds",
+      "lte": 2,
+      "bonus": 0.01
+    },
+    {
+      "priority": "quiet",
+      "breedField": "noiseLevel",
+      "lte": 2,
+      "bonus": 0.01
+    }
+  ],
+  "displayCap": 96,
+  "labels": [
+    { "min": 91, "label": "Идеальное совпадение" },
+    { "min": 81, "label": "Отличное совпадение" },
+    { "min": 71, "label": "Хорошее совпадение" },
+    { "min": 61, "label": "Подойдет с оговорками" },
+    { "min": 0, "label": "Есть более подходящие варианты" }
+  ],
+  "changelogReason": "Initial PetWise matching config for dog flow",
+  "publishedAt": "2026-06-02T00:00:00Z"
+}

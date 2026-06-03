@@ -1,0 +1,15 @@
+[Unit]
+Description=PetWise Backend
+After=network.target
+
+[Service]
+Type=simple
+User=petwise
+WorkingDirectory=/srv/petwise/app
+EnvironmentFile=/etc/petwise/petwise-backend.env
+ExecStart=/usr/bin/env dart run backend/bin/server.dart --host 127.0.0.1 --port 8080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

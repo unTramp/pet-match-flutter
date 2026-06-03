@@ -1,0 +1,20 @@
+{
+  "petType": "dog",
+  "sizePreference": [2, 3],
+  "exerciseNeeds": 3,
+  "apartmentSuitability": 5,
+  "aloneTolerance": 3,
+  "goodWithChildren": null,
+  "goodWithOtherPets": 4,
+  "groomingNeeds": 1,
+  "sheddingLevel": 2,
+  "beginnerFriendly": 5,
+  "maintenanceCost": 3,
+  "noiseLevel": 1,
+  "priorities": ["apartment_friendly", "low_grooming", "quiet"],
+  "criticalContext": {
+    "hasYoungChildren": false,
+    "hasOtherPets": true,
+    "livesInApartment": true
+  }
+}

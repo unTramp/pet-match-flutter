@@ -1,0 +1,38 @@
+services:
+  petwise-backend:
+    build:
+      context: ../..
+      dockerfile: backend/deploy/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - petwise_backend_data:/app/backend/storage
+    expose:
+      - "8080"
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: petwise
+      POSTGRES_USER: petwise
+      POSTGRES_PASSWORD: petwise
+    volumes:
+      - petwise_postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - petwise-backend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:80"
+    volumes:
+      - ./nginx/petwise-backend.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  petwise_backend_data:
+  petwise_postgres_data:

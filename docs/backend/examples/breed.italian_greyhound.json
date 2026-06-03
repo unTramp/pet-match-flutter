@@ -1,0 +1,42 @@
+{
+  "breedId": "italian_greyhound",
+  "petType": "dog",
+  "name": "Italian Greyhound",
+  "aliases": ["IG", "Italian Greyhound Dog"],
+  "group": "toy",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 2,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 1,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень компактная, тихая и простая в уходе собака для спокойного квартирного ритма.",
+    "strengths": ["идеальна для квартиры", "минимальный уход", "низкая линька"],
+    "watchouts": ["чувствительна к стрессу", "не любит долгое одиночество"],
+    "adaptationTips": ["избегать грубого режима", "обеспечить теплое место и мягкую адаптацию"]
+  },
+  "quality": {
+    "confidenceScore": 0.76,
+    "sourceCount": 3,
+    "sourceNotes": ["breed profile", "editor review", "comparative notes"],
+    "needsReview": false,
+    "version": 1
+  }
+}

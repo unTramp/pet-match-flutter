@@ -1,0 +1,77 @@
+{
+  "resultId": "match_123",
+  "storedAt": "2026-06-03T12:00:00.000Z",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "userProfile": {
+    "petType": "dog",
+    "sizePreference": [2, 3],
+    "exerciseNeeds": 3,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": null,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 5,
+    "maintenanceCost": 3,
+    "noiseLevel": 1,
+    "priorities": ["apartment_friendly", "low_grooming", "quiet"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": true,
+      "livesInApartment": true
+    }
+  },
+  "topMatch": {
+    "breedId": "whippet",
+    "name": "Whippet",
+    "matchPercent": 88,
+    "label": "Отличное совпадение",
+    "summary": "Уиппет хорошо подходит вам: он среднего размера, комфортно чувствует себя в квартире, не требует сложного ухода и обычно ведет себя спокойно дома.",
+    "warning": "Главный нюанс — одиночество. Если питомец часто будет оставаться дома на 6–8 часов, лучше заранее продумать прогулки, игрушки и адаптацию.",
+    "strongMatches": [
+      "Квартира",
+      "Минимальный уход",
+      "Низкая шумность",
+      "Средняя активность"
+    ],
+    "weakMatches": [
+      "Одиночество",
+      "Жизнь с кошкой требует адаптации"
+    ]
+  },
+  "alternatives": [
+    {
+      "breedId": "cavalier_king_charles_spaniel",
+      "name": "Cavalier King Charles Spaniel",
+      "matchPercent": 82
+    },
+    {
+      "breedId": "italian_greyhound",
+      "name": "Italian Greyhound",
+      "matchPercent": 81
+    },
+    {
+      "breedId": "basenji",
+      "name": "Basenji",
+      "matchPercent": 76
+    }
+  ],
+  "debug": {
+    "weightsUsed": {
+      "exerciseNeeds": 5,
+      "apartmentSuitability": 7,
+      "aloneTolerance": 5,
+      "goodWithOtherPets": 4,
+      "groomingNeeds": 5,
+      "sheddingLevel": 4,
+      "beginnerFriendly": 4,
+      "maintenanceCost": 3,
+      "noiseLevel": 5
+    },
+    "criticalCapApplied": 96,
+    "baseScore": 0.86,
+    "priorityBonus": 0.02
+  }
+}
