@@ -1,0 +1,63 @@
+{
+  "breedId": "english_cocker_spaniel",
+  "petType": "dog",
+  "name": "English Cocker Spaniel",
+  "aliases": [
+    "Cocker Spaniel"
+  ],
+  "group": "sporting",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "trainability": 4,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Компактная порода с умеренной активностью, которая обычно хорошо подходит для квартиры и спокойного домашнего ритма.",
+    "strengths": [
+      "подходит для квартиры",
+      "умеренный уровень активности",
+      "обычно хорошо ладит с другими собаками"
+    ],
+    "watchouts": [
+      "требует ежедневного ухода за шерстью",
+      "нуждается в занятиях, обучении и ментальной нагрузке"
+    ],
+    "adaptationTips": [
+      "закладывать время и бюджет на регулярный груминг",
+      "лучше раскрывается при раннем обучении и последовательной социализации"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.69,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "template breed baseline",
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_01.jpg",
+  "galleryImages": [
+    "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_01.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_02.jpg"
+  ]
+}

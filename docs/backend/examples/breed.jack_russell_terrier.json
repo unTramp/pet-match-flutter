@@ -1,0 +1,63 @@
+{
+  "breedId": "jack_russell_terrier",
+  "petType": "dog",
+  "name": "Jack Russell Terrier",
+  "aliases": [
+    "Jack Russell"
+  ],
+  "group": "terrier",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 2,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 4,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для активного образа жизни",
+      "обычно хорошо ладит с другими собаками"
+    ],
+    "watchouts": [
+      "нуждается в занятиях, обучении и ментальной нагрузке",
+      "не подойдет для пассивного ритма жизни"
+    ],
+    "adaptationTips": [
+      "заранее планировать активные прогулки и регулярную нагрузку",
+      "лучше раскрывается при раннем обучении и последовательной социализации"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.69,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "template breed baseline",
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_01.jpg",
+  "galleryImages": [
+    "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_01.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_02.jpg"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "breedId": "maltese",
+  "petType": "dog",
+  "name": "Maltese",
+  "aliases": [
+    "Maltese Dog"
+  ],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 1,
+    "aloneTolerance": 2,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 4,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Небольшой спокойный companion для размеренного ритма жизни, который хорошо чувствует себя в квартире.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для размеренного ритма"
+    ],
+    "watchouts": [
+      "нуждается в занятиях, обучении и ментальной нагрузке",
+      "может не подойти тем, кто ищет более активную породу"
+    ],
+    "adaptationTips": [
+      "поддерживать короткий, но регулярный ритм прогулок и игр",
+      "закладывать время и бюджет на регулярный груминг"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.69,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "template breed baseline",
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.avif",
+  "galleryImages": [
+    "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.avif",
+    "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/maltese/image_02.avif",
+    "https://app-api.dev.pet-match.app/media/breeds/maltese/image_02.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/maltese/image_03.avif"
+  ]
+}

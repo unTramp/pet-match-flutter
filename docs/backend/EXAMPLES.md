@@ -19,6 +19,11 @@
 - [breed.siberian_husky.json](./examples/breed.siberian_husky.json)
 - [breed.boxer.json](./examples/breed.boxer.json)
 - [breed.chihuahua.json](./examples/breed.chihuahua.json)
+- [breed.maltese.json](./examples/breed.maltese.json)
+- [breed.pug.json](./examples/breed.pug.json)
+- [breed.jack_russell_terrier.json](./examples/breed.jack_russell_terrier.json)
+- [breed.english_cocker_spaniel.json](./examples/breed.english_cocker_spaniel.json)
+- [breed.doberman.json](./examples/breed.doberman.json)
 - [catalog.v1.json](./examples/catalog.v1.json)
 
 Показывает:
@@ -29,6 +34,7 @@
 - content block
 - quality metadata
 - starter mini-catalog for ranking checks
+- first imported phase from `pets_json`/`normalized_pets`
 
 ### User profile
 

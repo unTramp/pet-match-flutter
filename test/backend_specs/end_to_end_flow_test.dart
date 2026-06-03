@@ -48,7 +48,7 @@ void main() {
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        containsAll(<String>['australian_shepherd', 'german_shepherd']),
+        containsAll(<String>['australian_shepherd', 'doberman']),
       );
     });
 

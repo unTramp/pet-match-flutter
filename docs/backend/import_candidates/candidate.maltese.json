@@ -1,0 +1,80 @@
+{
+  "breedId": "maltese",
+  "petType": "dog",
+  "name": "Maltese",
+  "source": {
+    "origin": "pets_json+normalized_pets",
+    "breedCode": "maltese",
+    "breedName": "Мальтезе",
+    "petTypeRaw": "собаку",
+    "normalizedIdentity": {
+      "id": 242,
+      "code": "maltese",
+      "name_ru": "Мальтезе",
+      "name_en": null,
+      "pet_type": "dog"
+    }
+  },
+  "mediaDraft": {
+    "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.avif",
+    "galleryImages": [
+      "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.avif",
+      "https://app-api.dev.pet-match.app/media/breeds/maltese/image_01.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/maltese/image_02.avif",
+      "https://app-api.dev.pet-match.app/media/breeds/maltese/image_02.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/maltese/image_03.avif"
+    ]
+  },
+  "contentDraft": {
+    "summaryShort": "Небольшой спокойный companion для размеренного ритма жизни, который хорошо чувствует себя в квартире.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для размеренного ритма"
+    ],
+    "watchouts": [
+      "нуждается в занятиях, обучении и ментальной нагрузке",
+      "может не подойти тем, кто ищет более активную породу"
+    ]
+  },
+  "attributeExtractionHints": {
+    "energyLevel": "low",
+    "activityLevel": "low",
+    "mentalStimulation": "high",
+    "groomingFrequency": null,
+    "apartmentFriendly": true,
+    "spaceRequirement": "apartment",
+    "yardPreferred": false,
+    "goodWithDogs": null,
+    "goodWithPets": null,
+    "physicalActivityText": "До 30 минут в день.",
+    "coatNote": null,
+    "monthlyCostRangeGbp": {
+      "min": 91,
+      "max": 232
+    },
+    "requirementsText": "Физическая активность: До 30 минут в день.\nМентальная нагрузка: Нужны регулярные занятия, обучение или задачи на сообразительность.",
+    "suitableForText": "Подходит владельцам, которые ищут более спокойного питомца для размеренного ритма жизни. Может комфортно жить в квартире и обычно не требует много пространства.",
+    "peculiaritiesText": "Эта порода обычно спокойнее и комфортнее чувствует себя в размеренном ритме.",
+    "expensesText": "Стоимость покупки питомца:\n- Щенок: £450-£2800\n\nСтартовые расходы:\n- Первичная вакцинация: £70-£120\n- Чипирование: £20-£30\n- Кастрация / стерилизация: £150-£450\n- Лежанка и клетка: £60-£200\n- Ошейник, поводок, шлейка: £30-£80\n- Миски для еды и воды: £15-£40\n- Первичный запас корма: £20-£60\n- Игрушки и лакомства: £30-£70\n- Пелёнки для щенков: £10-£25\n- Итого: от £405 до £1075\n\nПостоянные расходы в месяц:\n- Корм: £30\n- Страховка для питомца: £15-£80\n- Обработка от блох, клещей и глистов: £10-£25\n- Груминг: £5\n- Занятия с кинологом / дрессировка: £10-£40\n- Игрушки и лакомства: £10-£30\n- Пакеты для уборки за собакой: £3-£7\n- Ежегодный ветеринарный осмотр: £8-£15\n- Итого в месяц: от £91 до £232",
+    "matchingTags": [
+      "apartment_friendly",
+      "calm"
+    ]
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.66,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

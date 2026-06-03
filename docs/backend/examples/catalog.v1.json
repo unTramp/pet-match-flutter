@@ -19,6 +19,11 @@
     { "breedId": "australian_shepherd", "file": "breed.australian_shepherd.json" },
     { "breedId": "siberian_husky", "file": "breed.siberian_husky.json" },
     { "breedId": "boxer", "file": "breed.boxer.json" },
-    { "breedId": "chihuahua", "file": "breed.chihuahua.json" }
+    { "breedId": "chihuahua", "file": "breed.chihuahua.json" },
+    { "breedId": "maltese", "file": "breed.maltese.json" },
+    { "breedId": "pug", "file": "breed.pug.json" },
+    { "breedId": "jack_russell_terrier", "file": "breed.jack_russell_terrier.json" },
+    { "breedId": "english_cocker_spaniel", "file": "breed.english_cocker_spaniel.json" },
+    { "breedId": "doberman", "file": "breed.doberman.json" }
   ]
 }

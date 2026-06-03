@@ -1,0 +1,80 @@
+{
+  "breedId": "jack_russell_terrier",
+  "petType": "dog",
+  "name": "Jack Russell Terrier",
+  "source": {
+    "origin": "pets_json+normalized_pets",
+    "breedCode": "jack-russell-terrier",
+    "breedName": "Джек Рассел Терьер",
+    "petTypeRaw": "собаку",
+    "normalizedIdentity": {
+      "id": 223,
+      "code": "jack-russell-terrier",
+      "name_ru": "Джек Рассел Терьер",
+      "name_en": null,
+      "pet_type": "dog"
+    }
+  },
+  "mediaDraft": {
+    "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_01.jpg",
+    "galleryImages": [
+      "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_01.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/jack-russell-terrier/image_02.jpg"
+    ]
+  },
+  "contentDraft": {
+    "summaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для активного образа жизни",
+      "обычно хорошо ладит с другими собаками"
+    ],
+    "watchouts": [
+      "нуждается в занятиях, обучении и ментальной нагрузке",
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "energyLevel": "high",
+    "activityLevel": "medium",
+    "mentalStimulation": "high",
+    "groomingFrequency": "weekly",
+    "apartmentFriendly": true,
+    "spaceRequirement": "apartment",
+    "yardPreferred": false,
+    "goodWithDogs": true,
+    "goodWithPets": null,
+    "physicalActivityText": "До 1 часа в день.",
+    "coatNote": "Раз в неделю.",
+    "monthlyCostRangeGbp": {
+      "min": 124,
+      "max": 265
+    },
+    "requirementsText": "Уход за шерстью: Раз в неделю.\nФизическая активность: До 1 часа в день.\nМентальная нагрузка: Нужны регулярные занятия, обучение или задачи на сообразительность.",
+    "suitableForText": "Подходит владельцам, которые ищут активного и энергичного питомца. Может комфортно жить в квартире и обычно не требует много пространства.",
+    "peculiaritiesText": "У этой породы высокий уровень энергии, и ей обычно нужны регулярные активности и вовлечение. Обычно хорошо ладит с другими собаками.",
+    "expensesText": "Стоимость покупки питомца:\n- Щенок: £550-£3000\n\nСтартовые расходы:\n- Первичная вакцинация: £70-£120\n- Чипирование: £20-£30\n- Кастрация / стерилизация: £150-£450\n- Лежанка и клетка: £60-£200\n- Ошейник, поводок, шлейка: £30-£80\n- Миски для еды и воды: £15-£40\n- Первичный запас корма: £20-£60\n- Игрушки и лакомства: £30-£70\n- Пелёнки для щенков: £10-£25\n- Итого: от £405 до £1075\n\nПостоянные расходы в месяц:\n- Корм: £30\n- Страховка для питомца: £15-£80\n- Обработка от блох, клещей и глистов: £10-£25\n- Груминг: £38\n- Занятия с кинологом / дрессировка: £10-£40\n- Игрушки и лакомства: £10-£30\n- Пакеты для уборки за собакой: £3-£7\n- Ежегодный ветеринарный осмотр: £8-£15\n- Итого в месяц: от £124 до £265",
+    "matchingTags": [
+      "active",
+      "apartment_friendly",
+      "good_with_dogs",
+      "weekly_grooming"
+    ]
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.66,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

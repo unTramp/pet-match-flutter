@@ -1,0 +1,55 @@
+{
+  "batch": "phase1",
+  "candidates": [
+    {
+      "sourceBreedCode": "maltese",
+      "breedId": "maltese",
+      "name": "Maltese",
+      "templateBreedId": "bichon_frise",
+      "group": "toy",
+      "aliases": [
+        "Maltese Dog"
+      ]
+    },
+    {
+      "sourceBreedCode": "pug",
+      "breedId": "pug",
+      "name": "Pug",
+      "templateBreedId": "french_bulldog",
+      "group": "toy",
+      "aliases": [
+        "Pug Dog"
+      ]
+    },
+    {
+      "sourceBreedCode": "jack-russell-terrier",
+      "breedId": "jack_russell_terrier",
+      "name": "Jack Russell Terrier",
+      "templateBreedId": "beagle",
+      "group": "terrier",
+      "aliases": [
+        "Jack Russell"
+      ]
+    },
+    {
+      "sourceBreedCode": "spaniel-cocker",
+      "breedId": "english_cocker_spaniel",
+      "name": "English Cocker Spaniel",
+      "templateBreedId": "cavalier_king_charles_spaniel",
+      "group": "sporting",
+      "aliases": [
+        "Cocker Spaniel"
+      ]
+    },
+    {
+      "sourceBreedCode": "dobermann",
+      "breedId": "doberman",
+      "name": "Doberman",
+      "templateBreedId": "german_shepherd",
+      "group": "working",
+      "aliases": [
+        "Dobermann"
+      ]
+    }
+  ]
+}

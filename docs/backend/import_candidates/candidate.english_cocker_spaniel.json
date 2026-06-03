@@ -1,0 +1,80 @@
+{
+  "breedId": "english_cocker_spaniel",
+  "petType": "dog",
+  "name": "English Cocker Spaniel",
+  "source": {
+    "origin": "pets_json+normalized_pets",
+    "breedCode": "spaniel-cocker",
+    "breedName": "Спаниель (Английский кокер)",
+    "petTypeRaw": "собаку",
+    "normalizedIdentity": {
+      "id": 304,
+      "code": "spaniel-cocker",
+      "name_ru": "Спаниель (Английский кокер)",
+      "name_en": null,
+      "pet_type": "dog"
+    }
+  },
+  "mediaDraft": {
+    "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_01.jpg",
+    "galleryImages": [
+      "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_01.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/spaniel-cocker/image_02.jpg"
+    ]
+  },
+  "contentDraft": {
+    "summaryShort": "Компактная порода с умеренной активностью, которая обычно хорошо подходит для квартиры и спокойного домашнего ритма.",
+    "strengths": [
+      "подходит для квартиры",
+      "умеренный уровень активности",
+      "обычно хорошо ладит с другими собаками"
+    ],
+    "watchouts": [
+      "требует ежедневного ухода за шерстью",
+      "нуждается в занятиях, обучении и ментальной нагрузке"
+    ]
+  },
+  "attributeExtractionHints": {
+    "energyLevel": "medium",
+    "activityLevel": "medium",
+    "mentalStimulation": "high",
+    "groomingFrequency": "daily",
+    "apartmentFriendly": true,
+    "spaceRequirement": "apartment_or_small_house",
+    "yardPreferred": false,
+    "goodWithDogs": true,
+    "goodWithPets": null,
+    "physicalActivityText": "До 1 часа в день.",
+    "coatNote": "Каждый день.",
+    "monthlyCostRangeGbp": {
+      "min": 124,
+      "max": 265
+    },
+    "requirementsText": "Уход за шерстью: Каждый день.\nФизическая активность: До 1 часа в день.\nМентальная нагрузка: Нужны регулярные занятия, обучение или задачи на сообразительность.",
+    "suitableForText": "Подходит владельцам, которые ищут питомца с умеренным уровнем активности. Обычно хорошо чувствует себя в небольшом доме или просторной квартире.",
+    "peculiaritiesText": "У этой породы обычно умеренный уровень активности и достаточно предсказуемый повседневный ритм. Обычно хорошо ладит с другими собаками.",
+    "expensesText": "Стоимость покупки питомца:\n- Щенок: £800-£2500\n\nСтартовые расходы:\n- Первичная вакцинация: £70-£120\n- Чипирование: £20-£30\n- Кастрация / стерилизация: £150-£450\n- Лежанка и клетка: £60-£200\n- Ошейник, поводок, шлейка: £30-£80\n- Миски для еды и воды: £15-£40\n- Первичный запас корма: £20-£60\n- Игрушки и лакомства: £30-£70\n- Пелёнки для щенков: £10-£25\n- Итого: от £405 до £1075\n\nПостоянные расходы в месяц:\n- Корм: £30\n- Страховка для питомца: £15-£80\n- Обработка от блох, клещей и глистов: £10-£25\n- Груминг: £38\n- Занятия с кинологом / дрессировка: £10-£40\n- Игрушки и лакомства: £10-£30\n- Пакеты для уборки за собакой: £3-£7\n- Ежегодный ветеринарный осмотр: £8-£15\n- Итого в месяц: от £124 до £265",
+    "matchingTags": [
+      "apartment_friendly",
+      "daily_grooming",
+      "good_with_dogs",
+      "medium_energy"
+    ]
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.66,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}
