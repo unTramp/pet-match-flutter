@@ -13,6 +13,12 @@
 - [breed.border_collie.json](./examples/breed.border_collie.json)
 - [breed.french_bulldog.json](./examples/breed.french_bulldog.json)
 - [breed.labrador_retriever.json](./examples/breed.labrador_retriever.json)
+- [breed.beagle.json](./examples/breed.beagle.json)
+- [breed.bichon_frise.json](./examples/breed.bichon_frise.json)
+- [breed.australian_shepherd.json](./examples/breed.australian_shepherd.json)
+- [breed.siberian_husky.json](./examples/breed.siberian_husky.json)
+- [breed.boxer.json](./examples/breed.boxer.json)
+- [breed.chihuahua.json](./examples/breed.chihuahua.json)
 - [catalog.v1.json](./examples/catalog.v1.json)
 
 Показывает:
@@ -69,6 +75,9 @@
 - [ranking_case.house_yard_quiet_beginner.json](./examples/ranking_case.house_yard_quiet_beginner.json)
 - [ranking_case.apartment_low_shedding_trainable.json](./examples/ranking_case.apartment_low_shedding_trainable.json)
 - [ranking_case.small_calm_apartment.json](./examples/ranking_case.small_calm_apartment.json)
+- [ranking_case.low_shedding_small_family.json](./examples/ranking_case.low_shedding_small_family.json)
+- [ranking_case.tiny_apartment_budget.json](./examples/ranking_case.tiny_apartment_budget.json)
+- [ranking_case.active_family_house.json](./examples/ranking_case.active_family_house.json)
 
 Показывают:
 

@@ -1,0 +1,42 @@
+{
+  "fixtureId": "active_family_house",
+  "description": "Активная семья в доме ищет спортивную, дружелюбную к детям собаку с простым уходом и средне-крупным размером.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [4],
+    "exerciseNeeds": 4,
+    "apartmentSuitability": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "priorities": ["active_companion", "good_with_children"],
+    "criticalContext": {
+      "hasYoungChildren": true,
+      "hasOtherPets": false,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "boxer",
+    "topMatchPercentRange": {
+      "min": 82,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "boxer",
+      "golden_retriever",
+      "labrador_retriever"
+    ],
+    "mustRankAbove": [
+      { "higher": "boxer", "lower": "chihuahua" },
+      { "higher": "boxer", "lower": "shih_tzu" }
+    ]
+  }
+}

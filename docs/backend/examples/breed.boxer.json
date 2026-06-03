@@ -1,0 +1,59 @@
+{
+  "breedId": "boxer",
+  "petType": "dog",
+  "name": "Boxer",
+  "aliases": [
+    "German Boxer"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 3,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 3,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Энергичный и ориентированный на семью athletic companion с простым уходом и хорошим детским fit.",
+    "strengths": [
+      "очень хорош с детьми",
+      "уход за шерстью простой",
+      "подходит для активной семьи"
+    ],
+    "watchouts": [
+      "нужны вовлечённость и ежедневная активность",
+      "не лучший выбор для очень спокойного ритма"
+    ],
+    "adaptationTips": [
+      "нужны прогулки и игры каждый день",
+      "важны обучение и самоконтроль с раннего возраста"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.81,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "breed profile",
+      "family dog reference",
+      "editor review"
+    ],
+    "needsReview": false,
+    "version": 1
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=boxer"
+}

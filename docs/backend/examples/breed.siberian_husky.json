@@ -1,0 +1,59 @@
+{
+  "breedId": "siberian_husky",
+  "petType": "dog",
+  "name": "Siberian Husky",
+  "aliases": [
+    "Husky"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 5,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 4,
+    "noiseLevel": 3,
+    "trainability": 3,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Выносливая северная порода для очень активного образа жизни, но сложная для новичка и тяжёлая по линьке.",
+    "strengths": [
+      "подходит для очень высокой активности",
+      "хорошо переносит насыщенный outdoor-ритм",
+      "обычно дружелюбна к людям"
+    ],
+    "watchouts": [
+      "сильная линька и высокий побеговый риск",
+      "требует опыта и большого объёма нагрузки"
+    ],
+    "adaptationTips": [
+      "нужны длинные прогулки и контроль безопасности",
+      "важно заранее продумать охлаждение и рутину"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.8,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "breed profile",
+      "nordic breed reference",
+      "editor review"
+    ],
+    "needsReview": false,
+    "version": 1
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=siberian_husky"
+}

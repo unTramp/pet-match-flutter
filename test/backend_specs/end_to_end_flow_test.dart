@@ -48,7 +48,7 @@ void main() {
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        containsAll(<String>['german_shepherd', 'golden_retriever']),
+        containsAll(<String>['australian_shepherd', 'german_shepherd']),
       );
     });
 
@@ -63,7 +63,7 @@ void main() {
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        contains('cavalier_king_charles_spaniel'),
+        contains('boxer'),
       );
     });
 

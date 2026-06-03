@@ -32,6 +32,7 @@
     "acceptableTop3": [
       "labrador_retriever",
       "golden_retriever",
+      "boxer",
       "cavalier_king_charles_spaniel",
       "whippet"
     ],

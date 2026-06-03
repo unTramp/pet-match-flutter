@@ -1,0 +1,59 @@
+{
+  "breedId": "australian_shepherd",
+  "petType": "dog",
+  "name": "Australian Shepherd",
+  "aliases": [
+    "Aussie"
+  ],
+  "group": "herding",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 3,
+    "sheddingLevel": 4,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 4,
+    "noiseLevel": 3,
+    "trainability": 5,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень активная и обучаемая пастушья собака для вовлечённого хозяина и насыщенного ритма.",
+    "strengths": [
+      "максимальная обучаемость",
+      "любит задачи и тренировки",
+      "хорошо подходит для активного дома"
+    ],
+    "watchouts": [
+      "слишком энергична для спокойного сценария",
+      "требует времени, дисциплины и загрузки"
+    ],
+    "adaptationTips": [
+      "нужны спорт, игры и обучение",
+      "важна ранняя социализация и рутина"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.84,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "breed club summary",
+      "working dog reference",
+      "editor review"
+    ],
+    "needsReview": false,
+    "version": 1
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=australian_shepherd"
+}

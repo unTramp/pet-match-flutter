@@ -31,6 +31,7 @@
     },
     "acceptableTop3": [
       "border_collie",
+      "australian_shepherd",
       "golden_retriever",
       "labrador_retriever",
       "german_shepherd"

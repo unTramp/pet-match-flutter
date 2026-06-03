@@ -1,0 +1,59 @@
+{
+  "breedId": "beagle",
+  "petType": "dog",
+  "name": "Beagle",
+  "aliases": [
+    "English Beagle"
+  ],
+  "group": "hound",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 3,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 1,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 5,
+    "trainability": 3,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Дружелюбный семейный компаньон среднего темпа, но шумный и с сильным нюхом охотника.",
+    "strengths": [
+      "очень хорош с детьми",
+      "обычно дружелюбен к другим собакам",
+      "уход за шерстью простой"
+    ],
+    "watchouts": [
+      "громкий голос и вой могут мешать в квартире",
+      "может упрямиться и убегать по запаху"
+    ],
+    "adaptationTips": [
+      "важны безопасные прогулки и поводок",
+      "нужны игры на поиск и работа носом"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.81,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "breed club summary",
+      "family dog reference",
+      "editor review"
+    ],
+    "needsReview": false,
+    "version": 1
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=beagle"
+}

@@ -13,6 +13,12 @@
     { "breedId": "shih_tzu", "file": "breed.shih_tzu.json" },
     { "breedId": "golden_retriever", "file": "breed.golden_retriever.json" },
     { "breedId": "german_shepherd", "file": "breed.german_shepherd.json" },
-    { "breedId": "dachshund", "file": "breed.dachshund.json" }
+    { "breedId": "dachshund", "file": "breed.dachshund.json" },
+    { "breedId": "beagle", "file": "breed.beagle.json" },
+    { "breedId": "bichon_frise", "file": "breed.bichon_frise.json" },
+    { "breedId": "australian_shepherd", "file": "breed.australian_shepherd.json" },
+    { "breedId": "siberian_husky", "file": "breed.siberian_husky.json" },
+    { "breedId": "boxer", "file": "breed.boxer.json" },
+    { "breedId": "chihuahua", "file": "breed.chihuahua.json" }
   ]
 }

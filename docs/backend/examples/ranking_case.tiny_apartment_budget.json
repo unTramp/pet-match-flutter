@@ -1,0 +1,43 @@
+{
+  "fixtureId": "tiny_apartment_budget",
+  "description": "Пользователь хочет очень маленькую собаку для квартиры, почти без активности и с умеренным бюджетом, шум не критичен.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [1],
+    "exerciseNeeds": 1,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": null,
+    "goodWithOtherPets": null,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 2,
+    "noiseLevel": 5,
+    "priorities": [],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "chihuahua",
+    "topMatchPercentRange": {
+      "min": 84,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "chihuahua",
+      "shih_tzu",
+      "dachshund",
+      "bichon_frise"
+    ],
+    "mustRankAbove": [
+      { "higher": "chihuahua", "lower": "german_shepherd" },
+      { "higher": "chihuahua", "lower": "boxer" }
+    ]
+  }
+}

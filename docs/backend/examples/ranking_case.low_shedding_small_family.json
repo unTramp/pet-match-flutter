@@ -1,0 +1,43 @@
+{
+  "fixtureId": "low_shedding_small_family",
+  "description": "Пользователь ищет небольшую семейную собаку с минимальной линькой и готов мириться с регулярным грумингом.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [1, 2],
+    "exerciseNeeds": 2,
+    "apartmentSuitability": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "priorities": ["low_grooming", "good_with_children", "calm_temperament"],
+    "criticalContext": {
+      "hasYoungChildren": true,
+      "hasOtherPets": true,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "bichon_frise",
+    "topMatchPercentRange": {
+      "min": 84,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "bichon_frise",
+      "miniature_poodle",
+      "shih_tzu",
+      "cavalier_king_charles_spaniel"
+    ],
+    "mustRankAbove": [
+      { "higher": "bichon_frise", "lower": "beagle" },
+      { "higher": "bichon_frise", "lower": "chihuahua" }
+    ]
+  }
+}
