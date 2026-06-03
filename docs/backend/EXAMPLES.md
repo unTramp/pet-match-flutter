@@ -59,13 +59,14 @@
 - result payload для UI
 - explanation fields
 - alternatives
-- debug metadata
+- compatibility bridge-view for legacy/frontend mapping
 
 ### Ranking fixtures
 
 - [ranking_case.apartment_quiet_beginner.json](./examples/ranking_case.apartment_quiet_beginner.json)
 - [ranking_case.active_trainable.json](./examples/ranking_case.active_trainable.json)
 - [ranking_case.family_friendly.json](./examples/ranking_case.family_friendly.json)
+- [ranking_case.house_yard_quiet_beginner.json](./examples/ranking_case.house_yard_quiet_beginner.json)
 
 Показывают:
 
@@ -73,3 +74,4 @@
 - expected top breed
 - acceptable top-3 group
 - relative ordering assertions for backend tests
+- comparator-sensitive scenario without false penalty for extra apartment fit

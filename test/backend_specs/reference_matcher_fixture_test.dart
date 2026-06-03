@@ -11,10 +11,37 @@ void main() {
 
     test('backend docs examples stay internally consistent', () {
       expect(bundle.breeds, isNotEmpty);
-      expect(bundle.fixtures, hasLength(3));
+      expect(bundle.fixtures, hasLength(4));
       expect(
         bundle.fixtures.every(
           (fixture) => fixture.scoringVersion == bundle.config.version,
+        ),
+        isTrue,
+      );
+    });
+
+    test('filters breeds by petType when provided', () {
+      final results = ReferenceMatcher(
+        config: bundle.config,
+        breeds: bundle.breeds.values.toList(),
+      ).rank(<String, dynamic>{
+        'petType': 'cat',
+        'priorities': <String>[],
+      });
+
+      expect(results, isEmpty);
+    });
+
+    test('does not filter breeds when petType is omitted', () {
+      final results = ReferenceMatcher(
+        config: bundle.config,
+        breeds: bundle.breeds.values.toList(),
+      ).rank(<String, dynamic>{'priorities': <String>[]});
+
+      expect(results, isNotEmpty);
+      expect(
+        results.every(
+          (result) => bundle.breeds[result.breedId]?.petType == 'dog',
         ),
         isTrue,
       );

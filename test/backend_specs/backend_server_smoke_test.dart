@@ -133,6 +133,11 @@ void main() {
       expect(matchResponse.$1, HttpStatus.ok);
       final topMatch = matchResponse.$2['topMatch'] as Map<String, dynamic>;
       expect(topMatch['breedId'], 'whippet');
+      final compatibility =
+          matchResponse.$2['compatibility'] as Map<String, dynamic>;
+      expect(compatibility['breed_id'], 'whippet');
+      expect(compatibility['status'], 'ready');
+      expect(compatibility['insights'], isA<List<dynamic>>());
       final resultId = matchResponse.$2['resultId'] as String;
 
       final savedResponse = await _requestJson(

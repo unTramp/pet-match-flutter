@@ -12,13 +12,33 @@
 ## V1 algorithm
 
 1. Build `effectiveWeights` from `baseWeights` and `userProfile.priorities`.
-2. Compute `weightedPenalty = sum(abs(userValue - breedValue) * weight)`.
+2. Compute `weightedPenalty` with field-specific comparators.
 3. Compute `maxPossiblePenalty` on the same fields.
 4. Normalize to `baseScore = 1 - weightedPenalty / maxPossiblePenalty`.
 5. Apply `criticalCaps`.
-6. Add `priorityBonus`.
-7. Convert to percent and apply `displayCap`.
-8. Resolve `label`.
+6. Apply profile-conflict confidence cap when `userProfile.profileDiagnostics.conflicts` is not empty.
+7. Add `priorityBonus`.
+8. Convert to percent and apply `displayCap`.
+9. Resolve `label`.
+
+## Comparators
+
+Не все поля должны штрафоваться симметрично.
+
+- `symmetric`: обычная дистанция `abs(user - breed)`
+- `atLeast`: порода не должна быть ниже потребности пользователя
+- `atMost`: порода не должна быть выше толерантности пользователя
+
+Примеры:
+
+- `apartmentSuitability=atLeast`
+- `goodWithChildren=atLeast`
+- `exerciseNeeds=atMost`
+- `groomingNeeds=atMost`
+- `noiseLevel=atMost`
+
+Это убирает ложные штрафы за “избыточно хороший” fit, например когда
+apartment-friendly breed показывается пользователю с домом и двором.
 
 ## Base weights
 
@@ -124,6 +144,20 @@ Suggested V1 rules:
 - If `hasOtherPets = true` and `breed.goodWithOtherPets <= 2`, cap at `68`.
 - If user requires `aloneTolerance >= 4` and breed value `<= 2`, cap at `72`.
 - If user strongly needs beginner fit (`beginnerFriendly >= 4`) and breed value `<= 2`, cap at `76`.
+
+## Profile conflict cap
+
+Если questionnaire-ответы противоречат друг другу, это не означает, что нужно
+полностью отменять матчинг. Но это означает, что результат должен быть менее
+уверенным.
+
+Suggested V1 behavior:
+
+- builder записывает `userProfile.profileDiagnostics.conflicts`
+- matcher применяет `profileConflictCap`
+- frontend/backend explanation добавляет risk message про противоречивые ответы
+
+Это позволяет честно показывать: подбор выполнен, но ввод пользователя шумный.
 
 ## Display cap and labels
 

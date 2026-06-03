@@ -58,20 +58,64 @@
       "matchPercent": 76
     }
   ],
-  "debug": {
-    "weightsUsed": {
-      "exerciseNeeds": 5,
-      "apartmentSuitability": 7,
-      "aloneTolerance": 5,
-      "goodWithOtherPets": 4,
-      "groomingNeeds": 5,
-      "sheddingLevel": 4,
-      "beginnerFriendly": 4,
-      "maintenanceCost": 3,
-      "noiseLevel": 5
-    },
-    "criticalCapApplied": 96,
-    "baseScore": 0.86,
-    "priorityBonus": 0.02
+  "compatibility": {
+    "status": "ready",
+    "breed_id": "whippet",
+    "breed_name": "Whippet",
+    "image_url": null,
+    "risk_level": "low",
+    "score": 88,
+    "summary": "Уиппет хорошо подходит вам: он среднего размера, комфортно чувствует себя в квартире, не требует сложного ухода и обычно ведет себя спокойно дома.",
+    "compatible": true,
+    "insights": [
+      "Квартира",
+      "Минимальный уход",
+      "Низкая шумность",
+      "Средняя активность"
+    ],
+    "requirement_highlights": [
+      "Одиночество",
+      "Жизнь с кошкой требует адаптации"
+    ],
+    "hard_reasons": [],
+    "risks": [
+      {
+        "code": "match_warning",
+        "severity": "risk",
+        "message": "Главный нюанс — одиночество. Если питомец часто будет оставаться дома на 6–8 часов, лучше заранее продумать прогулки, игрушки и адаптацию."
+      },
+      {
+        "code": "aloneTolerance",
+        "severity": "risk",
+        "message": "Одиночество"
+      }
+    ],
+    "refusal": null,
+    "suggestions": [
+      {
+        "breed_id": "cavalier_king_charles_spaniel",
+        "breed_name": "Cavalier King Charles Spaniel",
+        "risk_level": "medium",
+        "score": 82,
+        "summary": "Ласковая семейная собака, дружелюбная и комфортная для новичков.",
+        "image_url": null
+      },
+      {
+        "breed_id": "italian_greyhound",
+        "breed_name": "Italian Greyhound",
+        "risk_level": "medium",
+        "score": 81,
+        "summary": "Компактная, тихая и очень домашняя порода, но чувствительна к холоду и одиночеству.",
+        "image_url": null
+      },
+      {
+        "breed_id": "basenji",
+        "breed_name": "Basenji",
+        "risk_level": "medium",
+        "score": 76,
+        "summary": "Тихая и чистоплотная порода с независимым характером и выраженным охотничьим инстинктом.",
+        "image_url": null
+      }
+    ]
   }
 }

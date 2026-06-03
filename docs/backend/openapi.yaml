@@ -35,6 +35,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserProfileResponse'
+        '400':
+          description: Invalid questionnaire payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /match/preview:
     post:
       summary: Rank breeds and return result payload
@@ -52,6 +58,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MatchResult'
+        '400':
+          description: Invalid match preview payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /matches/{resultId}:
     get:
       summary: Get persisted match result by id
@@ -89,6 +101,23 @@ paths:
 
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - requestId
+      properties:
+        error:
+          type: string
+        details:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          nullable: true
+        requestId:
+          type: string
     QuestionnaireDefinitionResponse:
       type: object
       required:
@@ -236,6 +265,8 @@ components:
             type: string
         criticalContext:
           $ref: '#/components/schemas/CriticalContext'
+        profileDiagnostics:
+          $ref: '#/components/schemas/ProfileDiagnostics'
     CriticalContext:
       type: object
       required:
@@ -249,6 +280,37 @@ components:
           type: boolean
         livesInApartment:
           type: boolean
+    ProfileDiagnostics:
+      type: object
+      required:
+        - hasConflicts
+        - conflicts
+      properties:
+        hasConflicts:
+          type: boolean
+        conflicts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileConflict'
+    ProfileConflict:
+      type: object
+      required:
+        - field
+        - code
+        - message
+      properties:
+        field:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+        existingValue:
+          nullable: true
+        incomingValue:
+          nullable: true
+        resolvedValue:
+          nullable: true
     Breed:
       type: object
       required:
@@ -370,6 +432,7 @@ components:
         - userProfile
         - topMatch
         - alternatives
+        - compatibility
       properties:
         resultId:
           type: string
@@ -384,10 +447,15 @@ components:
           $ref: '#/components/schemas/UserProfile'
         topMatch:
           $ref: '#/components/schemas/RankedBreed'
+          nullable: true
         alternatives:
           type: array
           items:
             $ref: '#/components/schemas/AlternativeBreed'
+        compatibility:
+          $ref: '#/components/schemas/CompatibilityView'
+        refusal:
+          $ref: '#/components/schemas/MatchRefusal'
         debug:
           $ref: '#/components/schemas/MatchDebug'
     RankedBreed:
@@ -435,6 +503,124 @@ components:
           type: string
         matchPercent:
           type: integer
+    MatchRefusal:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        title:
+          type: string
+          nullable: true
+        externalMessage:
+          type: string
+          nullable: true
+    CompatibilityView:
+      type: object
+      required:
+        - status
+        - insights
+        - requirement_highlights
+        - hard_reasons
+        - risks
+        - suggestions
+      properties:
+        status:
+          type: string
+        breed_id:
+          type: string
+          nullable: true
+        breed_name:
+          type: string
+          nullable: true
+        image_url:
+          type: string
+          nullable: true
+        risk_level:
+          type: string
+          enum: [low, medium, high]
+          nullable: true
+        score:
+          type: integer
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        compatible:
+          type: boolean
+          nullable: true
+        insights:
+          type: array
+          items:
+            type: string
+        requirement_highlights:
+          type: array
+          items:
+            type: string
+        hard_reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompatibilityReason'
+        risks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompatibilityReason'
+        refusal:
+          $ref: '#/components/schemas/CompatibilityRefusal'
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompatibilitySuggestion'
+    CompatibilityReason:
+      type: object
+      required:
+        - code
+        - severity
+        - message
+      properties:
+        code:
+          type: string
+        severity:
+          type: string
+          enum: [hard, risk]
+        message:
+          type: string
+    CompatibilityRefusal:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        external_message:
+          type: string
+          nullable: true
+    CompatibilitySuggestion:
+      type: object
+      required:
+        - breed_id
+        - breed_name
+      properties:
+        breed_id:
+          type: string
+        breed_name:
+          type: string
+        risk_level:
+          type: string
+          enum: [low, medium, high]
+          nullable: true
+        score:
+          type: integer
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        image_url:
+          type: string
+          nullable: true
     MatchDebug:
       type: object
       properties:

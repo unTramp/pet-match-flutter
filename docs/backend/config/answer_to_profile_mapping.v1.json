@@ -18,9 +18,7 @@
     {
       "questionId": "pet_type",
       "optionId": "unknown",
-      "effects": [
-        { "field": "petType", "operator": "set", "value": "dog" }
-      ]
+      "effects": []
     },
     {
       "questionId": "home_type",

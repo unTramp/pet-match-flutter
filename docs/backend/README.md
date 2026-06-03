@@ -36,11 +36,15 @@
 - [examples/ranking_case.apartment_quiet_beginner.json](./examples/ranking_case.apartment_quiet_beginner.json)
 - [examples/ranking_case.active_trainable.json](./examples/ranking_case.active_trainable.json)
 - [examples/ranking_case.family_friendly.json](./examples/ranking_case.family_friendly.json)
+- [examples/ranking_case.house_yard_quiet_beginner.json](./examples/ranking_case.house_yard_quiet_beginner.json)
 
 ## Scope
 
 - `dog` flow only
 - deterministic ranking
+- directional comparators for one-sided fit fields
+- compatibility bridge-view on top of internal `topMatch/alternatives` result shape
+- contradictory questionnaire answers degrade confidence via `profileDiagnostics`
 - AI only for offline breed enrichment and text generation
 - config-driven questionnaire, mapping and scoring
 

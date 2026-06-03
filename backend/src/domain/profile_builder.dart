@@ -1,4 +1,3 @@
-import 'spec_json.dart';
 import 'spec_models.dart';
 
 class QuestionnaireAnswer {
@@ -35,27 +34,40 @@ class ProfileBuildValidationError implements Exception {
 }
 
 class ProfileBuilderDefinition {
-  const ProfileBuilderDefinition({
-    required this.questionnaire,
-    required this.mapping,
+  const ProfileBuilderDefinition._({
+    required _QuestionnaireDefinition questionnaire,
+    required _MappingDefinition mapping,
     required this.scoringConfig,
-  });
+  }) : _questionnaire = questionnaire,
+       _mapping = mapping;
 
   factory ProfileBuilderDefinition.fromJson({
     required Map<String, dynamic> questionnaireJson,
     required Map<String, dynamic> mappingJson,
     required Map<String, dynamic> scoringConfigJson,
   }) {
-    return ProfileBuilderDefinition(
+    return ProfileBuilderDefinition._(
       questionnaire: _QuestionnaireDefinition.fromJson(questionnaireJson),
       mapping: _MappingDefinition.fromJson(mappingJson),
       scoringConfig: ScoringConfig.fromJson(scoringConfigJson),
     );
   }
 
-  final _QuestionnaireDefinition questionnaire;
-  final _MappingDefinition mapping;
+  final _QuestionnaireDefinition _questionnaire;
+  final _MappingDefinition _mapping;
   final ScoringConfig scoringConfig;
+
+  int get _questionnaireVersion => _questionnaire.version;
+
+  _QuestionDefinition? _questionById(String questionId) =>
+      _questionnaire.questionsById[questionId];
+
+  Iterable<_QuestionDefinition> get _questions =>
+      _questionnaire.questionsById.values;
+
+  List<_EffectDefinition> _effectsFor(String questionId, String optionId) =>
+      _mapping.effectsByQuestionAndOption[questionId]?[optionId] ??
+      const <_EffectDefinition>[];
 }
 
 class QuestionnaireProfileBuilder {
@@ -87,23 +99,19 @@ class QuestionnaireProfileBuilder {
       throw ProfileBuildValidationError(errors);
     }
 
-    final state = _ProfileState();
+    final state = _ProfileState(_definition.scoringConfig.fieldLabels);
 
     for (final answer in answers) {
-      final effects =
-          _definition.mapping.effectsByQuestionAndOption[answer
-              .questionId]?[answer.optionId] ??
-          const <_EffectDefinition>[];
+      final effects = _definition._effectsFor(answer.questionId, answer.optionId);
       for (final effect in effects) {
         _applyEffect(state, effect);
       }
     }
 
     final profile = state.toUserProfile();
-    _hydratePriorityTargetValues(profile);
 
     return ProfileBuildResult(
-      questionnaireVersion: _definition.questionnaire.version,
+      questionnaireVersion: _definition._questionnaireVersion,
       userProfile: profile,
     );
   }
@@ -114,17 +122,16 @@ class QuestionnaireProfileBuilder {
   }) {
     final errors = <String>[];
 
-    if (questionnaireVersion != _definition.questionnaire.version) {
+    if (questionnaireVersion != _definition._questionnaireVersion) {
       errors.add(
-        'Questionnaire version mismatch: payload=$questionnaireVersion, expected=${_definition.questionnaire.version}',
+        'Questionnaire version mismatch: payload=$questionnaireVersion, expected=${_definition._questionnaireVersion}',
       );
     }
 
     final answersByQuestion = <String, List<QuestionnaireAnswer>>{};
 
     for (final answer in answers) {
-      final question =
-          _definition.questionnaire.questionsById[answer.questionId];
+      final question = _definition._questionById(answer.questionId);
       if (question == null) {
         errors.add('Unknown questionId ${answer.questionId}');
         continue;
@@ -139,7 +146,7 @@ class QuestionnaireProfileBuilder {
           .add(answer);
     }
 
-    for (final question in _definition.questionnaire.questionsById.values) {
+    for (final question in _definition._questions) {
       final questionAnswers =
           answersByQuestion[question.id] ?? const <QuestionnaireAnswer>[];
       if (question.required && questionAnswers.isEmpty) {
@@ -179,30 +186,18 @@ class QuestionnaireProfileBuilder {
         state.append(effect.field, effect.value);
     }
   }
-
-  void _hydratePriorityTargetValues(Map<String, dynamic> profile) {
-    final priorities = stringList(profile['priorities']);
-    for (final priority in priorities) {
-      final targetValues =
-          _definition.scoringConfig.priorityTargetValues[priority];
-      if (targetValues == null) {
-        continue;
-      }
-      targetValues.forEach((field, value) {
-        if (field == 'size') {
-          return;
-        }
-        profile.putIfAbsent(field, () => value);
-      });
-    }
-  }
 }
 
 class _ProfileState {
+  _ProfileState(this._fieldLabels);
+
+  final Map<String, String> _fieldLabels;
   final Map<String, dynamic> _values = <String, dynamic>{};
   final Map<String, int> _maxCaps = <String, int>{};
   final Map<String, int> _minCaps = <String, int>{};
   final Map<String, List<int>> _allowedLists = <String, List<int>>{};
+  final List<Map<String, dynamic>> _conflicts = <Map<String, dynamic>>[];
+  final Set<String> _conflictKeys = <String>{};
 
   void set(String field, Object? value) {
     if (_allowedLists.containsKey(field) && value is List) {
@@ -210,8 +205,10 @@ class _ProfileState {
       return;
     }
 
+    final existingValue = _values[field];
     if (value is num) {
-      var intValue = value.toInt();
+      final requestedValue = value.toInt();
+      var intValue = requestedValue;
       final minCap = _minCaps[field];
       final maxCap = _maxCaps[field];
       if (minCap != null && intValue < minCap) {
@@ -220,10 +217,36 @@ class _ProfileState {
       if (maxCap != null && intValue > maxCap) {
         intValue = maxCap;
       }
+      if (intValue != requestedValue) {
+        _recordConflict(
+          field: field,
+          code: 'value_capped_by_constraint',
+          existingValue: existingValue,
+          incomingValue: requestedValue,
+          resolvedValue: intValue,
+        );
+      } else if (existingValue != null && existingValue != intValue) {
+        _recordConflict(
+          field: field,
+          code: 'conflicting_set_values',
+          existingValue: existingValue,
+          incomingValue: requestedValue,
+          resolvedValue: intValue,
+        );
+      }
       _values[field] = intValue;
       return;
     }
 
+    if (existingValue != null && existingValue != value) {
+      _recordConflict(
+        field: field,
+        code: 'conflicting_set_values',
+        existingValue: existingValue,
+        incomingValue: value,
+        resolvedValue: value,
+      );
+    }
     _values[field] = value;
   }
 
@@ -235,9 +258,21 @@ class _ProfileState {
     if (existing == null) {
       _allowedLists[field] = normalized;
     } else {
-      _allowedLists[field] =
+      final intersection =
           existing.where((value) => normalized.contains(value)).toList()
             ..sort();
+      if (existing.isNotEmpty &&
+          normalized.isNotEmpty &&
+          intersection.isEmpty) {
+        _recordConflict(
+          field: field,
+          code: 'no_allowed_values_overlap',
+          existingValue: existing,
+          incomingValue: normalized,
+          resolvedValue: intersection,
+        );
+      }
+      _allowedLists[field] = intersection;
     }
     _values[field] = _allowedLists[field];
   }
@@ -246,8 +281,25 @@ class _ProfileState {
     final existing = _maxCaps[field];
     _maxCaps[field] =
         existing == null ? value : (existing < value ? existing : value);
+    final minCap = _minCaps[field];
+    if (minCap != null && _maxCaps[field]! < minCap) {
+      _recordConflict(
+        field: field,
+        code: 'invalid_constraints_overlap',
+        existingValue: minCap,
+        incomingValue: _maxCaps[field],
+        resolvedValue: currentResolvedValue(field),
+      );
+    }
     final current = _values[field];
     if (current is num && current.toInt() > _maxCaps[field]!) {
+      _recordConflict(
+        field: field,
+        code: 'value_capped_by_constraint',
+        existingValue: current.toInt(),
+        incomingValue: current.toInt(),
+        resolvedValue: _maxCaps[field],
+      );
       _values[field] = _maxCaps[field];
     }
   }
@@ -256,8 +308,25 @@ class _ProfileState {
     final existing = _minCaps[field];
     _minCaps[field] =
         existing == null ? value : (existing > value ? existing : value);
+    final maxCap = _maxCaps[field];
+    if (maxCap != null && _minCaps[field]! > maxCap) {
+      _recordConflict(
+        field: field,
+        code: 'invalid_constraints_overlap',
+        existingValue: maxCap,
+        incomingValue: _minCaps[field],
+        resolvedValue: currentResolvedValue(field),
+      );
+    }
     final current = _values[field];
     if (current is num && current.toInt() < _minCaps[field]!) {
+      _recordConflict(
+        field: field,
+        code: 'value_capped_by_constraint',
+        existingValue: current.toInt(),
+        incomingValue: current.toInt(),
+        resolvedValue: _minCaps[field],
+      );
       _values[field] = _minCaps[field];
     }
   }
@@ -295,7 +364,50 @@ class _ProfileState {
       profile.remove(entry.key);
     }
 
+    if (_conflicts.isNotEmpty) {
+      profile['profileDiagnostics'] = <String, dynamic>{
+        'hasConflicts': true,
+        'conflicts': _conflicts,
+      };
+    }
+
     return profile;
+  }
+
+  Object? currentResolvedValue(String field) => _values[field];
+
+  void _recordConflict({
+    required String field,
+    required String code,
+    Object? existingValue,
+    Object? incomingValue,
+    Object? resolvedValue,
+  }) {
+    final key = '$field|$code|${resolvedValue ?? ''}';
+    if (!_conflictKeys.add(key)) {
+      return;
+    }
+    _conflicts.add(<String, dynamic>{
+      'field': field,
+      'code': code,
+      'message': _messageFor(field: field, code: code),
+      'existingValue': existingValue,
+      'incomingValue': incomingValue,
+      'resolvedValue': resolvedValue,
+    });
+  }
+
+  String _messageFor({required String field, required String code}) {
+    final label = _fieldLabels[field] ?? field.split('.').last;
+    return switch (code) {
+      'value_capped_by_constraint' =>
+        'Поле "$label" было ограничено другим ответом пользователя.',
+      'no_allowed_values_overlap' =>
+        'Ответы сузили допустимые значения для поля "$label" до пустого набора.',
+      'invalid_constraints_overlap' =>
+        'Ограничения для поля "$label" противоречат друг другу.',
+      _ => 'Ответы задали разные значения для поля "$label".',
+    };
   }
 }
 

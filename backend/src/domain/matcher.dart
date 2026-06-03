@@ -9,8 +9,11 @@ class ReferenceMatcher implements MatchScoringEngine {
 
   @override
   List<MatchResult> rank(Map<String, dynamic> userProfile) {
+    final filteredBreeds = _filterBreedsByPetType(userProfile);
     final results =
-        breeds.map((breed) => _scoreBreed(userProfile, breed)).toList()
+        filteredBreeds
+            .map((breed) => _scoreBreed(userProfile, breed))
+            .toList()
           ..sort((left, right) {
             final byPercent = right.matchPercent.compareTo(left.matchPercent);
             if (byPercent != 0) {
@@ -23,6 +26,17 @@ class ReferenceMatcher implements MatchScoringEngine {
             return left.breedId.compareTo(right.breedId);
           });
     return results;
+  }
+
+  Iterable<BreedFixture> _filterBreedsByPetType(Map<String, dynamic> userProfile) {
+    final petType = userProfile['petType'] as String?;
+    if (petType == null || petType.isEmpty) {
+      return breeds;
+    }
+
+    return breeds.where(
+      (breed) => breed.petType == null || breed.petType == petType,
+    );
   }
 
   MatchResult _scoreBreed(
@@ -42,6 +56,7 @@ class ReferenceMatcher implements MatchScoringEngine {
 
     var weightedPenalty = 0.0;
     var maxPossiblePenalty = 0.0;
+    final contributions = <FieldContribution>[];
 
     for (final entry in effectiveWeights.entries) {
       final field = entry.key;
@@ -52,12 +67,26 @@ class ReferenceMatcher implements MatchScoringEngine {
         if (sizePreference.isEmpty) {
           continue;
         }
-        final breedValue = breed.attributes[field]!;
+        final breedValue = breed.attributes[field];
+        if (breedValue == null) {
+          continue;
+        }
         final distance = sizePreference
-            .map((preferredSize) => (preferredSize - breedValue).abs())
+            .map(
+              (preferredSize) =>
+                  _fieldPenalty(field, preferredSize, breedValue).toDouble(),
+            )
             .reduce((left, right) => left < right ? left : right);
         weightedPenalty += distance * weight;
         maxPossiblePenalty += 4 * weight;
+        contributions.add(
+          FieldContribution(
+            field: field,
+            penalty: distance,
+            weight: weight,
+            maxPenalty: 4 * weight,
+          ),
+        );
         continue;
       }
 
@@ -68,8 +97,17 @@ class ReferenceMatcher implements MatchScoringEngine {
         continue;
       }
 
-      weightedPenalty += (userValue - breedValue).abs() * weight;
+      final penalty = _fieldPenalty(field, userValue, breedValue);
+      weightedPenalty += penalty * weight;
       maxPossiblePenalty += 4 * weight;
+      contributions.add(
+        FieldContribution(
+          field: field,
+          penalty: penalty,
+          weight: weight,
+          maxPenalty: 4 * weight,
+        ),
+      );
     }
 
     final baseScore =
@@ -82,16 +120,23 @@ class ReferenceMatcher implements MatchScoringEngine {
       0.0,
       config.displayCap.toDouble(),
     );
-    final cappedPercent = _applyCriticalCaps(
+    final criticalCapOutcome = _applyCriticalCaps(
       userProfile: userProfile,
       breed: breed,
       rawPercent: rawPercent,
+    );
+    final profileCapOutcome = _applyProfileConflictCap(
+      userProfile: userProfile,
+      rawPercent: criticalCapOutcome.cappedPercent,
     );
 
     return MatchResult(
       breedId: breed.breedId,
       rawScore: rawScore,
-      matchPercent: cappedPercent.round(),
+      matchPercent: profileCapOutcome.cappedPercent.round(),
+      triggeredCapReasons: criticalCapOutcome.triggeredReasons,
+      triggeredProfileReasons: profileCapOutcome.triggeredReasons,
+      contributions: contributions,
     );
   }
 
@@ -119,12 +164,13 @@ class ReferenceMatcher implements MatchScoringEngine {
     return bonus;
   }
 
-  double _applyCriticalCaps({
+  _CriticalCapOutcome _applyCriticalCaps({
     required Map<String, dynamic> userProfile,
     required BreedFixture breed,
     required double rawPercent,
   }) {
     var result = rawPercent;
+    final triggeredReasons = <String>[];
     for (final capRule in config.criticalCaps) {
       final userValue = readPath(userProfile, capRule.userField);
       final breedValue = breed.attributes[capRule.breedField];
@@ -145,10 +191,37 @@ class ReferenceMatcher implements MatchScoringEngine {
       }
 
       if (matches) {
+        triggeredReasons.add(capRule.reason);
         result = result > capRule.cap ? capRule.cap.toDouble() : result;
       }
     }
-    return result > config.displayCap ? config.displayCap.toDouble() : result;
+    return _CriticalCapOutcome(
+      cappedPercent:
+          result > config.displayCap ? config.displayCap.toDouble() : result,
+      triggeredReasons: triggeredReasons,
+    );
+  }
+
+  _CriticalCapOutcome _applyProfileConflictCap({
+    required Map<String, dynamic> userProfile,
+    required double rawPercent,
+  }) {
+    final conflicts = readPath(userProfile, 'profileDiagnostics.conflicts');
+    if (conflicts is! List || conflicts.isEmpty) {
+      return _CriticalCapOutcome(
+        cappedPercent: rawPercent,
+        triggeredReasons: const <String>[],
+      );
+    }
+
+    final cappedPercent =
+        rawPercent > config.profileConflictCap
+            ? config.profileConflictCap.toDouble()
+            : rawPercent;
+    return _CriticalCapOutcome(
+      cappedPercent: cappedPercent,
+      triggeredReasons: <String>[config.profileConflictReasonCode],
+    );
   }
 
   int? _resolveUserTargetValue(Map<String, dynamic> userProfile, String field) {
@@ -173,4 +246,27 @@ class ReferenceMatcher implements MatchScoringEngine {
         targets.reduce((left, right) => left + right) / targets.length;
     return average.round();
   }
+
+  double _fieldPenalty(String field, int userValue, int breedValue) {
+    final comparator = config.comparators[field] ?? 'symmetric';
+    switch (comparator) {
+      case 'atLeast':
+        return (userValue - breedValue).clamp(0, 4).toDouble();
+      case 'atMost':
+        return (breedValue - userValue).clamp(0, 4).toDouble();
+      case 'symmetric':
+      default:
+        return (userValue - breedValue).abs().toDouble();
+    }
+  }
+}
+
+class _CriticalCapOutcome {
+  const _CriticalCapOutcome({
+    required this.cappedPercent,
+    required this.triggeredReasons,
+  });
+
+  final double cappedPercent;
+  final List<String> triggeredReasons;
 }

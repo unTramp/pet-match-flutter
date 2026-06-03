@@ -53,6 +53,40 @@ class RankedBreedResponse {
   }
 }
 
+class CompatibilityReasonResponse {
+  const CompatibilityReasonResponse({
+    required this.code,
+    required this.severity,
+    required this.message,
+  });
+
+  final String code;
+  final String severity;
+  final String message;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'code': code,
+      'severity': severity,
+      'message': message,
+    };
+  }
+}
+
+class CompatibilityRefusalResponse {
+  const CompatibilityRefusalResponse({this.title, this.externalMessage});
+
+  final String? title;
+  final String? externalMessage;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'title': title,
+      'external_message': externalMessage,
+    };
+  }
+}
+
 class AlternativeBreedResponse {
   const AlternativeBreedResponse({
     required this.breedId,
@@ -73,6 +107,88 @@ class AlternativeBreedResponse {
   }
 }
 
+class CompatibilitySuggestionResponse {
+  const CompatibilitySuggestionResponse({
+    required this.breedId,
+    required this.breedName,
+    this.riskLevel,
+    this.score,
+    this.summary,
+    this.imageUrl,
+  });
+
+  final String breedId;
+  final String breedName;
+  final String? riskLevel;
+  final int? score;
+  final String? summary;
+  final String? imageUrl;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'breed_id': breedId,
+      'breed_name': breedName,
+      'risk_level': riskLevel,
+      'score': score,
+      'summary': summary,
+      'image_url': imageUrl,
+    };
+  }
+}
+
+class CompatibilityViewResponse {
+  const CompatibilityViewResponse({
+    required this.status,
+    this.breedId,
+    this.breedName,
+    this.imageUrl,
+    this.riskLevel,
+    this.score,
+    this.summary,
+    this.compatible,
+    required this.insights,
+    required this.requirementHighlights,
+    required this.hardReasons,
+    required this.risks,
+    this.refusal,
+    required this.suggestions,
+  });
+
+  final String status;
+  final String? breedId;
+  final String? breedName;
+  final String? imageUrl;
+  final String? riskLevel;
+  final int? score;
+  final String? summary;
+  final bool? compatible;
+  final List<String> insights;
+  final List<String> requirementHighlights;
+  final List<CompatibilityReasonResponse> hardReasons;
+  final List<CompatibilityReasonResponse> risks;
+  final CompatibilityRefusalResponse? refusal;
+  final List<CompatibilitySuggestionResponse> suggestions;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'status': status,
+      'breed_id': breedId,
+      'breed_name': breedName,
+      'image_url': imageUrl,
+      'risk_level': riskLevel,
+      'score': score,
+      'summary': summary,
+      'compatible': compatible,
+      'insights': insights,
+      'requirement_highlights': requirementHighlights,
+      'hard_reasons': hardReasons.map((item) => item.toJson()).toList(),
+      'risks': risks.map((item) => item.toJson()).toList(),
+      'refusal': refusal?.toJson(),
+      'suggestions': suggestions.map((item) => item.toJson()).toList(),
+    };
+  }
+}
+
 class MatchResultResponse {
   const MatchResultResponse({
     required this.resultId,
@@ -82,6 +198,8 @@ class MatchResultResponse {
     required this.userProfile,
     required this.topMatch,
     required this.alternatives,
+    required this.compatibility,
+    this.refusal,
   });
 
   final String resultId;
@@ -89,8 +207,10 @@ class MatchResultResponse {
   final int questionnaireVersion;
   final int scoringVersion;
   final Map<String, dynamic> userProfile;
-  final RankedBreedResponse topMatch;
+  final RankedBreedResponse? topMatch;
   final List<AlternativeBreedResponse> alternatives;
+  final CompatibilityViewResponse compatibility;
+  final MatchRefusalResponse? refusal;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -99,8 +219,33 @@ class MatchResultResponse {
       'questionnaireVersion': questionnaireVersion,
       'scoringVersion': scoringVersion,
       'userProfile': userProfile,
-      'topMatch': topMatch.toJson(),
+      'topMatch': topMatch?.toJson(),
       'alternatives': alternatives.map((item) => item.toJson()).toList(),
+      'compatibility': compatibility.toJson(),
+      'refusal': refusal?.toJson(),
+    };
+  }
+}
+
+class MatchRefusalResponse {
+  const MatchRefusalResponse({
+    required this.code,
+    required this.message,
+    this.title,
+    this.externalMessage,
+  });
+
+  final String code;
+  final String message;
+  final String? title;
+  final String? externalMessage;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'code': code,
+      'message': message,
+      'title': title,
+      'externalMessage': externalMessage ?? message,
     };
   }
 }

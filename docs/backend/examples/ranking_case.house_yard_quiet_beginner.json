@@ -1,0 +1,47 @@
+{
+  "fixtureId": "house_yard_quiet_beginner",
+  "description": "Пользователь живет в доме с двором, но всё равно хочет тихую и простую в уходе собаку без штрафа за лишнюю квартирность.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 1,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [2, 3, 4],
+    "exerciseNeeds": 3,
+    "apartmentSuitability": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": null,
+    "goodWithOtherPets": null,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 5,
+    "maintenanceCost": 3,
+    "noiseLevel": 1,
+    "priorities": ["apartment_friendly", "low_grooming", "quiet"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "whippet",
+    "topMatchPercentRange": {
+      "min": 94,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "whippet",
+      "french_bulldog",
+      "italian_greyhound"
+    ],
+    "mustRankAbove": [
+      { "higher": "whippet", "lower": "labrador_retriever" },
+      { "higher": "whippet", "lower": "border_collie" },
+      { "higher": "french_bulldog", "lower": "border_collie" }
+    ],
+    "notes": [
+      "Whippet не должен проигрывать только потому, что слишком хорошо подходит для квартиры.",
+      "Directional comparator для apartmentSuitability должен убрать симметричный штраф за extra apartment fit."
+    ]
+  }
+}

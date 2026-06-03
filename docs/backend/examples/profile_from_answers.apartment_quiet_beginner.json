@@ -15,7 +15,5 @@
     "livesInApartment": true,
     "hasYoungChildren": false,
     "hasOtherPets": true
-  },
-  "noiseLevel": 1,
-  "temperamentCalm": 5
+  }
 }

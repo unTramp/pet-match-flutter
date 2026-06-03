@@ -167,7 +167,7 @@ class MappingValidator {
           .putIfAbsent(entry.questionId, () => <String>{})
           .add(entry.optionId);
 
-      if (entry.effects.isEmpty) {
+      if (entry.effects.isEmpty && !_allowsEmptyEffects(entry)) {
         errors.add('Mapping $key must contain at least one effect');
       }
 
@@ -220,6 +220,10 @@ class MappingValidator {
       errors: errors,
       warnings: warnings,
     );
+  }
+
+  bool _allowsEmptyEffects(_MappingEntry entry) {
+    return entry.questionId == 'pet_type' && entry.optionId == 'unknown';
   }
 
   void _validateEffect({

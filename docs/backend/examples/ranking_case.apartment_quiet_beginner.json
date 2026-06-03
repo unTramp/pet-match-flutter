@@ -24,25 +24,24 @@
     }
   },
   "expected": {
-    "topBreedId": "whippet",
+    "topBreedId": "italian_greyhound",
     "topMatchPercentRange": {
-      "min": 82,
-      "max": 92
+      "min": 89,
+      "max": 96
     },
     "acceptableTop3": [
-      "whippet",
       "italian_greyhound",
-      "cavalier_king_charles_spaniel",
+      "whippet",
       "french_bulldog"
     ],
     "mustRankAbove": [
+      { "higher": "italian_greyhound", "lower": "border_collie" },
       { "higher": "whippet", "lower": "border_collie" },
-      { "higher": "whippet", "lower": "labrador_retriever" },
-      { "higher": "italian_greyhound", "lower": "border_collie" }
+      { "higher": "italian_greyhound", "lower": "labrador_retriever" }
     ],
     "notes": [
-      "Border Collie должен проигрывать из-за квартиры, активности и beginner fit.",
-      "Whippet и Italian Greyhound должны быть в очень сильной зоне из-за квартиры, тишины и простого ухода."
+      "После directional comparators избыточно тихие и компактные породы больше не штрафуются симметрично.",
+      "Italian Greyhound и Whippet должны находиться в самой сильной зоне из-за квартиры, тишины и простого ухода."
     ]
   }
 }

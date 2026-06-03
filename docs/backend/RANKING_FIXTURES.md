@@ -37,12 +37,14 @@ Ranking fixtures нужны, чтобы проверять не только в�
 - неправильный top result
 - критически странные перестановки
 - провал caps по детям / квартире / другим животным
+- ложные штрафы за “избыточно хороший” fit после directional comparators
 
 ## Current fixtures
 
 - [ranking_case.apartment_quiet_beginner.json](./examples/ranking_case.apartment_quiet_beginner.json)
 - [ranking_case.active_trainable.json](./examples/ranking_case.active_trainable.json)
 - [ranking_case.family_friendly.json](./examples/ranking_case.family_friendly.json)
+- [ranking_case.house_yard_quiet_beginner.json](./examples/ranking_case.house_yard_quiet_beginner.json)
 
 ## Executable reference spec
 

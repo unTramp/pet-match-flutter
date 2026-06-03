@@ -37,6 +37,8 @@ class PetWiseAppServer {
           config: persistence.scoringConfigRepository.getActiveConfig(),
           breeds: persistence.breedRepository.listBreedFixtures(),
         ),
+        questionnaireVersion:
+            persistence.questionnaireRepository.getActiveVersion(),
         breedRepository: persistence.breedRepository,
         matchResultRepository: persistence.matchResultRepository,
         scoringConfigRepository: persistence.scoringConfigRepository,
@@ -128,6 +130,12 @@ class PetWiseAppServer {
     } on ProfileBuildValidationError catch (error) {
       apiResponse = _ApiResponse(HttpStatus.badRequest, <String, dynamic>{
         'error': 'Invalid questionnaire answers',
+        'details': error.messages,
+        'requestId': requestId,
+      });
+    } on MatchPreviewValidationError catch (error) {
+      apiResponse = _ApiResponse(HttpStatus.badRequest, <String, dynamic>{
+        'error': 'Invalid match preview request',
         'details': error.messages,
         'requestId': requestId,
       });

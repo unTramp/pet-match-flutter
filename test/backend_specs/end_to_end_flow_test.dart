@@ -44,11 +44,11 @@ void main() {
       final profile = profileBuilder.buildFromJson(payload).userProfile;
       final results = matcher.rank(profile);
 
-      expect(results.first.breedId, 'border_collie');
+      expect(results.first.breedId, 'labrador_retriever');
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        contains('labrador_retriever'),
+        contains('border_collie'),
       );
     });
 
@@ -64,6 +64,76 @@ void main() {
       expect(
         results.take(3).map((result) => result.breedId),
         contains('cavalier_king_charles_spaniel'),
+      );
+    });
+
+    test('matcher resolves priority target values without builder hydration', () {
+      final payload = _loadJson(
+        'docs/backend/examples/answers.apartment_quiet_beginner.json',
+      );
+      final rawProfile = profileBuilder.buildFromJson(payload).userProfile;
+      final explicitlyHydratedProfile = <String, dynamic>{
+        ...rawProfile,
+        'noiseLevel': 1,
+        'temperamentCalm': 5,
+      };
+
+      final rawResults = matcher.rank(rawProfile);
+      final hydratedResults = matcher.rank(explicitlyHydratedProfile);
+
+      expect(
+        rawResults.take(5).map((result) => result.breedId).toList(),
+        hydratedResults.take(5).map((result) => result.breedId).toList(),
+      );
+      expect(
+        rawResults.take(5).map((result) => result.matchPercent).toList(),
+        hydratedResults.take(5).map((result) => result.matchPercent).toList(),
+      );
+    });
+
+    test('contradictory profile applies confidence cap', () {
+      final conflictedProfile = <String, dynamic>{
+        'petType': 'dog',
+        'apartmentSuitability': 5,
+        'exerciseNeeds': 3,
+        'beginnerFriendly': 5,
+        'priorities': <String>['apartment_friendly', 'quiet'],
+        'criticalContext': <String, dynamic>{
+          'livesInApartment': true,
+          'hasYoungChildren': false,
+          'hasOtherPets': false,
+        },
+        'profileDiagnostics': <String, dynamic>{
+          'hasConflicts': true,
+          'conflicts': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'field': 'exerciseNeeds',
+              'code': 'value_capped_by_constraint',
+              'message':
+                  'Поле "Активность" было ограничено другим ответом пользователя.',
+            },
+          ],
+        },
+      };
+
+      final cleanProfile = <String, dynamic>{
+        ...conflictedProfile,
+      }..remove('profileDiagnostics');
+
+      final conflictedResults = matcher.rank(conflictedProfile);
+      final cleanResults = matcher.rank(cleanProfile);
+
+      expect(
+        conflictedResults.first.triggeredProfileReasons,
+        contains(bundle.config.profileConflictReasonCode),
+      );
+      expect(
+        conflictedResults.first.matchPercent,
+        lessThanOrEqualTo(bundle.config.profileConflictCap),
+      );
+      expect(
+        conflictedResults.first.matchPercent,
+        lessThanOrEqualTo(cleanResults.first.matchPercent),
       );
     });
   });

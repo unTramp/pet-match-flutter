@@ -131,11 +131,14 @@ Supported V1 operators:
 - `noiseLevel`
 - `priorities`
 - `criticalContext`
+- `profileDiagnostics` optional
 
 Notes:
 
 - `sizePreference` хранится списком допустимых значений, а не одним числом.
-- Некоторые поля, например `trainability` и `temperamentCalm`, могут не заполняться напрямую questionnaire-ом и выводятся из `priorities` через `priorityTargetValues`.
+- Профиль из questionnaire хранит только прямые ответы пользователя и `priorities`.
+- Производные target values, например для `trainability` или `temperamentCalm`, резолвятся внутри matcher через `priorityTargetValues`, а не гидрируются в profile builder.
+- Если ответы дают противоречивые ограничения, builder сохраняет это в `profileDiagnostics.conflicts`, а matcher применяет мягкий confidence cap вместо полного отказа.
 
 ### `match_result`
 
@@ -147,7 +150,13 @@ Payload, который UI рендерит на result screen.
 - `userProfile`
 - `topMatch`
 - `alternatives`
-- `debug`
+- `compatibility`
+
+Notes:
+
+- `topMatch` / `alternatives` остаются каноническим internal result shape для backend spec.
+- `compatibility` — bridge-view поверх того же результата, выровненный по семантике старого клиентского `Compatibility` payload.
+- `compatibility` не должен жить отдельной логикой; он собирается из того же scoring/explainability результата.
 
 ### `stored_match_result`
 

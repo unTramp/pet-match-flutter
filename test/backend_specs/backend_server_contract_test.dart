@@ -85,6 +85,66 @@ void main() {
       );
     });
 
+    test(
+      'POST /questionnaire/profile returns profileDiagnostics for contradictory answers',
+      () async {
+        final response = await _requestJson(
+          client,
+          server,
+          method: 'POST',
+          path: '/questionnaire/profile',
+          body: <String, dynamic>{
+            'questionnaireVersion': 1,
+            'answers': <Map<String, dynamic>>[
+              <String, dynamic>{
+                'questionId': 'pet_type',
+                'selectedOptionIds': <String>['dog'],
+              },
+              <String, dynamic>{
+                'questionId': 'home_type',
+                'selectedOptionIds': <String>['apartment'],
+              },
+              <String, dynamic>{
+                'questionId': 'daily_activity',
+                'selectedOptionIds': <String>['120_plus'],
+              },
+              <String, dynamic>{
+                'questionId': 'alone_time',
+                'selectedOptionIds': <String>['4_8'],
+              },
+              <String, dynamic>{
+                'questionId': 'children',
+                'selectedOptionIds': <String>['no'],
+              },
+              <String, dynamic>{
+                'questionId': 'other_pets',
+                'selectedOptionIds': <String>['none'],
+              },
+              <String, dynamic>{
+                'questionId': 'grooming_tolerance',
+                'selectedOptionIds': <String>['minimal'],
+              },
+              <String, dynamic>{
+                'questionId': 'shedding_tolerance',
+                'selectedOptionIds': <String>['a_little_ok'],
+              },
+              <String, dynamic>{
+                'questionId': 'preferred_size',
+                'selectedOptionIds': <String>['large'],
+              },
+            ],
+          },
+        );
+
+        expect(response.$1, HttpStatus.ok);
+        final userProfile = response.$2['userProfile'] as Map<String, dynamic>;
+        final diagnostics =
+            userProfile['profileDiagnostics'] as Map<String, dynamic>;
+        expect(diagnostics['hasConflicts'], isTrue);
+        expect(diagnostics['conflicts'], isA<List<dynamic>>());
+      },
+    );
+
     test('GET /ready returns readiness contract shape', () async {
       final response = await _requestJson(
         client,
@@ -168,6 +228,7 @@ void main() {
           'userProfile',
           'topMatch',
           'alternatives',
+          'compatibility',
         ]),
       );
 
@@ -185,7 +246,182 @@ void main() {
         ]),
       );
       expect(response.$2['alternatives'], isA<List<dynamic>>());
+      final compatibility =
+          response.$2['compatibility'] as Map<String, dynamic>;
+      expect(
+        compatibility.keys,
+        containsAll(<String>[
+          'status',
+          'breed_id',
+          'breed_name',
+          'risk_level',
+          'score',
+          'summary',
+          'compatible',
+          'insights',
+          'requirement_highlights',
+          'hard_reasons',
+          'risks',
+          'suggestions',
+        ]),
+      );
+      expect(compatibility['status'], 'ready');
+      expect(compatibility['insights'], isA<List<dynamic>>());
     });
+
+    test('POST /match/preview returns 400 for invalid userProfile payload', () async {
+      final response = await _requestJson(
+        client,
+        server,
+        method: 'POST',
+        path: '/match/preview',
+        body: <String, dynamic>{
+          'questionnaireVersion': 1,
+          'userProfile': <String, dynamic>{
+            'petType': 'dog',
+            'priorities': 'quiet',
+            'criticalContext': 'bad-shape',
+          },
+        },
+      );
+
+      expect(response.$1, HttpStatus.badRequest);
+      expect(response.$2['error'], 'Invalid match preview request');
+      expect(response.$2['details'], isA<List<dynamic>>());
+    });
+
+    test(
+      'POST /match/preview surfaces contradictory profile as compatibility risk',
+      () async {
+        final profileResponse = await _requestJson(
+          client,
+          server,
+          method: 'POST',
+          path: '/questionnaire/profile',
+          body: <String, dynamic>{
+            'questionnaireVersion': 1,
+            'answers': <Map<String, dynamic>>[
+              <String, dynamic>{
+                'questionId': 'pet_type',
+                'selectedOptionIds': <String>['dog'],
+              },
+              <String, dynamic>{
+                'questionId': 'home_type',
+                'selectedOptionIds': <String>['apartment'],
+              },
+              <String, dynamic>{
+                'questionId': 'daily_activity',
+                'selectedOptionIds': <String>['120_plus'],
+              },
+              <String, dynamic>{
+                'questionId': 'alone_time',
+                'selectedOptionIds': <String>['4_8'],
+              },
+              <String, dynamic>{
+                'questionId': 'children',
+                'selectedOptionIds': <String>['no'],
+              },
+              <String, dynamic>{
+                'questionId': 'other_pets',
+                'selectedOptionIds': <String>['none'],
+              },
+              <String, dynamic>{
+                'questionId': 'grooming_tolerance',
+                'selectedOptionIds': <String>['minimal'],
+              },
+              <String, dynamic>{
+                'questionId': 'shedding_tolerance',
+                'selectedOptionIds': <String>['a_little_ok'],
+              },
+            ],
+          },
+        );
+
+        final response = await _requestJson(
+          client,
+          server,
+          method: 'POST',
+          path: '/match/preview',
+          body: <String, dynamic>{
+            'questionnaireVersion': 1,
+            'userProfile': profileResponse.$2['userProfile'],
+          },
+        );
+
+        expect(response.$1, HttpStatus.ok);
+        final compatibility =
+            response.$2['compatibility'] as Map<String, dynamic>;
+        final risks = compatibility['risks'] as List<dynamic>;
+        expect(
+          risks.any(
+            (item) =>
+                (item as Map<String, dynamic>)['code'] ==
+                'contradictory_answers',
+          ),
+          isTrue,
+        );
+      },
+    );
+
+    test(
+      'POST /match/preview returns refusal payload for unsupported petType',
+      () async {
+        final response = await _requestJson(
+          client,
+          server,
+          method: 'POST',
+          path: '/match/preview',
+          body: <String, dynamic>{
+            'questionnaireVersion': 1,
+            'userProfile': <String, dynamic>{
+              'petType': 'cat',
+              'priorities': <String>[],
+            },
+          },
+        );
+
+        expect(response.$1, HttpStatus.ok);
+        expect(response.$2['topMatch'], isNull);
+        expect(response.$2['alternatives'], isEmpty);
+        expect(
+          response.$2['refusal'],
+          <String, dynamic>{
+            'code': 'no_breeds_for_pet_type',
+            'message': 'No breeds available for the selected pet type.',
+            'title': null,
+            'externalMessage': 'No breeds available for the selected pet type.',
+          },
+        );
+        expect(
+          response.$2['compatibility'],
+          <String, dynamic>{
+            'status': 'ready',
+            'breed_id': null,
+            'breed_name': null,
+            'image_url': null,
+            'risk_level': 'high',
+            'score': null,
+            'summary': 'No breeds available for the selected pet type.',
+            'compatible': false,
+            'insights': <dynamic>[],
+            'requirement_highlights': <dynamic>[],
+            'hard_reasons': <Map<String, dynamic>>[
+              <String, dynamic>{
+                'code': 'no_breeds_for_pet_type',
+                'severity': 'hard',
+                'message': 'No breeds available for the selected pet type.',
+              },
+            ],
+            'risks': <dynamic>[],
+            'refusal': <String, dynamic>{
+              'title': null,
+              'external_message': 'No breeds available for the selected pet type.',
+            },
+            'suggestions': <dynamic>[],
+          },
+        );
+      },
+    );
 
     test('GET /matches/{resultId} returns persisted match result', () async {
       final buildPayload = _groupedAnswersPayload(

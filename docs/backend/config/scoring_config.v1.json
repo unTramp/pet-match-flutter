@@ -15,6 +15,46 @@
     "trainability": 2,
     "temperamentCalm": 2
   },
+  "comparators": {
+    "size": "symmetric",
+    "apartmentSuitability": "atLeast",
+    "aloneTolerance": "atLeast",
+    "goodWithChildren": "atLeast",
+    "goodWithOtherPets": "atLeast",
+    "beginnerFriendly": "atLeast",
+    "trainability": "atLeast",
+    "temperamentCalm": "atLeast",
+    "exerciseNeeds": "atMost",
+    "groomingNeeds": "atMost",
+    "sheddingLevel": "atMost",
+    "maintenanceCost": "atMost",
+    "noiseLevel": "atMost"
+  },
+  "fieldLabels": {
+    "size": "Размер",
+    "exerciseNeeds": "Активность",
+    "apartmentSuitability": "Подходит для квартиры",
+    "aloneTolerance": "Одиночество",
+    "goodWithChildren": "Дети",
+    "goodWithOtherPets": "Другие животные",
+    "groomingNeeds": "Уход",
+    "sheddingLevel": "Линька",
+    "beginnerFriendly": "Подходит новичкам",
+    "maintenanceCost": "Бюджет",
+    "noiseLevel": "Шумность",
+    "trainability": "Обучаемость",
+    "temperamentCalm": "Спокойный характер"
+  },
+  "capReasonMessages": {
+    "low_apartment_fit": "Порода заметно хуже подходит для квартиры, чем требуется вашему образу жизни.",
+    "low_children_fit": "По совместимости с маленькими детьми здесь есть существенный риск.",
+    "low_other_pets_fit": "Совместимость с другими животными слабее, чем нужна в вашем сценарии.",
+    "low_alone_tolerance_fit": "Порода хуже переносит одиночество, чем допускает ваш ритм.",
+    "low_beginner_fit": "Эта порода может оказаться слишком сложной для первого или раннего опыта."
+  },
+  "profileConflictCap": 88,
+  "profileConflictReasonCode": "contradictory_answers",
+  "profileConflictMessage": "В ответах есть противоречия, поэтому точность подбора немного снижена.",
   "priorityWeightBoosts": {
     "trainable": {
       "trainability": 4
