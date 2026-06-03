@@ -1,70 +1,104 @@
 # Engine Refinement Backlog
 
-Этот файл фиксирует следующий этап развития `PetWise` matching engine после
-текущего foundation/deploy baseline.
+Этот файл фиксирует **актуальный** следующий этап развития `PetWise`
+matching engine после уже внедрённого foundation и `scoring v2`.
+
+## Current State
+
+Уже сделано и не требует повторного планирования:
+- `petType` filtering и refusal для пустого пула
+- directional comparators, включая `exerciseNeeds = symmetric`
+- single source of truth для priority target resolution
+- explainability через `contributions` и `triggeredCapReasons`
+- compatibility bridge-view для клиента
+- contradictory-answer handling через `profileDiagnostics`
+- server hardening baseline, deploy scaffold и live backend
+- `imageUrl` в breed fixtures
+- retention и более устойчивый `resultId`
 
 Статус сейчас:
-- backend и deploy scaffold уже собраны
-- runtime backend поднят и проходит live smoke test
-- reference engine и backend specs зафиксированы тестами
+- backend задеплоен и проходит live smoke test
+- reference engine и backend specs покрыты тестами
+- active scoring config: [scoring_config.v2.json](./config/scoring_config.v2.json)
 
-Следующий этап:
-- повышаем корректность и объяснимость движка
-- выравниваем backend contract с клиентской моделью
-- не ломаем принципы V1: deterministic, explainable, calibratable, config-driven
+## Next Priorities
 
-## Priority Backlog
+### P1. Expand breed catalog to product-ready depth
+- довести dog catalog хотя бы до `25–30` качественных профилей
+- расширять набор контрастных пород, а не только популярных
+- поддерживать для каждой породы:
+  - нормализованные attributes
+  - `imageUrl`
+  - `summaryShort`, `strengths`, `watchouts`
 
-### P1. petType filtering and empty-pool handling
-- Фильтровать каталог по `userProfile.petType`
-- Для `unknown` не форсить `dog`
-- Для пустого пула вернуть осмысленный результат вместо `500`
+Почему это важно:
+- сейчас качество подбора больше ограничено шириной каталога, чем математикой
+- это лучший ROI по [docs/CLAUDE.md](../CLAUDE.md)
 
-### P2. Directional comparators
-- Увести часть полей с симметричной дистанции на `atLeast` / `atMost`
-- Держать поведение config-driven через `scoring_config`
-- Обязательно перезаписать ranking fixtures до изменения кода
+### P2. Expand ranking fixtures around real user segments
+- добавить `10–15` новых ranking scenarios
+- покрыть сегменты:
+  - very small apartment
+  - family with young children
+  - first-time owner
+  - low-shedding priority
+  - active outdoor lifestyle
+  - budget-sensitive household
+  - quiet companion
+  - other-pets coexistence
 
-### P3. Single source of truth for priority target resolution
-- Убрать гидрацию derived target values из `profile_builder`
-- Оставить matcher единственным местом резолва приоритетов
-- Проверить, что `/questionnaire/profile` и `/match/preview` дают идентичный ranking
+Цель:
+- сделать drift в ранжировании заметным сразу
+- улучшать engine через реальные сценарии, а не через ощущения
 
-### P4. Better explainability
-- Сохранять `triggeredCapReasons`
-- Сохранять field-level contributions
-- Строить `strongMatches` и `weakMatches` персонально, а не только из breed content
+### P3. Add example/spec contract validation as a permanent guardrail
+- все JSON examples должны парситься
+- examples не должны отставать от runtime contract
+- при изменении response shape обновлять:
+  - `openapi.yaml`
+  - `docs/backend/examples/*.json`
+  - contract tests
 
-### P5. Contract alignment with client compatibility model
-- Свести backend response к доменной модели клиента
-- Добавить `score`, `risk`, `compatible`, `suggestions`, `hardReasons`, `risks`, `insights`
-- Обновить `openapi.yaml` и example payloads
+### P4. Replace placeholder breed imagery with production assets
+- уйти с `placehold.co` на реальные breed images или CDN-backed assets
+- при необходимости расширить каталог полями:
+  - `imageUrl`
+  - `galleryImages`
+  - `attribution`
 
-### P6. Contradictory-answer handling
-- Не терять критерий молча при пустом пересечении allow-set
-- Завести conflict flag
-- Добавить мягкий cap или штраф через config
+Это уже не core engine, но сильно влияет на доверие к Result.
 
-### P7. Server hardening
-- CORS
-- request size limit
-- `Content-Type` validation
-- clean analyzer state for backend module
+### P5. Prepare calibrated AI-assisted catalog ingestion
+- оставить runtime deterministic
+- использовать AI только offline:
+  - extraction
+  - normalization
+  - summary generation
+- добавить review/validation pipeline перед записью в каталог
+
+### P6. Plan cat flow as a separate scoring track
+- не смешивать dog и cat semantics в одном конфиге без нужды
+- сначала утвердить:
+  - cat-specific attributes
+  - questionnaire deltas
+  - ranking fixtures
 
 ## Recommended Order
 
-1. `petType` filtering + empty pool
-2. directional comparators + fixture re-baseline
-3. priority target single-source cleanup
-4. explainability extensions
-5. client contract alignment
-6. contradictory-answer handling
-7. server hardening
+1. расширение dog catalog
+2. расширение ranking fixtures
+3. поддержание example/contract validation
+4. реальные изображения и result presentation quality
+5. AI ingestion pipeline
+6. отдельный cat flow
 
 ## Guardrails
 
-- Любое изменение поведения сначала фиксируется/обновляется в fixture
-- Все новые правила должны жить в config, а не в хардкоде
+- Любое изменение поведения сначала фиксируется или обновляется в fixture.
+- Все новые scoring-правила должны жить в config, а не в хардкоде.
 - Перед коммитом:
   - `flutter test test/backend_specs`
   - `dart analyze backend`
+- Перед деплоем:
+  - локальный `flutter test test/backend_specs`
+  - live smoke test через `backend/deploy/smoke-test.sh`
