@@ -15,7 +15,7 @@ void main(List<String> args) {
       'docs/backend/config/answer_to_profile_mapping.v1.json';
   final scoringConfigPath =
       _readArgValue(args, '--scoring-config') ??
-      'docs/backend/config/scoring_config.v1.json';
+      'docs/backend/config/scoring_config.v2.json';
 
   final builder = ReferenceProfileBuilder(
     questionnairePath: questionnairePath,

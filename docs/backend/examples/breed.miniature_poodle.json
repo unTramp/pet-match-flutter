@@ -2,7 +2,10 @@
   "breedId": "miniature_poodle",
   "petType": "dog",
   "name": "Miniature Poodle",
-  "aliases": ["Poodle Miniature", "Mini Poodle"],
+  "aliases": [
+    "Poodle Miniature",
+    "Mini Poodle"
+  ],
   "group": "non-sporting",
   "attributes": {
     "size": 2,
@@ -28,15 +31,30 @@
   },
   "content": {
     "summaryShort": "Очень обучаемый и квартирный компаньон с минимальной линькой, но требовательный к грумингу.",
-    "strengths": ["низкая линька", "отличная обучаемость", "очень хорош для квартиры"],
-    "watchouts": ["регулярный груминг обязателен", "не любит долго оставаться один"],
-    "adaptationTips": ["планировать груминг заранее", "давать умственную нагрузку и короткие прогулки"]
+    "strengths": [
+      "низкая линька",
+      "отличная обучаемость",
+      "очень хорош для квартиры"
+    ],
+    "watchouts": [
+      "регулярный груминг обязателен",
+      "не любит долго оставаться один"
+    ],
+    "adaptationTips": [
+      "планировать груминг заранее",
+      "давать умственную нагрузку и короткие прогулки"
+    ]
   },
   "quality": {
     "confidenceScore": 0.84,
     "sourceCount": 3,
-    "sourceNotes": ["breed profile", "grooming reference", "editor review"],
+    "sourceNotes": [
+      "breed profile",
+      "grooming reference",
+      "editor review"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=miniature_poodle"
 }

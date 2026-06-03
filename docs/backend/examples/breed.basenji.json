@@ -2,7 +2,9 @@
   "breedId": "basenji",
   "petType": "dog",
   "name": "Basenji",
-  "aliases": ["African Barkless Dog"],
+  "aliases": [
+    "African Barkless Dog"
+  ],
   "group": "hound",
   "attributes": {
     "size": 3,
@@ -28,15 +30,30 @@
   },
   "content": {
     "summaryShort": "Очень тихая и чистоплотная собака, но со сложным независимым характером.",
-    "strengths": ["очень низкая шумность", "минимальный уход", "чистоплотность"],
-    "watchouts": ["сложнее для новичков", "может быть непростой с другими животными"],
-    "adaptationTips": ["нужна структура и безопасные прогулки", "важен опыт и терпение"]
+    "strengths": [
+      "очень низкая шумность",
+      "минимальный уход",
+      "чистоплотность"
+    ],
+    "watchouts": [
+      "сложнее для новичков",
+      "может быть непростой с другими животными"
+    ],
+    "adaptationTips": [
+      "нужна структура и безопасные прогулки",
+      "важен опыт и терпение"
+    ]
   },
   "quality": {
     "confidenceScore": 0.74,
     "sourceCount": 3,
-    "sourceNotes": ["breed profile", "editor review", "training notes"],
+    "sourceNotes": [
+      "breed profile",
+      "editor review",
+      "training notes"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=basenji"
 }

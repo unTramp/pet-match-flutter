@@ -2,7 +2,7 @@
   "fixtureId": "apartment_quiet_beginner",
   "description": "Пользователь живет в квартире, хочет тихого и простого в уходе компаньона, опыта мало.",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "inputUserProfile": {
     "petType": "dog",
     "sizePreference": [2, 3],

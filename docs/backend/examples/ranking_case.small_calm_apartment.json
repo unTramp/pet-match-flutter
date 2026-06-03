@@ -2,7 +2,7 @@
   "fixtureId": "small_calm_apartment",
   "description": "Пользователь ищет небольшого, спокойного и тихого квартирного компаньона для размеренного домашнего ритма.",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "inputUserProfile": {
     "petType": "dog",
     "sizePreference": [1, 2],

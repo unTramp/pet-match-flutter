@@ -20,6 +20,8 @@
 - `PETWISE_CATALOG_VERSION`
 - `PETWISE_STORAGE_PATH`
 - `PETWISE_EXPOSE_ERROR_DETAILS`
+- `PETWISE_MATCH_RESULT_RETENTION_DAYS`
+- `PETWISE_MATCH_RESULT_MAX_RECORDS`
 - `DATABASE_URL`
 
 Для локального старта можно использовать `runtime.env.example` как шаблон.

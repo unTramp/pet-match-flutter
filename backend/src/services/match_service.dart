@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../contracts/match_contracts.dart';
 import '../domain/spec_models.dart';
 import '../repositories/breed_repository.dart';
@@ -26,6 +28,7 @@ class MatchService {
   final MatchResultRepository _matchResultRepository;
   final ScoringConfigRepository _scoringConfigRepository;
   final MatchExplanationBuilder _explanationBuilder;
+  static final Random _idRandom = Random.secure();
 
   Future<Map<String, dynamic>> previewMatch(
     Map<String, dynamic> requestBody,
@@ -50,7 +53,7 @@ class MatchService {
       );
       final response =
           MatchResultResponse(
-            resultId: 'match_${DateTime.now().millisecondsSinceEpoch}',
+            resultId: _generateResultId(),
             storedAt: DateTime.now().toUtc().toIso8601String(),
             questionnaireVersion: request.questionnaireVersion,
             scoringVersion: scoringVersion,
@@ -73,7 +76,8 @@ class MatchService {
               ],
               risks: <CompatibilityReasonResponse>[],
               refusal: CompatibilityRefusalResponse(
-                externalMessage: 'No breeds available for the selected pet type.',
+                externalMessage:
+                    'No breeds available for the selected pet type.',
               ),
               suggestions: <CompatibilitySuggestionResponse>[],
             ),
@@ -116,7 +120,7 @@ class MatchService {
 
     final response =
         MatchResultResponse(
-          resultId: 'match_${DateTime.now().millisecondsSinceEpoch}',
+          resultId: _generateResultId(),
           storedAt: DateTime.now().toUtc().toIso8601String(),
           questionnaireVersion: request.questionnaireVersion,
           scoringVersion: scoringVersion,
@@ -161,17 +165,15 @@ class MatchService {
     required List<MatchResult> alternatives,
     required ScoringConfig scoringConfig,
   }) {
-    final hardReasons =
-        topResult.triggeredCapReasons
-            .map(
-              (reasonCode) => CompatibilityReasonResponse(
-                code: reasonCode,
-                severity: 'hard',
-                message:
-                    scoringConfig.capReasonMessages[reasonCode] ?? reasonCode,
-              ),
-            )
-            .toList(growable: false);
+    final hardReasons = topResult.triggeredCapReasons
+        .map(
+          (reasonCode) => CompatibilityReasonResponse(
+            code: reasonCode,
+            severity: 'hard',
+            message: scoringConfig.capReasonMessages[reasonCode] ?? reasonCode,
+          ),
+        )
+        .toList(growable: false);
 
     final risks = _buildRiskReasons(
       topResult: topResult,
@@ -179,10 +181,9 @@ class MatchService {
       scoringConfig: scoringConfig,
     );
     final compatible = hardReasons.isEmpty;
-    final topSuggestions =
-        alternatives
-            .map((result) => _buildCompatibilitySuggestion(result))
-            .toList(growable: false);
+    final topSuggestions = alternatives
+        .map((result) => _buildCompatibilitySuggestion(result))
+        .toList(growable: false);
 
     return CompatibilityViewResponse(
       status: 'ready',
@@ -212,8 +213,10 @@ class MatchService {
   }) {
     final risks = <CompatibilityReasonResponse>[];
     final seenMessages = <String>{};
+    final hasHardReasons = topResult.triggeredCapReasons.isNotEmpty;
 
-    if (explanation.warning case final warning?) {
+    final warning = explanation.warning;
+    if (!hasHardReasons && warning != null) {
       risks.add(
         CompatibilityReasonResponse(
           code: 'match_warning',
@@ -235,35 +238,6 @@ class MatchService {
       risks.add(
         CompatibilityReasonResponse(
           code: reasonCode,
-          severity: 'risk',
-          message: message,
-        ),
-      );
-    }
-
-    final rankedContributions =
-        topResult.contributions
-            .where((contribution) => contribution.penalty > 0)
-            .toList(growable: false)
-          ..sort((a, b) {
-            final weightedPenaltyOrder = b.weightedPenalty.compareTo(
-              a.weightedPenalty,
-            );
-            if (weightedPenaltyOrder != 0) {
-              return weightedPenaltyOrder;
-            }
-            return b.weight.compareTo(a.weight);
-          });
-
-    for (final contribution in rankedContributions.take(3)) {
-      final message =
-          scoringConfig.fieldLabels[contribution.field] ?? contribution.field;
-      if (!seenMessages.add(message)) {
-        continue;
-      }
-      risks.add(
-        CompatibilityReasonResponse(
-          code: contribution.field,
           severity: 'risk',
           message: message,
         ),
@@ -294,7 +268,8 @@ class MatchService {
   ) {
     final breed = _breedRepository.getBreedById(result.breedId);
     final summary =
-        (breed?['content'] as Map<String, dynamic>?)?['summaryShort'] as String?;
+        (breed?['content'] as Map<String, dynamic>?)?['summaryShort']
+            as String?;
 
     return CompatibilitySuggestionResponse(
       breedId: result.breedId,
@@ -324,6 +299,17 @@ class MatchService {
     return 'low';
   }
 
+  String _generateResultId() {
+    final timestamp = DateTime.now().microsecondsSinceEpoch.toRadixString(16);
+    final randomSuffix =
+        List<String>.generate(
+          8,
+          (_) => _idRandom.nextInt(256).toRadixString(16).padLeft(2, '0'),
+          growable: false,
+        ).join();
+    return 'match_${timestamp}_$randomSuffix';
+  }
+
   List<String> _validateRequest(
     MatchPreviewRequest request, {
     required int expectedVersion,
@@ -349,7 +335,8 @@ class MatchService {
 
     final sizePreference = request.userProfile['sizePreference'];
     if (sizePreference != null &&
-        (sizePreference is! List || sizePreference.any((item) => item is! num))) {
+        (sizePreference is! List ||
+            sizePreference.any((item) => item is! num))) {
       errors.add('userProfile.sizePreference must be a list of integers');
     }
 

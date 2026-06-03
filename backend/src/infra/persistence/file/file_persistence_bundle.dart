@@ -7,12 +7,16 @@ class FilePersistenceBundle extends PersistenceBundle {
   FilePersistenceBundle({
     required FileSpecDataSource dataSource,
     required String storagePath,
+    required int retentionDays,
+    required int maxStoredResults,
   }) : super(
          questionnaireRepository: FileQuestionnaireRepository(dataSource),
          breedRepository: FileBreedRepository(dataSource),
          scoringConfigRepository: FileScoringConfigRepository(dataSource),
          matchResultRepository: FileMatchResultRepository(
            storagePath: storagePath,
+           retentionDays: retentionDays,
+           maxStoredResults: maxStoredResults,
          ),
          profileBuilderDefinition: dataSource.profileBuilderDefinition,
        );

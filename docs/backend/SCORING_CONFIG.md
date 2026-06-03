@@ -9,14 +9,14 @@
 - калибруемым
 - версионируемым
 
-## V1 algorithm
+## V2 algorithm
 
 1. Build `effectiveWeights` from `baseWeights` and `userProfile.priorities`.
 2. Compute `weightedPenalty` with field-specific comparators.
 3. Compute `maxPossiblePenalty` on the same fields.
 4. Normalize to `baseScore = 1 - weightedPenalty / maxPossiblePenalty`.
 5. Apply `criticalCaps`.
-6. Apply profile-conflict confidence cap when `userProfile.profileDiagnostics.conflicts` is not empty.
+6. Apply profile-conflict confidence cap only when `userProfile.profileDiagnostics.conflicts` contains trigger codes configured in `profileConflictTriggerCodes`.
 7. Add `priorityBonus`.
 8. Convert to percent and apply `displayCap`.
 9. Resolve `label`.
@@ -33,7 +33,7 @@
 
 - `apartmentSuitability=atLeast`
 - `goodWithChildren=atLeast`
-- `exerciseNeeds=atMost`
+- `exerciseNeeds=symmetric`
 - `groomingNeeds=atMost`
 - `noiseLevel=atMost`
 
@@ -42,7 +42,7 @@ apartment-friendly breed показывается пользователю с д
 
 ## Base weights
 
-Suggested V1 weights:
+Suggested V2 weights:
 
 ```json
 {
@@ -64,7 +64,7 @@ Suggested V1 weights:
 
 ## Priority boosts
 
-Suggested V1 boosts:
+Suggested V2 boosts:
 
 ```json
 {
@@ -100,7 +100,7 @@ Suggested V1 boosts:
 - `calm_temperament`
 - `quiet`
 
-Suggested V1 targets:
+Suggested V2 targets:
 
 ```json
 {
@@ -137,7 +137,7 @@ Suggested V1 targets:
 
 Critical criteria should cap the maximum result if they are clearly mismatched.
 
-Suggested V1 rules:
+Suggested V2 rules:
 
 - If `livesInApartment = true` and `breed.apartmentSuitability <= 2`, cap at `70`.
 - If `hasYoungChildren = true` and `breed.goodWithChildren <= 2`, cap at `65`.
@@ -151,13 +151,15 @@ Suggested V1 rules:
 полностью отменять матчинг. Но это означает, что результат должен быть менее
 уверенным.
 
-Suggested V1 behavior:
+Suggested V2 behavior:
 
 - builder записывает `userProfile.profileDiagnostics.conflicts`
-- matcher применяет `profileConflictCap`
+- matcher применяет `profileConflictCap` только для кодов из `profileConflictTriggerCodes`
 - frontend/backend explanation добавляет risk message про противоречивые ответы
 
 Это позволяет честно показывать: подбор выполнен, но ввод пользователя шумный.
+
+Normalization-only конфликты, такие как `value_capped_by_constraint`, остаются в диагностике для отладки, но не режут score и не поднимают conflict-warning сами по себе.
 
 ## Display cap and labels
 

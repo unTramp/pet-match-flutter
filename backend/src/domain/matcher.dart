@@ -11,9 +11,7 @@ class ReferenceMatcher implements MatchScoringEngine {
   List<MatchResult> rank(Map<String, dynamic> userProfile) {
     final filteredBreeds = _filterBreedsByPetType(userProfile);
     final results =
-        filteredBreeds
-            .map((breed) => _scoreBreed(userProfile, breed))
-            .toList()
+        filteredBreeds.map((breed) => _scoreBreed(userProfile, breed)).toList()
           ..sort((left, right) {
             final byPercent = right.matchPercent.compareTo(left.matchPercent);
             if (byPercent != 0) {
@@ -28,7 +26,9 @@ class ReferenceMatcher implements MatchScoringEngine {
     return results;
   }
 
-  Iterable<BreedFixture> _filterBreedsByPetType(Map<String, dynamic> userProfile) {
+  Iterable<BreedFixture> _filterBreedsByPetType(
+    Map<String, dynamic> userProfile,
+  ) {
     final petType = userProfile['petType'] as String?;
     if (petType == null || petType.isEmpty) {
       return breeds;
@@ -208,6 +208,21 @@ class ReferenceMatcher implements MatchScoringEngine {
   }) {
     final conflicts = readPath(userProfile, 'profileDiagnostics.conflicts');
     if (conflicts is! List || conflicts.isEmpty) {
+      return _CriticalCapOutcome(
+        cappedPercent: rawPercent,
+        triggeredReasons: const <String>[],
+      );
+    }
+
+    final triggeredConflicts = conflicts
+        .whereType<Map<String, dynamic>>()
+        .where((conflict) {
+          final code = conflict['code'];
+          return code is String &&
+              config.profileConflictTriggerCodes.contains(code);
+        })
+        .toList(growable: false);
+    if (triggeredConflicts.isEmpty) {
       return _CriticalCapOutcome(
         cappedPercent: rawPercent,
         triggeredReasons: const <String>[],

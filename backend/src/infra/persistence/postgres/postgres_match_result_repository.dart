@@ -5,10 +5,17 @@ import 'package:postgres/postgres.dart';
 import '../../../repositories/match_result_repository.dart';
 
 class PostgresMatchResultRepository implements MatchResultRepository {
-  PostgresMatchResultRepository({required String databaseUrl})
-    : _databaseUrl = databaseUrl;
+  PostgresMatchResultRepository({
+    required String databaseUrl,
+    int retentionDays = 30,
+    int maxStoredResults = 2000,
+  }) : _databaseUrl = databaseUrl,
+       _retentionDays = retentionDays,
+       _maxStoredResults = maxStoredResults;
 
   final String _databaseUrl;
+  final int _retentionDays;
+  final int _maxStoredResults;
   Future<Connection>? _connectionFuture;
 
   @override
@@ -75,6 +82,7 @@ class PostgresMatchResultRepository implements MatchResultRepository {
             DateTime.now().toUtc().toIso8601String(),
       },
     );
+    await _cleanup(connection);
   }
 
   Future<Connection> _connection() {
@@ -98,6 +106,27 @@ class PostgresMatchResultRepository implements MatchResultRepository {
       )
       ''');
     return connection;
+  }
+
+  Future<void> _cleanup(Connection connection) async {
+    await connection.execute(
+      Sql.named(
+        'DELETE FROM stored_match_results '
+        'WHERE created_at < now() - make_interval(days => @retentionDays)',
+      ),
+      parameters: <String, Object?>{'retentionDays': _retentionDays},
+    );
+    await connection.execute(
+      Sql.named(
+        'DELETE FROM stored_match_results '
+        'WHERE id IN ('
+        '  SELECT id FROM stored_match_results '
+        '  ORDER BY created_at DESC '
+        '  OFFSET @maxStoredResults'
+        ')',
+      ),
+      parameters: <String, Object?>{'maxStoredResults': _maxStoredResults},
+    );
   }
 
   static String _databaseUrlWithSslModeDisabled(String databaseUrl) {

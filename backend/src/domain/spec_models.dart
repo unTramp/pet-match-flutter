@@ -127,6 +127,7 @@ class ScoringConfig {
     required this.profileConflictCap,
     required this.profileConflictReasonCode,
     required this.profileConflictMessage,
+    required this.profileConflictTriggerCodes,
     required this.priorityWeightBoosts,
     required this.priorityTargetValues,
     required this.criticalCaps,
@@ -142,10 +143,9 @@ class ScoringConfig {
           .map((key, value) => MapEntry(key, value as String)),
       fieldLabels: (json['fieldLabels'] as Map<String, dynamic>? ?? const {})
           .map((key, value) => MapEntry(key, value as String)),
-      capReasonMessages:
-          (json['capReasonMessages'] as Map<String, dynamic>? ?? const {}).map(
-            (key, value) => MapEntry(key, value as String),
-          ),
+      capReasonMessages: (json['capReasonMessages'] as Map<String, dynamic>? ??
+              const {})
+          .map((key, value) => MapEntry(key, value as String)),
       profileConflictCap: (json['profileConflictCap'] as num?)?.toInt() ?? 88,
       profileConflictReasonCode:
           json['profileConflictReasonCode'] as String? ??
@@ -153,6 +153,14 @@ class ScoringConfig {
       profileConflictMessage:
           json['profileConflictMessage'] as String? ??
           'Some answers conflict with each other.',
+      profileConflictTriggerCodes: stringList(
+        json['profileConflictTriggerCodes'] ??
+            const <String>[
+              'conflicting_set_values',
+              'no_allowed_values_overlap',
+              'invalid_constraints_overlap',
+            ],
+      ),
       priorityWeightBoosts:
           (json['priorityWeightBoosts'] as Map<String, dynamic>).map(
             (key, value) =>
@@ -189,6 +197,7 @@ class ScoringConfig {
   final int profileConflictCap;
   final String profileConflictReasonCode;
   final String profileConflictMessage;
+  final List<String> profileConflictTriggerCodes;
   final Map<String, Map<String, int>> priorityWeightBoosts;
   final Map<String, Map<String, int>> priorityTargetValues;
   final List<CriticalCapRule> criticalCaps;

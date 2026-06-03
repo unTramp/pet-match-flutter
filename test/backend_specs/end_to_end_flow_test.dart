@@ -17,7 +17,7 @@ void main() {
         questionnairePath:
             'docs/backend/examples/questionnaire_definition.v1.json',
         mappingPath: 'docs/backend/config/answer_to_profile_mapping.v1.json',
-        scoringConfigPath: 'docs/backend/config/scoring_config.v1.json',
+        scoringConfigPath: 'docs/backend/config/scoring_config.v2.json',
       );
       bundle = ReferenceSpecBundle.load();
       matcher = ReferenceMatcher(
@@ -44,11 +44,11 @@ void main() {
       final profile = profileBuilder.buildFromJson(payload).userProfile;
       final results = matcher.rank(profile);
 
-      expect(results.first.breedId, 'golden_retriever');
+      expect(results.first.breedId, 'border_collie');
       expect(results.first.matchPercent, inInclusiveRange(84, 96));
       expect(
         results.take(3).map((result) => result.breedId),
-        containsAll(<String>['labrador_retriever', 'border_collie']),
+        containsAll(<String>['german_shepherd', 'golden_retriever']),
       );
     });
 
@@ -67,32 +67,35 @@ void main() {
       );
     });
 
-    test('matcher resolves priority target values without builder hydration', () {
-      final payload = _loadJson(
-        'docs/backend/examples/answers.apartment_quiet_beginner.json',
-      );
-      final rawProfile = profileBuilder.buildFromJson(payload).userProfile;
-      final explicitlyHydratedProfile = <String, dynamic>{
-        ...rawProfile,
-        'noiseLevel': 1,
-        'temperamentCalm': 5,
-      };
+    test(
+      'matcher resolves priority target values without builder hydration',
+      () {
+        final payload = _loadJson(
+          'docs/backend/examples/answers.apartment_quiet_beginner.json',
+        );
+        final rawProfile = profileBuilder.buildFromJson(payload).userProfile;
+        final explicitlyHydratedProfile = <String, dynamic>{
+          ...rawProfile,
+          'noiseLevel': 1,
+          'temperamentCalm': 5,
+        };
 
-      final rawResults = matcher.rank(rawProfile);
-      final hydratedResults = matcher.rank(explicitlyHydratedProfile);
+        final rawResults = matcher.rank(rawProfile);
+        final hydratedResults = matcher.rank(explicitlyHydratedProfile);
 
-      expect(
-        rawResults.take(5).map((result) => result.breedId).toList(),
-        hydratedResults.take(5).map((result) => result.breedId).toList(),
-      );
-      expect(
-        rawResults.take(5).map((result) => result.matchPercent).toList(),
-        hydratedResults.take(5).map((result) => result.matchPercent).toList(),
-      );
-    });
+        expect(
+          rawResults.take(5).map((result) => result.breedId).toList(),
+          hydratedResults.take(5).map((result) => result.breedId).toList(),
+        );
+        expect(
+          rawResults.take(5).map((result) => result.matchPercent).toList(),
+          hydratedResults.take(5).map((result) => result.matchPercent).toList(),
+        );
+      },
+    );
 
-    test('contradictory profile applies confidence cap', () {
-      final conflictedProfile = <String, dynamic>{
+    test('constraint capping alone does not apply confidence cap', () {
+      final normalizedProfile = <String, dynamic>{
         'petType': 'dog',
         'apartmentSuitability': 5,
         'exerciseNeeds': 3,
@@ -116,9 +119,47 @@ void main() {
         },
       };
 
-      final cleanProfile = <String, dynamic>{
-        ...conflictedProfile,
-      }..remove('profileDiagnostics');
+      final cleanProfile = <String, dynamic>{...normalizedProfile}
+        ..remove('profileDiagnostics');
+
+      final normalizedResults = matcher.rank(normalizedProfile);
+      final cleanResults = matcher.rank(cleanProfile);
+
+      expect(normalizedResults.first.triggeredProfileReasons, isEmpty);
+      expect(
+        normalizedResults.first.matchPercent,
+        cleanResults.first.matchPercent,
+      );
+    });
+
+    test('true contradictions still apply confidence cap', () {
+      final conflictedProfile = <String, dynamic>{
+        'petType': 'dog',
+        'apartmentSuitability': 5,
+        'exerciseNeeds': 3,
+        'beginnerFriendly': 5,
+        'sizePreference': <int>[],
+        'priorities': <String>['apartment_friendly', 'quiet'],
+        'criticalContext': <String, dynamic>{
+          'livesInApartment': true,
+          'hasYoungChildren': false,
+          'hasOtherPets': false,
+        },
+        'profileDiagnostics': <String, dynamic>{
+          'hasConflicts': true,
+          'conflicts': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'field': 'sizePreference',
+              'code': 'no_allowed_values_overlap',
+              'message':
+                  'Ответы сузили допустимые значения для поля "Размер" до пустого набора.',
+            },
+          ],
+        },
+      };
+
+      final cleanProfile = <String, dynamic>{...conflictedProfile}
+        ..remove('profileDiagnostics');
 
       final conflictedResults = matcher.rank(conflictedProfile);
       final cleanResults = matcher.rank(cleanProfile);

@@ -7,12 +7,16 @@ class PostgresPersistenceBundle extends PersistenceBundle {
   PostgresPersistenceBundle({
     required FileSpecDataSource dataSource,
     required String databaseUrl,
+    required int retentionDays,
+    required int maxStoredResults,
   }) : super(
          questionnaireRepository: FileQuestionnaireRepository(dataSource),
          breedRepository: FileBreedRepository(dataSource),
          scoringConfigRepository: FileScoringConfigRepository(dataSource),
          matchResultRepository: PostgresMatchResultRepository(
            databaseUrl: databaseUrl,
+           retentionDays: retentionDays,
+           maxStoredResults: maxStoredResults,
          ),
          profileBuilderDefinition: dataSource.profileBuilderDefinition,
        );

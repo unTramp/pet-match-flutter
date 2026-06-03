@@ -25,12 +25,14 @@ void main() {
           environment: RuntimeEnvironment.development,
           logLevel: LogLevel.info,
           questionnaireVersion: 1,
-          scoringVersion: 1,
+          scoringVersion: 2,
           catalogVersion: 1,
           storagePath: storageDir.path,
           storageDriver: StorageDriver.file,
           databaseUrl: '',
           exposeErrorDetails: true,
+          matchResultRetentionDays: 30,
+          maxStoredMatchResults: 2000,
         ),
         logger: AppLogger(level: LogLevel.info, serviceName: 'petwise-backend'),
       );
@@ -166,7 +168,7 @@ void main() {
       );
       expect(response.$2['status'], 'ready');
       expect(response.$2['questionnaireVersion'], 1);
-      expect(response.$2['scoringVersion'], 1);
+      expect(response.$2['scoringVersion'], 2);
     });
 
     test(
@@ -269,29 +271,32 @@ void main() {
       expect(compatibility['insights'], isA<List<dynamic>>());
     });
 
-    test('POST /match/preview returns 400 for invalid userProfile payload', () async {
-      final response = await _requestJson(
-        client,
-        server,
-        method: 'POST',
-        path: '/match/preview',
-        body: <String, dynamic>{
-          'questionnaireVersion': 1,
-          'userProfile': <String, dynamic>{
-            'petType': 'dog',
-            'priorities': 'quiet',
-            'criticalContext': 'bad-shape',
+    test(
+      'POST /match/preview returns 400 for invalid userProfile payload',
+      () async {
+        final response = await _requestJson(
+          client,
+          server,
+          method: 'POST',
+          path: '/match/preview',
+          body: <String, dynamic>{
+            'questionnaireVersion': 1,
+            'userProfile': <String, dynamic>{
+              'petType': 'dog',
+              'priorities': 'quiet',
+              'criticalContext': 'bad-shape',
+            },
           },
-        },
-      );
+        );
 
-      expect(response.$1, HttpStatus.badRequest);
-      expect(response.$2['error'], 'Invalid match preview request');
-      expect(response.$2['details'], isA<List<dynamic>>());
-    });
+        expect(response.$1, HttpStatus.badRequest);
+        expect(response.$2['error'], 'Invalid match preview request');
+        expect(response.$2['details'], isA<List<dynamic>>());
+      },
+    );
 
     test(
-      'POST /match/preview surfaces contradictory profile as compatibility risk',
+      'POST /match/preview ignores normalization-only conflicts and surfaces true contradictions',
       () async {
         final profileResponse = await _requestJson(
           client,
@@ -333,9 +338,24 @@ void main() {
                 'questionId': 'shedding_tolerance',
                 'selectedOptionIds': <String>['a_little_ok'],
               },
+              <String, dynamic>{
+                'questionId': 'preferred_size',
+                'selectedOptionIds': <String>['large'],
+              },
             ],
           },
         );
+
+        final profileDiagnostics =
+            (profileResponse.$2['userProfile']
+                    as Map<String, dynamic>)['profileDiagnostics']
+                as Map<String, dynamic>;
+        final conflictCodes =
+            (profileDiagnostics['conflicts'] as List<dynamic>)
+                .map((item) => (item as Map<String, dynamic>)['code'])
+                .toList();
+        expect(conflictCodes, contains('value_capped_by_constraint'));
+        expect(conflictCodes, contains('no_allowed_values_overlap'));
 
         final response = await _requestJson(
           client,
@@ -352,6 +372,10 @@ void main() {
         final compatibility =
             response.$2['compatibility'] as Map<String, dynamic>;
         final risks = compatibility['risks'] as List<dynamic>;
+        final hardReasons = compatibility['hard_reasons'] as List<dynamic>;
+        final requirementHighlights =
+            (compatibility['requirement_highlights'] as List<dynamic>)
+                .cast<String>();
         expect(
           risks.any(
             (item) =>
@@ -359,6 +383,21 @@ void main() {
                 'contradictory_answers',
           ),
           isTrue,
+        );
+        final riskMessages =
+            risks
+                .map((item) => (item as Map<String, dynamic>)['message'])
+                .whereType<String>()
+                .toSet();
+        final hardReasonMessages =
+            hardReasons
+                .map((item) => (item as Map<String, dynamic>)['message'])
+                .whereType<String>()
+                .toSet();
+        expect(riskMessages.intersection(hardReasonMessages), isEmpty);
+        expect(
+          riskMessages.intersection(requirementHighlights.toSet()),
+          isEmpty,
         );
       },
     );
@@ -383,43 +422,38 @@ void main() {
         expect(response.$1, HttpStatus.ok);
         expect(response.$2['topMatch'], isNull);
         expect(response.$2['alternatives'], isEmpty);
-        expect(
-          response.$2['refusal'],
-          <String, dynamic>{
-            'code': 'no_breeds_for_pet_type',
-            'message': 'No breeds available for the selected pet type.',
-            'title': null,
-            'externalMessage': 'No breeds available for the selected pet type.',
-          },
-        );
-        expect(
-          response.$2['compatibility'],
-          <String, dynamic>{
-            'status': 'ready',
-            'breed_id': null,
-            'breed_name': null,
-            'image_url': null,
-            'risk_level': 'high',
-            'score': null,
-            'summary': 'No breeds available for the selected pet type.',
-            'compatible': false,
-            'insights': <dynamic>[],
-            'requirement_highlights': <dynamic>[],
-            'hard_reasons': <Map<String, dynamic>>[
-              <String, dynamic>{
-                'code': 'no_breeds_for_pet_type',
-                'severity': 'hard',
-                'message': 'No breeds available for the selected pet type.',
-              },
-            ],
-            'risks': <dynamic>[],
-            'refusal': <String, dynamic>{
-              'title': null,
-              'external_message': 'No breeds available for the selected pet type.',
+        expect(response.$2['refusal'], <String, dynamic>{
+          'code': 'no_breeds_for_pet_type',
+          'message': 'No breeds available for the selected pet type.',
+          'title': null,
+          'externalMessage': 'No breeds available for the selected pet type.',
+        });
+        expect(response.$2['compatibility'], <String, dynamic>{
+          'status': 'ready',
+          'breed_id': null,
+          'breed_name': null,
+          'image_url': null,
+          'risk_level': 'high',
+          'score': null,
+          'summary': 'No breeds available for the selected pet type.',
+          'compatible': false,
+          'insights': <dynamic>[],
+          'requirement_highlights': <dynamic>[],
+          'hard_reasons': <Map<String, dynamic>>[
+            <String, dynamic>{
+              'code': 'no_breeds_for_pet_type',
+              'severity': 'hard',
+              'message': 'No breeds available for the selected pet type.',
             },
-            'suggestions': <dynamic>[],
+          ],
+          'risks': <dynamic>[],
+          'refusal': <String, dynamic>{
+            'title': null,
+            'external_message':
+                'No breeds available for the selected pet type.',
           },
-        );
+          'suggestions': <dynamic>[],
+        });
       },
     );
 

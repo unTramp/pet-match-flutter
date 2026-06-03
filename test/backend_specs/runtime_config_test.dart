@@ -14,6 +14,8 @@ void main() {
           'PETWISE_SCORING_VERSION': '4',
           'PETWISE_STORAGE_DRIVER': 'postgres',
           'PETWISE_STORAGE_PATH': '/srv/petwise/data',
+          'PETWISE_MATCH_RESULT_RETENTION_DAYS': '14',
+          'PETWISE_MATCH_RESULT_MAX_RECORDS': '500',
           'DATABASE_URL': 'postgres://petwise:secret@db:5432/petwise',
         },
       );
@@ -24,9 +26,11 @@ void main() {
       expect(config.logLevel, LogLevel.debug);
       expect(config.questionnaireVersion, 3);
       expect(config.scoringVersion, 4);
-      expect(config.catalogVersion, 4);
+      expect(config.catalogVersion, 1);
       expect(config.storagePath, '/srv/petwise/data');
       expect(config.storageDriver, StorageDriver.postgres);
+      expect(config.matchResultRetentionDays, 14);
+      expect(config.maxStoredMatchResults, 500);
       expect(config.databaseUrl, 'postgres://petwise:secret@db:5432/petwise');
       expect(config.exposeErrorDetails, isFalse);
     });
@@ -38,10 +42,12 @@ void main() {
       expect(config.port, 8080);
       expect(config.environment, RuntimeEnvironment.development);
       expect(config.questionnaireVersion, 1);
-      expect(config.scoringVersion, 1);
+      expect(config.scoringVersion, 2);
       expect(config.catalogVersion, 1);
       expect(config.storagePath, 'backend/storage');
       expect(config.storageDriver, StorageDriver.file);
+      expect(config.matchResultRetentionDays, 30);
+      expect(config.maxStoredMatchResults, 2000);
       expect(config.databaseUrl, isEmpty);
       expect(config.exposeErrorDetails, isTrue);
     });

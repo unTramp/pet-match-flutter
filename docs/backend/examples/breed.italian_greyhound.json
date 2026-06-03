@@ -2,7 +2,10 @@
   "breedId": "italian_greyhound",
   "petType": "dog",
   "name": "Italian Greyhound",
-  "aliases": ["IG", "Italian Greyhound Dog"],
+  "aliases": [
+    "IG",
+    "Italian Greyhound Dog"
+  ],
   "group": "toy",
   "attributes": {
     "size": 2,
@@ -28,15 +31,30 @@
   },
   "content": {
     "summaryShort": "Очень компактная, тихая и простая в уходе собака для спокойного квартирного ритма.",
-    "strengths": ["идеальна для квартиры", "минимальный уход", "низкая линька"],
-    "watchouts": ["чувствительна к стрессу", "не любит долгое одиночество"],
-    "adaptationTips": ["избегать грубого режима", "обеспечить теплое место и мягкую адаптацию"]
+    "strengths": [
+      "идеальна для квартиры",
+      "минимальный уход",
+      "низкая линька"
+    ],
+    "watchouts": [
+      "чувствительна к стрессу",
+      "не любит долгое одиночество"
+    ],
+    "adaptationTips": [
+      "избегать грубого режима",
+      "обеспечить теплое место и мягкую адаптацию"
+    ]
   },
   "quality": {
     "confidenceScore": 0.76,
     "sourceCount": 3,
-    "sourceNotes": ["breed profile", "editor review", "comparative notes"],
+    "sourceNotes": [
+      "breed profile",
+      "editor review",
+      "comparative notes"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=italian_greyhound"
 }

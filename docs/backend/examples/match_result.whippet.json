@@ -1,8 +1,8 @@
 {
-  "resultId": "match_123",
+  "resultId": "match_65355fbb35b17_4c177f77c3cd85ce",
   "storedAt": "2026-06-03T12:00:00.000Z",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "userProfile": {
     "petType": "dog",
     "sizePreference": [2, 3],
@@ -62,7 +62,7 @@
     "status": "ready",
     "breed_id": "whippet",
     "breed_name": "Whippet",
-    "image_url": null,
+    "image_url": "https://placehold.co/1200x900/png?text=whippet",
     "risk_level": "low",
     "score": 88,
     "summary": "Уиппет хорошо подходит вам: он среднего размера, комфортно чувствует себя в квартире, не требует сложного ухода и обычно ведет себя спокойно дома.",
@@ -84,11 +84,6 @@
         "severity": "risk",
         "message": "Главный нюанс — одиночество. Если питомец часто будет оставаться дома на 6–8 часов, лучше заранее продумать прогулки, игрушки и адаптацию."
       },
-      {
-        "code": "aloneTolerance",
-        "severity": "risk",
-        "message": "Одиночество"
-      }
     ],
     "refusal": null,
     "suggestions": [
@@ -98,7 +93,7 @@
         "risk_level": "medium",
         "score": 82,
         "summary": "Ласковая семейная собака, дружелюбная и комфортная для новичков.",
-        "image_url": null
+        "image_url": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel"
       },
       {
         "breed_id": "italian_greyhound",
@@ -106,7 +101,7 @@
         "risk_level": "medium",
         "score": 81,
         "summary": "Компактная, тихая и очень домашняя порода, но чувствительна к холоду и одиночеству.",
-        "image_url": null
+        "image_url": "https://placehold.co/1200x900/png?text=italian_greyhound"
       },
       {
         "breed_id": "basenji",
@@ -114,7 +109,7 @@
         "risk_level": "medium",
         "score": 76,
         "summary": "Тихая и чистоплотная порода с независимым характером и выраженным охотничьим инстинктом.",
-        "image_url": null
+        "image_url": "https://placehold.co/1200x900/png?text=basenji"
       }
     ]
   }

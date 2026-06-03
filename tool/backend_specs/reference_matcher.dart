@@ -15,7 +15,7 @@ class ReferenceSpecBundle {
   });
 
   factory ReferenceSpecBundle.load({
-    String configPath = 'docs/backend/config/scoring_config.v1.json',
+    String configPath = 'docs/backend/config/scoring_config.v2.json',
     String catalogPath = 'docs/backend/examples/catalog.v1.json',
     String fixturesDir = 'docs/backend/examples',
   }) {

@@ -13,7 +13,7 @@ void main() {
                 'docs/backend/examples/questionnaire_definition.v1.json',
             mappingPath:
                 'docs/backend/config/answer_to_profile_mapping.v1.json',
-            scoringConfigPath: 'docs/backend/config/scoring_config.v1.json',
+            scoringConfigPath: 'docs/backend/config/scoring_config.v2.json',
           ).validate();
 
       expect(report.errors, isEmpty);
@@ -51,7 +51,7 @@ void main() {
 }
 ''');
 
-      File('${configDir.path}/scoring_config.v1.json').writeAsStringSync('''
+      File('${configDir.path}/scoring_config.v2.json').writeAsStringSync('''
 {
   "version": 1,
   "baseWeights": { "exerciseNeeds": 5 },
@@ -92,7 +92,7 @@ void main() {
             questionnairePath:
                 '${examplesDir.path}/questionnaire_definition.v1.json',
             mappingPath: '${configDir.path}/answer_to_profile_mapping.v1.json',
-            scoringConfigPath: '${configDir.path}/scoring_config.v1.json',
+            scoringConfigPath: '${configDir.path}/scoring_config.v2.json',
           ).validate();
 
       expect(report.isValid, isFalse);

@@ -2,7 +2,10 @@
   "breedId": "labrador_retriever",
   "petType": "dog",
   "name": "Labrador Retriever",
-  "aliases": ["Labrador", "Lab"],
+  "aliases": [
+    "Labrador",
+    "Lab"
+  ],
   "group": "sporting",
   "attributes": {
     "size": 4,
@@ -28,15 +31,30 @@
   },
   "content": {
     "summaryShort": "Надежный семейный компаньон, дружелюбный и очень обучаемый, но требующий активности.",
-    "strengths": ["отлично подходит семьям", "хорошо ладит с другими животными", "очень обучаем"],
-    "watchouts": ["нуждается в регулярной активности", "довольно сильно линяет"],
-    "adaptationTips": ["давать ежедневную нагрузку", "учитывать размер и линьку дома"]
+    "strengths": [
+      "отлично подходит семьям",
+      "хорошо ладит с другими животными",
+      "очень обучаем"
+    ],
+    "watchouts": [
+      "нуждается в регулярной активности",
+      "довольно сильно линяет"
+    ],
+    "adaptationTips": [
+      "давать ежедневную нагрузку",
+      "учитывать размер и линьку дома"
+    ]
   },
   "quality": {
     "confidenceScore": 0.88,
     "sourceCount": 3,
-    "sourceNotes": ["breed club summary", "editor review", "training reference"],
+    "sourceNotes": [
+      "breed club summary",
+      "editor review",
+      "training reference"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=labrador_retriever"
 }

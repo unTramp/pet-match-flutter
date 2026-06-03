@@ -57,7 +57,7 @@ Ranking fixtures нужны, чтобы проверять не только в�
 Он читает:
 
 - `catalog.v1.json`
-- `scoring_config.v1.json`
+- `scoring_config.v2.json`
 - `ranking_case*.json`
 
 И проверяет:

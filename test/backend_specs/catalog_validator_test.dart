@@ -10,7 +10,7 @@ void main() {
       final report =
           CatalogValidator(
             catalogPath: 'docs/backend/examples/catalog.v1.json',
-            scoringConfigPath: 'docs/backend/config/scoring_config.v1.json',
+            scoringConfigPath: 'docs/backend/config/scoring_config.v2.json',
           ).validate();
 
       expect(report.errors, isEmpty);
@@ -25,7 +25,7 @@ void main() {
       final examplesDir = Directory('${tempDir.path}/examples')..createSync();
       final configDir = Directory('${tempDir.path}/config')..createSync();
 
-      File('${configDir.path}/scoring_config.v1.json').writeAsStringSync('''
+      File('${configDir.path}/scoring_config.v2.json').writeAsStringSync('''
 {
   "version": 1,
   "baseWeights": { "size": 4, "exerciseNeeds": 5, "apartmentSuitability": 5 },
@@ -83,7 +83,7 @@ void main() {
       final report =
           CatalogValidator(
             catalogPath: '${examplesDir.path}/catalog.v1.json',
-            scoringConfigPath: '${configDir.path}/scoring_config.v1.json',
+            scoringConfigPath: '${configDir.path}/scoring_config.v2.json',
           ).validate();
 
       expect(report.isValid, isFalse);

@@ -14,7 +14,7 @@ void main() {
         questionnairePath:
             'docs/backend/examples/questionnaire_definition.v1.json',
         mappingPath: 'docs/backend/config/answer_to_profile_mapping.v1.json',
-        scoringConfigPath: 'docs/backend/config/scoring_config.v1.json',
+        scoringConfigPath: 'docs/backend/config/scoring_config.v2.json',
       );
     });
 
@@ -81,10 +81,7 @@ void main() {
         answers: const <QuestionnaireAnswer>[
           QuestionnaireAnswer(questionId: 'pet_type', optionId: 'unknown'),
           QuestionnaireAnswer(questionId: 'home_type', optionId: 'apartment'),
-          QuestionnaireAnswer(
-            questionId: 'daily_activity',
-            optionId: '30_60',
-          ),
+          QuestionnaireAnswer(questionId: 'daily_activity', optionId: '30_60'),
           QuestionnaireAnswer(questionId: 'alone_time', optionId: '4_8'),
           QuestionnaireAnswer(questionId: 'children', optionId: 'no'),
           QuestionnaireAnswer(questionId: 'other_pets', optionId: 'none'),

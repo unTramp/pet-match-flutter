@@ -2,7 +2,9 @@
   "breedId": "whippet",
   "petType": "dog",
   "name": "Whippet",
-  "aliases": ["Whippet Dog"],
+  "aliases": [
+    "Whippet Dog"
+  ],
   "group": "hound",
   "attributes": {
     "size": 3,
@@ -28,15 +30,30 @@
   },
   "content": {
     "summaryShort": "Спокойная дома, умеренно активная, проста в уходе.",
-    "strengths": ["подходит для квартиры", "низкая шумность", "минимальный уход"],
-    "watchouts": ["может тяжело переносить одиночество", "сильный prey drive"],
-    "adaptationTips": ["планировать прогулки", "аккуратно знакомить с кошками"]
+    "strengths": [
+      "подходит для квартиры",
+      "низкая шумность",
+      "минимальный уход"
+    ],
+    "watchouts": [
+      "может тяжело переносить одиночество",
+      "сильный prey drive"
+    ],
+    "adaptationTips": [
+      "планировать прогулки",
+      "аккуратно знакомить с кошками"
+    ]
   },
   "quality": {
     "confidenceScore": 0.78,
     "sourceCount": 3,
-    "sourceNotes": ["breed club summary", "veterinary reference", "editor review"],
+    "sourceNotes": [
+      "breed club summary",
+      "veterinary reference",
+      "editor review"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=whippet"
 }

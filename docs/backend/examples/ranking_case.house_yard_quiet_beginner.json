@@ -2,7 +2,7 @@
   "fixtureId": "house_yard_quiet_beginner",
   "description": "Пользователь живет в доме с двором, но всё равно хочет тихую и простую в уходе собаку без штрафа за лишнюю квартирность.",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "inputUserProfile": {
     "petType": "dog",
     "sizePreference": [2, 3, 4],

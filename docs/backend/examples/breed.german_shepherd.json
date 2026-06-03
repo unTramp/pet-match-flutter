@@ -2,7 +2,9 @@
   "breedId": "german_shepherd",
   "petType": "dog",
   "name": "German Shepherd",
-  "aliases": ["GSD"],
+  "aliases": [
+    "GSD"
+  ],
   "group": "herding",
   "attributes": {
     "size": 5,
@@ -28,15 +30,30 @@
   },
   "content": {
     "summaryShort": "Сильная и очень обучаемая рабочая собака, которой нужен опытный владелец и высокий уровень вовлеченности.",
-    "strengths": ["максимальная обучаемость", "хорош для задач и тренировок", "подходит для активного ритма"],
-    "watchouts": ["не лучший выбор для новичка", "плохо сочетается со спокойным квартирным сценарием"],
-    "adaptationTips": ["нужны нагрузка и дисциплина", "важна ранняя социализация и работа с поведением"]
+    "strengths": [
+      "максимальная обучаемость",
+      "хорош для задач и тренировок",
+      "подходит для активного ритма"
+    ],
+    "watchouts": [
+      "не лучший выбор для новичка",
+      "плохо сочетается со спокойным квартирным сценарием"
+    ],
+    "adaptationTips": [
+      "нужны нагрузка и дисциплина",
+      "важна ранняя социализация и работа с поведением"
+    ]
   },
   "quality": {
     "confidenceScore": 0.84,
     "sourceCount": 3,
-    "sourceNotes": ["breed club summary", "working dog notes", "editor review"],
+    "sourceNotes": [
+      "breed club summary",
+      "working dog notes",
+      "editor review"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=german_shepherd"
 }

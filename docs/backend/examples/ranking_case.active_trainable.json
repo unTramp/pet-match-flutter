@@ -2,7 +2,7 @@
   "fixtureId": "active_trainable",
   "description": "Опытный пользователь ищет очень активную, обучаемую собаку и готов подстраивать образ жизни под нее.",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "inputUserProfile": {
     "petType": "dog",
     "sizePreference": [3, 4, 5],

@@ -8,7 +8,7 @@ void main(List<String> args) {
       'docs/backend/examples/catalog.v1.json';
   final scoringConfigPath =
       _readArgValue(args, '--scoring-config') ??
-      'docs/backend/config/scoring_config.v1.json';
+      'docs/backend/config/scoring_config.v2.json';
 
   final validator = CatalogValidator(
     catalogPath: catalogPath,

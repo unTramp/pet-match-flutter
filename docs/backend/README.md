@@ -13,7 +13,7 @@
 - [EXAMPLES.md](./EXAMPLES.md) — обзор example payload-ов.
 - [RANKING_FIXTURES.md](./RANKING_FIXTURES.md) — сценарии для проверки ожидаемого ranking-а.
 - [config/answer_to_profile_mapping.v1.json](./config/answer_to_profile_mapping.v1.json) — канонический mapping `answer -> user_profile`.
-- [config/scoring_config.v1.json](./config/scoring_config.v1.json) — versioned scoring config для V1.
+- [config/scoring_config.v2.json](./config/scoring_config.v2.json) — versioned scoring config для текущего engine baseline.
 - [../../prisma/schema.prisma](../../prisma/schema.prisma) — Prisma-черновик модели данных.
 - [../../test/backend_specs/reference_matcher_fixture_test.dart](../../test/backend_specs/reference_matcher_fixture_test.dart) — исполняемый reference matcher spec поверх JSON fixtures.
 - [../../tool/backend_specs/reference_matcher.dart](../../tool/backend_specs/reference_matcher.dart) — reusable reference matcher module.
@@ -44,6 +44,7 @@
 
 - `dog` flow only
 - deterministic ranking
+- scoring v2 with symmetric `exerciseNeeds` and narrowed conflict-cap triggers
 - directional comparators for one-sided fit fields
 - compatibility bridge-view on top of internal `topMatch/alternatives` result shape
 - contradictory questionnaire answers degrade confidence via `profileDiagnostics`

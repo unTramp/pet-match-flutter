@@ -19,6 +19,8 @@ class RuntimeConfig {
     required this.storageDriver,
     required this.databaseUrl,
     required this.exposeErrorDetails,
+    required this.matchResultRetentionDays,
+    required this.maxStoredMatchResults,
   });
 
   factory RuntimeConfig.fromArgs(
@@ -60,16 +62,11 @@ class RuntimeConfig {
                 env['PETWISE_SCORING_VERSION'] ??
                 '',
           ) ??
-          1,
+          2,
       catalogVersion:
           int.tryParse(
             _readArgValue(args, '--catalog-version') ??
                 env['PETWISE_CATALOG_VERSION'] ??
-                '',
-          ) ??
-          int.tryParse(
-            _readArgValue(args, '--scoring-version') ??
-                env['PETWISE_SCORING_VERSION'] ??
                 '',
           ) ??
           1,
@@ -84,6 +81,20 @@ class RuntimeConfig {
       databaseUrl:
           _readArgValue(args, '--database-url') ?? env['DATABASE_URL'] ?? '',
       exposeErrorDetails: exposeErrorDetails,
+      matchResultRetentionDays:
+          int.tryParse(
+            _readArgValue(args, '--match-result-retention-days') ??
+                env['PETWISE_MATCH_RESULT_RETENTION_DAYS'] ??
+                '',
+          ) ??
+          30,
+      maxStoredMatchResults:
+          int.tryParse(
+            _readArgValue(args, '--max-stored-match-results') ??
+                env['PETWISE_MATCH_RESULT_MAX_RECORDS'] ??
+                '',
+          ) ??
+          2000,
     );
   }
 
@@ -98,6 +109,8 @@ class RuntimeConfig {
   final StorageDriver storageDriver;
   final String databaseUrl;
   final bool exposeErrorDetails;
+  final int matchResultRetentionDays;
+  final int maxStoredMatchResults;
 
   BackendSpecPaths get specPaths => BackendSpecPaths.fromVersions(
     questionnaireVersion: questionnaireVersion,
@@ -120,6 +133,8 @@ class RuntimeConfig {
       'storageDriver': storageDriver.name,
       'databaseUrlConfigured': databaseUrl.isNotEmpty,
       'exposeErrorDetails': exposeErrorDetails,
+      'matchResultRetentionDays': matchResultRetentionDays,
+      'maxStoredMatchResults': maxStoredMatchResults,
     };
   }
 }

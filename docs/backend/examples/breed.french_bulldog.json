@@ -2,7 +2,9 @@
   "breedId": "french_bulldog",
   "petType": "dog",
   "name": "French Bulldog",
-  "aliases": ["Frenchie"],
+  "aliases": [
+    "Frenchie"
+  ],
   "group": "non-sporting",
   "attributes": {
     "size": 2,
@@ -28,15 +30,30 @@
   },
   "content": {
     "summaryShort": "Популярный квартирный компаньон: компактный, спокойный и не слишком требовательный к активности.",
-    "strengths": ["очень хорош для квартиры", "подходит для спокойного ритма", "простой уход"],
-    "watchouts": ["может быть дорогим в содержании", "здоровье требует внимательности"],
-    "adaptationTips": ["избегать перегрева", "планировать ветеринарные расходы"]
+    "strengths": [
+      "очень хорош для квартиры",
+      "подходит для спокойного ритма",
+      "простой уход"
+    ],
+    "watchouts": [
+      "может быть дорогим в содержании",
+      "здоровье требует внимательности"
+    ],
+    "adaptationTips": [
+      "избегать перегрева",
+      "планировать ветеринарные расходы"
+    ]
   },
   "quality": {
     "confidenceScore": 0.8,
     "sourceCount": 3,
-    "sourceNotes": ["breed profile", "veterinary notes", "editor review"],
+    "sourceNotes": [
+      "breed profile",
+      "veterinary notes",
+      "editor review"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=french_bulldog"
 }

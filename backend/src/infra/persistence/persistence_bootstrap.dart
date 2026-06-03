@@ -25,6 +25,8 @@ class PersistenceBootstrap {
         return FilePersistenceBundle(
           dataSource: dataSource,
           storagePath: runtimeConfig.storagePath,
+          retentionDays: runtimeConfig.matchResultRetentionDays,
+          maxStoredResults: runtimeConfig.maxStoredMatchResults,
         );
       case StorageDriver.postgres:
         if (runtimeConfig.databaseUrl.isEmpty) {
@@ -43,6 +45,8 @@ class PersistenceBootstrap {
         return PostgresPersistenceBundle(
           dataSource: dataSource,
           databaseUrl: runtimeConfig.databaseUrl,
+          retentionDays: runtimeConfig.matchResultRetentionDays,
+          maxStoredResults: runtimeConfig.maxStoredMatchResults,
         );
     }
   }

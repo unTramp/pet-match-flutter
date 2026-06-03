@@ -2,7 +2,10 @@
   "breedId": "cavalier_king_charles_spaniel",
   "petType": "dog",
   "name": "Cavalier King Charles Spaniel",
-  "aliases": ["Cavalier", "CKCS"],
+  "aliases": [
+    "Cavalier",
+    "CKCS"
+  ],
   "group": "toy",
   "attributes": {
     "size": 2,
@@ -28,15 +31,30 @@
   },
   "content": {
     "summaryShort": "Мягкий семейный компаньон, хорошо живет в квартире и обычно подходит новичкам.",
-    "strengths": ["подходит для квартиры", "дружелюбен к детям", "хорош для новичков"],
-    "watchouts": ["тяжело переносит долгое одиночество", "шерсть требует регулярного ухода"],
-    "adaptationTips": ["не оставлять надолго одного", "держать стабильный режим ухода"]
+    "strengths": [
+      "подходит для квартиры",
+      "дружелюбен к детям",
+      "хорош для новичков"
+    ],
+    "watchouts": [
+      "тяжело переносит долгое одиночество",
+      "шерсть требует регулярного ухода"
+    ],
+    "adaptationTips": [
+      "не оставлять надолго одного",
+      "держать стабильный режим ухода"
+    ]
   },
   "quality": {
     "confidenceScore": 0.82,
     "sourceCount": 3,
-    "sourceNotes": ["breed club summary", "editor review", "veterinary reference"],
+    "sourceNotes": [
+      "breed club summary",
+      "editor review",
+      "veterinary reference"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel"
 }

@@ -15,12 +15,14 @@ void main() {
         environment: RuntimeEnvironment.development,
         logLevel: LogLevel.info,
         questionnaireVersion: 1,
-        scoringVersion: 1,
+        scoringVersion: 2,
         catalogVersion: 1,
         storagePath: 'backend/storage',
         storageDriver: StorageDriver.file,
         databaseUrl: '',
         exposeErrorDetails: true,
+        matchResultRetentionDays: 30,
+        maxStoredMatchResults: 2000,
       );
 
       final bundle = PersistenceBootstrap.create(
@@ -40,12 +42,14 @@ void main() {
           environment: RuntimeEnvironment.production,
           logLevel: LogLevel.info,
           questionnaireVersion: 1,
-          scoringVersion: 1,
+          scoringVersion: 2,
           catalogVersion: 1,
           storagePath: '/srv/petwise/data',
           storageDriver: StorageDriver.postgres,
           databaseUrl: 'postgres://petwise:secret@db:5432/petwise',
           exposeErrorDetails: false,
+          matchResultRetentionDays: 30,
+          maxStoredMatchResults: 2000,
         );
 
         final bundle = PersistenceBootstrap.create(
@@ -64,12 +68,14 @@ void main() {
         environment: RuntimeEnvironment.production,
         logLevel: LogLevel.info,
         questionnaireVersion: 1,
-        scoringVersion: 1,
+        scoringVersion: 2,
         catalogVersion: 1,
         storagePath: '/srv/petwise/data',
         storageDriver: StorageDriver.postgres,
         databaseUrl: '',
         exposeErrorDetails: false,
+        matchResultRetentionDays: 30,
+        maxStoredMatchResults: 2000,
       );
 
       expect(

@@ -2,7 +2,7 @@
   "fixtureId": "family_friendly",
   "description": "Семья с детьми и другими животными ищет дружелюбную, обучаемую и достаточно универсальную собаку.",
   "questionnaireVersion": 1,
-  "scoringVersion": 1,
+  "scoringVersion": 2,
   "inputUserProfile": {
     "petType": "dog",
     "sizePreference": [3, 4],

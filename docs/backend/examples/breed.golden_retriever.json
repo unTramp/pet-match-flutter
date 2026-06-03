@@ -2,7 +2,9 @@
   "breedId": "golden_retriever",
   "petType": "dog",
   "name": "Golden Retriever",
-  "aliases": ["Golden"],
+  "aliases": [
+    "Golden"
+  ],
   "group": "sporting",
   "attributes": {
     "size": 4,
@@ -28,15 +30,30 @@
   },
   "content": {
     "summaryShort": "Очень мягкий и семейный компаньон с высокой обучаемостью, которому нужна активность и место.",
-    "strengths": ["отлично подходит семьям", "очень дружелюбен", "высокая обучаемость"],
-    "watchouts": ["нуждается в регулярной активности", "линька и размер требуют места"],
-    "adaptationTips": ["планировать активные прогулки", "учитывать шерсть дома и уход"]
+    "strengths": [
+      "отлично подходит семьям",
+      "очень дружелюбен",
+      "высокая обучаемость"
+    ],
+    "watchouts": [
+      "нуждается в регулярной активности",
+      "линька и размер требуют места"
+    ],
+    "adaptationTips": [
+      "планировать активные прогулки",
+      "учитывать шерсть дома и уход"
+    ]
   },
   "quality": {
     "confidenceScore": 0.86,
     "sourceCount": 3,
-    "sourceNotes": ["breed club summary", "training reference", "editor review"],
+    "sourceNotes": [
+      "breed club summary",
+      "training reference",
+      "editor review"
+    ],
     "needsReview": false,
     "version": 1
-  }
+  },
+  "imageUrl": "https://placehold.co/1200x900/png?text=golden_retriever"
 }
