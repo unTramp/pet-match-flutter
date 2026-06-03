@@ -1,0 +1,35 @@
+{
+  "batch": "phase2",
+  "candidates": [
+    {
+      "sourceBreedCode": "yorkshire-terrier",
+      "breedId": "yorkshire_terrier",
+      "name": "Yorkshire Terrier",
+      "templateBreedId": "shih_tzu",
+      "group": "toy",
+      "aliases": [
+        "Yorkie"
+      ]
+    },
+    {
+      "sourceBreedCode": "spaniel-american-cocker",
+      "breedId": "american_cocker_spaniel",
+      "name": "American Cocker Spaniel",
+      "templateBreedId": "english_cocker_spaniel",
+      "group": "sporting",
+      "aliases": [
+        "American Cocker"
+      ]
+    },
+    {
+      "sourceBreedCode": "rottweiler",
+      "breedId": "rottweiler",
+      "name": "Rottweiler",
+      "templateBreedId": "german_shepherd",
+      "group": "working",
+      "aliases": [
+        "Rottie"
+      ]
+    }
+  ]
+}

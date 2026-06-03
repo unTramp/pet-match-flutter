@@ -1,0 +1,65 @@
+{
+  "breedId": "rottweiler",
+  "petType": "dog",
+  "name": "Rottweiler",
+  "aliases": [
+    "Rottie"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 5,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 2,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 5,
+    "noiseLevel": 3,
+    "trainability": 5,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Порода с выраженным темпераментом и требованиями к повседневному ритму, которую стоит оценивать вместе с образом жизни владельца.",
+    "strengths": [
+      "умеренный уровень активности",
+      "лучше чувствует себя в доме с большим пространством",
+      "уход не требует ежедневного груминга"
+    ],
+    "watchouts": [
+      "нуждается в занятиях, обучении и ментальной нагрузке"
+    ],
+    "adaptationTips": [
+      "заранее планировать активные прогулки и регулярную нагрузку",
+      "лучше всего чувствует себя при доступе к пространству и регулярной активности"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.69,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "template breed baseline",
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_01.avif",
+  "galleryImages": [
+    "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_01.avif",
+    "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_01.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_02.avif",
+    "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_02.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_03.avif"
+  ]
+}

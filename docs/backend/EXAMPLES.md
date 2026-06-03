@@ -21,8 +21,11 @@
 - [breed.chihuahua.json](./examples/breed.chihuahua.json)
 - [breed.maltese.json](./examples/breed.maltese.json)
 - [breed.pug.json](./examples/breed.pug.json)
+- [breed.yorkshire_terrier.json](./examples/breed.yorkshire_terrier.json)
 - [breed.jack_russell_terrier.json](./examples/breed.jack_russell_terrier.json)
 - [breed.english_cocker_spaniel.json](./examples/breed.english_cocker_spaniel.json)
+- [breed.american_cocker_spaniel.json](./examples/breed.american_cocker_spaniel.json)
+- [breed.rottweiler.json](./examples/breed.rottweiler.json)
 - [breed.doberman.json](./examples/breed.doberman.json)
 - [catalog.v1.json](./examples/catalog.v1.json)
 
@@ -84,6 +87,8 @@
 - [ranking_case.low_shedding_small_family.json](./examples/ranking_case.low_shedding_small_family.json)
 - [ranking_case.tiny_apartment_budget.json](./examples/ranking_case.tiny_apartment_budget.json)
 - [ranking_case.active_family_house.json](./examples/ranking_case.active_family_house.json)
+- [ranking_case.active_grooming_spaniel.json](./examples/ranking_case.active_grooming_spaniel.json)
+- [ranking_case.large_guardian_house.json](./examples/ranking_case.large_guardian_house.json)
 
 Показывают:
 
@@ -92,3 +97,4 @@
 - acceptable top-3 group
 - relative ordering assertions for backend tests
 - comparator-sensitive scenario without false penalty for extra apartment fit
+- imported sporting and guardian branches covered by explicit ranking scenarios

@@ -58,6 +58,11 @@ python3 tool/backend_specs/generate_import_candidates.py
 - `english_cocker_spaniel`
 - `doberman`
 
+Вторая волна уже поднята в канонический каталог:
+- `yorkshire_terrier`
+- `american_cocker_spaniel`
+- `rottweiler`
+
 Финальные `breed.*.json` для них собраны semi-assisted поверх:
 - template breed fixture
 - `pets_json`

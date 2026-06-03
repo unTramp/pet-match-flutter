@@ -1,0 +1,82 @@
+{
+  "breedId": "yorkshire_terrier",
+  "petType": "dog",
+  "name": "Yorkshire Terrier",
+  "source": {
+    "origin": "pets_json+normalized_pets",
+    "breedCode": "yorkshire-terrier",
+    "breedName": "Йоркширский терьер",
+    "petTypeRaw": "собаку",
+    "normalizedIdentity": {
+      "id": 329,
+      "code": "yorkshire-terrier",
+      "name_ru": "Йоркширский терьер",
+      "name_en": null,
+      "pet_type": "dog"
+    }
+  },
+  "mediaDraft": {
+    "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_01.avif",
+    "galleryImages": [
+      "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_01.avif",
+      "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_01.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_02.avif",
+      "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_02.jpg",
+      "https://app-api.dev.pet-match.app/media/breeds/yorkshire-terrier/image_03.avif"
+    ]
+  },
+  "contentDraft": {
+    "summaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для активного образа жизни"
+    ],
+    "watchouts": [
+      "требует ежедневного ухода за шерстью",
+      "нуждается в занятиях, обучении и ментальной нагрузке",
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "energyLevel": "high",
+    "activityLevel": "low",
+    "mentalStimulation": "high",
+    "groomingFrequency": "daily",
+    "apartmentFriendly": true,
+    "spaceRequirement": "apartment",
+    "yardPreferred": false,
+    "goodWithDogs": null,
+    "goodWithPets": null,
+    "physicalActivityText": "До 30 минут в день.",
+    "coatNote": "Каждый день.",
+    "monthlyCostRangeGbp": {
+      "min": 91,
+      "max": 232
+    },
+    "requirementsText": "Уход за шерстью: Каждый день.\nФизическая активность: До 30 минут в день.\nМентальная нагрузка: Нужны регулярные занятия, обучение или задачи на сообразительность.",
+    "suitableForText": "Подходит владельцам, которые ищут активного и энергичного питомца. Может комфортно жить в квартире и обычно не требует много пространства.",
+    "peculiaritiesText": "У этой породы высокий уровень энергии, и ей обычно нужны регулярные активности и вовлечение.",
+    "expensesText": "Стоимость покупки питомца:\n- Щенок: £650-£2300\n\nСтартовые расходы:\n- Первичная вакцинация: £70-£120\n- Чипирование: £20-£30\n- Кастрация / стерилизация: £150-£450\n- Лежанка и клетка: £60-£200\n- Ошейник, поводок, шлейка: £30-£80\n- Миски для еды и воды: £15-£40\n- Первичный запас корма: £20-£60\n- Игрушки и лакомства: £30-£70\n- Пелёнки для щенков: £10-£25\n- Итого: от £405 до £1075\n\nПостоянные расходы в месяц:\n- Корм: £30\n- Страховка для питомца: £15-£80\n- Обработка от блох, клещей и глистов: £10-£25\n- Груминг: £5\n- Занятия с кинологом / дрессировка: £10-£40\n- Игрушки и лакомства: £10-£30\n- Пакеты для уборки за собакой: £3-£7\n- Ежегодный ветеринарный осмотр: £8-£15\n- Итого в месяц: от £91 до £232",
+    "matchingTags": [
+      "active",
+      "apartment_friendly",
+      "daily_grooming"
+    ]
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.66,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

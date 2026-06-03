@@ -1,0 +1,49 @@
+{
+  "fixtureId": "large_guardian_house",
+  "description": "Пользователь живет в доме, ищет крупную, очень обучаемую и требовательную собаку с высокой активностью и готов к дорогому содержанию.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [5],
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 2,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 5,
+    "noiseLevel": 3,
+    "trainability": 5,
+    "temperamentCalm": 4,
+    "priorities": ["active_companion", "trainable", "calm_temperament"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "rottweiler",
+    "topMatchPercentRange": {
+      "min": 91,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "rottweiler",
+      "doberman",
+      "german_shepherd",
+      "australian_shepherd"
+    ],
+    "mustRankAbove": [
+      { "higher": "rottweiler", "lower": "doberman" },
+      { "higher": "rottweiler", "lower": "labrador_retriever" }
+    ],
+    "notes": [
+      "Rottweiler должен выигрывать в house/guardian кейсе, где пользователь явно готов к крупной, дорогой и дисциплинарно сложной собаке.",
+      "Фикстура проверяет, что large guardian branch реально участвует в матчинге после второго import batch."
+    ]
+  }
+}

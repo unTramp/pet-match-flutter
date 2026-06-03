@@ -1,0 +1,64 @@
+{
+  "breedId": "american_cocker_spaniel",
+  "petType": "dog",
+  "name": "American Cocker Spaniel",
+  "aliases": [
+    "American Cocker"
+  ],
+  "group": "sporting",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 5,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "strengths": [
+      "подходит для квартиры",
+      "подходит для активного образа жизни",
+      "обычно хорошо ладит с другими собаками"
+    ],
+    "watchouts": [
+      "требует ежедневного ухода за шерстью",
+      "нуждается в регулярной ментальной стимуляции",
+      "не подойдет для пассивного ритма жизни"
+    ],
+    "adaptationTips": [
+      "заранее планировать активные прогулки и регулярную нагрузку",
+      "закладывать время и бюджет на регулярный груминг"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.69,
+    "sourceCount": 3,
+    "sourceNotes": [
+      "template breed baseline",
+      "pets_json raw source",
+      "normalized_pets structured hints"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": "https://app-api.dev.pet-match.app/media/breeds/spaniel-american-cocker/image_01.jpg",
+  "galleryImages": [
+    "https://app-api.dev.pet-match.app/media/breeds/spaniel-american-cocker/image_01.jpg",
+    "https://app-api.dev.pet-match.app/media/breeds/spaniel-american-cocker/image_02.jpg"
+  ]
+}

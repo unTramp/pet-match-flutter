@@ -181,8 +181,11 @@ breed entities в первом пакете:
 Если хотим не 8, а 5 пород, лучший набор:
 - `maltese`
 - `pug`
+- `yorkshire_terrier`
 - `jack_russell_terrier`
 - `english_cocker_spaniel`
+- `american_cocker_spaniel`
+- `rottweiler`
 - `doberman`
 
 Это даёт лучший баланс:

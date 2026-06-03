@@ -55,7 +55,7 @@
 - directional comparators for one-sided fit fields
 - compatibility bridge-view on top of internal `topMatch/alternatives` result shape
 - contradictory questionnaire answers degrade confidence via `profileDiagnostics`
-- current dog catalog: `23` breeds, including the first semi-assisted import wave from `pets_json`
+- current dog catalog: `26` breeds, including two semi-assisted import waves from `pets_json`
 - AI only for offline breed enrichment and text generation
 - config-driven questionnaire, mapping and scoring
 
@@ -89,6 +89,12 @@ HOME=/private/tmp DART_SUPPRESS_ANALYTICS=true dart run tool/backend_specs/valid
 
 ```bash
 python3 tool/backend_specs/generate_import_candidates.py
+```
+
+Собрать финальные `breed.*.json` из candidate snapshot и template breed baseline:
+
+```bash
+python3 tool/backend_specs/generate_phase1_breed_fixtures.py --manifest docs/backend/import_candidates/phase2_manifest.json
 ```
 
 Проверить questionnaire и answer mapping:

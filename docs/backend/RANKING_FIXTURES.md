@@ -50,6 +50,8 @@ Ranking fixtures нужны, чтобы проверять не только в�
 - [ranking_case.low_shedding_small_family.json](./examples/ranking_case.low_shedding_small_family.json)
 - [ranking_case.tiny_apartment_budget.json](./examples/ranking_case.tiny_apartment_budget.json)
 - [ranking_case.active_family_house.json](./examples/ranking_case.active_family_house.json)
+- [ranking_case.active_grooming_spaniel.json](./examples/ranking_case.active_grooming_spaniel.json)
+- [ranking_case.large_guardian_house.json](./examples/ranking_case.large_guardian_house.json)
 
 ## Executable reference spec
 

@@ -1,0 +1,49 @@
+{
+  "fixtureId": "active_grooming_spaniel",
+  "description": "Пользователь ищет активную семейную собаку среднего размера, готов к ежедневному грумингу и хочет хорошую обучаемость и дружелюбие к другим собакам.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [3],
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 5,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 3,
+    "priorities": ["active_companion", "good_with_children", "trainable"],
+    "criticalContext": {
+      "hasYoungChildren": true,
+      "hasOtherPets": true,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "american_cocker_spaniel",
+    "topMatchPercentRange": {
+      "min": 91,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "american_cocker_spaniel",
+      "english_cocker_spaniel",
+      "miniature_poodle",
+      "whippet"
+    ],
+    "mustRankAbove": [
+      { "higher": "american_cocker_spaniel", "lower": "english_cocker_spaniel" },
+      { "higher": "american_cocker_spaniel", "lower": "golden_retriever" }
+    ],
+    "notes": [
+      "American Cocker Spaniel должен выигрывать у English Cocker за счет более точного совпадения по активности и cost/grooming профилю в этом synthetic-case.",
+      "Кейс нужен, чтобы новый sporting branch не жил в каталоге без ranking coverage."
+    ]
+  }
+}

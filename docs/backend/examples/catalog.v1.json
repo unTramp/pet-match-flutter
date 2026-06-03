@@ -22,8 +22,11 @@
     { "breedId": "chihuahua", "file": "breed.chihuahua.json" },
     { "breedId": "maltese", "file": "breed.maltese.json" },
     { "breedId": "pug", "file": "breed.pug.json" },
+    { "breedId": "yorkshire_terrier", "file": "breed.yorkshire_terrier.json" },
     { "breedId": "jack_russell_terrier", "file": "breed.jack_russell_terrier.json" },
     { "breedId": "english_cocker_spaniel", "file": "breed.english_cocker_spaniel.json" },
+    { "breedId": "american_cocker_spaniel", "file": "breed.american_cocker_spaniel.json" },
+    { "breedId": "rottweiler", "file": "breed.rottweiler.json" },
     { "breedId": "doberman", "file": "breed.doberman.json" }
   ]
 }
