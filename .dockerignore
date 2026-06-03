@@ -1,0 +1,15 @@
+.git
+.gitignore
+.dart_tool
+.idea
+.vscode
+.flutter-plugins
+.flutter-plugins-dependencies
+.build
+build
+coverage
+docs/ai
+outputs
+ios/Flutter/ephemeral
+android/.gradle
+android/app/build
