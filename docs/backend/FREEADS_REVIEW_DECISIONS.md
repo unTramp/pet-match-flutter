@@ -89,6 +89,48 @@
   source
 - confidence и provenance повышены
 
+### `rottweiler`
+
+Решение:
+- numeric attributes не менять
+- content переписать под более честный large-working profile
+- provenance усилить через `freeads browser capture review`
+
+Почему:
+- `Freeads` хорошо подтверждает already-strong canonical baseline:
+  - `exerciseNeedsDraft = 5`
+  - `trainabilityDraft = 5`
+  - `maintenanceCostDraft = 5`
+- все numeric отличия находятся в зоне `near_match`, а не в зоне явного
+  пересмотра модели
+- зато current content был слишком generic и даже внутренне спорным:
+  `умеренный уровень активности` плохо сочетается с `exerciseNeeds = 5`
+
+Итог:
+- engine math оставлена стабильной
+- result/details copy стала заметно правдоподобнее
+- confidence и provenance повышены
+
+### `american_cocker_spaniel`
+
+Решение:
+- `sheddingLevel` повышен `3 -> 5`
+- content переписать под более честный energetic / grooming-heavy spaniel profile
+- provenance усилить через `freeads browser capture review`
+
+Почему:
+- browser-captured `Very heavy` для shedding выглядит достаточно сильным и
+  practically important signal
+- это хорошо совпадает с тем, что порода уже и так описана как grooming-heavy,
+  но раньше в canonical profile линька была недооценена
+- `aloneToleranceDraft = 4` и `maintenanceCostDraft = 3` пока не считаем
+  достаточными основаниями для numeric rewrite
+
+Итог:
+- один бытово значимый numeric field уточнён
+- spaniel branch стала лучше разведена по content/result UX
+- confidence и provenance повышены
+
 ## Current policy
 
 На текущем этапе `Freeads` используется так:

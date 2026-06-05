@@ -3,7 +3,9 @@
   "petType": "dog",
   "name": "American Cocker Spaniel",
   "aliases": [
-    "American Cocker"
+    "American Cocker",
+    "Cocker",
+    "Merry Cocker"
   ],
   "group": "sporting",
   "attributes": {
@@ -14,7 +16,7 @@
     "goodWithChildren": 4,
     "goodWithOtherPets": 4,
     "groomingNeeds": 5,
-    "sheddingLevel": 3,
+    "sheddingLevel": 5,
     "beginnerFriendly": 3,
     "maintenanceCost": 5,
     "noiseLevel": 3,
@@ -29,29 +31,30 @@
     "isSuitableForFirstTimeOwners": false
   },
   "content": {
-    "summaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "summaryShort": "Компактный, но очень энергичный spaniel-companion, которому нужны регулярные активности, вовлечённый владелец и готовность к заметной линьке и грумингу.",
     "strengths": [
       "подходит для квартиры",
       "подходит для активного образа жизни",
-      "обычно хорошо ладит с другими собаками"
+      "обычно хорошо поддается обучению"
     ],
     "watchouts": [
-      "требует ежедневного ухода за шерстью",
-      "нуждается в регулярной ментальной стимуляции",
+      "требует регулярного груминга и заметно линяет",
+      "лучше чувствует себя с детьми постарше и при уважительном обращении",
       "не подойдет для пассивного ритма жизни"
     ],
     "adaptationTips": [
-      "заранее планировать активные прогулки и регулярную нагрузку",
-      "закладывать время и бюджет на регулярный груминг"
+      "заранее планировать активные прогулки, короткие занятия и ментальную нагрузку",
+      "сразу закладывать время и бюджет на регулярный груминг и уход за шерстью"
     ]
   },
   "quality": {
-    "confidenceScore": 0.69,
-    "sourceCount": 3,
+    "confidenceScore": 0.74,
+    "sourceCount": 4,
     "sourceNotes": [
       "template breed baseline",
       "pets_json raw source",
-      "normalized_pets structured hints"
+      "normalized_pets structured hints",
+      "freeads browser capture review"
     ],
     "needsReview": true,
     "version": 1
