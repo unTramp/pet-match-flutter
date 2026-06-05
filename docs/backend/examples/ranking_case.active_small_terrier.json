@@ -1,0 +1,50 @@
+{
+  "fixtureId": "active_small_terrier",
+  "description": "Пользователь живет в квартире, но хочет очень активную, шумноватую и хорошо обучаемую маленькую собаку без детей и других питомцев.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [1],
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 2,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 2,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 5,
+    "temperamentCalm": 2,
+    "priorities": ["active_companion", "trainable", "small_size"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": true
+    }
+  },
+  "expected": {
+    "topBreedId": "jack_russell_terrier",
+    "topMatchPercentRange": {
+      "min": 92,
+      "max": 95
+    },
+    "acceptableTop3": [
+      "jack_russell_terrier",
+      "labrador_retriever",
+      "boxer",
+      "golden_retriever",
+      "basenji"
+    ],
+    "mustRankAbove": [
+      { "higher": "jack_russell_terrier", "lower": "basenji" },
+      { "higher": "jack_russell_terrier", "lower": "miniature_poodle" }
+    ],
+    "notes": [
+      "Jack Russell Terrier должен выигрывать в кейсе, где пользователь явно хочет маленькую, очень активную и обучаемую terrier-like собаку.",
+      "Фикстура страхует после Freeads review, что high-drive small terrier branch не растворяется среди toy companion и generic active breeds."
+    ]
+  }
+}

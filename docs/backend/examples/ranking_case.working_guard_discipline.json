@@ -1,0 +1,49 @@
+{
+  "fixtureId": "working_guard_discipline",
+  "description": "Пользователь живет в доме и ищет крупную рабочую собаку с максимальной обучаемостью, высокой активностью и дисциплинарным профилем без ориентации на детей и других питомцев.",
+  "questionnaireVersion": 1,
+  "scoringVersion": 2,
+  "inputUserProfile": {
+    "petType": "dog",
+    "sizePreference": [5],
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 3,
+    "goodWithChildren": 2,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 3,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 5,
+    "noiseLevel": 3,
+    "trainability": 5,
+    "temperamentCalm": 2,
+    "priorities": ["active_companion", "trainable", "calm_temperament"],
+    "criticalContext": {
+      "hasYoungChildren": false,
+      "hasOtherPets": false,
+      "livesInApartment": false
+    }
+  },
+  "expected": {
+    "topBreedId": "doberman",
+    "topMatchPercentRange": {
+      "min": 95,
+      "max": 96
+    },
+    "acceptableTop3": [
+      "doberman",
+      "rottweiler",
+      "german_shepherd",
+      "australian_shepherd"
+    ],
+    "mustRankAbove": [
+      { "higher": "doberman", "lower": "rottweiler" },
+      { "higher": "doberman", "lower": "german_shepherd" }
+    ],
+    "notes": [
+      "Doberman должен выигрывать у Rottweiler в более дисциплинарном working-case, где важнее dry trainable profile и чуть ниже calmness.",
+      "Фикстура нужна, чтобы после Freeads review guarding branch различал не только large house fit, но и рабочий temperamental профиль."
+    ]
+  }
+}
