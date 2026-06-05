@@ -1,0 +1,156 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "This manifest tracks the second Freeads expansion batch after the browser-captured pilot.",
+    "The goal is breadth expansion across compact companion, small utility, bully/terrier and large spitz/family segments.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "papillon",
+      "petType": "dog",
+      "name": "Papillon",
+      "freeadsBreedName": "Papillon",
+      "freeadsSlug": "papillon",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/papillon",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "pomeranian",
+      "petType": "dog",
+      "name": "Pomeranian",
+      "freeadsBreedName": "Pomeranian",
+      "freeadsSlug": "pomeranian",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pomeranian",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "west_highland_white_terrier",
+      "petType": "dog",
+      "name": "West Highland White Terrier",
+      "freeadsBreedName": "West Highland White Terrier",
+      "freeadsSlug": "west-highland-white-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/west-highland-white-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "miniature_schnauzer",
+      "petType": "dog",
+      "name": "Miniature Schnauzer",
+      "freeadsBreedName": "Miniature Schnauzer",
+      "freeadsSlug": "miniature-schnauzer",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/miniature-schnauzer",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "boston_terrier",
+      "petType": "dog",
+      "name": "Boston Terrier",
+      "freeadsBreedName": "Boston Terrier",
+      "freeadsSlug": "boston-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/boston-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_b",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "staffordshire_bull_terrier",
+      "petType": "dog",
+      "name": "Staffordshire Bull Terrier",
+      "freeadsBreedName": "Staffordshire Bull Terrier",
+      "freeadsSlug": "staffordshire-bull-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/staffordshire-bull-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_b",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "akita",
+      "petType": "dog",
+      "name": "Akita",
+      "freeadsBreedName": "Akita",
+      "freeadsSlug": "akita",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/akita",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_c",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "bernese_mountain_dog",
+      "petType": "dog",
+      "name": "Bernese Mountain Dog",
+      "freeadsBreedName": "Bernese Mountain Dog",
+      "freeadsSlug": "bernese-mountain-dog",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bernese-mountain-dog",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase2_c",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

@@ -53,6 +53,7 @@ python3 tool/backend_specs/generate_import_candidates.py
 
 Для нового основного source теперь есть отдельный foundation layer:
 - [freeads_phase1_manifest.v1.json](./freeads_phase1_manifest.v1.json)
+- [freeads_phase2_manifest.v1.json](./freeads_phase2_manifest.v1.json)
 - [freeads_raw/README.md](./freeads_raw/README.md)
 - [freeads_review_pack/README.md](./freeads_review_pack/README.md)
 
@@ -88,6 +89,16 @@ python3 tool/backend_specs/generate_freeads_review_pack.py
 - `yorkshire_terrier`
 - `american_cocker_spaniel`
 - `rottweiler`
+
+`Freeads` pilot review wave уже тоже полностью закрыта:
+- `maltese`
+- `pug`
+- `english_cocker_spaniel`
+- `american_cocker_spaniel`
+- `rottweiler`
+- `yorkshire_terrier`
+- `jack_russell_terrier`
+- `doberman`
 
 Финальные `breed.*.json` для них собраны semi-assisted поверх:
 - template breed fixture

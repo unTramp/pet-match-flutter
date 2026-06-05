@@ -141,7 +141,7 @@
       "freeadsBreedName": "Dobermann",
       "freeadsSlug": "dobermann",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
-      "urlStatus": "needs_browser_capture",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_c",
       "reviewRequiredFields": [

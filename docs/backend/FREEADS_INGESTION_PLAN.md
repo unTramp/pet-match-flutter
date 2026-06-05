@@ -61,15 +61,18 @@ Success criteria:
 - сначала те породы, где текущий контент слабый или placeholder-like
 
 Текущее состояние:
-- первый reviewed pass уже выполнен для:
+- pilot batch полностью browser-captured: `8/8`
+- reviewed passes уже выполнены для всех пород из pilot batch:
   - `maltese`
   - `pug`
   - `english_cocker_spaniel`
-- browser-assisted capture уже закрыл `7/8` pilot breeds
-- следующий capture cycle нужен только для:
+  - `american_cocker_spaniel`
+  - `rottweiler`
+  - `yorkshire_terrier`
+  - `jack_russell_terrier`
   - `doberman`
-- следующий product cycle уже должен идти в reviewed passes по browser-captured
-  породам
+- текущий следующий цикл уже не про recovery пилота, а про `phase 2` breadth
+  expansion через новый manifest
 
 Success criteria:
 - у существующего каталога становится единообразнее provenance
@@ -82,6 +85,7 @@ pipeline.
 
 Практический вход в следующий цикл:
 - [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md)
+- [import_candidates/freeads_phase2_manifest.v1.json](./import_candidates/freeads_phase2_manifest.v1.json)
 
 ## Guardrails
 

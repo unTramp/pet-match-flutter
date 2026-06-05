@@ -1,29 +1,39 @@
 # Freeads Capture Queue
 
-Этот документ фиксирует следующий practical backlog после browser-capture pass
-по всему pilot batch.
+Этот документ фиксирует следующий practical backlog после полного
+browser-capture pass по pilot batch.
 
 Сейчас `Freeads` pilot batch делится так:
 - `8` пород уже имеют `verified_via_browser_capture`
+- reviewed pass по ним завершён
 
 ## Capture status
 
-Capture phase для pilot batch закрыта.
+Capture и review фаза для pilot batch закрыта.
 
-## Next review queue
+## Next capture queue: Phase 2 breadth expansion
 
-Следующим циклом уже имеет смысл идти не в capture, а в review:
+Следующим циклом имеет смысл идти в новый manifest, а не продолжать пилот:
 
-1. `rottweiler`
-2. `american_cocker_spaniel`
-3. `yorkshire_terrier`
-4. `jack_russell_terrier`
-5. `doberman`
+1. `papillon`
+2. `pomeranian`
+3. `west_highland_white_terrier`
+4. `miniature_schnauzer`
+5. `boston_terrier`
+6. `staffordshire_bull_terrier`
+7. `akita`
+8. `bernese_mountain_dog`
 
 Почему именно так:
-- `rottweiler` и `american_cocker_spaniel` сейчас дают наиболее сильный новый
-  signal для канонического каталога
-- `yorkshire_terrier` и `jack_russell_terrier` больше полезны как точная
-  дифференциация small-dog ветки, чем как срочный engine fix
-- `doberman` уже captured, но reviewed pass по нему разумно делать после
-  `rottweiler`, чтобы сначала закрепить более важную large-working ветку
+- `papillon` и `pomeranian` добавляют toy-companion branch, которого сейчас
+  мало в catalog breadth
+- `west_highland_white_terrier` и `miniature_schnauzer` дают small utility /
+  lower-shedding contrast против уже импортированных companion breeds
+- `boston_terrier` и `staffordshire_bull_terrier` расширяют compact
+  bully/terrier сегмент без дублирования текущих пород
+- `akita` и `bernese_mountain_dog` закрывают large spitz / gentle giant
+  ветки, которых сейчас нет в каноническом каталоге
+
+Практический вход:
+- [import_candidates/freeads_phase2_manifest.v1.json](./import_candidates/freeads_phase2_manifest.v1.json)
+- [FREEADS_BROWSER_CAPTURE_PROTOCOL.md](./FREEADS_BROWSER_CAPTURE_PROTOCOL.md)

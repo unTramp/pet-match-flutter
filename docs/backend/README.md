@@ -21,6 +21,7 @@
 - [FREEADS_REVIEW_DECISIONS.md](./FREEADS_REVIEW_DECISIONS.md) — первые reviewed решения по породам из `Freeads` pilot batch.
 - [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md) — очередь на следующий цикл richer source capture.
 - [FREEADS_BROWSER_CAPTURE_PROTOCOL.md](./FREEADS_BROWSER_CAPTURE_PROTOCOL.md) — безопасный протокол для ручного browser-assisted capture.
+- [import_candidates/freeads_phase2_manifest.v1.json](./import_candidates/freeads_phase2_manifest.v1.json) — следующий expansion batch после завершённого pilot cycle.
 - [config/answer_to_profile_mapping.v1.json](./config/answer_to_profile_mapping.v1.json) — канонический mapping `answer -> user_profile`.
 - [config/scoring_config.v2.json](./config/scoring_config.v2.json) — versioned scoring config для текущего engine baseline.
 - [../../prisma/schema.prisma](../../prisma/schema.prisma) — Prisma-черновик модели данных.
