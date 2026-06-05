@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
-    "urlStatus": "index_verified_only",
+    "urlStatus": "needs_browser_capture",
     "freeadsBreedName": "Dobermann",
     "freeadsSlug": "dobermann",
     "rawIdentity": {
@@ -62,6 +62,7 @@
     ],
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch was intentionally skipped because remaining Freeads breed pages consistently fall into Cloudflare-protected browser-capture lane.",
       "Search results currently surface listing pages rather than the breed detail page snippet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],

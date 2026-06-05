@@ -103,6 +103,10 @@ pass.
 - лучшее отличие от `maltese`
 - более честный grooming-heavy content
 
+Текущее ограничение:
+- breed URL существует, но direct fetch сейчас режется Cloudflare challenge
+- см. [capture.yorkshire_terrier.md](./import_candidates/freeads_raw/capture.yorkshire_terrier.md)
+
 ### 5. `doberman`
 
 Почему средний приоритет:
@@ -122,6 +126,11 @@ pass.
 Ожидаемая польза:
 - лучшее подтверждение demanding working-dog profile
 - более сильный provenance слой для breed detail
+
+Текущее ограничение:
+- для remaining Freeads breed pages direct fetch больше не проверяется
+  поштучно и считается частью browser-capture lane
+- см. [capture.doberman.md](./import_candidates/freeads_raw/capture.doberman.md)
 
 ## Recommended order
 

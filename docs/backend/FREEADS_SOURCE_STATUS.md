@@ -18,11 +18,11 @@
 | `maltese` | `/dog-breeds/maltese` | `search_snippet_complete` | есть summary + trait block |
 | `pug` | `/dog-breeds/pug` | `search_snippet_complete` | есть summary + facts + trait block |
 | `english_cocker_spaniel` | `/dog-breeds/cocker-spaniel` | `search_snippet_complete` | есть summary + aliases + health tests + trait block |
-| `yorkshire_terrier` | `/dog-breeds/yorkshire-terrier` | `index_verified_only` | URL подтверждён через A-Z index |
+| `yorkshire_terrier` | `/dog-breeds/yorkshire-terrier` | `needs_browser_capture` | URL подтверждён, direct fetch упирается в Cloudflare challenge |
 | `jack_russell_terrier` | `/dog-breeds/jack-russell` | `needs_browser_capture` | URL подтверждён, direct fetch упирается в Cloudflare challenge |
 | `american_cocker_spaniel` | `/dog-breeds/american-cocker-spaniel` | `needs_browser_capture` | URL подтверждён, direct fetch упирается в Cloudflare challenge |
 | `rottweiler` | `/dog-breeds/rottweiler` | `needs_browser_capture` | URL подтверждён, direct fetch упирается в Cloudflare challenge |
-| `doberman` | `/dog-breeds/dobermann` | `index_verified_only` | URL подтверждён через A-Z index |
+| `doberman` | `/dog-breeds/dobermann` | `needs_browser_capture` | URL подтверждён, remaining breed pages переведены в browser-capture lane |
 
 ## Implication
 

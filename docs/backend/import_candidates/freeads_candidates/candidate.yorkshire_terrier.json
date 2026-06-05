@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
-    "urlStatus": "index_verified_only",
+    "urlStatus": "needs_browser_capture",
     "freeadsBreedName": "Yorkshire Terrier",
     "freeadsSlug": "yorkshire-terrier",
     "rawIdentity": {
@@ -62,6 +62,7 @@
     ],
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
       "Structured breed facts were not available from search snippets yet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],

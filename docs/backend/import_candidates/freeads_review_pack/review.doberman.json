@@ -7,7 +7,7 @@
     "canonicalFile": "docs/backend/examples/breed.doberman.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.doberman.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
-    "freeadsUrlStatus": "index_verified_only"
+    "freeadsUrlStatus": "needs_browser_capture"
   },
   "groupComparison": {
     "canonical": "working",
@@ -107,6 +107,7 @@
     "freeadsNeedsReview": true,
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch was intentionally skipped because remaining Freeads breed pages consistently fall into Cloudflare-protected browser-capture lane.",
       "Search results currently surface listing pages rather than the breed detail page snippet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],
