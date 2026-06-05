@@ -176,6 +176,29 @@
 - result/details copy стала точнее для active-small-dog ветки
 - confidence и provenance повышены
 
+### `doberman`
+
+Решение:
+- numeric attributes не менять
+- content переписать под более честный demanding-working profile
+- provenance усилить через `freeads browser capture review`
+
+Почему:
+- `Freeads` хорошо подтверждает сильные стороны current baseline:
+  - `exerciseNeedsDraft = 5`
+  - `trainabilityDraft = 5`
+  - `group = working`
+- почти все numeric отличия находятся в зоне `near_match`
+- единственный более заметный drift по `maintenanceCost` не выглядит
+  достаточным основанием для снижения canonical cost profile
+- при этом current content был слишком generic и недооценивал семейную
+  адаптивность при ответственном handling
+
+Итог:
+- engine math оставлена стабильной
+- result/details copy стала правдоподобнее
+- confidence и provenance повышены
+
 ## Current policy
 
 На текущем этапе `Freeads` используется так:
