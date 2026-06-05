@@ -9,7 +9,7 @@ import '../../backend/src/infra/persistence/postgres/postgres_persistence_bundle
 void main() {
   group('persistence bootstrap', () {
     test('builds file persistence bundle by default', () {
-      final config = RuntimeConfig(
+      const config = RuntimeConfig(
         host: '127.0.0.1',
         port: 8080,
         environment: RuntimeEnvironment.development,
@@ -36,7 +36,7 @@ void main() {
     test(
       'builds postgres persistence bundle when database url is configured',
       () {
-        final config = RuntimeConfig(
+        const config = RuntimeConfig(
           host: '127.0.0.1',
           port: 8080,
           environment: RuntimeEnvironment.production,
@@ -62,7 +62,7 @@ void main() {
     );
 
     test('fails fast for postgres when database url is missing', () {
-      final config = RuntimeConfig(
+      const config = RuntimeConfig(
         host: '127.0.0.1',
         port: 8080,
         environment: RuntimeEnvironment.production,

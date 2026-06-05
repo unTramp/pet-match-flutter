@@ -45,7 +45,7 @@ class CompatibilitySuggestion extends Equatable {
     this.imageUrl,
   });
 
-  final int breedId;
+  final String breedId;
   final String breedName;
   final double? score;
   final CompatibilityRisk risk;
@@ -82,7 +82,7 @@ class Compatibility extends Equatable {
   });
 
   final CompatibilityStatus status;
-  final int? breedId;
+  final String? breedId;
   final String? breedName;
   final String? imageUrl;
   final double? score;

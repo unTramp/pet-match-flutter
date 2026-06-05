@@ -19,7 +19,6 @@ import '../../domain/entities/session.dart';
 import '../../domain/usecases/get_dynamic_options.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
-import '../widgets/top_brand_bar.dart';
 import 'cubit/questionnaire_cubit.dart';
 import 'cubit/questionnaire_state.dart';
 import 'widgets/analyzing_view.dart';
@@ -116,7 +115,6 @@ class _QuestionnaireView extends StatelessWidget {
             body: SafeArea(
               child: Column(
                 children: [
-                  TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
                   Expanded(
                     child: switch (state) {
                       QuestionnaireInitial() || QuestionnaireLoading() =>

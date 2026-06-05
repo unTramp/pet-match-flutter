@@ -12,6 +12,7 @@ class AppAssets {
   // Icons
   static const String brandIcon = 'assets/icons/cathead.svg';
   static const String brandLogo = 'assets/icons/brand_logo.png';
+  static const String topBrandIcon = brandLogo;
   static const String pawFilled = 'assets/icons/paw_filled.png';
   static const String pawNotFilled = 'assets/icons/paw_not_filled.png';
   static const String stateAnalyzingIcon = 'assets/icons/Analyzing.png';

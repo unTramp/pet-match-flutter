@@ -9,7 +9,7 @@ class BreedDetailCubit extends Cubit<BreedDetailState> {
 
   final GetBreedDetail _getBreedDetail;
 
-  Future<void> load(int breedId) async {
+  Future<void> load(String breedId) async {
     emit(const BreedDetailLoading());
     try {
       final detail = await _getBreedDetail(breedId);

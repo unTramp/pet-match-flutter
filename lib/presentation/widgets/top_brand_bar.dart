@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/spacing.dart';
 import '../welcome/widgets/app_logo.dart';
-import '../welcome/widgets/locale_badge.dart';
 
 class TopBrandBar extends StatelessWidget {
   const TopBrandBar({
     super.key,
     this.onLogoTap,
-    this.showLocaleBadge = true,
     this.padding = const EdgeInsets.fromLTRB(
       AppSpacing.xxxxl,
       AppSpacing.xl,
@@ -19,7 +17,6 @@ class TopBrandBar extends StatelessWidget {
   });
 
   final VoidCallback? onLogoTap;
-  final bool showLocaleBadge;
   final EdgeInsetsGeometry padding;
 
   @override
@@ -42,7 +39,6 @@ class TopBrandBar extends StatelessWidget {
                 child: logo,
               ),
             ),
-          if (showLocaleBadge) const LocaleBadge(),
         ],
       ),
     );

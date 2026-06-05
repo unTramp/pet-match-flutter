@@ -6,7 +6,7 @@ import '../../domain/entities/compatibility.dart';
 /// зависимостей — Dart tree-shaking уберёт.
 const Compatibility kResultPreviewCompatibility = Compatibility(
   status: CompatibilityStatus.ready,
-  breedId: 501,
+  breedId: 'labrador_retriever',
   breedName: 'Лабрадор-ретривер',
   score: 0.92,
   risk: CompatibilityRisk.low,
@@ -26,21 +26,21 @@ const Compatibility kResultPreviewCompatibility = Compatibility(
   ],
   suggestions: [
     CompatibilitySuggestion(
-      breedId: 502,
+      breedId: 'golden_retriever',
       breedName: 'Голден-ретривер',
       score: 0.88,
       risk: CompatibilityRisk.low,
       summary: 'Очень близкий по характеру к лабрадору, чуть спокойнее.',
     ),
     CompatibilitySuggestion(
-      breedId: 503,
+      breedId: 'border_collie',
       breedName: 'Бордер-колли',
       score: 0.81,
       risk: CompatibilityRisk.medium,
       summary: 'Очень умная и активная порода. Требует много занятости.',
     ),
     CompatibilitySuggestion(
-      breedId: 504,
+      breedId: 'samoyed',
       breedName: 'Самоед',
       score: 0.79,
       risk: CompatibilityRisk.medium,

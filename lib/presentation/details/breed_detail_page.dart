@@ -28,7 +28,7 @@ import 'cubit/breed_detail_state.dart';
 class BreedDetailPage extends StatelessWidget {
   const BreedDetailPage({super.key, required this.breedId, this.score});
 
-  final int breedId;
+  final String breedId;
 
   /// Опциональный match score (0..1), прокинутый с Result через extra.
   /// Если null — секция совпадения не рендерится.
@@ -46,7 +46,7 @@ class BreedDetailPage extends StatelessWidget {
 class _BreedDetailView extends StatelessWidget {
   const _BreedDetailView({required this.breedId, required this.score});
 
-  final int breedId;
+  final String breedId;
   final double? score;
 
   @override

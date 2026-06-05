@@ -1,6 +1,5 @@
 import '../../backend/src/domain/spec_json.dart';
 import '../../backend/src/domain/spec_models.dart';
-import '../../backend/src/domain/matcher.dart';
 
 export '../../backend/src/domain/spec_json.dart'
     show intList, intMap, loadJson, rankingFixturePaths, readPath, stringList;

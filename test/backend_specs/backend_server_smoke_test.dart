@@ -200,8 +200,9 @@ Map<String, dynamic> _groupedAnswersPayload(Map<String, dynamic> flatPayload) {
   final grouped = <String, List<String>>{};
   for (final raw in flatPayload['answers'] as List<dynamic>) {
     final answer = raw as Map<String, dynamic>;
-    grouped.putIfAbsent(answer['questionId'] as String, () => <String>[])
-      ..add(answer['optionId'] as String);
+    grouped
+        .putIfAbsent(answer['questionId'] as String, () => <String>[])
+        .add(answer['optionId'] as String);
   }
 
   return <String, dynamic>{

@@ -6,5 +6,5 @@ class GetBreedDetail {
 
   final BreedRepository _repository;
 
-  Future<BreedDetail> call(int breedId) => _repository.getBreedDetail(breedId);
+  Future<BreedDetail> call(String breedId) => _repository.getBreedDetail(breedId);
 }

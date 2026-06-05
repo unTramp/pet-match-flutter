@@ -11,4 +11,7 @@ class PrefsKeys {
   /// Сохранённый `user_id`, возвращённый бэком после `POST /start`.
   /// Используется для resume-вызовов `GET /session`.
   static const String sessionUserId = 'session_user_id';
+
+  /// Локально сохранённый draft questionnaire flow для нового PetWise backend.
+  static const String questionnaireDraft = 'questionnaire_draft';
 }

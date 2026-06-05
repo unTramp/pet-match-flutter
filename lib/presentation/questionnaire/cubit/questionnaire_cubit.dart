@@ -93,6 +93,11 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
       );
       return exclusive.contains(opt.code);
     });
+    final maxSelections = question.maxSelections;
+    if (maxSelections != null && current.length >= maxSelections) {
+      emit(s.copyWith(selectedOptionIds: current));
+      return;
+    }
     current.add(optionId);
     emit(s.copyWith(selectedOptionIds: current));
   }

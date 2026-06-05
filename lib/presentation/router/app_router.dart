@@ -98,7 +98,7 @@ GoRouter buildRouter() {
         path: AppRoutes.breedPattern,
         redirect: (_, state) {
           final raw = state.pathParameters['id'];
-          if (raw == null || int.tryParse(raw) == null) {
+          if (raw == null || raw.isEmpty) {
             return AppRoutes.welcome;
           }
           return null;
@@ -111,7 +111,7 @@ GoRouter buildRouter() {
           return _buildAppTransitionPage(
             key: state.pageKey,
             child: BreedDetailPage(
-              breedId: int.parse(state.pathParameters['id']!),
+              breedId: state.pathParameters['id']!,
               score: score,
             ),
           );

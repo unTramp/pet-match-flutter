@@ -1,14 +1,65 @@
 openapi: 3.1.0
 info:
-  title: PetWise Matching API
-  version: 0.1.0
+  title: PetWise Backend API
+  version: 1.0.0
   description: >
-    Draft backend contract for PetWise Matching V1.
+    Production-oriented OpenAPI specification for the PetWise backend.
+    The API serves a definition-driven questionnaire flow, deterministic breed
+    matching, persisted match results, breed details, and operational health
+    endpoints.
 servers:
-  - url: https://api.petwise.app
+  - url: https://petwise-api.65-109-135-215.sslip.io
+    description: Live Hetzner environment
+  - url: http://localhost:8080
+    description: Local development server
+tags:
+  - name: health
+    description: Operational liveness and readiness checks
+  - name: questionnaire
+    description: Questionnaire definition and profile-building endpoints
+  - name: matching
+    description: Breed ranking and persisted match results
+  - name: breeds
+    description: Breed catalog and breed detail payloads
 paths:
+  /health:
+    get:
+      tags: [health]
+      summary: Liveness probe
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is running
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: ok
+                service: petwise-backend
+                environment: production
+                uptimeSeconds: 9482
+  /ready:
+    get:
+      tags: [health]
+      summary: Readiness probe
+      operationId: getReadiness
+      responses:
+        '200':
+          description: Service is ready to serve traffic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+              example:
+                status: ready
+                service: petwise-backend
+                environment: production
+                questionnaireVersion: 1
+                scoringVersion: 2
   /questionnaire/definition:
     get:
+      tags: [questionnaire]
       summary: Get active questionnaire definition
       operationId: getQuestionnaireDefinition
       responses:
@@ -18,9 +69,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QuestionnaireDefinitionResponse'
+              example:
+                questionnaireVersion: 1
+                questions:
+                  - id: pet_type
+                    order: 1
+                    kind: single_choice
+                    required: true
+                    title: Какой питомец вас интересует?
+                    description: null
+                    maxSelections: null
+                    options:
+                      - id: dog
+                        label: Собака
+                      - id: cat
+                        label: Кошка
+                      - id: unknown
+                        label: Пока не знаю
   /questionnaire/profile:
     post:
-      summary: Build user profile from questionnaire answers
+      tags: [questionnaire]
+      summary: Build a user profile from questionnaire answers
       operationId: buildUserProfile
       requestBody:
         required: true
@@ -28,6 +97,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BuildProfileRequest'
+            example:
+              questionnaireVersion: 1
+              answers:
+                - questionId: pet_type
+                  selectedOptionIds: [dog]
+                - questionId: home_type
+                  selectedOptionIds: [apartment]
+                - questionId: priorities
+                  selectedOptionIds: [quiet, apartment_friendly]
       responses:
         '200':
           description: Built user profile
@@ -35,15 +113,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserProfileResponse'
+              example:
+                questionnaireVersion: 1
+                userProfile:
+                  petType: dog
+                  sizePreference: [2, 3]
+                  exerciseNeeds: 2
+                  apartmentSuitability: 5
+                  aloneTolerance: 3
+                  groomingNeeds: 1
+                  sheddingLevel: 2
+                  beginnerFriendly: 5
+                  maintenanceCost: 2
+                  noiseLevel: 1
+                  priorities: [quiet, apartment_friendly]
+                  criticalContext:
+                    livesInApartment: true
+                    hasYoungChildren: false
+                    hasOtherPets: false
         '400':
           description: Invalid questionnaire payload
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Invalid questionnaire answers
+                details:
+                  - Question priorities exceeds maxSelections=3
+                requestId: "1717498654123456"
+        '500':
+          description: Unexpected server-side failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /match/preview:
     post:
-      summary: Rank breeds and return result payload
+      tags: [matching]
+      summary: Rank breeds and build the result payload
       operationId: previewMatch
       requestBody:
         required: true
@@ -51,6 +159,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MatchPreviewRequest'
+            example:
+              questionnaireVersion: 1
+              userProfile:
+                petType: dog
+                sizePreference: [2, 3]
+                exerciseNeeds: 2
+                apartmentSuitability: 5
+                aloneTolerance: 3
+                groomingNeeds: 1
+                sheddingLevel: 2
+                beginnerFriendly: 5
+                maintenanceCost: 2
+                noiseLevel: 1
+                priorities: [quiet, apartment_friendly]
+                criticalContext:
+                  livesInApartment: true
+                  hasYoungChildren: false
+                  hasOtherPets: false
       responses:
         '200':
           description: Match preview result
@@ -58,20 +184,127 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MatchResult'
+              examples:
+                matchFound:
+                  summary: Standard successful match response
+                  value:
+                    resultId: match_1840fd2d9c1_4c1fa1e4721b33f1
+                    storedAt: '2026-06-04T10:15:30.000Z'
+                    questionnaireVersion: 1
+                    scoringVersion: 2
+                    userProfile:
+                      petType: dog
+                      sizePreference: [2, 3]
+                      exerciseNeeds: 2
+                      apartmentSuitability: 5
+                      aloneTolerance: 3
+                      priorities: [quiet, apartment_friendly]
+                    topMatch:
+                      breedId: whippet
+                      name: Whippet
+                      matchPercent: 91
+                      label: Идеальное совпадение
+                      summary: Спокойная дома, хорошо подходит для квартиры и не требует сложного ухода.
+                      warning: Может тяжелее переносить долгую разлуку.
+                      strongMatches:
+                        - Подходит для квартирной жизни
+                        - Низкий уровень шума
+                      weakMatches:
+                        - Одиночество лучше ограничивать
+                    alternatives:
+                      - breedId: italian_greyhound
+                        name: Italian Greyhound
+                        matchPercent: 89
+                    compatibility:
+                      status: ready
+                      breed_id: whippet
+                      breed_name: Whippet
+                      image_url: https://example.com/whippet.jpg
+                      risk_level: low
+                      score: 91
+                      summary: Спокойная дома, хорошо подходит для квартиры и не требует сложного ухода.
+                      compatible: true
+                      insights:
+                        - Подходит для квартирной жизни
+                        - Низкий уровень шума
+                      requirement_highlights:
+                        - Одиночество лучше ограничивать
+                      hard_reasons: []
+                      risks:
+                        - code: match_warning
+                          severity: risk
+                          message: Может тяжелее переносить долгую разлуку.
+                      refusal: null
+                      suggestions:
+                        - breed_id: italian_greyhound
+                          breed_name: Italian Greyhound
+                          risk_level: medium
+                          score: 89
+                          summary: Компактная, нежная и спокойная порода-компаньон.
+                          image_url: https://example.com/italian_greyhound.jpg
+                noBreedsForPetType:
+                  summary: No catalog entries for the requested pet type
+                  value:
+                    resultId: match_1840fd2d9c1_4c1fa1e4721b33f1
+                    storedAt: '2026-06-04T10:15:30.000Z'
+                    questionnaireVersion: 1
+                    scoringVersion: 2
+                    userProfile:
+                      petType: cat
+                    topMatch: null
+                    alternatives: []
+                    compatibility:
+                      status: ready
+                      breed_id: null
+                      breed_name: null
+                      image_url: null
+                      risk_level: high
+                      score: null
+                      summary: No breeds available for the selected pet type.
+                      compatible: false
+                      insights: []
+                      requirement_highlights: []
+                      hard_reasons:
+                        - code: no_breeds_for_pet_type
+                          severity: hard
+                          message: No breeds available for the selected pet type.
+                      risks: []
+                      refusal:
+                        title: null
+                        external_message: No breeds available for the selected pet type.
+                      suggestions: []
+                    refusal:
+                      code: no_breeds_for_pet_type
+                      message: No breeds available for the selected pet type.
+                      title: null
+                      externalMessage: No breeds available for the selected pet type.
         '400':
           description: Invalid match preview payload
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Invalid match preview request
+                details:
+                  - userProfile.priorities must be a list of strings
+                requestId: "1717498654123457"
+        '500':
+          description: Unexpected server-side failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /matches/{resultId}:
     get:
-      summary: Get persisted match result by id
+      tags: [matching]
+      summary: Get a persisted match result by id
       operationId: getMatchResultById
       parameters:
         - in: path
           name: resultId
           required: true
+          description: Persisted match result identifier
           schema:
             type: string
       responses:
@@ -81,14 +314,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MatchResult'
+        '404':
+          description: Match result not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorResponse'
+              example:
+                error: Match result not found
+                resultId: match_unknown
+        '500':
+          description: Unexpected server-side failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /breeds/{breedId}:
     get:
+      tags: [breeds]
       summary: Get breed details
       operationId: getBreedById
       parameters:
         - in: path
           name: breedId
           required: true
+          description: Canonical PetWise breed identifier
           schema:
             type: string
       responses:
@@ -98,14 +348,72 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Breed'
+        '404':
+          description: Breed not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundErrorResponse'
+              example:
+                error: Breed not found
+                breedId: unknown_breed
+        '500':
+          description: Unexpected server-side failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - service
+        - environment
+        - uptimeSeconds
+      properties:
+        status:
+          type: string
+          enum: [ok]
+        service:
+          type: string
+          example: petwise-backend
+        environment:
+          type: string
+          example: production
+        uptimeSeconds:
+          type: integer
+          minimum: 0
+    ReadinessResponse:
+      type: object
+      required:
+        - status
+        - service
+        - environment
+        - questionnaireVersion
+        - scoringVersion
+      properties:
+        status:
+          type: string
+          enum: [ready]
+        service:
+          type: string
+          example: petwise-backend
+        environment:
+          type: string
+          example: production
+        questionnaireVersion:
+          type: integer
+          minimum: 1
+        scoringVersion:
+          type: integer
+          minimum: 1
     ErrorResponse:
       type: object
       required:
         - error
-        - requestId
       properties:
         error:
           type: string
@@ -118,6 +426,19 @@ components:
           nullable: true
         requestId:
           type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        breedId:
+          type: string
+          nullable: true
+        resultId:
+          type: string
+          nullable: true
+    NotFoundErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
     QuestionnaireDefinitionResponse:
       type: object
       required:
@@ -126,6 +447,7 @@ components:
       properties:
         questionnaireVersion:
           type: integer
+          minimum: 1
         questions:
           type: array
           items:
@@ -144,6 +466,7 @@ components:
           type: string
         order:
           type: integer
+          minimum: 1
         kind:
           type: string
           enum: [single_choice, multi_choice]
@@ -156,9 +479,11 @@ components:
           nullable: true
         maxSelections:
           type: integer
+          minimum: 1
           nullable: true
         options:
           type: array
+          minItems: 1
           items:
             $ref: '#/components/schemas/QuestionOption'
     QuestionOption:
@@ -179,6 +504,7 @@ components:
       properties:
         questionnaireVersion:
           type: integer
+          minimum: 1
         answers:
           type: array
           items:
@@ -203,6 +529,7 @@ components:
       properties:
         questionnaireVersion:
           type: integer
+          minimum: 1
         userProfile:
           $ref: '#/components/schemas/UserProfile'
     MatchPreviewRequest:
@@ -213,14 +540,11 @@ components:
       properties:
         questionnaireVersion:
           type: integer
+          minimum: 1
         userProfile:
           $ref: '#/components/schemas/UserProfile'
     UserProfile:
       type: object
-      required:
-        - petType
-        - priorities
-        - criticalContext
       properties:
         petType:
           type: string
@@ -229,35 +553,67 @@ components:
           type: array
           items:
             type: integer
+            minimum: 1
+            maximum: 5
         exerciseNeeds:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         apartmentSuitability:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         aloneTolerance:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         goodWithChildren:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         goodWithOtherPets:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         groomingNeeds:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         sheddingLevel:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         beginnerFriendly:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         maintenanceCost:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         noiseLevel:
           type: integer
+          minimum: 1
+          maximum: 5
+          nullable: true
+        trainability:
+          type: integer
+          minimum: 1
+          maximum: 5
+          nullable: true
+        temperamentCalm:
+          type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         priorities:
           type: array
@@ -269,10 +625,6 @@ components:
           $ref: '#/components/schemas/ProfileDiagnostics'
     CriticalContext:
       type: object
-      required:
-        - hasYoungChildren
-        - hasOtherPets
-        - livesInApartment
       properties:
         hasYoungChildren:
           type: boolean
@@ -336,6 +688,15 @@ components:
         group:
           type: string
           nullable: true
+        imageUrl:
+          type: string
+          format: uri
+          nullable: true
+        galleryImages:
+          type: array
+          items:
+            type: string
+            format: uri
         attributes:
           $ref: '#/components/schemas/BreedAttributes'
         flags:
@@ -349,32 +710,58 @@ components:
       properties:
         size:
           type: integer
+          minimum: 1
+          maximum: 5
         apartmentSuitability:
           type: integer
+          minimum: 1
+          maximum: 5
         exerciseNeeds:
           type: integer
+          minimum: 1
+          maximum: 5
         aloneTolerance:
           type: integer
+          minimum: 1
+          maximum: 5
         goodWithChildren:
           type: integer
+          minimum: 1
+          maximum: 5
         goodWithOtherPets:
           type: integer
+          minimum: 1
+          maximum: 5
         groomingNeeds:
           type: integer
+          minimum: 1
+          maximum: 5
         sheddingLevel:
           type: integer
+          minimum: 1
+          maximum: 5
         beginnerFriendly:
           type: integer
+          minimum: 1
+          maximum: 5
         maintenanceCost:
           type: integer
+          minimum: 1
+          maximum: 5
         noiseLevel:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         trainability:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
         temperamentCalm:
           type: integer
+          minimum: 1
+          maximum: 5
           nullable: true
     BreedFlags:
       type: object
@@ -441,12 +828,15 @@ components:
           format: date-time
         questionnaireVersion:
           type: integer
+          minimum: 1
         scoringVersion:
           type: integer
+          minimum: 1
         userProfile:
           $ref: '#/components/schemas/UserProfile'
         topMatch:
-          $ref: '#/components/schemas/RankedBreed'
+          allOf:
+            - $ref: '#/components/schemas/RankedBreed'
           nullable: true
         alternatives:
           type: array
@@ -456,8 +846,6 @@ components:
           $ref: '#/components/schemas/CompatibilityView'
         refusal:
           $ref: '#/components/schemas/MatchRefusal'
-        debug:
-          $ref: '#/components/schemas/MatchDebug'
     RankedBreed:
       type: object
       required:
@@ -475,6 +863,8 @@ components:
           type: string
         matchPercent:
           type: integer
+          minimum: 0
+          maximum: 96
         label:
           type: string
         summary:
@@ -503,6 +893,8 @@ components:
           type: string
         matchPercent:
           type: integer
+          minimum: 0
+          maximum: 96
     MatchRefusal:
       type: object
       required:
@@ -539,6 +931,7 @@ components:
           nullable: true
         image_url:
           type: string
+          format: uri
           nullable: true
         risk_level:
           type: string
@@ -546,6 +939,8 @@ components:
           nullable: true
         score:
           type: integer
+          minimum: 0
+          maximum: 96
           nullable: true
         summary:
           type: string
@@ -614,25 +1009,13 @@ components:
           nullable: true
         score:
           type: integer
+          minimum: 0
+          maximum: 96
           nullable: true
         summary:
           type: string
           nullable: true
         image_url:
           type: string
+          format: uri
           nullable: true
-    MatchDebug:
-      type: object
-      properties:
-        weightsUsed:
-          type: object
-          additionalProperties:
-            type: integer
-        criticalCapApplied:
-          type: integer
-        baseScore:
-          type: number
-          format: float
-        priorityBonus:
-          type: number
-          format: float

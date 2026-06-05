@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:pet_match/core/cache/questionnaire_draft_cache.dart';
 import 'package:pet_match/core/cache/session_cache.dart';
 import 'package:pet_match/core/di/injection.dart';
-import 'package:pet_match/core/localization/locale_provider.dart';
-import 'package:pet_match/data/repositories/breed_repository_impl.dart';
-import 'package:pet_match/data/repositories/questionnaire_repository_impl.dart';
-import 'package:pet_match/data/sources/mock_pet_match_remote_source.dart';
-import 'package:pet_match/data/sources/pet_match_remote_source.dart';
+import 'package:pet_match/domain/entities/option.dart';
+import 'package:pet_match/domain/entities/progress.dart';
+import 'package:pet_match/domain/entities/question.dart';
+import 'package:pet_match/domain/entities/session.dart';
 import 'package:pet_match/domain/repositories/breed_repository.dart';
 import 'package:pet_match/domain/repositories/questionnaire_repository.dart';
 import 'package:pet_match/domain/usecases/get_breed_detail.dart';
@@ -22,29 +22,44 @@ import 'package:pet_match/presentation/questionnaire/cubit/questionnaire_cubit.d
 import 'package:pet_match/presentation/questionnaire/questionnaire_page.dart';
 import 'package:pet_match/presentation/router/app_router.dart';
 import 'package:pet_match/presentation/welcome/welcome_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _MockSessionCache extends Mock implements SessionCache {}
+
+class _MockQuestionnaireRepository extends Mock
+    implements QuestionnaireRepository {}
+
+class _MockBreedRepository extends Mock implements BreedRepository {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late _MockSessionCache cache;
+  late _MockQuestionnaireRepository questionnaireRepository;
+  late _MockBreedRepository breedRepository;
+
+  const firstQuestion = SingleChoiceQuestion(
+    id: 1,
+    title: 'Какой питомец?',
+    options: [QuestionOption(id: 1, code: 'dog', label: 'Собака')],
+  );
+
+  Session questionnaireSession() => const Session(
+    userId: 7,
+    progress: Progress(answered: 0, total: 2),
+    nextQuestion: firstQuestion,
+  );
 
   Future<void> setupDi() async {
     await sl.reset();
     sl.registerSingleton<SessionCache>(cache);
-    sl.registerLazySingleton<LocaleProvider>(
-      () => const StaticLocaleProvider(Locale('ru')),
-    );
-    sl.registerLazySingleton<PetMatchRemoteSource>(
-      MockPetMatchRemoteSource.new,
+    sl.registerLazySingleton<QuestionnaireDraftCache>(
+      QuestionnaireDraftCache.new,
     );
     sl.registerLazySingleton<QuestionnaireRepository>(
-      () => QuestionnaireRepositoryImpl(sl<PetMatchRemoteSource>()),
+      () => questionnaireRepository,
     );
-    sl.registerLazySingleton<BreedRepository>(
-      () => BreedRepositoryImpl(sl<PetMatchRemoteSource>()),
-    );
+    sl.registerLazySingleton<BreedRepository>(() => breedRepository);
     sl.registerFactory(
       () => StartSession(sl<QuestionnaireRepository>(), sl<SessionCache>()),
     );
@@ -58,13 +73,24 @@ void main() {
   }
 
   setUp(() async {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
     cache = _MockSessionCache();
-    // Стабы для всех методов SessionCache которые могут быть вызваны на старте.
+    questionnaireRepository = _MockQuestionnaireRepository();
+    breedRepository = _MockBreedRepository();
+
     when(cache.hasActiveSession).thenAnswer((_) async => false);
     when(cache.getOrCreateUid).thenAnswer((_) async => 'uid:test');
     when(cache.getSavedUserId).thenAnswer((_) async => null);
     when(() => cache.saveUserId(any())).thenAnswer((_) async {});
     when(cache.clearSession).thenAnswer((_) async {});
+
+    when(
+      () => questionnaireRepository.startSession(any()),
+    ).thenAnswer((_) async => questionnaireSession());
+    when(
+      () => questionnaireRepository.getSession(any()),
+    ).thenAnswer((_) async => questionnaireSession());
+
     await setupDi();
   });
 
@@ -86,25 +112,13 @@ void main() {
     testWidgets(
       'активная сессия + переход на /intro → redirect на /questionnaire',
       (tester) async {
-        // Router-redirect срабатывает на onboarding routes (`/` и `/intro`).
-        // Сценарий deep-link: пользователь с сохранённой сессией открывает
-        // /intro — должен попасть не на онбординг, а сразу на текущий вопрос.
-        // (С /welcome логика resume живёт в самом WelcomePage — там Future
-        //  hasActiveSession() меняет лейбл CTA на «Продолжить», redirect не
-        //  нужен.)
         when(cache.hasActiveSession).thenAnswer((_) async => true);
         when(cache.getSavedUserId).thenAnswer((_) async => 7);
 
         final router = buildRouter();
         router.go('/intro');
         await tester.pumpWidget(MaterialApp.router(routerConfig: router));
-        // tester.runAsync даёт mock-source с Future.delayed(250-550ms)
-        // отработать, чтобы тест не падал на pending timers (mock source
-        // start() триггерится Cubit.start() в QuestionnairePage).
-        await tester.runAsync(() async {
-          await Future<void>.delayed(const Duration(milliseconds: 800));
-        });
-        await tester.pumpAndSettle(const Duration(milliseconds: 200));
+        await tester.pumpAndSettle(const Duration(milliseconds: 400));
 
         expect(
           router.routerDelegate.currentConfiguration.uri.path,

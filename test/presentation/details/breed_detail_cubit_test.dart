@@ -16,7 +16,7 @@ void main() {
     useCase = _MockGetBreedDetail();
   });
 
-  const detail = BreedDetail(breedId: 1, breedName: 'Лабрадор');
+  const detail = BreedDetail(breedId: 'labrador_retriever', breedName: 'Лабрадор');
 
   blocTest<BreedDetailCubit, BreedDetailState>(
     'success: load → [Loading, Loaded]',
@@ -24,7 +24,7 @@ void main() {
       when(() => useCase(any())).thenAnswer((_) async => detail);
     },
     build: () => BreedDetailCubit(useCase),
-    act: (cubit) => cubit.load(1),
+    act: (cubit) => cubit.load('labrador_retriever'),
     expect:
         () => [
           isA<BreedDetailLoading>(),
@@ -42,7 +42,7 @@ void main() {
       when(() => useCase(any())).thenThrow(const NetworkFailure());
     },
     build: () => BreedDetailCubit(useCase),
-    act: (cubit) => cubit.load(1),
+    act: (cubit) => cubit.load('labrador_retriever'),
     expect:
         () => [
           isA<BreedDetailLoading>(),
@@ -68,8 +68,8 @@ void main() {
     },
     build: () => BreedDetailCubit(useCase),
     act: (cubit) async {
-      await cubit.load(1);
-      await cubit.load(1);
+      await cubit.load('labrador_retriever');
+      await cubit.load('labrador_retriever');
     },
     expect:
         () => [

@@ -12,7 +12,7 @@ void main() {
         score: 85,
         suggestions: [
           CompatibilitySuggestionDto(
-            breedId: 2,
+            breedId: 'golden_retriever',
             breedName: 'Голден',
             score: 72,
           ),
@@ -32,7 +32,7 @@ void main() {
         score: 0.92,
         suggestions: [
           CompatibilitySuggestionDto(
-            breedId: 2,
+            breedId: 'golden_retriever',
             breedName: 'Голден',
             score: 0.88,
           ),
@@ -74,7 +74,10 @@ void main() {
         status: 'skipped',
         summary: 'Подборка вариантов без выбранной породы.',
         suggestions: [
-          CompatibilitySuggestionDto(breedId: 1, breedName: 'Скоттиш Страйт'),
+          CompatibilitySuggestionDto(
+            breedId: 'scottish_straight',
+            breedName: 'Скоттиш Страйт',
+          ),
         ],
       );
 

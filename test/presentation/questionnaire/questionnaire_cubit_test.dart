@@ -212,7 +212,10 @@ void main() {
             status: CompatibilityStatus.skipped,
             summary: 'Подборка вариантов без выбранной породы.',
             suggestions: [
-              CompatibilitySuggestion(breedId: 1, breedName: 'Скоттиш Страйт'),
+              CompatibilitySuggestion(
+                breedId: 'scottish_straight',
+                breedName: 'Скоттиш Страйт',
+              ),
             ],
           ),
         ),

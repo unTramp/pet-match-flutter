@@ -10,19 +10,23 @@ import 'package:pet_match/presentation/result/widgets/suggestion_card.dart';
 void main() {
   const compatibility = Compatibility(
     status: CompatibilityStatus.ready,
-    breedId: 1,
+    breedId: 'labrador_retriever',
     breedName: 'Лабрадор',
     score: 0.9,
     summary: 'Отличный выбор',
     insights: ['Дружелюбен', 'Активный'],
     suggestions: [
       CompatibilitySuggestion(
-        breedId: 2,
+        breedId: 'golden_retriever',
         breedName: 'Голден',
         score: 0.85,
         summary: 'Похожая порода',
       ),
-      CompatibilitySuggestion(breedId: 3, breedName: 'Колли', score: 0.7),
+      CompatibilitySuggestion(
+        breedId: 'collie',
+        breedName: 'Колли',
+        score: 0.7,
+      ),
     ],
   );
 
@@ -161,7 +165,7 @@ void main() {
 
   testWidgets('SuggestionCard without score shows em-dash', (tester) async {
     const suggestion = CompatibilitySuggestion(
-      breedId: 99,
+      breedId: 'unknown_breed',
       breedName: 'Без оценки',
     );
     await tester.pumpWidget(
@@ -181,14 +185,14 @@ void main() {
         summary: 'Показана подборка подходящих вариантов.',
         suggestions: [
           CompatibilitySuggestion(
-            breedId: 139,
+            breedId: 'border_terrier',
             breedName: 'Бордер-терьер',
             score: 1,
             risk: CompatibilityRisk.low,
             summary: 'Хорошо соответствует выбранным критериям.',
           ),
           CompatibilitySuggestion(
-            breedId: 242,
+            breedId: 'maltese',
             breedName: 'Мальтезе',
             score: 0.92,
             risk: CompatibilityRisk.low,

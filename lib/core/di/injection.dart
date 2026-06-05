@@ -1,13 +1,12 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
+import '../cache/questionnaire_draft_cache.dart';
 import '../../data/repositories/breed_repository_impl.dart';
 import '../../data/repositories/questionnaire_repository_impl.dart';
-import '../../data/sources/http_pet_match_remote_source.dart';
-import '../../data/sources/mock_pet_match_remote_source.dart';
-import '../../data/sources/pet_match_remote_source.dart';
+import '../../data/sources/http_petwise_remote_source.dart';
+import '../../data/sources/petwise_remote_source.dart';
 import '../localization/locale_provider.dart';
 import '../../domain/repositories/breed_repository.dart';
 import '../../domain/repositories/questionnaire_repository.dart';
@@ -26,15 +25,11 @@ final GetIt sl = GetIt.instance;
 
 /// Default API endpoint for the dev environment. Overridable via
 /// `--dart-define=API_BASE_URL=...` for staging/local servers.
-const String _defaultBaseUrl = 'https://app-api.dev.pet-match.app/api/v1';
+const String _defaultBaseUrl = 'https://petwise-api.65-109-135-215.sslip.io';
 
-const bool useMock = bool.fromEnvironment('USE_MOCK', defaultValue: false);
 const String baseUrl = String.fromEnvironment(
   'API_BASE_URL',
   defaultValue: _defaultBaseUrl,
-);
-const String externalIdOverride = String.fromEnvironment(
-  'PET_MATCH_EXTERNAL_ID',
 );
 
 Future<void> configureDependencies() async {
@@ -44,26 +39,28 @@ Future<void> configureDependencies() async {
 
   // Core singletons.
   sl.registerLazySingleton<SessionCache>(SessionCache.new);
+  sl.registerLazySingleton<QuestionnaireDraftCache>(
+    QuestionnaireDraftCache.new,
+  );
   sl.registerLazySingleton<LocaleProvider>(
     () => const StaticLocaleProvider(Locale('ru')),
   );
 
-  // Remote source — Mock или Http в зависимости от build-time флага.
-  // Release-build всегда форсит HTTP (даже если случайно передали USE_MOCK=true)
-  // — это защита от утечки mock-данных в production.
-  sl.registerLazySingleton<PetMatchRemoteSource>(() {
-    const shouldMock = useMock && !kReleaseMode;
-    return shouldMock
-        ? MockPetMatchRemoteSource()
-        : HttpPetMatchRemoteSource(buildDio(baseUrl, sl<LocaleProvider>()));
-  });
+  // Новый backend теперь главный источник данных для questionnaire/match/breed.
+  // Build-time override через `API_BASE_URL` сохраняем для staging/local env.
+  sl.registerLazySingleton<PetWiseRemoteSource>(
+    () => HttpPetWiseRemoteSource(buildDio(baseUrl, sl<LocaleProvider>())),
+  );
 
   // Repositories.
   sl.registerLazySingleton<QuestionnaireRepository>(
-    () => QuestionnaireRepositoryImpl(sl<PetMatchRemoteSource>()),
+    () => QuestionnaireRepositoryImpl(
+      sl<PetWiseRemoteSource>(),
+      sl<QuestionnaireDraftCache>(),
+    ),
   );
   sl.registerLazySingleton<BreedRepository>(
-    () => BreedRepositoryImpl(sl<PetMatchRemoteSource>()),
+    () => BreedRepositoryImpl(sl<PetWiseRemoteSource>()),
   );
 
   // Use cases — factory: cheap to construct, stateless.
@@ -71,8 +68,6 @@ Future<void> configureDependencies() async {
     () => StartSession(
       sl<QuestionnaireRepository>(),
       sl<SessionCache>(),
-      externalIdOverride:
-          externalIdOverride.isEmpty ? null : externalIdOverride,
     ),
   );
   sl.registerFactory(() => SubmitAnswer(sl<QuestionnaireRepository>()));

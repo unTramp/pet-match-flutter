@@ -10,7 +10,7 @@ class CompatibilitySuggestionDto {
 
   factory CompatibilitySuggestionDto.fromJson(Map<String, dynamic> json) =>
       CompatibilitySuggestionDto(
-        breedId: (json['breed_id'] as num).toInt(),
+        breedId: _readId(json['breed_id'] ?? json['breedId']),
         breedName: json['breed_name'] as String,
         riskLevel: json['risk_level'] as String?,
         score: (json['score'] as num?)?.toDouble(),
@@ -18,7 +18,7 @@ class CompatibilitySuggestionDto {
         imageUrl: json['image_url'] as String?,
       );
 
-  final int breedId;
+  final String breedId;
   final String breedName;
   final String? riskLevel;
   final double? score;
@@ -84,7 +84,7 @@ class CompatibilityDto {
     Map<String, dynamic> json,
   ) => CompatibilityDto(
     status: json['status'] as String,
-    breedId: (json['breed_id'] as num?)?.toInt(),
+    breedId: _readNullableId(json['breed_id'] ?? json['breedId']),
     breedName: json['breed_name'] as String?,
     imageUrl: json['image_url'] as String?,
     riskLevel: json['risk_level'] as String?,
@@ -115,7 +115,7 @@ class CompatibilityDto {
   );
 
   final String status;
-  final int? breedId;
+  final String? breedId;
   final String? breedName;
   final String? imageUrl;
   final String? riskLevel;
@@ -128,4 +128,20 @@ class CompatibilityDto {
   final List<CompatibilityReasonDto> risks;
   final CompatibilityRefusalDto? refusal;
   final List<CompatibilitySuggestionDto> suggestions;
+}
+
+String _readId(Object? raw) {
+  return switch (raw) {
+    final String value => value,
+    final num value => value.toInt().toString(),
+    _ => '',
+  };
+}
+
+String? _readNullableId(Object? raw) {
+  return switch (raw) {
+    final String value when value.isNotEmpty => value,
+    final num value => value.toInt().toString(),
+    _ => null,
+  };
 }

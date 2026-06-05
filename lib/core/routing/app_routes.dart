@@ -20,6 +20,6 @@ class AppRoutes {
   static const String breedPattern = '/breed/:id';
   static const String breedGalleryPattern = '/breed/:id/gallery';
 
-  static String breed(int id) => '/breed/$id';
-  static String breedGallery(int id) => '/breed/$id/gallery';
+  static String breed(String id) => '/breed/$id';
+  static String breedGallery(String id) => '/breed/$id/gallery';
 }

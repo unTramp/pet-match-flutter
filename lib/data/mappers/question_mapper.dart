@@ -32,6 +32,7 @@ class QuestionMapper {
         isOptional: isOptional,
         options: options,
         exclusiveOptionCodes: _readExclusiveCodes(dto.configJson),
+        maxSelections: _readMaxSelections(dto.configJson),
       ),
       // Реальный API возвращает 'search_select' для вопросов с подгрузкой
       // вариантов; mock-фикстуры используют 'dynamic_options'. Поддерживаем оба.
@@ -80,5 +81,11 @@ class QuestionMapper {
     final raw = configJson['exclusive_option_codes'];
     if (raw is! List) return const <String>{};
     return raw.whereType<String>().toSet();
+  }
+
+  static int? _readMaxSelections(Map<String, dynamic>? configJson) {
+    if (configJson == null) return null;
+    final value = configJson['max_selections'] ?? configJson['maxSelections'];
+    return value is num ? value.toInt() : null;
   }
 }

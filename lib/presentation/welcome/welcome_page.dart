@@ -192,7 +192,6 @@ class _WelcomePageState extends State<WelcomePage>
                   children: [
                     const TopBrandBar(
                       padding: EdgeInsets.zero,
-                      showLocaleBadge: false,
                     ),
                     const Spacer(flex: 1),
                     AppStaggeredEntrance(

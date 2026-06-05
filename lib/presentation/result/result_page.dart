@@ -31,12 +31,7 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage>
     with SingleTickerProviderStateMixin {
-  static const double _topBarScrollThreshold = 6;
-
-  bool _showTopBar = true;
-  double _lastScrollOffset = 0;
   late final AnimationController _introController;
-  late final ScrollController _scrollController;
 
   @override
   void initState() {
@@ -45,45 +40,19 @@ class _ResultPageState extends State<ResultPage>
       vsync: this,
       duration: AppMotion.heroIntro,
     );
-    _scrollController = ScrollController()..addListener(_handleScroll);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _introController.forward(from: 0);
     });
   }
 
-  void _handleScroll() {
-    if (!_scrollController.hasClients) return;
-    final offset = _scrollController.offset.clamp(0.0, double.infinity);
-    final delta = offset - _lastScrollOffset;
-
-    if (offset <= AppSpacing.md) {
-      if (!_showTopBar) {
-        setState(() => _showTopBar = true);
-      }
-      _lastScrollOffset = offset;
-      return;
-    }
-
-    if (delta > _topBarScrollThreshold && _showTopBar) {
-      setState(() => _showTopBar = false);
-    } else if (delta < -_topBarScrollThreshold && !_showTopBar) {
-      setState(() => _showTopBar = true);
-    }
-
-    _lastScrollOffset = offset;
-  }
-
   @override
   void dispose() {
-    _scrollController
-      ..removeListener(_handleScroll)
-      ..dispose();
     _introController.dispose();
     super.dispose();
   }
 
-  void _openBreed(BuildContext context, int? breedId, {double? score}) {
+  void _openBreed(BuildContext context, String? breedId, {double? score}) {
     if (breedId == null) return;
     context.push(AppRoutes.breed(breedId), extra: score);
   }
@@ -95,7 +64,7 @@ class _ResultPageState extends State<ResultPage>
     _openBreed(context, id, score: _scoreForId(compat, id));
   }
 
-  double? _scoreForId(Compatibility compat, int id) {
+  double? _scoreForId(Compatibility compat, String id) {
     if (compat.breedId == id) return compat.score;
     for (final s in compat.suggestions) {
       if (s.breedId == id) return s.score;
@@ -117,7 +86,7 @@ class _ResultPageState extends State<ResultPage>
     return compatibility.suggestions.skip(1).toList(growable: false);
   }
 
-  int? _bottomCtaBreedId(Compatibility compatibility) {
+  String? _bottomCtaBreedId(Compatibility compatibility) {
     final primary = _primaryCompatibility(compatibility);
     if (primary?.breedId case final breedId?) return breedId;
     final suggestions = _visibleSuggestions(compatibility);
@@ -221,33 +190,9 @@ class _ResultPageState extends State<ResultPage>
         bottom: false,
         child: Column(
           children: [
-            ClipRect(
-              child: AnimatedSize(
-                duration: AppMotion.normal,
-                curve: AppMotion.standardCurve,
-                alignment: Alignment.topCenter,
-                child: Align(
-                  heightFactor: _showTopBar ? 1 : 0,
-                  alignment: Alignment.topCenter,
-                  child: AnimatedSlide(
-                    duration: AppMotion.normal,
-                    curve: AppMotion.standardCurve,
-                    offset: _showTopBar ? Offset.zero : const Offset(0, -1),
-                    child: AnimatedOpacity(
-                      duration: AppMotion.fast,
-                      curve: AppMotion.standardCurve,
-                      opacity: _showTopBar ? 1 : 0,
-                      child: TopBrandBar(
-                        onLogoTap: () => context.go(AppRoutes.welcome),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            TopBrandBar(onLogoTap: () => context.go(AppRoutes.welcome)),
             Expanded(
               child: ListView(
-                controller: _scrollController,
                 padding: EdgeInsets.zero,
                 physics: const BouncingScrollPhysics(),
                 children: [

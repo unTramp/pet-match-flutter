@@ -20,7 +20,7 @@ class BreedDetail extends Equatable {
     this.sections = const [],
   });
 
-  final int breedId;
+  final String breedId;
   final String breedName;
   final String? summary;
   final String? imageUrl;

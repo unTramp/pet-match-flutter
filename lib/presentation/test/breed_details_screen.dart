@@ -288,11 +288,11 @@ class _Hero extends StatelessWidget {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.95),
+                            color: Colors.white.withValues(alpha: 0.95),
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
+                                color: Colors.black.withValues(alpha: 0.08),
                                 blurRadius: 16,
                                 offset: const Offset(0, 8),
                               ),
@@ -416,7 +416,7 @@ class _CareCard extends StatelessWidget {
               color: const Color(0xFFF1EFFF),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: BreedDetailsScreen.brand.withOpacity(0.15),
+                color: BreedDetailsScreen.brand.withValues(alpha: 0.15),
               ),
             ),
             child: const Icon(
@@ -471,7 +471,7 @@ class _WhiteCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.045),
+            color: Colors.black.withValues(alpha: 0.045),
             blurRadius: 24,
             offset: const Offset(0, 10),
           ),
@@ -604,7 +604,7 @@ class _BottomButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(top: 12),
         decoration: BoxDecoration(
-          color: BreedDetailsScreen.bg.withOpacity(0.92),
+          color: BreedDetailsScreen.bg.withValues(alpha: 0.92),
           borderRadius: BorderRadius.circular(24),
         ),
         child: ElevatedButton(

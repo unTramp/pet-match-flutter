@@ -130,6 +130,12 @@ class _ResultCharacteristicCard extends StatelessWidget {
             width: _iconSize,
             height: _iconSize,
             fit: BoxFit.contain,
+            errorBuilder:
+                (context, error, stackTrace) => const Icon(
+                  Icons.pets_rounded,
+                  size: _iconSize,
+                  color: AppColors.textSecondary,
+                ),
           ),
           const SizedBox(width: AppSpacing.xxl),
           Expanded(
