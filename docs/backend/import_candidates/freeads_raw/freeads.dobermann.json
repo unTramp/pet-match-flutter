@@ -3,34 +3,45 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/dobermann",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "needs_browser_capture"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "Dobermann",
     "slug": "dobermann",
     "petType": "dog"
   },
-  "summary": null,
+  "summary": "Dobermanns are intelligent dogs and a breed that is known the world over for its keen senses and alert natures. However although they are often used as watch dogs in many parts of the world they are highly adaptable and fit in well with family life enjoying nothing more than being involved in everything that goes on around them. Dobermanns are proud they are calm and when responsibly bred and correctly handled they become valued members of a family.",
   "heroImageUrl": null,
   "galleryImages": [],
   "facts": {
-    "otherNames": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
-    "healthTestsAvailable": null
+    "otherNames": [
+      "Doberman",
+      "Doberman pinscher",
+      "Dobie"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "Large",
+    "lifespan": "9-12 years",
+    "weight": "Male: 40-45kg; Female: 40-45kg",
+    "height": "Male: 68-72cm; Female: 63-68cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, DNA test - vWD, BVA/KC/ISDS Eye Scheme"
   },
-  "characteristics": {},
+  "characteristics": {
+    "exerciseNeeds": "Very high",
+    "easyToTrain": "High",
+    "shedding": "Medium",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Low",
+    "costToKeep": "Medium",
+    "intelligence": "Very high",
+    "toleratesBeingAlone": "Calm"
+  },
   "quality": {
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch was intentionally skipped because remaining Freeads breed pages consistently fall into Cloudflare-protected browser-capture lane.",
-      "Search results currently surface listing pages rather than the breed detail page snippet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

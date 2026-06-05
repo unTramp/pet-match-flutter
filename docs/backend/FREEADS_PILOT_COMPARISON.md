@@ -16,8 +16,7 @@
 - `doberman`
 
 Из них:
-- `7` уже имеют `verified_via_browser_capture`
-- `1` ещё остаётся в `needs_browser_capture`
+- `8` уже имеют `verified_via_browser_capture`
 
 Machine-readable review pack лежит в:
 - [import_candidates/freeads_review_pack/summary.v1.json](./import_candidates/freeads_review_pack/summary.v1.json)
@@ -100,12 +99,10 @@ Machine-readable review pack лежит в:
 
 Сейчас bottleneck уже не в source capture как таковом:
 - browser-assisted pipeline доказал, что данные можно получать повторяемо
-- review pack уже полезен почти по всему pilot batch
-
-Оставшийся operational step:
-1. добрать `doberman`
+- review pack уже полезен по всему pilot batch
 
 Следующий product step:
 1. reviewed pass по `rottweiler`
 2. reviewed pass по `american_cocker_spaniel`
 3. reviewed pass по `yorkshire_terrier` / `jack_russell_terrier`
+4. reviewed pass по `doberman`

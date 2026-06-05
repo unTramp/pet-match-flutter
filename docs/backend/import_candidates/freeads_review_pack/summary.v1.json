@@ -6,16 +6,15 @@
     "pug",
     "yorkshire_terrier",
     "english_cocker_spaniel",
-    "american_cocker_spaniel"
-  ],
-  "mediumPriority": [
+    "american_cocker_spaniel",
     "doberman"
   ],
+  "mediumPriority": [],
   "normalPriority": [
     "jack_russell_terrier",
     "rottweiler"
   ],
-  "browserCaptureComplete": 7,
+  "browserCaptureComplete": 8,
   "snippetComplete": 0,
-  "pendingCapture": 1
+  "pendingCapture": 0
 }
