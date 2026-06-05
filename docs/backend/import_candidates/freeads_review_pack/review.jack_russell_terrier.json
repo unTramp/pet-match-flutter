@@ -7,7 +7,7 @@
     "canonicalFile": "docs/backend/examples/breed.jack_russell_terrier.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.jack_russell_terrier.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
-    "freeadsUrlStatus": "index_verified_only"
+    "freeadsUrlStatus": "needs_browser_capture"
   },
   "groupComparison": {
     "canonical": "terrier",
@@ -107,6 +107,7 @@
     "freeadsNeedsReview": true,
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
       "Structured breed facts were not available from search snippets yet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],

@@ -18,6 +18,9 @@
 - [FREEADS_INGESTION_PLAN.md](./FREEADS_INGESTION_PLAN.md) — phased rollout для `Freeads` как основного внешнего source.
 - [FREEADS_SOURCE_STATUS.md](./FREEADS_SOURCE_STATUS.md) — статус доступности `Freeads` data по pilot batch.
 - [FREEADS_PILOT_COMPARISON.md](./FREEADS_PILOT_COMPARISON.md) — актуальная сводка по `Freeads` pilot batch и comparison workflow.
+- [FREEADS_REVIEW_DECISIONS.md](./FREEADS_REVIEW_DECISIONS.md) — первые reviewed решения по породам из `Freeads` pilot batch.
+- [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md) — очередь на следующий цикл richer source capture.
+- [FREEADS_BROWSER_CAPTURE_PROTOCOL.md](./FREEADS_BROWSER_CAPTURE_PROTOCOL.md) — безопасный протокол для ручного browser-assisted capture.
 - [config/answer_to_profile_mapping.v1.json](./config/answer_to_profile_mapping.v1.json) — канонический mapping `answer -> user_profile`.
 - [config/scoring_config.v2.json](./config/scoring_config.v2.json) — versioned scoring config для текущего engine baseline.
 - [../../prisma/schema.prisma](../../prisma/schema.prisma) — Prisma-черновик модели данных.

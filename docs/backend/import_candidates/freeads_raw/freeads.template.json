@@ -1,0 +1,43 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/example-breed",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Example Breed",
+    "slug": "example-breed",
+    "petType": "dog"
+  },
+  "summary": null,
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [],
+    "breedGroup": null,
+    "breedType": null,
+    "breedSize": null,
+    "lifespan": null,
+    "weight": null,
+    "height": null,
+    "pedigree": null,
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": null,
+    "easyToTrain": null,
+    "shedding": null,
+    "groomingNeeds": null,
+    "goodWithChildren": null,
+    "healthOfBreed": null,
+    "costToKeep": null,
+    "intelligence": null,
+    "toleratesBeingAlone": null
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
-    "urlStatus": "index_verified_only",
+    "urlStatus": "needs_browser_capture",
     "freeadsBreedName": "American Cocker Spaniel",
     "freeadsSlug": "american-cocker-spaniel",
     "rawIdentity": {
@@ -62,6 +62,7 @@
     ],
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
       "Search results currently return listing pages rather than the breed detail page snippet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],

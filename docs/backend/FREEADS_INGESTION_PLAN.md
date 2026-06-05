@@ -60,6 +60,14 @@ Success criteria:
 - не обязательно переписывать всё сразу
 - сначала те породы, где текущий контент слабый или placeholder-like
 
+Текущее состояние:
+- первый reviewed pass уже выполнен для:
+  - `maltese`
+  - `pug`
+  - `english_cocker_spaniel`
+- следующий цикл должен идти через targeted capture для remaining
+  `index_verified_only` пород
+
 Success criteria:
 - у существующего каталога становится единообразнее provenance
 - images/content становятся более consistent
@@ -68,6 +76,9 @@ Success criteria:
 
 Дальше уже расширяем dog catalog за пределы текущих `26` пород через тот же
 pipeline.
+
+Практический вход в следующий цикл:
+- [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md)
 
 ## Guardrails
 

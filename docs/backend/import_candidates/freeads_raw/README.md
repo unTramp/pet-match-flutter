@@ -4,6 +4,10 @@
 
 Файлы отсюда нужны только для offline ingestion pipeline и review.
 
+Для ручного/браузерного сбора см.:
+- [../../FREEADS_BROWSER_CAPTURE_PROTOCOL.md](../../FREEADS_BROWSER_CAPTURE_PROTOCOL.md)
+- [freeads.template.json](./freeads.template.json)
+
 ## Naming
 
 Рекомендуемый формат:

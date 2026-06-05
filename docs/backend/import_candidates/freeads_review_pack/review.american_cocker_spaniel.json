@@ -7,7 +7,7 @@
     "canonicalFile": "docs/backend/examples/breed.american_cocker_spaniel.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.american_cocker_spaniel.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
-    "freeadsUrlStatus": "index_verified_only"
+    "freeadsUrlStatus": "needs_browser_capture"
   },
   "groupComparison": {
     "canonical": "sporting",
@@ -107,6 +107,7 @@
     "freeadsNeedsReview": true,
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
       "Search results currently return listing pages rather than the breed detail page snippet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ],

@@ -3,7 +3,7 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/rottweiler",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "index_verified_only"
+    "urlStatus": "needs_browser_capture"
   },
   "identity": {
     "breedName": "Rottweiler",
@@ -28,6 +28,7 @@
   "quality": {
     "pageWarnings": [
       "Breed URL was verified on the Freeads A-Z index.",
+      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
       "Search results currently surface listing pages rather than the breed detail page snippet.",
       "Browser-assisted capture is still needed for a full raw snapshot."
     ]
