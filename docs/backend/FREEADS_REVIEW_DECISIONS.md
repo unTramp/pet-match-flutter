@@ -131,6 +131,51 @@
 - spaniel branch стала лучше разведена по content/result UX
 - confidence и provenance повышены
 
+### `yorkshire_terrier`
+
+Решение:
+- numeric attributes не менять
+- content переписать под более честный tiny-toy / low-shedding / grooming-heavy profile
+- provenance усилить через `freeads browser capture review`
+
+Почему:
+- `Freeads` хорошо подтверждает текущую toy baseline:
+  - `sizeDraft = 1`
+  - `groomingNeedsDraft = 5`
+  - `sheddingLevelDraft = 1`
+  - `goodWithChildrenDraft = 2`
+- самые сильные drifts (`aloneTolerance = 5`, `maintenanceCost = 2`) выглядят
+  недостаточно надёжными для engine rewrite
+- зато current canonical content был слишком “очень энергичный” и хуже отражал
+  реальный compact companion profile
+
+Итог:
+- engine math оставлена стабильной
+- result/details copy стала заметно точнее
+- confidence и provenance повышены
+
+### `jack_russell_terrier`
+
+Решение:
+- numeric attributes не менять
+- content переписать под более честный active-terrier profile
+- provenance усилить через `freeads browser capture review`
+
+Почему:
+- `Freeads` хорошо подтверждает текущую behavioural baseline:
+  - `exerciseNeedsDraft = 5`
+  - `trainabilityDraft = 5`
+  - `groomingNeedsDraft = 2`
+  - `sheddingLevelDraft = 3`
+- все numeric различия находятся в зоне `near_match`
+- зато current canonical content был слишком generic и недооценивал именно
+  терьерный drive, шумность и требовательность к занятости
+
+Итог:
+- engine math оставлена стабильной
+- result/details copy стала точнее для active-small-dog ветки
+- confidence и provenance повышены
+
 ## Current policy
 
 На текущем этапе `Freeads` используется так:
