@@ -1,0 +1,89 @@
+{
+  "breedId": "boston_terrier",
+  "petType": "dog",
+  "name": "Boston Terrier",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/boston-terrier",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Boston Terrier",
+    "freeadsSlug": "boston-terrier",
+    "rawIdentity": {
+      "breedName": "Boston Terrier",
+      "slug": "boston-terrier",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Boston",
+      "Boston bull",
+      "Boston bull terrier",
+      "American gentleman",
+      "Boxwood"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Small",
+    "lifespan": "13-14 years",
+    "weight": "Male: 7-11kg; Female: 7-11kg",
+    "height": "Male: 38-43cm; Female: 38-43cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "Eye scheme, HC-HSF4"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Boston Terrier is often referred to as the \"American Gentleman\" and for good reason. These smart little dogs boast an interesting ancestry owing some of it to the English Bu...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

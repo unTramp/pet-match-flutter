@@ -315,15 +315,23 @@ def main() -> None:
     raw_dir = Path(args.raw_dir)
     output_dir = Path(args.output_dir)
 
+    missing_raw: list[str] = []
+
     for entry in manifest.get("candidates") or []:
         raw_path = raw_dir / f"freeads.{entry['freeadsSlug']}.json"
         if not raw_path.exists():
-            raise SystemExit(f"Missing raw snapshot: {raw_path}")
+            missing_raw.append(str(raw_path))
+            continue
 
         raw = load_json(raw_path)
         candidate = build_candidate(entry, raw)
         save_json(output_dir / f"candidate.{entry['breedId']}.json", candidate)
         print(f"generated {entry['breedId']}")
+
+    if missing_raw:
+        print("\nSkipped candidates with missing raw snapshots:")
+        for path in missing_raw:
+            print(f"- {path}")
 
 
 if __name__ == "__main__":

@@ -199,7 +199,13 @@ def parse_args() -> argparse.Namespace:
         "--auto-wait-seconds",
         type=int,
         default=20,
-        help="How long to auto-wait for a breed page before asking the user to confirm manually.",
+        help="How long to auto-wait for a breed page before falling back to a shorter final retry.",
+    )
+    parser.add_argument(
+        "--final-wait-seconds",
+        type=int,
+        default=5,
+        help="Extra seconds to wait and retry once more before skipping the breed.",
     )
     return parser.parse_args()
 
@@ -235,8 +241,8 @@ def main() -> None:
         raise SystemExit("No matching breeds found in manifest.")
 
     print("Freeads browser capture starting.")
-    print("Safari will open. If Cloudflare appears, wait or solve it, then press Enter here.")
-    print("After a successful page load, HTML will be saved automatically.")
+    print("Safari will open and the collector will wait for breed facts automatically.")
+    print("If Cloudflare appears, let it finish; otherwise the page will be saved without manual confirmation.")
 
     if not safari_can_run_javascript():
         raise SystemExit(
@@ -258,14 +264,19 @@ def main() -> None:
             or not looks_like_breed_page(html)
             or not looks_like_expected_breed(title, html, current_url, url, breed_name)
         ):
-            input(
-                "Page is not ready yet. Finish the browser check / wait for breed facts to appear, then press Enter...",
+            print(
+                f"Page not ready after {args.auto_wait_seconds}s, waiting {args.final_wait_seconds}s more before skipping...",
             )
+            time.sleep(args.final_wait_seconds)
             title = safari_title()
             current_url = safari_url()
             html = safari_html()
 
-        if not html or not looks_like_expected_breed(title, html, current_url, url, breed_name):
+        if (
+            not html
+            or not looks_like_breed_page(html)
+            or not looks_like_expected_breed(title, html, current_url, url, breed_name)
+        ):
             print(f"Skipped {breed_id}: could not read page HTML.")
             continue
 

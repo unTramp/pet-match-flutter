@@ -1,0 +1,92 @@
+{
+  "breedId": "akita",
+  "petType": "dog",
+  "name": "Akita",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/akita",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Akita",
+    "freeadsSlug": "akita",
+    "rawIdentity": {
+      "breedName": "Akita",
+      "slug": "akita",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Akita Inu",
+      "American Akita",
+      "Japanese Akita",
+      "Great Japanese Dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Large",
+    "lifespan": "10-11 years",
+    "weight": "Male: 29-30kg; Female: 29-30kg",
+    "height": "Male: 56-61cm; Female: 56-61cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, BVA/KC Eye Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Akita, a dignified, loyal and corageous breed, of Japanese lineage. Akitas thrive on companionship but must be socialised from birth. They can also be intolerant of other pe...",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "способна хорошо учиться при регулярной работе",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью",
+      "не подойдет для пассивного ритма жизни",
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "Medium",
+      "shedding": "Heavy",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Medium",
+      "costToKeep": "High",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

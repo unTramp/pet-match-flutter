@@ -1,0 +1,49 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/staffordshire-bull-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Staffordshire Bull Terrier",
+    "slug": "staffordshire-bull-terrier",
+    "petType": "dog"
+  },
+  "summary": "Recognised by the Kennel club in the 1930's, the Staffie is one of the most trustworthy and popular family pets in the world.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Staffy",
+      "Staffie",
+      "Staffy Bull",
+      "Nanny Dog",
+      "SBT"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier",
+    "breedSize": "Medium",
+    "lifespan": "12-13 years",
+    "weight": "Male: 11-17kg; Female: 11-17kg",
+    "height": "Male: 36-41cm; Female: 36-41cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, DNA test - HC-HSF4, DNA test - L-2HGA, Litter eye screening for PHPV"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Medium",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Medium",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

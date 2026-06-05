@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/miniature-schnauzer",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Miniature Schnauzer",
+    "slug": "miniature-schnauzer",
+    "petType": "dog"
+  },
+  "summary": "Since they first appeared in the show ring they have become one of the most popular of all the Schnauzers thanks to their size as well as their charming looks and kind loyal natures.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Zwergschnauzer (Dwarf Schnauzer)"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 4-8kg; Female: 4-8kg",
+    "height": "Male: 30-35cm; Female: 30-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Very easy",
+    "shedding": "Light",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "High",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

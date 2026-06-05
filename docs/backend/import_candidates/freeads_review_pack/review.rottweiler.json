@@ -95,7 +95,7 @@
     }
   },
   "contentComparison": {
-    "canonicalSummaryShort": "Порода с выраженным темпераментом и требованиями к повседневному ритму, которую стоит оценивать вместе с образом жизни владельца.",
+    "canonicalSummaryShort": "Крупная working-порода, которой нужны уверенное обучение, активный повседневный ритм и владелец, готовый к ответственности и последовательной социализации.",
     "freeadsSummaryShort": "Rottweilers are one of our most popular breeds. Also known as Rotts, Rottweilers are a large dog and a pedigree breed.",
     "freeadsStrengths": [
       "обычно хорошо поддается обучению",
@@ -107,7 +107,7 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.69,
+    "canonicalConfidenceScore": 0.73,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [

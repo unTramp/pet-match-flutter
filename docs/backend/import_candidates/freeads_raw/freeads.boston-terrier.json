@@ -1,0 +1,49 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/boston-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Boston Terrier",
+    "slug": "boston-terrier",
+    "petType": "dog"
+  },
+  "summary": "The Boston Terrier is often referred to as the \"American Gentleman\" and for good reason. These smart little dogs boast an interesting ancestry owing some of it to the English Bulldog. The breed first appeared on the scene in the States back in 1893 when various terrier and bull type dogs were crossed. The result saw the first pair of dogs being born and it was these dogs that were to form the foundation stock for the Boston Terrier breed that we know and love today.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Boston",
+      "Boston bull",
+      "Boston bull terrier",
+      "American gentleman",
+      "Boxwood"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Small",
+    "lifespan": "13-14 years",
+    "weight": "Male: 7-11kg; Female: 7-11kg",
+    "height": "Male: 38-43cm; Female: 38-43cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "Eye scheme, HC-HSF4"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

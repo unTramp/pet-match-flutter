@@ -1,0 +1,48 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/akita",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Akita",
+    "slug": "akita",
+    "petType": "dog"
+  },
+  "summary": "The Akita, a dignified, loyal and corageous breed, of Japanese lineage. Akitas thrive on companionship but must be socialised from birth. They can also be intolerant of other pets and animals.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Akita Inu",
+      "American Akita",
+      "Japanese Akita",
+      "Great Japanese Dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Large",
+    "lifespan": "10-11 years",
+    "weight": "Male: 29-30kg; Female: 29-30kg",
+    "height": "Male: 56-61cm; Female: 56-61cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, BVA/KC Eye Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "Medium",
+    "shedding": "Heavy",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "High",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

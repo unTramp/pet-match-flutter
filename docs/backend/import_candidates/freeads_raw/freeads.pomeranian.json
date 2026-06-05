@@ -1,0 +1,51 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/pomeranian",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Pomeranian",
+    "slug": "pomeranian",
+    "petType": "dog"
+  },
+  "summary": "Pomeranians are one of our most popular breeds. Also known as Pom poms, Pomeranians are a very small dog and a pedigree breed.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Pom pom",
+      "Pom",
+      "Deutscher Spitz",
+      "Zwergspitz",
+      "Spitz nain",
+      "Spitz enano",
+      "Zwers"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Toy",
+    "lifespan": "12-16 years",
+    "weight": "Male: 1-3kg; Female: 1-3kg",
+    "height": "Male: 13-28cm; Female: 13-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "Currently there are no DNA tests available"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Low",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "High",
+    "costToKeep": "Low",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "breedId": "staffordshire_bull_terrier",
+  "petType": "dog",
+  "name": "Staffordshire Bull Terrier",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/staffordshire-bull-terrier",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Staffordshire Bull Terrier",
+    "freeadsSlug": "staffordshire-bull-terrier",
+    "rawIdentity": {
+      "breedName": "Staffordshire Bull Terrier",
+      "slug": "staffordshire-bull-terrier",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Staffy",
+      "Staffie",
+      "Staffy Bull",
+      "Nanny Dog",
+      "SBT"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier",
+    "breedSize": "Medium",
+    "lifespan": "12-13 years",
+    "weight": "Male: 11-17kg; Female: 11-17kg",
+    "height": "Male: 36-41cm; Female: 36-41cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, DNA test - HC-HSF4, DNA test - L-2HGA, Litter eye screening for PHPV"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Recognised by the Kennel club in the 1930's, the Staffie is one of the most trustworthy and popular family pets in the world.",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 3,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Medium",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Medium",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

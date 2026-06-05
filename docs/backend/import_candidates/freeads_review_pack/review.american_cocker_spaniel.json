@@ -46,10 +46,10 @@
       "difference": 0
     },
     "sheddingLevel": {
-      "canonical": 3,
+      "canonical": 5,
       "freeadsDraft": 5,
-      "status": "drift",
-      "difference": 2
+      "status": "match",
+      "difference": 0
     },
     "maintenanceCost": {
       "canonical": 5,
@@ -95,7 +95,7 @@
     }
   },
   "contentComparison": {
-    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "canonicalSummaryShort": "Компактный, но очень энергичный spaniel-companion, которому нужны регулярные активности, вовлечённый владелец и готовность к заметной линьке и грумингу.",
     "freeadsSummaryShort": "American Cocker Spaniels are a medium sized dog and a pedigree breed. Also known as: Cocker Spaniel (America)",
     "freeadsStrengths": [
       "подходит для активного образа жизни",
@@ -108,13 +108,13 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.69,
+    "canonicalConfidenceScore": 0.74,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
       "Captured manually after Cloudflare browser pass."
     ],
-    "driftCount": 3,
+    "driftCount": 2,
     "nearMatchCount": 2,
     "missingFromSourceCount": 0
   },

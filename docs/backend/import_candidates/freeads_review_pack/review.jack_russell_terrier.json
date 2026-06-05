@@ -95,7 +95,7 @@
     }
   },
   "contentComparison": {
-    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "canonicalSummaryShort": "Небольшой, но очень энергичный терьер, которому нужны регулярные активности, вовлечённый владелец и понятный выход для энергии и драйва.",
     "freeadsSummaryShort": "Jack Russells are one of our most popular breeds. Also known as Jacks, Jack Russells are a small dog and a pedigree breed.",
     "freeadsStrengths": [
       "обычно легче переносит короткие периоды одиночества"
@@ -104,7 +104,7 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.69,
+    "canonicalConfidenceScore": 0.73,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [

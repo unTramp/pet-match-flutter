@@ -1,0 +1,92 @@
+{
+  "breedId": "pomeranian",
+  "petType": "dog",
+  "name": "Pomeranian",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pomeranian",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Pomeranian",
+    "freeadsSlug": "pomeranian",
+    "rawIdentity": {
+      "breedName": "Pomeranian",
+      "slug": "pomeranian",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Pom pom",
+      "Pom",
+      "Deutscher Spitz",
+      "Zwergspitz",
+      "Spitz nain",
+      "Spitz enano",
+      "Zwers"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Toy",
+    "lifespan": "12-16 years",
+    "weight": "Male: 1-3kg; Female: 1-3kg",
+    "height": "Male: 13-28cm; Female: 13-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "Currently there are no DNA tests available"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Pomeranians are one of our most popular breeds. Also known as Pom poms, Pomeranians are a very small dog and a pedigree breed.",
+    "strengths": [
+      "подходит для более спокойного ритма жизни",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 1,
+    "exerciseNeedsDraft": 2,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Low",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

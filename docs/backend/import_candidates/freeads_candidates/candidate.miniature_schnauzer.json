@@ -1,0 +1,84 @@
+{
+  "breedId": "miniature_schnauzer",
+  "petType": "dog",
+  "name": "Miniature Schnauzer",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/miniature-schnauzer",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Miniature Schnauzer",
+    "freeadsSlug": "miniature-schnauzer",
+    "rawIdentity": {
+      "breedName": "Miniature Schnauzer",
+      "slug": "miniature-schnauzer",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Zwergschnauzer (Dwarf Schnauzer)"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 4-8kg; Female: 4-8kg",
+    "height": "Male: 30-35cm; Female: 30-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Since they first appeared in the show ring they have become one of the most popular of all the Schnauzers thanks to their size as well as their charming looks and kind loyal nat...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Very easy",
+      "shedding": "Light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "breedId": "papillon",
+  "petType": "dog",
+  "name": "Papillon",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/papillon",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Papillon",
+    "freeadsSlug": "papillon",
+    "rawIdentity": {
+      "breedName": "Papillon",
+      "slug": "papillon",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Pap",
+      "Butterfly dog",
+      "Squirrel dog"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Toy",
+    "lifespan": "13-15 years",
+    "weight": "Male: 3-4kg; Female: 3-4kg",
+    "height": "Male: 28-32cm; Female: 28-32cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, Breed Club - Slipping Patella, DNA test - Pap-PRA1"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Not only is the Papillon adorable looking but they rank number 8 out of 79 other breeds when it comes to intelligence.",
+    "strengths": [
+      "подходит для активного образа жизни"
+    ],
+    "watchouts": [
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 1,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Very high",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "Very easy",
+      "shedding": "Light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "Very high",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

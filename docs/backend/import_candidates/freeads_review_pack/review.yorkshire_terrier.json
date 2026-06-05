@@ -95,7 +95,7 @@
     }
   },
   "contentComparison": {
-    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "canonicalSummaryShort": "Очень маленький toy-companion, который хорошо чувствует себя в квартире, заметно меньше линяет, но требует регулярного груминга и аккуратного обращения.",
     "freeadsSummaryShort": "Yorkshire Terriers are one of our most popular breeds. Also known as Yorkies, Yorkshire Terriers are a very small dog and a pedigree breed. We recommend registering your interes...",
     "freeadsStrengths": [
       "умеренный уровень активности",
@@ -107,7 +107,7 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.69,
+    "canonicalConfidenceScore": 0.73,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
