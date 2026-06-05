@@ -45,13 +45,13 @@
     ]
   },
   "quality": {
-    "confidenceScore": 0.75,
+    "confidenceScore": 0.77,
     "sourceCount": 4,
     "sourceNotes": [
       "template breed baseline",
       "pets_json raw source",
       "normalized_pets structured hints",
-      "freeads snippet review"
+      "freeads browser capture review"
     ],
     "needsReview": true,
     "version": 1

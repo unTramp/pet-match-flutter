@@ -4,7 +4,7 @@
   "baseUrl": "https://www.freeads.co.uk/dog-breeds",
   "notes": [
     "This manifest tracks the first Freeads pilot batch.",
-    "breedDetailsUrl may be inferred before the raw snapshot is verified.",
+    "Most pilot breeds now have browser-captured HTML and parsed raw snapshots.",
     "Nothing from this manifest should go directly into catalog.v1 without review."
   ],
   "candidates": [
@@ -15,7 +15,7 @@
       "freeadsBreedName": "Maltese",
       "freeadsSlug": "maltese",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_a",
       "reviewRequiredFields": [
@@ -33,7 +33,7 @@
       "freeadsBreedName": "Pug",
       "freeadsSlug": "pug",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_a",
       "reviewRequiredFields": [
@@ -51,7 +51,7 @@
       "freeadsBreedName": "Yorkshire Terrier",
       "freeadsSlug": "yorkshire-terrier",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_a",
       "reviewRequiredFields": [
@@ -69,7 +69,7 @@
       "freeadsBreedName": "Jack Russell",
       "freeadsSlug": "jack-russell",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
-      "urlStatus": "search_confirmed",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_a",
       "reviewRequiredFields": [
@@ -87,7 +87,7 @@
       "freeadsBreedName": "Cocker Spaniel",
       "freeadsSlug": "cocker-spaniel",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_b",
       "reviewRequiredFields": [
@@ -105,7 +105,7 @@
       "freeadsBreedName": "American Cocker Spaniel",
       "freeadsSlug": "american-cocker-spaniel",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_b",
       "reviewRequiredFields": [
@@ -123,7 +123,7 @@
       "freeadsBreedName": "Rottweiler",
       "freeadsSlug": "rottweiler",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/rottweiler",
-      "urlStatus": "inferred",
+      "urlStatus": "verified_via_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_c",
       "reviewRequiredFields": [
@@ -141,7 +141,7 @@
       "freeadsBreedName": "Dobermann",
       "freeadsSlug": "dobermann",
       "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
-      "urlStatus": "inferred",
+      "urlStatus": "needs_browser_capture",
       "importMode": "new_breed",
       "phase": "pilot_c",
       "reviewRequiredFields": [

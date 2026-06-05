@@ -3,34 +3,43 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "needs_browser_capture"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "Yorkshire Terrier",
     "slug": "yorkshire-terrier",
     "petType": "dog"
   },
-  "summary": null,
+  "summary": "Yorkshire Terriers are one of our most popular breeds. Also known as Yorkies, Yorkshire Terriers are a very small dog and a pedigree breed. We recommend registering your interest early for ne wlitters due to the popularity of the breed.",
   "heroImageUrl": null,
   "galleryImages": [],
   "facts": {
-    "otherNames": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
+    "otherNames": [
+      "Yorkie"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy , Hypoallergenic",
+    "breedSize": "Toy",
+    "lifespan": "13-16 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 25-28cm; Female: 25-28cm",
+    "pedigree": "Yes",
     "healthTestsAvailable": null
   },
-  "characteristics": {},
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Very light",
+    "groomingNeeds": "High",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Low",
+    "costToKeep": "Low",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Very calm"
+  },
   "quality": {
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

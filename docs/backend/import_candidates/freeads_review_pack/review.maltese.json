@@ -7,7 +7,7 @@
     "canonicalFile": "docs/backend/examples/breed.maltese.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.maltese.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
-    "freeadsUrlStatus": "verified_via_search_snippet"
+    "freeadsUrlStatus": "verified_via_browser_capture"
   },
   "groupComparison": {
     "canonical": "toy",
@@ -17,9 +17,9 @@
   "fieldComparison": {
     "size": {
       "canonical": 1,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
     },
     "exerciseNeeds": {
       "canonical": 1,
@@ -95,7 +95,7 @@
     }
   },
   "contentComparison": {
-    "canonicalSummaryShort": "Небольшой спокойный companion для размеренного ритма жизни, который хорошо чувствует себя в квартире.",
+    "canonicalSummaryShort": "Небольшой companion с очень низкой линькой и спокойным домашним ритмом, который хорошо чувствует себя в квартире, но требует регулярного груминга.",
     "freeadsSummaryShort": "These little white dogs hail from Malta where they were highly prized for their charming looks and independent natures.",
     "freeadsStrengths": [
       "умеренный уровень активности",
@@ -105,19 +105,17 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.73,
+    "canonicalConfidenceScore": 0.75,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
-      "Built from search snippet rather than a full direct page fetch.",
-      "Hero image URL was not available in the snippet."
+      "Captured manually after Cloudflare browser pass."
     ],
     "driftCount": 4,
     "nearMatchCount": 2,
-    "missingFromSourceCount": 1
+    "missingFromSourceCount": 0
   },
   "recommendedActions": [
-    "review numeric attribute drifts before trusting Freeads draft values",
-    "fill PetWise-only fields via rubric review"
+    "review numeric attribute drifts before trusting Freeads draft values"
   ]
 }

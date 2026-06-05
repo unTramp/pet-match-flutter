@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
-    "urlStatus": "needs_browser_capture",
+    "urlStatus": "verified_via_browser_capture",
     "freeadsBreedName": "American Cocker Spaniel",
     "freeadsSlug": "american-cocker-spaniel",
     "rawIdentity": {
@@ -15,56 +15,73 @@
     }
   },
   "sourceFacts": {
-    "aliases": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
-    "healthTestsAvailable": null
+    "aliases": [
+      "Cocker Spaniel (America)",
+      "Cocker",
+      "Merry Cocker"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Small , Medium",
+    "lifespan": "12-15 years",
+    "weight": "Male: 11-14kg; Female: 11-14kg",
+    "height": "Male: 37-39cm; Female: 34-37cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy, BVA/KC/ISDS Eye Scheme, DNA test - prcd-PRA"
   },
   "mediaDraft": {
     "imageUrl": null,
     "galleryImages": []
   },
   "contentDraft": {
-    "summaryShort": null,
-    "strengths": [],
-    "watchouts": []
+    "summaryShort": "American Cocker Spaniels are a medium sized dog and a pedigree breed. Also known as: Cocker Spaniel (America)",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "не подойдет для пассивного ритма жизни"
+    ]
   },
   "attributeExtractionHints": {
-    "sizeDraft": null,
-    "exerciseNeedsDraft": null,
-    "trainabilityDraft": null,
-    "sheddingLevelDraft": null,
-    "groomingNeedsDraft": null,
-    "goodWithChildrenDraft": null,
-    "maintenanceCostDraft": null,
-    "aloneToleranceDraft": null,
-    "intelligenceLabel": null,
-    "healthOfBreedLabel": null,
-    "rawCharacteristics": {}
+    "sizeDraft": 3,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "High",
+      "shedding": "Very heavy",
+      "groomingNeeds": "Very high",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Medium",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
   },
   "importStatus": {
-    "contentReady": false,
+    "contentReady": true,
     "mediaReady": false,
     "attributesReady": false,
     "flagsReady": false
   },
   "quality": {
-    "confidenceScore": 0.34,
+    "confidenceScore": 0.71,
     "sourceCount": 1,
     "sourceNotes": [
       "freeads breed page",
       "structured traits normalized into draft hints"
     ],
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Search results currently return listing pages rather than the breed detail page snippet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
     "needsReview": true,
     "version": 1

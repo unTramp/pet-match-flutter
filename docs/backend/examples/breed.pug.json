@@ -14,7 +14,7 @@
     "goodWithChildren": 4,
     "goodWithOtherPets": 4,
     "groomingNeeds": 2,
-    "sheddingLevel": 4,
+    "sheddingLevel": 5,
     "beginnerFriendly": 4,
     "maintenanceCost": 4,
     "noiseLevel": 3,
@@ -33,25 +33,25 @@
     "strengths": [
       "подходит для квартиры",
       "умеренный уровень активности",
-      "обычно хорошо ладит с другими собаками"
+      "обычно хорошо вписывается в спокойный домашний ритм"
     ],
     "watchouts": [
-      "может заметно линять",
-      "нуждается в регулярной ментальной стимуляции"
+      "может сильно линять",
+      "с детьми лучше при уважительном обращении и без грубой игры"
     ],
     "adaptationTips": [
       "контролировать бытовой комфорт и не перегружать интенсивной активностью",
-      "сразу закладывать понятный ритм прогулок, игр и коротких занятий"
+      "сразу закладывать понятный ритм коротких прогулок и спокойных занятий"
     ]
   },
   "quality": {
-    "confidenceScore": 0.74,
+    "confidenceScore": 0.76,
     "sourceCount": 4,
     "sourceNotes": [
       "template breed baseline",
       "pets_json raw source",
       "normalized_pets structured hints",
-      "freeads snippet review"
+      "freeads browser capture review"
     ],
     "needsReview": true,
     "version": 1

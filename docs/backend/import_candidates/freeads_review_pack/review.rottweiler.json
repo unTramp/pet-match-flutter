@@ -2,66 +2,66 @@
   "breedId": "rottweiler",
   "petType": "dog",
   "name": "Rottweiler",
-  "reviewPriority": "medium",
+  "reviewPriority": "normal",
   "sources": {
     "canonicalFile": "docs/backend/examples/breed.rottweiler.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.rottweiler.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/rottweiler",
-    "freeadsUrlStatus": "needs_browser_capture"
+    "freeadsUrlStatus": "verified_via_browser_capture"
   },
   "groupComparison": {
     "canonical": "working",
-    "freeadsDraft": null,
-    "status": "missing_from_source"
+    "freeadsDraft": "working",
+    "status": "match"
   },
   "fieldComparison": {
     "size": {
       "canonical": 5,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
     },
     "exerciseNeeds": {
       "canonical": 5,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
     },
     "aloneTolerance": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
     },
     "goodWithChildren": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
     },
     "groomingNeeds": {
       "canonical": 2,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
     },
     "sheddingLevel": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
     },
     "maintenanceCost": {
       "canonical": 5,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
     },
     "trainability": {
       "canonical": 5,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
     },
     "apartmentSuitability": {
       "canonical": 2,
@@ -96,28 +96,28 @@
   },
   "contentComparison": {
     "canonicalSummaryShort": "Порода с выраженным темпераментом и требованиями к повседневному ритму, которую стоит оценивать вместе с образом жизни владельца.",
-    "freeadsSummaryShort": null,
-    "freeadsStrengths": [],
-    "freeadsWatchouts": [],
-    "contentReady": false
+    "freeadsSummaryShort": "Rottweilers are one of our most popular breeds. Also known as Rotts, Rottweilers are a large dog and a pedigree breed.",
+    "freeadsStrengths": [
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "freeadsWatchouts": [
+      "содержание может обходиться дороже среднего"
+    ],
+    "contentReady": true
   },
   "quality": {
     "canonicalConfidenceScore": 0.69,
-    "freeadsConfidenceScore": 0.34,
+    "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Search results currently surface listing pages rather than the breed detail page snippet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
     "driftCount": 0,
-    "nearMatchCount": 0,
-    "missingFromSourceCount": 8
+    "nearMatchCount": 4,
+    "missingFromSourceCount": 0
   },
   "recommendedActions": [
-    "fill PetWise-only fields via rubric review",
-    "capture richer breed page data before using Freeads for content enrichment",
-    "prefer browser-assisted capture for a stronger raw snapshot"
+    "candidate is ready for focused reviewer pass"
   ]
 }

@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
-    "urlStatus": "needs_browser_capture",
+    "urlStatus": "verified_via_browser_capture",
     "freeadsBreedName": "Yorkshire Terrier",
     "freeadsSlug": "yorkshire-terrier",
     "rawIdentity": {
@@ -15,14 +15,16 @@
     }
   },
   "sourceFacts": {
-    "aliases": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
+    "aliases": [
+      "Yorkie"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy , Hypoallergenic",
+    "breedSize": "Toy",
+    "lifespan": "13-16 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 25-28cm; Female: 25-28cm",
+    "pedigree": "Yes",
     "healthTestsAvailable": null
   },
   "mediaDraft": {
@@ -30,41 +32,53 @@
     "galleryImages": []
   },
   "contentDraft": {
-    "summaryShort": null,
-    "strengths": [],
-    "watchouts": []
+    "summaryShort": "Yorkshire Terriers are one of our most popular breeds. Also known as Yorkies, Yorkshire Terriers are a very small dog and a pedigree breed. We recommend registering your interes...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью"
+    ]
   },
   "attributeExtractionHints": {
-    "sizeDraft": null,
-    "exerciseNeedsDraft": null,
-    "trainabilityDraft": null,
-    "sheddingLevelDraft": null,
-    "groomingNeedsDraft": null,
-    "goodWithChildrenDraft": null,
-    "maintenanceCostDraft": null,
-    "aloneToleranceDraft": null,
-    "intelligenceLabel": null,
-    "healthOfBreedLabel": null,
-    "rawCharacteristics": {}
+    "sizeDraft": 1,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 1,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 5,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Low",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Very light",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Low",
+      "costToKeep": "Low",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Very calm"
+    }
   },
   "importStatus": {
-    "contentReady": false,
+    "contentReady": true,
     "mediaReady": false,
     "attributesReady": false,
     "flagsReady": false
   },
   "quality": {
-    "confidenceScore": 0.34,
+    "confidenceScore": 0.71,
     "sourceCount": 1,
     "sourceNotes": [
       "freeads breed page",
       "structured traits normalized into draft hints"
     ],
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
     "needsReview": true,
     "version": 1

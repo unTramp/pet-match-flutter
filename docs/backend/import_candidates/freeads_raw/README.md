@@ -8,6 +8,13 @@
 - [../../FREEADS_BROWSER_CAPTURE_PROTOCOL.md](../../FREEADS_BROWSER_CAPTURE_PROTOCOL.md)
 - [freeads.template.json](./freeads.template.json)
 
+Для полуавтоматического browser-assisted сбора и парсинга:
+
+```bash
+python3 tool/backend_specs/capture_freeads_html.py --breed-id rottweiler
+python3 tool/backend_specs/parse_freeads_html.py --breed-id rottweiler
+```
+
 ## Naming
 
 Рекомендуемый формат:

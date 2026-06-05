@@ -2,66 +2,66 @@
   "breedId": "jack_russell_terrier",
   "petType": "dog",
   "name": "Jack Russell Terrier",
-  "reviewPriority": "medium",
+  "reviewPriority": "normal",
   "sources": {
     "canonicalFile": "docs/backend/examples/breed.jack_russell_terrier.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.jack_russell_terrier.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
-    "freeadsUrlStatus": "needs_browser_capture"
+    "freeadsUrlStatus": "verified_via_browser_capture"
   },
   "groupComparison": {
     "canonical": "terrier",
-    "freeadsDraft": null,
-    "status": "missing_from_source"
+    "freeadsDraft": "terrier",
+    "status": "match"
   },
   "fieldComparison": {
     "size": {
       "canonical": 1,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
     },
     "exerciseNeeds": {
       "canonical": 4,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
     },
     "aloneTolerance": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
     },
     "goodWithChildren": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
     },
     "groomingNeeds": {
       "canonical": 2,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
     },
     "sheddingLevel": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
     },
     "maintenanceCost": {
       "canonical": 3,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
     },
     "trainability": {
       "canonical": 4,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
     },
     "apartmentSuitability": {
       "canonical": 4,
@@ -96,28 +96,25 @@
   },
   "contentComparison": {
     "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
-    "freeadsSummaryShort": null,
-    "freeadsStrengths": [],
+    "freeadsSummaryShort": "Jack Russells are one of our most popular breeds. Also known as Jacks, Jack Russells are a small dog and a pedigree breed.",
+    "freeadsStrengths": [
+      "обычно легче переносит короткие периоды одиночества"
+    ],
     "freeadsWatchouts": [],
-    "contentReady": false
+    "contentReady": true
   },
   "quality": {
     "canonicalConfidenceScore": 0.69,
-    "freeadsConfidenceScore": 0.34,
+    "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
     "driftCount": 0,
-    "nearMatchCount": 0,
-    "missingFromSourceCount": 8
+    "nearMatchCount": 6,
+    "missingFromSourceCount": 0
   },
   "recommendedActions": [
-    "fill PetWise-only fields via rubric review",
-    "capture richer breed page data before using Freeads for content enrichment",
-    "prefer browser-assisted capture for a stronger raw snapshot"
+    "candidate is ready for focused reviewer pass"
   ]
 }

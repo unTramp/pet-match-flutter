@@ -3,7 +3,7 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "verified_via_search_snippet"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "Cocker Spaniel",
@@ -19,8 +19,8 @@
       "Merry Cocker"
     ],
     "breedGroup": "Gun dog",
-    "breedType": null,
-    "breedSize": null,
+    "breedType": "Gundog",
+    "breedSize": "Medium",
     "lifespan": "11-12 years",
     "weight": "Male: 13-14kg; Female: 13-14kg",
     "height": "Male: 39-41cm; Female: 38-38cm",
@@ -40,8 +40,7 @@
   },
   "quality": {
     "pageWarnings": [
-      "Built from search snippet rather than a full direct page fetch.",
-      "Hero image URL was not available in the snippet."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

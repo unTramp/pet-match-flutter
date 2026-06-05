@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
-    "urlStatus": "verified_via_search_snippet",
+    "urlStatus": "verified_via_browser_capture",
     "freeadsBreedName": "Pug",
     "freeadsSlug": "pug",
     "rawIdentity": {
@@ -32,7 +32,7 @@
     "weight": "Male: 6-8kg; Female: 6-8kg",
     "height": "Male: 25-35cm; Female: 25-35cm",
     "pedigree": "Yes",
-    "healthTestsAvailable": null
+    "healthTestsAvailable": "Breed council - hemivertebrae checking"
   },
   "mediaDraft": {
     "imageUrl": null,
@@ -85,8 +85,7 @@
       "structured traits normalized into draft hints"
     ],
     "pageWarnings": [
-      "Built from search snippet rather than a full direct page fetch.",
-      "Hero image URL was not available in the snippet."
+      "Captured manually after Cloudflare browser pass."
     ],
     "needsReview": true,
     "version": 1

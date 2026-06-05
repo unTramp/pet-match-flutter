@@ -3,16 +3,16 @@
 ## Current state
 
 - breed URL: `https://www.freeads.co.uk/dog-breeds/rottweiler`
-- status: `needs_browser_capture`
+- status: `verified_via_browser_capture`
 
 Что уже подтверждено:
-- slug и breed URL существуют
-- direct `curl` fetch сейчас возвращает Cloudflare challenge page
-- search выдача уводит в classified listing pages, а не в breed facts
+- browser HTML уже сохранён
+- raw snapshot, candidate и review pack уже пересобраны
+- direct `curl` fetch по-прежнему не рассматривается как рабочий path
 
-## What to capture next
+## What was captured
 
-Нужный minimum useful snapshot:
+Зафиксированы:
 - intro summary
 - `Breed Size`
 - `Exercise needs`
@@ -27,12 +27,6 @@
 - влияет на perception trust у крупных и требовательных пород
 - сейчас canonical breed уже есть, но `Freeads` review layer для неё пуст
 
-## Exit condition
+## Current next step
 
-Capture считается достаточным, если удаётся получить:
-- summary
-- минимум `3` structured trait labels
-
-Тогда породу можно повторно прогнать через:
-- `generate_freeads_candidates.py`
-- `generate_freeads_review_pack.py`
+Следующий шаг уже не capture, а reviewed pass по canonical breed.

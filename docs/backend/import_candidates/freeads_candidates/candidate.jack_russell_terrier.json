@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
-    "urlStatus": "needs_browser_capture",
+    "urlStatus": "verified_via_browser_capture",
     "freeadsBreedName": "Jack Russell",
     "freeadsSlug": "jack-russell",
     "rawIdentity": {
@@ -15,14 +15,17 @@
     }
   },
   "sourceFacts": {
-    "aliases": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
+    "aliases": [
+      "Jack",
+      "JRT"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier",
+    "breedSize": "Small",
+    "lifespan": "13-16 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 25-30cm; Female: 25-30cm",
+    "pedigree": "Yes",
     "healthTestsAvailable": null
   },
   "mediaDraft": {
@@ -30,41 +33,50 @@
     "galleryImages": []
   },
   "contentDraft": {
-    "summaryShort": null,
-    "strengths": [],
+    "summaryShort": "Jack Russells are one of our most popular breeds. Also known as Jacks, Jack Russells are a small dog and a pedigree breed.",
+    "strengths": [
+      "обычно легче переносит короткие периоды одиночества"
+    ],
     "watchouts": []
   },
   "attributeExtractionHints": {
-    "sizeDraft": null,
-    "exerciseNeedsDraft": null,
-    "trainabilityDraft": null,
-    "sheddingLevelDraft": null,
-    "groomingNeedsDraft": null,
-    "goodWithChildrenDraft": null,
-    "maintenanceCostDraft": null,
-    "aloneToleranceDraft": null,
-    "intelligenceLabel": null,
-    "healthOfBreedLabel": null,
-    "rawCharacteristics": {}
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Very high",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Very high",
+      "easyToTrain": "Very easy",
+      "shedding": "Medium",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Low",
+      "intelligence": "Very high",
+      "toleratesBeingAlone": "Low anxiety"
+    }
   },
   "importStatus": {
-    "contentReady": false,
+    "contentReady": true,
     "mediaReady": false,
     "attributesReady": false,
     "flagsReady": false
   },
   "quality": {
-    "confidenceScore": 0.34,
+    "confidenceScore": 0.71,
     "sourceCount": 1,
     "sourceNotes": [
       "freeads breed page",
       "structured traits normalized into draft hints"
     ],
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
     "needsReview": true,
     "version": 1

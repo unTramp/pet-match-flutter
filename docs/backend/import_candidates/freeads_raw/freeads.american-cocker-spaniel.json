@@ -3,34 +3,45 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "needs_browser_capture"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "American Cocker Spaniel",
     "slug": "american-cocker-spaniel",
     "petType": "dog"
   },
-  "summary": null,
+  "summary": "American Cocker Spaniels are a medium sized dog and a pedigree breed. Also known as: Cocker Spaniel (America)",
   "heroImageUrl": null,
   "galleryImages": [],
   "facts": {
-    "otherNames": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
-    "healthTestsAvailable": null
+    "otherNames": [
+      "Cocker Spaniel (America)",
+      "Cocker",
+      "Merry Cocker"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Small , Medium",
+    "lifespan": "12-15 years",
+    "weight": "Male: 11-14kg; Female: 11-14kg",
+    "height": "Male: 37-39cm; Female: 34-37cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy, BVA/KC/ISDS Eye Scheme, DNA test - prcd-PRA"
   },
-  "characteristics": {},
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "High",
+    "shedding": "Very heavy",
+    "groomingNeeds": "Very high",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Medium",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
   "quality": {
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Search results currently return listing pages rather than the breed detail page snippet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

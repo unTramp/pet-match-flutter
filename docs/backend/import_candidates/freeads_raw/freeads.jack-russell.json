@@ -3,34 +3,44 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/jack-russell",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "needs_browser_capture"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "Jack Russell",
     "slug": "jack-russell",
     "petType": "dog"
   },
-  "summary": null,
+  "summary": "Jack Russells are one of our most popular breeds. Also known as Jacks, Jack Russells are a small dog and a pedigree breed.",
   "heroImageUrl": null,
   "galleryImages": [],
   "facts": {
-    "otherNames": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
+    "otherNames": [
+      "Jack",
+      "JRT"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier",
+    "breedSize": "Small",
+    "lifespan": "13-16 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 25-30cm; Female: 25-30cm",
+    "pedigree": "Yes",
     "healthTestsAvailable": null
   },
-  "characteristics": {},
+  "characteristics": {
+    "exerciseNeeds": "Very high",
+    "easyToTrain": "Very easy",
+    "shedding": "Medium",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Low",
+    "intelligence": "Very high",
+    "toleratesBeingAlone": "Low anxiety"
+  },
   "quality": {
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

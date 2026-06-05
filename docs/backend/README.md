@@ -34,6 +34,8 @@
 - [../../tool/backend_specs/profile_builder.dart](../../tool/backend_specs/profile_builder.dart) — reference builder для `answers -> user_profile`.
 - [../../tool/backend_specs/build_profile.dart](../../tool/backend_specs/build_profile.dart) — CLI-утилита для ручной сборки профиля из ответов.
 - [../../tool/backend_specs/generate_import_candidates.py](../../tool/backend_specs/generate_import_candidates.py) — генератор черновых import candidates из `pets_json` и `normalized_pets`.
+- [../../tool/backend_specs/capture_freeads_html.py](../../tool/backend_specs/capture_freeads_html.py) — browser-assisted сбор HTML breed pages из `Freeads`.
+- [../../tool/backend_specs/parse_freeads_html.py](../../tool/backend_specs/parse_freeads_html.py) — преобразование сохранённого `Freeads` HTML в raw snapshot JSON.
 - [../../tool/backend_specs/generate_freeads_candidates.py](../../tool/backend_specs/generate_freeads_candidates.py) — генератор черновых import candidates из raw `Freeads` snapshots.
 - [../../tool/backend_specs/generate_freeads_review_pack.py](../../tool/backend_specs/generate_freeads_review_pack.py) — генератор review pack `canonical vs Freeads candidate`.
 - [import_candidates/README.md](./import_candidates/README.md) — описание candidate-артефактов перед попаданием в канонический каталог.
@@ -99,6 +101,13 @@ HOME=/private/tmp DART_SUPPRESS_ANALYTICS=true dart run tool/backend_specs/valid
 
 ```bash
 python3 tool/backend_specs/generate_import_candidates.py
+```
+
+Собрать HTML breed page через обычный браузер и затем распарсить его:
+
+```bash
+python3 tool/backend_specs/capture_freeads_html.py --breed-id rottweiler
+python3 tool/backend_specs/parse_freeads_html.py --breed-id rottweiler
 ```
 
 Сгенерировать `candidate.*.json` из raw `Freeads` snapshots:

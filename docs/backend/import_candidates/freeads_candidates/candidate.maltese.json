@@ -5,7 +5,7 @@
   "source": {
     "origin": "freeads",
     "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
-    "urlStatus": "verified_via_search_snippet",
+    "urlStatus": "verified_via_browser_capture",
     "freeadsBreedName": "Maltese",
     "freeadsSlug": "maltese",
     "rawIdentity": {
@@ -15,14 +15,16 @@
     }
   },
   "sourceFacts": {
-    "aliases": [],
+    "aliases": [
+      "Maltese lion dog"
+    ],
     "breedGroup": "Toy",
-    "breedType": null,
-    "breedSize": null,
+    "breedType": "Toy , Hypoallergenic",
+    "breedSize": "Toy",
     "lifespan": "14-17 years",
     "weight": "Male: 3-4kg; Female: 3-4kg",
     "height": "Male: 20-25cm; Female: 20-25cm",
-    "pedigree": null,
+    "pedigree": "Yes",
     "healthTestsAvailable": null
   },
   "mediaDraft": {
@@ -38,7 +40,7 @@
     "watchouts": []
   },
   "attributeExtractionHints": {
-    "sizeDraft": null,
+    "sizeDraft": 1,
     "exerciseNeedsDraft": 3,
     "trainabilityDraft": 3,
     "sheddingLevelDraft": 1,
@@ -74,8 +76,7 @@
       "structured traits normalized into draft hints"
     ],
     "pageWarnings": [
-      "Built from search snippet rather than a full direct page fetch.",
-      "Hero image URL was not available in the snippet."
+      "Captured manually after Cloudflare browser pass."
     ],
     "needsReview": true,
     "version": 1

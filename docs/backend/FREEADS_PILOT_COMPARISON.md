@@ -16,8 +16,8 @@
 - `doberman`
 
 Из них:
-- `3` уже имеют snippet-level structured signal
-- `5` пока только `index_verified_only`
+- `7` уже имеют `verified_via_browser_capture`
+- `1` ещё остаётся в `needs_browser_capture`
 
 Machine-readable review pack лежит в:
 - [import_candidates/freeads_review_pack/summary.v1.json](./import_candidates/freeads_review_pack/summary.v1.json)
@@ -25,83 +25,87 @@ Machine-readable review pack лежит в:
 
 ## What Freeads already gives us
 
-### Strongest current candidates
+### Strong browser-captured confirmations
 
 #### `maltese`
 
-Уже есть useful draft signal:
-- `exerciseNeedsDraft = 3`
-- `sheddingLevelDraft = 1`
-- `groomingNeedsDraft = 1`
-- `goodWithChildrenDraft = 2`
-- `maintenanceCostDraft = 2`
-- `aloneToleranceDraft = 4`
-
 Практический смысл:
-- source уже помогает валидировать compact low-shedding companion profile
-- особенно полезен для review по бытовой совместимости и уходу
+- source хорошо подтверждает very-low-shedding profile
+- но одновременно показывает, что `Freeads` нельзя слепо принимать за истину
+  по `groomingNeeds`
+
+Главный вывод:
+- numeric rewrite не нужен
+- provenance/content rewrite полезен
 
 #### `pug`
 
-Уже есть useful draft signal:
-- `sizeDraft = 2`
-- `exerciseNeedsDraft = 3`
-- `sheddingLevelDraft = 5`
-- `groomingNeedsDraft = 3`
-- `goodWithChildrenDraft = 3`
-- `maintenanceCostDraft = 3`
-- `aloneToleranceDraft = 5`
-
 Практический смысл:
-- source хорошо подтверждает mainstream small-companion profile
-- уже даёт явный сигнал по shedding и относительной терпимости к одиночеству
+- source подтверждает small-companion profile
+- даёт сильный и правдоподобный signal по тяжёлой линьке
 
-Главный drift сейчас:
-- `aloneTolerance`: canonical `2` vs Freeads draft `5`
-
-Это не значит, что `Freeads` автоматически прав, а значит, что тут нужен
-целенаправленный review.
+Главный вывод:
+- это хороший пример, где browser-captured `Freeads` уже оправдывает точечный
+  numeric change
 
 #### `english_cocker_spaniel`
 
-Уже есть useful draft signal:
+Практический смысл:
+- source подтверждает уже сделанный active / grooming-heavy сдвиг
+- хорошо поддерживает sporting/spaniel branch
+
+Главный вывод:
+- browser capture здесь скорее подтверждает канонический профиль, чем требует
+  нового engine rewrite
+
+### Strong next review candidates
+
+#### `american_cocker_spaniel`
+
+Уже видно важные сигналы:
+- `exerciseNeedsDraft = 5`
+- `groomingNeedsDraft = 5`
+- `sheddingLevelDraft = 5`
+- `goodWithChildrenDraft = 3`
+
+Практический смысл:
+- хороший кандидат для следующего reviewed pass
+- особенно полезен для разведения spaniel-ветки
+
+#### `rottweiler`
+
+Уже видно важные сигналы:
+- `sizeDraft = 4`
+- `exerciseNeedsDraft = 5`
+- `trainabilityDraft = 5`
+- `goodWithChildrenDraft = 2`
+- `maintenanceCostDraft = 5`
+
+Практический смысл:
+- сильный source для large guardian / working branch
+
+#### `jack_russell_terrier`
+
+Уже видно важные сигналы:
+- `sizeDraft = 2`
 - `exerciseNeedsDraft = 5`
 - `trainabilityDraft = 5`
 - `sheddingLevelDraft = 3`
-- `groomingNeedsDraft = 5`
-- `goodWithChildrenDraft = 3`
-- `maintenanceCostDraft = 3`
-- `aloneToleranceDraft = 4`
-- aliases + health tests
+- `groomingNeedsDraft = 2`
 
 Практический смысл:
-- `Freeads` уже неплохо поддерживает spaniel-family branch
-- это хороший кандидат для следующего reviewed pass
-
-### Remaining five
-
-Пока только `index_verified_only`:
-- `yorkshire_terrier`
-- `jack_russell_terrier`
-- `american_cocker_spaniel`
-- `rottweiler`
-- `doberman`
-
-Практический смысл:
-- pipeline для них уже есть
-- identity и source URLs уже нормализованы
-- но полноценный comparison пока ограничен отсутствием richer raw snapshot
+- помогает честно развести активную small-dog ветку
 
 ## Main conclusion
 
-Даже на текущем уровне `Freeads` уже полезен:
-- как provenance-rich validation layer
-- как structured trait draft
-- как источник factual metadata
+Сейчас bottleneck уже не в source capture как таковом:
+- browser-assisted pipeline доказал, что данные можно получать повторяемо
+- review pack уже полезен почти по всему pilot batch
 
-Но bottleneck сейчас уже не в маппинге, а в source capture.
+Оставшийся operational step:
+1. добрать `doberman`
 
-Следующий сильный шаг:
-1. добрать richer raw snapshots для оставшихся `5`
-2. прогнать review pack повторно
-3. и только потом обновлять canonical `breed.*.json`
+Следующий product step:
+1. reviewed pass по `rottweiler`
+2. reviewed pass по `american_cocker_spaniel`
+3. reviewed pass по `yorkshire_terrier` / `jack_russell_terrier`

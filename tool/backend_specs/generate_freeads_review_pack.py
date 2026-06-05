@@ -177,7 +177,7 @@ def build_recommended_actions(
         actions.append("fill PetWise-only fields via rubric review")
     if not content_ready:
         actions.append("capture richer breed page data before using Freeads for content enrichment")
-    if url_status != "verified_via_search_snippet":
+    if url_status in {"needs_browser_capture", "index_verified_only"}:
         actions.append("prefer browser-assisted capture for a stronger raw snapshot")
 
     if not actions:
@@ -193,8 +193,9 @@ def build_summary(review_packs: list[dict[str, Any]]) -> dict[str, Any]:
         "highPriority": [],
         "mediumPriority": [],
         "normalPriority": [],
+        "browserCaptureComplete": 0,
         "snippetComplete": 0,
-        "indexOnly": 0,
+        "pendingCapture": 0,
     }
 
     for pack in review_packs:
@@ -206,10 +207,13 @@ def build_summary(review_packs: list[dict[str, Any]]) -> dict[str, Any]:
         }[priority]
         summary[summary_key].append(pack["breedId"])
 
-        if pack["sources"]["freeadsUrlStatus"] == "verified_via_search_snippet":
+        url_status = pack["sources"]["freeadsUrlStatus"]
+        if url_status == "verified_via_browser_capture":
+            summary["browserCaptureComplete"] += 1
+        elif url_status == "verified_via_search_snippet":
             summary["snippetComplete"] += 1
         else:
-            summary["indexOnly"] += 1
+            summary["pendingCapture"] += 1
 
     return summary
 

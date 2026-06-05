@@ -2,66 +2,66 @@
   "breedId": "yorkshire_terrier",
   "petType": "dog",
   "name": "Yorkshire Terrier",
-  "reviewPriority": "medium",
+  "reviewPriority": "high",
   "sources": {
     "canonicalFile": "docs/backend/examples/breed.yorkshire_terrier.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.yorkshire_terrier.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
-    "freeadsUrlStatus": "needs_browser_capture"
+    "freeadsUrlStatus": "verified_via_browser_capture"
   },
   "groupComparison": {
     "canonical": "toy",
-    "freeadsDraft": null,
-    "status": "missing_from_source"
+    "freeadsDraft": "toy",
+    "status": "match"
   },
   "fieldComparison": {
     "size": {
       "canonical": 1,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
     },
     "exerciseNeeds": {
       "canonical": 2,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
     },
     "aloneTolerance": {
       "canonical": 2,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "drift",
+      "difference": 3
     },
     "goodWithChildren": {
       "canonical": 2,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
     },
     "groomingNeeds": {
       "canonical": 5,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
     },
     "sheddingLevel": {
       "canonical": 1,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
     },
     "maintenanceCost": {
       "canonical": 4,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 2,
+      "status": "drift",
+      "difference": 2
     },
     "trainability": {
       "canonical": 4,
-      "freeadsDraft": null,
-      "status": "missing_from_source",
-      "difference": null
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
     },
     "apartmentSuitability": {
       "canonical": 5,
@@ -96,28 +96,28 @@
   },
   "contentComparison": {
     "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
-    "freeadsSummaryShort": null,
-    "freeadsStrengths": [],
-    "freeadsWatchouts": [],
-    "contentReady": false
+    "freeadsSummaryShort": "Yorkshire Terriers are one of our most popular breeds. Also known as Yorkies, Yorkshire Terriers are a very small dog and a pedigree breed. We recommend registering your interes...",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению"
+    ],
+    "freeadsWatchouts": [
+      "требует регулярного и заметного ухода за шерстью"
+    ],
+    "contentReady": true
   },
   "quality": {
     "canonicalConfidenceScore": 0.69,
-    "freeadsConfidenceScore": 0.34,
+    "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Structured breed facts were not available from search snippets yet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ],
-    "driftCount": 0,
-    "nearMatchCount": 0,
-    "missingFromSourceCount": 8
+    "driftCount": 2,
+    "nearMatchCount": 2,
+    "missingFromSourceCount": 0
   },
   "recommendedActions": [
-    "fill PetWise-only fields via rubric review",
-    "capture richer breed page data before using Freeads for content enrichment",
-    "prefer browser-assisted capture for a stronger raw snapshot"
+    "review numeric attribute drifts before trusting Freeads draft values"
   ]
 }

@@ -7,7 +7,7 @@
     "canonicalFile": "docs/backend/examples/breed.pug.json",
     "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.pug.json",
     "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
-    "freeadsUrlStatus": "verified_via_search_snippet"
+    "freeadsUrlStatus": "verified_via_browser_capture"
   },
   "groupComparison": {
     "canonical": "toy",
@@ -46,10 +46,10 @@
       "difference": 1
     },
     "sheddingLevel": {
-      "canonical": 4,
+      "canonical": 5,
       "freeadsDraft": 5,
-      "status": "near_match",
-      "difference": 1
+      "status": "match",
+      "difference": 0
     },
     "maintenanceCost": {
       "canonical": 4,
@@ -107,15 +107,14 @@
     "contentReady": true
   },
   "quality": {
-    "canonicalConfidenceScore": 0.74,
+    "canonicalConfidenceScore": 0.76,
     "freeadsConfidenceScore": 0.71,
     "freeadsNeedsReview": true,
     "pageWarnings": [
-      "Built from search snippet rather than a full direct page fetch.",
-      "Hero image URL was not available in the snippet."
+      "Captured manually after Cloudflare browser pass."
     ],
     "driftCount": 1,
-    "nearMatchCount": 4,
+    "nearMatchCount": 3,
     "missingFromSourceCount": 0
   },
   "recommendedActions": [

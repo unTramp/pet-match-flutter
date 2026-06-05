@@ -3,34 +3,44 @@
     "origin": "freeads",
     "url": "https://www.freeads.co.uk/dog-breeds/rottweiler",
     "scrapedAt": "2026-06-05",
-    "urlStatus": "needs_browser_capture"
+    "urlStatus": "verified_via_browser_capture"
   },
   "identity": {
     "breedName": "Rottweiler",
     "slug": "rottweiler",
     "petType": "dog"
   },
-  "summary": null,
-  "heroImageUrl": null,
+  "summary": "Rottweilers are one of our most popular breeds. Also known as Rotts, Rottweilers are a large dog and a pedigree breed.",
+  "heroImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/rottweiler.webp",
   "galleryImages": [],
   "facts": {
-    "otherNames": [],
-    "breedGroup": null,
-    "breedType": null,
-    "breedSize": null,
-    "lifespan": null,
-    "weight": null,
-    "height": null,
-    "pedigree": null,
-    "healthTestsAvailable": null
+    "otherNames": [
+      "Rott",
+      "Rottie"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "Large",
+    "lifespan": "8-10 years",
+    "weight": "Male: 50-60kg; Female: 50-60kg",
+    "height": "Male: 61-69cm; Female: 56-63cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, BVA/KC/ISDS Eye Scheme, BVA/KC Elbow Dysplasia Scheme"
   },
-  "characteristics": {},
+  "characteristics": {
+    "exerciseNeeds": "Very high",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "High",
+    "intelligence": "Very high",
+    "toleratesBeingAlone": "Low anxiety"
+  },
   "quality": {
     "pageWarnings": [
-      "Breed URL was verified on the Freeads A-Z index.",
-      "Direct fetch currently returns a Cloudflare challenge page rather than breed facts.",
-      "Search results currently surface listing pages rather than the breed detail page snippet.",
-      "Browser-assisted capture is still needed for a full raw snapshot."
+      "Captured manually after Cloudflare browser pass."
     ]
   }
 }

@@ -4,16 +4,18 @@
   "highPriority": [
     "maltese",
     "pug",
-    "english_cocker_spaniel"
+    "yorkshire_terrier",
+    "english_cocker_spaniel",
+    "american_cocker_spaniel"
   ],
   "mediumPriority": [
-    "yorkshire_terrier",
-    "jack_russell_terrier",
-    "american_cocker_spaniel",
-    "rottweiler",
     "doberman"
   ],
-  "normalPriority": [],
-  "snippetComplete": 3,
-  "indexOnly": 5
+  "normalPriority": [
+    "jack_russell_terrier",
+    "rottweiler"
+  ],
+  "browserCaptureComplete": 7,
+  "snippetComplete": 0,
+  "pendingCapture": 1
 }

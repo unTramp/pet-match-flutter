@@ -65,8 +65,11 @@ Success criteria:
   - `maltese`
   - `pug`
   - `english_cocker_spaniel`
-- следующий цикл должен идти через targeted capture для remaining
-  `index_verified_only` пород
+- browser-assisted capture уже закрыл `7/8` pilot breeds
+- следующий capture cycle нужен только для:
+  - `doberman`
+- следующий product cycle уже должен идти в reviewed passes по browser-captured
+  породам
 
 Success criteria:
 - у существующего каталога становится единообразнее provenance

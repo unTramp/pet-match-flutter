@@ -32,6 +32,24 @@ def map_label(mapping: dict[str, int], raw: Any) -> int | None:
     return mapping.get(raw.strip().lower())
 
 
+def map_size_label(raw: Any) -> int | None:
+    if not isinstance(raw, str):
+        return None
+
+    normalized = raw.strip().lower()
+    direct = SIZE_MAP.get(normalized)
+    if direct is not None:
+        return direct
+
+    parts = [part.strip() for part in normalized.replace("/", ",").split(",") if part.strip()]
+    values = [SIZE_MAP[part] for part in parts if part in SIZE_MAP]
+    if not values:
+        return None
+
+    # Prefer the larger bucket when the source expresses a range like "small, medium".
+    return max(values)
+
+
 SIZE_MAP = {
     "toy": 1,
     "small": 2,
@@ -61,6 +79,7 @@ SHEDDING_MAP = {
     "light": 2,
     "medium": 3,
     "heavy": 5,
+    "very heavy": 5,
     "high": 5,
 }
 
@@ -184,7 +203,7 @@ def build_candidate(manifest_entry: dict[str, Any], raw: dict[str, Any]) -> dict
     source = raw.get("source") or {}
     identity = raw.get("identity") or {}
 
-    size_draft = map_label(SIZE_MAP, facts.get("breedSize"))
+    size_draft = map_size_label(facts.get("breedSize"))
     exercise_draft = map_label(EXERCISE_MAP, characteristics.get("exerciseNeeds"))
     trainability_draft = map_label(TRAINABILITY_MAP, characteristics.get("easyToTrain"))
     shedding_draft = map_label(SHEDDING_MAP, characteristics.get("shedding"))

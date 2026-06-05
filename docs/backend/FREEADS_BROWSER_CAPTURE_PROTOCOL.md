@@ -77,21 +77,38 @@ challenge.
 - оставлять `null`
 - не додумывать значения
 
-### Step 3. Fill raw snapshot JSON
+### Step 3. Save HTML, not fields
 
-Редактируем файл:
+Лучше сохранять не только переписанные поля, а полный HTML page source.
 
-- `docs/backend/import_candidates/freeads_raw/freeads.<slug>.json`
+Есть два пути:
 
-Правила:
-- `urlStatus` меняем на `verified_via_browser_capture`
-- `summary` копируем как есть, без product rewrite
-- `facts` и `characteristics` заполняем сырыми page values
-- в `pageWarnings` убираем устаревшие блокирующие замечания
-- при желании оставляем note вроде:
-  - `Captured manually after Cloudflare browser pass`
+1. Через helper script:
 
-### Step 4. Regenerate downstream artifacts
+```bash
+python3 tool/backend_specs/capture_freeads_html.py --breed-id rottweiler
+```
+
+2. Или вручную сохранить page source в:
+
+- `docs/backend/import_candidates/freeads_html/freeads.<slug>.html`
+
+### Step 4. Convert HTML into raw snapshot JSON
+
+После этого raw snapshot можно собрать автоматически:
+
+```bash
+python3 tool/backend_specs/parse_freeads_html.py --breed-id rottweiler
+```
+
+Скрипт сам:
+- поставит `urlStatus = verified_via_browser_capture`
+- вытащит `summary`
+- вытащит `facts`
+- вытащит `characteristics`
+- обновит `freeads.<slug>.json`
+
+### Step 5. Regenerate downstream artifacts
 
 После обновления raw snapshot:
 
@@ -101,7 +118,7 @@ python3 tool/backend_specs/generate_freeads_review_pack.py
 flutter test test/backend_specs/examples_json_validation_test.dart
 ```
 
-### Step 5. Review the output
+### Step 6. Review the output
 
 Смотреть:
 - `docs/backend/import_candidates/freeads_candidates/candidate.<breedId>.json`
