@@ -1,0 +1,94 @@
+{
+  "breedId": "pug",
+  "petType": "dog",
+  "name": "Pug",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
+    "urlStatus": "verified_via_search_snippet",
+    "freeadsBreedName": "Pug",
+    "freeadsSlug": "pug",
+    "rawIdentity": {
+      "breedName": "Pug",
+      "slug": "pug",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Chinese Pug",
+      "Dutch Bulldog",
+      "Dutch Mastiff",
+      "Mini Mastiff",
+      "Mops (Germany)",
+      "Carlin (France)",
+      "Mopsi (Finland)",
+      "Doguillo (Spain)"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Small",
+    "lifespan": "12-14 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 25-35cm; Female: 25-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Pugs are one of our most popular breeds. Also known as Chinese Pugs, Pugs are a small dog and a pedigree breed.",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 5,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Very high",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Heavy",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Very high",
+      "costToKeep": "Medium",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Very calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

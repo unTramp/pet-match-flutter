@@ -1,0 +1,53 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/pug",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_search_snippet"
+  },
+  "identity": {
+    "breedName": "Pug",
+    "slug": "pug",
+    "petType": "dog"
+  },
+  "summary": "Pugs are one of our most popular breeds. Also known as Chinese Pugs, Pugs are a small dog and a pedigree breed.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Chinese Pug",
+      "Dutch Bulldog",
+      "Dutch Mastiff",
+      "Mini Mastiff",
+      "Mops (Germany)",
+      "Carlin (France)",
+      "Mopsi (Finland)",
+      "Doguillo (Spain)"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Small",
+    "lifespan": "12-14 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 25-35cm; Female: 25-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Heavy",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Very high",
+    "costToKeep": "Medium",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Very calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "breedId": "maltese",
+  "petType": "dog",
+  "name": "Maltese",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.maltese.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.maltese.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
+    "freeadsUrlStatus": "verified_via_search_snippet"
+  },
+  "groupComparison": {
+    "canonical": "toy",
+    "freeadsDraft": "toy",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "exerciseNeeds": {
+      "canonical": 1,
+      "freeadsDraft": 3,
+      "status": "drift",
+      "difference": 2
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": 4,
+      "status": "drift",
+      "difference": 2
+    },
+    "goodWithChildren": {
+      "canonical": 3,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "groomingNeeds": {
+      "canonical": 5,
+      "freeadsDraft": 1,
+      "status": "drift",
+      "difference": 4
+    },
+    "sheddingLevel": {
+      "canonical": 1,
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 4,
+      "freeadsDraft": 2,
+      "status": "drift",
+      "difference": 2
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Небольшой спокойный companion для размеренного ритма жизни, который хорошо чувствует себя в квартире.",
+    "freeadsSummaryShort": "These little white dogs hail from Malta where they were highly prized for their charming looks and independent natures.",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "freeadsWatchouts": [],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.73,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ],
+    "driftCount": 4,
+    "nearMatchCount": 2,
+    "missingFromSourceCount": 1
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values",
+    "fill PetWise-only fields via rubric review"
+  ]
+}

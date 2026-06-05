@@ -1,0 +1,122 @@
+{
+  "breedId": "yorkshire_terrier",
+  "petType": "dog",
+  "name": "Yorkshire Terrier",
+  "reviewPriority": "medium",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.yorkshire_terrier.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.yorkshire_terrier.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
+    "freeadsUrlStatus": "index_verified_only"
+  },
+  "groupComparison": {
+    "canonical": "toy",
+    "freeadsDraft": null,
+    "status": "missing_from_source"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "exerciseNeeds": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "goodWithChildren": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "groomingNeeds": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "sheddingLevel": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "maintenanceCost": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "freeadsSummaryShort": null,
+    "freeadsStrengths": [],
+    "freeadsWatchouts": [],
+    "contentReady": false
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.69,
+    "freeadsConfidenceScore": 0.34,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Breed URL was verified on the Freeads A-Z index.",
+      "Structured breed facts were not available from search snippets yet.",
+      "Browser-assisted capture is still needed for a full raw snapshot."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 0,
+    "missingFromSourceCount": 8
+  },
+  "recommendedActions": [
+    "fill PetWise-only fields via rubric review",
+    "capture richer breed page data before using Freeads for content enrichment",
+    "prefer browser-assisted capture for a stronger raw snapshot"
+  ]
+}

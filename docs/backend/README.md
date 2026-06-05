@@ -14,6 +14,10 @@
 - [RANKING_FIXTURES.md](./RANKING_FIXTURES.md) — сценарии для проверки ожидаемого ranking-а.
 - [PETS_JSON_MAPPING_AUDIT.md](./PETS_JSON_MAPPING_AUDIT.md) — правила, что можно безопасно забирать из внешнего `pets_json` каталога.
 - [PETS_JSON_IMPORT_SHORTLIST.md](./PETS_JSON_IMPORT_SHORTLIST.md) — shortlist и порядок импорта новых пород из внешнего каталога.
+- [FREEADS_MAPPING_SPEC.md](./FREEADS_MAPPING_SPEC.md) — правила маппинга `Freeads` breed pages в `PetWise` candidate format.
+- [FREEADS_INGESTION_PLAN.md](./FREEADS_INGESTION_PLAN.md) — phased rollout для `Freeads` как основного внешнего source.
+- [FREEADS_SOURCE_STATUS.md](./FREEADS_SOURCE_STATUS.md) — статус доступности `Freeads` data по pilot batch.
+- [FREEADS_PILOT_COMPARISON.md](./FREEADS_PILOT_COMPARISON.md) — актуальная сводка по `Freeads` pilot batch и comparison workflow.
 - [config/answer_to_profile_mapping.v1.json](./config/answer_to_profile_mapping.v1.json) — канонический mapping `answer -> user_profile`.
 - [config/scoring_config.v2.json](./config/scoring_config.v2.json) — versioned scoring config для текущего engine baseline.
 - [../../prisma/schema.prisma](../../prisma/schema.prisma) — Prisma-черновик модели данных.
@@ -27,6 +31,8 @@
 - [../../tool/backend_specs/profile_builder.dart](../../tool/backend_specs/profile_builder.dart) — reference builder для `answers -> user_profile`.
 - [../../tool/backend_specs/build_profile.dart](../../tool/backend_specs/build_profile.dart) — CLI-утилита для ручной сборки профиля из ответов.
 - [../../tool/backend_specs/generate_import_candidates.py](../../tool/backend_specs/generate_import_candidates.py) — генератор черновых import candidates из `pets_json` и `normalized_pets`.
+- [../../tool/backend_specs/generate_freeads_candidates.py](../../tool/backend_specs/generate_freeads_candidates.py) — генератор черновых import candidates из raw `Freeads` snapshots.
+- [../../tool/backend_specs/generate_freeads_review_pack.py](../../tool/backend_specs/generate_freeads_review_pack.py) — генератор review pack `canonical vs Freeads candidate`.
 - [import_candidates/README.md](./import_candidates/README.md) — описание candidate-артефактов перед попаданием в канонический каталог.
 - [../../backend](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend:1) — первый живой server-side skeleton поверх reference pipeline.
 - [../../backend/deploy](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend/deploy:1) — deploy scaffold для Hetzner.
@@ -57,6 +63,7 @@
 - contradictory questionnaire answers degrade confidence via `profileDiagnostics`
 - current dog catalog: `26` breeds, including two semi-assisted import waves from `pets_json`
 - AI only for offline breed enrichment and text generation
+- `Freeads` accepted as a primary reviewed source for dog breed ingestion
 - config-driven questionnaire, mapping and scoring
 
 ## Quick start
@@ -89,6 +96,18 @@ HOME=/private/tmp DART_SUPPRESS_ANALYTICS=true dart run tool/backend_specs/valid
 
 ```bash
 python3 tool/backend_specs/generate_import_candidates.py
+```
+
+Сгенерировать `candidate.*.json` из raw `Freeads` snapshots:
+
+```bash
+python3 tool/backend_specs/generate_freeads_candidates.py
+```
+
+Собрать review pack для текущего pilot batch:
+
+```bash
+python3 tool/backend_specs/generate_freeads_review_pack.py
 ```
 
 Собрать финальные `breed.*.json` из candidate snapshot и template breed baseline:

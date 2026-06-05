@@ -1,0 +1,44 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "This pilot manifest contains the first Freeads breeds with enough structured snippet data to generate candidate snapshots.",
+    "These candidates are intentionally isolated from the main import_candidates root to avoid overwriting existing pets_json candidates."
+  ],
+  "candidates": [
+    {
+      "breedId": "maltese",
+      "petType": "dog",
+      "name": "Maltese",
+      "freeadsBreedName": "Maltese",
+      "freeadsSlug": "maltese",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
+      "urlStatus": "verified_via_search_snippet",
+      "importMode": "new_breed",
+      "phase": "pilot_a"
+    },
+    {
+      "breedId": "pug",
+      "petType": "dog",
+      "name": "Pug",
+      "freeadsBreedName": "Pug",
+      "freeadsSlug": "pug",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
+      "urlStatus": "verified_via_search_snippet",
+      "importMode": "new_breed",
+      "phase": "pilot_a"
+    },
+    {
+      "breedId": "english_cocker_spaniel",
+      "petType": "dog",
+      "name": "English Cocker Spaniel",
+      "freeadsBreedName": "Cocker Spaniel",
+      "freeadsSlug": "cocker-spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
+      "urlStatus": "verified_via_search_snippet",
+      "importMode": "new_breed",
+      "phase": "pilot_a"
+    }
+  ]
+}

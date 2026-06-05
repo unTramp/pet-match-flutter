@@ -36,4 +36,37 @@ void main() {
       }
     });
   });
+
+  group('backend import candidate JSON fixtures', () {
+    test('all docs/backend/import_candidates JSON files are valid JSON', () {
+      final candidatesDir = Directory('docs/backend/import_candidates');
+      expect(candidatesDir.existsSync(), isTrue);
+
+      final jsonFiles =
+          candidatesDir
+              .listSync(recursive: true)
+              .whereType<File>()
+              .where((file) => file.path.endsWith('.json'))
+              .toList()
+            ..sort((left, right) => left.path.compareTo(right.path));
+
+      expect(jsonFiles, isNotEmpty);
+
+      for (final file in jsonFiles) {
+        final text = file.readAsStringSync();
+        dynamic decoded;
+
+        expect(
+          () => decoded = jsonDecode(text),
+          returnsNormally,
+          reason: 'Expected valid JSON in ${file.path}',
+        );
+        expect(
+          decoded,
+          isA<Map<String, dynamic>>(),
+          reason: 'Expected top-level JSON object in ${file.path}',
+        );
+      }
+    });
+  });
 }

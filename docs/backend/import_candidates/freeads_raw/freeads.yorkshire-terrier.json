@@ -1,0 +1,35 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "index_verified_only"
+  },
+  "identity": {
+    "breedName": "Yorkshire Terrier",
+    "slug": "yorkshire-terrier",
+    "petType": "dog"
+  },
+  "summary": null,
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [],
+    "breedGroup": null,
+    "breedType": null,
+    "breedSize": null,
+    "lifespan": null,
+    "weight": null,
+    "height": null,
+    "pedigree": null,
+    "healthTestsAvailable": null
+  },
+  "characteristics": {},
+  "quality": {
+    "pageWarnings": [
+      "Breed URL was verified on the Freeads A-Z index.",
+      "Structured breed facts were not available from search snippets yet.",
+      "Browser-assisted capture is still needed for a full raw snapshot."
+    ]
+  }
+}

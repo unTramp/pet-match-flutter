@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "breedCount": 8,
+  "highPriority": [
+    "maltese",
+    "pug",
+    "english_cocker_spaniel"
+  ],
+  "mediumPriority": [
+    "yorkshire_terrier",
+    "jack_russell_terrier",
+    "american_cocker_spaniel",
+    "rottweiler",
+    "doberman"
+  ],
+  "normalPriority": [],
+  "snippetComplete": 3,
+  "indexOnly": 5
+}

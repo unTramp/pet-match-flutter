@@ -29,26 +29,29 @@
     "isSuitableForFirstTimeOwners": true
   },
   "content": {
-    "summaryShort": "Компактная порода с умеренной активностью, которая обычно хорошо подходит для квартиры и спокойного домашнего ритма.",
+    "summaryShort": "Компактный companion с умеренной активностью, который обычно хорошо чувствует себя в квартире, но требует внимания к линьке и бытовому ритму.",
     "strengths": [
       "подходит для квартиры",
       "умеренный уровень активности",
       "обычно хорошо ладит с другими собаками"
     ],
     "watchouts": [
+      "может заметно линять",
       "нуждается в регулярной ментальной стимуляции"
     ],
     "adaptationTips": [
-      "важно подстроить повседневный ритм и обучение под темперамент породы"
+      "контролировать бытовой комфорт и не перегружать интенсивной активностью",
+      "сразу закладывать понятный ритм прогулок, игр и коротких занятий"
     ]
   },
   "quality": {
-    "confidenceScore": 0.69,
-    "sourceCount": 3,
+    "confidenceScore": 0.74,
+    "sourceCount": 4,
     "sourceNotes": [
       "template breed baseline",
       "pets_json raw source",
-      "normalized_pets structured hints"
+      "normalized_pets structured hints",
+      "freeads snippet review"
     ],
     "needsReview": true,
     "version": 1

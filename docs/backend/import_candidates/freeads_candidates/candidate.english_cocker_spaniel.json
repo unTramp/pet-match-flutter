@@ -1,0 +1,89 @@
+{
+  "breedId": "english_cocker_spaniel",
+  "petType": "dog",
+  "name": "English Cocker Spaniel",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
+    "urlStatus": "verified_via_search_snippet",
+    "freeadsBreedName": "Cocker Spaniel",
+    "freeadsSlug": "cocker-spaniel",
+    "rawIdentity": {
+      "breedName": "Cocker Spaniel",
+      "slug": "cocker-spaniel",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "English Cocker Spaniel",
+      "Merry Cocker"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": null,
+    "breedSize": null,
+    "lifespan": "11-12 years",
+    "weight": "Male: 13-14kg; Female: 13-14kg",
+    "height": "Male: 39-41cm; Female: 38-38cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, DNA test - prcd-PRA, DNA test - FN, BVA/KC Hip Dysplasia Scheme, BVA/KC/ISDI Gonioscopy, DNA test - AMS"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Cocker Spaniels are one of our most popular breeds. Also known as English Cocker Spaniels, Cocker Spaniels are a medium sized dog and a pedigree breed.",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью",
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "High",
+      "shedding": "Medium",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "High",
+      "costToKeep": "Medium",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

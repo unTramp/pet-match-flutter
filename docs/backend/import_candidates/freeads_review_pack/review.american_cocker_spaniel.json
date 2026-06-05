@@ -1,0 +1,122 @@
+{
+  "breedId": "american_cocker_spaniel",
+  "petType": "dog",
+  "name": "American Cocker Spaniel",
+  "reviewPriority": "medium",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.american_cocker_spaniel.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.american_cocker_spaniel.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
+    "freeadsUrlStatus": "index_verified_only"
+  },
+  "groupComparison": {
+    "canonical": "sporting",
+    "freeadsDraft": null,
+    "status": "missing_from_source"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "exerciseNeeds": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "goodWithChildren": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "groomingNeeds": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "sheddingLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "maintenanceCost": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "apartmentSuitability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "freeadsSummaryShort": null,
+    "freeadsStrengths": [],
+    "freeadsWatchouts": [],
+    "contentReady": false
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.69,
+    "freeadsConfidenceScore": 0.34,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Breed URL was verified on the Freeads A-Z index.",
+      "Search results currently return listing pages rather than the breed detail page snippet.",
+      "Browser-assisted capture is still needed for a full raw snapshot."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 0,
+    "missingFromSourceCount": 8
+  },
+  "recommendedActions": [
+    "fill PetWise-only fields via rubric review",
+    "capture richer breed page data before using Freeads for content enrichment",
+    "prefer browser-assisted capture for a stronger raw snapshot"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "breedId": "english_cocker_spaniel",
+  "petType": "dog",
+  "name": "English Cocker Spaniel",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.english_cocker_spaniel.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.english_cocker_spaniel.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
+    "freeadsUrlStatus": "verified_via_search_snippet"
+  },
+  "groupComparison": {
+    "canonical": "sporting",
+    "freeadsDraft": "gun_dog",
+    "status": "review_required_group_mismatch"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "exerciseNeeds": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": 4,
+      "status": "drift",
+      "difference": 2
+    },
+    "goodWithChildren": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "groomingNeeds": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "sheddingLevel": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "apartmentSuitability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Активная семейная spaniel-порода, которой нужен вовлечённый ритм жизни, регулярная нагрузка и готовность к заметному уходу за шерстью.",
+    "freeadsSummaryShort": "Cocker Spaniels are one of our most popular breeds. Also known as English Cocker Spaniels, Cocker Spaniels are a medium sized dog and a pedigree breed.",
+    "freeadsStrengths": [
+      "подходит для активного образа жизни",
+      "обычно хорошо поддается обучению"
+    ],
+    "freeadsWatchouts": [
+      "требует регулярного и заметного ухода за шерстью",
+      "не подойдет для пассивного ритма жизни"
+    ],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.75,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ],
+    "driftCount": 1,
+    "nearMatchCount": 4,
+    "missingFromSourceCount": 1
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values",
+    "fill PetWise-only fields via rubric review"
+  ]
+}

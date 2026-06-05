@@ -1,0 +1,71 @@
+{
+  "breedId": "american_cocker_spaniel",
+  "petType": "dog",
+  "name": "American Cocker Spaniel",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
+    "urlStatus": "index_verified_only",
+    "freeadsBreedName": "American Cocker Spaniel",
+    "freeadsSlug": "american-cocker-spaniel",
+    "rawIdentity": {
+      "breedName": "American Cocker Spaniel",
+      "slug": "american-cocker-spaniel",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [],
+    "breedGroup": null,
+    "breedType": null,
+    "breedSize": null,
+    "lifespan": null,
+    "weight": null,
+    "height": null,
+    "pedigree": null,
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": null,
+    "strengths": [],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": null,
+    "trainabilityDraft": null,
+    "sheddingLevelDraft": null,
+    "groomingNeedsDraft": null,
+    "goodWithChildrenDraft": null,
+    "maintenanceCostDraft": null,
+    "aloneToleranceDraft": null,
+    "intelligenceLabel": null,
+    "healthOfBreedLabel": null,
+    "rawCharacteristics": {}
+  },
+  "importStatus": {
+    "contentReady": false,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.34,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Breed URL was verified on the Freeads A-Z index.",
+      "Search results currently return listing pages rather than the breed detail page snippet.",
+      "Browser-assisted capture is still needed for a full raw snapshot."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

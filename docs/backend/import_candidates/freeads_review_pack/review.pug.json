@@ -1,0 +1,124 @@
+{
+  "breedId": "pug",
+  "petType": "dog",
+  "name": "Pug",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.pug.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.pug.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
+    "freeadsUrlStatus": "verified_via_search_snippet"
+  },
+  "groupComparison": {
+    "canonical": "toy",
+    "freeadsDraft": "toy",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": 5,
+      "status": "drift",
+      "difference": 3
+    },
+    "goodWithChildren": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "groomingNeeds": {
+      "canonical": 2,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "sheddingLevel": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "maintenanceCost": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "trainability": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный companion с умеренной активностью, который обычно хорошо чувствует себя в квартире, но требует внимания к линьке и бытовому ритму.",
+    "freeadsSummaryShort": "Pugs are one of our most popular breeds. Also known as Chinese Pugs, Pugs are a small dog and a pedigree breed.",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "freeadsWatchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.74,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Built from search snippet rather than a full direct page fetch.",
+      "Hero image URL was not available in the snippet."
+    ],
+    "driftCount": 1,
+    "nearMatchCount": 4,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values"
+  ]
+}

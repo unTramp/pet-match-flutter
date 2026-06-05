@@ -26,6 +26,7 @@ matching engine после уже внедрённого foundation и `scoring 
 ### P1. Expand breed catalog to product-ready depth
 - довести dog catalog хотя бы до `25–30` качественных профилей
 - расширять набор контрастных пород, а не только популярных
+- использовать repeatable ingestion pipeline, а не ad-hoc ручной импорт
 - поддерживать для каждой породы:
   - нормализованные attributes
   - `imageUrl`
@@ -34,6 +35,10 @@ matching engine после уже внедрённого foundation и `scoring 
 Почему это важно:
 - сейчас качество подбора больше ограничено шириной каталога, чем математикой
 - это лучший ROI по [docs/CLAUDE.md](../CLAUDE.md)
+
+Практический вектор:
+- `Freeads` как `primary reviewed source`
+- `pets_json` и `normalized_pets` как supplementary/media sources
 
 ### P2. Expand ranking fixtures around real user segments
 - добавить `10–15` новых ranking scenarios

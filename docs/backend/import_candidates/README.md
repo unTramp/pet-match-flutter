@@ -1,7 +1,7 @@
 # Import Candidates
 
 Эта папка хранит **черновые import artifacts** для расширения breed catalog
-из внешних источников вроде `pets_json`.
+из внешних источников вроде `pets_json` и `Freeads`.
 
 Это не production catalog и не runtime fixtures.
 
@@ -38,7 +38,7 @@
 - `english_cocker_spaniel`
 - `doberman`
 
-Эти файлы теперь генерируются автоматически из:
+Эти файлы генерируются автоматически из:
 - `pets_json`
 - `normalized_pets`
 - [phase1_manifest.json](./phase1_manifest.json)
@@ -48,6 +48,32 @@
 ```bash
 python3 tool/backend_specs/generate_import_candidates.py
 ```
+
+## Freeads foundation
+
+Для нового основного source теперь есть отдельный foundation layer:
+- [freeads_phase1_manifest.v1.json](./freeads_phase1_manifest.v1.json)
+- [freeads_raw/README.md](./freeads_raw/README.md)
+- [freeads_review_pack/README.md](./freeads_review_pack/README.md)
+
+Генератор:
+
+```bash
+python3 tool/backend_specs/generate_freeads_candidates.py
+```
+
+Review pack:
+
+```bash
+python3 tool/backend_specs/generate_freeads_review_pack.py
+```
+
+Важно:
+- `Freeads` candidates тоже не идут напрямую в `catalog.v1.json`
+- сначала сохраняется raw snapshot
+- затем собирается `candidate.*.json`
+- затем строится `review.<breedId>.json`
+- и только после review появляется canonical `breed.*.json`
 
 ## Current status
 

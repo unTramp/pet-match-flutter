@@ -9,7 +9,7 @@
   "attributes": {
     "size": 3,
     "apartmentSuitability": 4,
-    "exerciseNeeds": 3,
+    "exerciseNeeds": 4,
     "aloneTolerance": 2,
     "goodWithChildren": 4,
     "goodWithOtherPets": 4,
@@ -19,7 +19,7 @@
     "maintenanceCost": 4,
     "noiseLevel": 2,
     "trainability": 4,
-    "temperamentCalm": 4
+    "temperamentCalm": 3
   },
   "flags": {
     "isVocal": false,
@@ -29,28 +29,29 @@
     "isSuitableForFirstTimeOwners": true
   },
   "content": {
-    "summaryShort": "Компактная порода с умеренной активностью, которая обычно хорошо подходит для квартиры и спокойного домашнего ритма.",
+    "summaryShort": "Активная семейная spaniel-порода, которой нужен вовлечённый ритм жизни, регулярная нагрузка и готовность к заметному уходу за шерстью.",
     "strengths": [
-      "подходит для квартиры",
-      "умеренный уровень активности",
-      "обычно хорошо ладит с другими собаками"
+      "обычно хорошо поддается обучению",
+      "часто хорошо вписывается в семейный ритм",
+      "любит активное взаимодействие с человеком"
     ],
     "watchouts": [
       "требует ежедневного ухода за шерстью",
-      "нуждается в занятиях, обучении и ментальной нагрузке"
+      "нуждается в регулярных прогулках, занятиях и ментальной нагрузке"
     ],
     "adaptationTips": [
       "закладывать время и бюджет на регулярный груминг",
-      "лучше раскрывается при раннем обучении и последовательной социализации"
+      "лучше раскрывается при раннем обучении, последовательной социализации и активном повседневном ритме"
     ]
   },
   "quality": {
-    "confidenceScore": 0.69,
-    "sourceCount": 3,
+    "confidenceScore": 0.75,
+    "sourceCount": 4,
     "sourceNotes": [
       "template breed baseline",
       "pets_json raw source",
-      "normalized_pets structured hints"
+      "normalized_pets structured hints",
+      "freeads snippet review"
     ],
     "needsReview": true,
     "version": 1

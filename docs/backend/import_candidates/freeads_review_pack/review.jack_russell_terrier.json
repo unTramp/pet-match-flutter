@@ -1,0 +1,122 @@
+{
+  "breedId": "jack_russell_terrier",
+  "petType": "dog",
+  "name": "Jack Russell Terrier",
+  "reviewPriority": "medium",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.jack_russell_terrier.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.jack_russell_terrier.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
+    "freeadsUrlStatus": "index_verified_only"
+  },
+  "groupComparison": {
+    "canonical": "terrier",
+    "freeadsDraft": null,
+    "status": "missing_from_source"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "exerciseNeeds": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "aloneTolerance": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "goodWithChildren": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "groomingNeeds": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "sheddingLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "maintenanceCost": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "missing_from_source",
+      "difference": null
+    },
+    "apartmentSuitability": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный, но очень энергичный companion, которому нужны регулярные активности и вовлеченный владелец.",
+    "freeadsSummaryShort": null,
+    "freeadsStrengths": [],
+    "freeadsWatchouts": [],
+    "contentReady": false
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.69,
+    "freeadsConfidenceScore": 0.34,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Breed URL was verified on the Freeads A-Z index.",
+      "Structured breed facts were not available from search snippets yet.",
+      "Browser-assisted capture is still needed for a full raw snapshot."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 0,
+    "missingFromSourceCount": 8
+  },
+  "recommendedActions": [
+    "fill PetWise-only fields via rubric review",
+    "capture richer breed page data before using Freeads for content enrichment",
+    "prefer browser-assisted capture for a stronger raw snapshot"
+  ]
+}

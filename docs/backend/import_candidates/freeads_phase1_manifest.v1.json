@@ -1,0 +1,156 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "This manifest tracks the first Freeads pilot batch.",
+    "breedDetailsUrl may be inferred before the raw snapshot is verified.",
+    "Nothing from this manifest should go directly into catalog.v1 without review."
+  ],
+  "candidates": [
+    {
+      "breedId": "maltese",
+      "petType": "dog",
+      "name": "Maltese",
+      "freeadsBreedName": "Maltese",
+      "freeadsSlug": "maltese",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "pug",
+      "petType": "dog",
+      "name": "Pug",
+      "freeadsBreedName": "Pug",
+      "freeadsSlug": "pug",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "yorkshire_terrier",
+      "petType": "dog",
+      "name": "Yorkshire Terrier",
+      "freeadsBreedName": "Yorkshire Terrier",
+      "freeadsSlug": "yorkshire-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "jack_russell_terrier",
+      "petType": "dog",
+      "name": "Jack Russell Terrier",
+      "freeadsBreedName": "Jack Russell",
+      "freeadsSlug": "jack-russell",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
+      "urlStatus": "search_confirmed",
+      "importMode": "new_breed",
+      "phase": "pilot_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "english_cocker_spaniel",
+      "petType": "dog",
+      "name": "English Cocker Spaniel",
+      "freeadsBreedName": "Cocker Spaniel",
+      "freeadsSlug": "cocker-spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_b",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "american_cocker_spaniel",
+      "petType": "dog",
+      "name": "American Cocker Spaniel",
+      "freeadsBreedName": "American Cocker Spaniel",
+      "freeadsSlug": "american-cocker-spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_b",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "rottweiler",
+      "petType": "dog",
+      "name": "Rottweiler",
+      "freeadsBreedName": "Rottweiler",
+      "freeadsSlug": "rottweiler",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/rottweiler",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_c",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "doberman",
+      "petType": "dog",
+      "name": "Doberman",
+      "freeadsBreedName": "Dobermann",
+      "freeadsSlug": "dobermann",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
+      "urlStatus": "inferred",
+      "importMode": "new_breed",
+      "phase": "pilot_c",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}
