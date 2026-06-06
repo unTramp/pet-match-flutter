@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "havanese": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 2,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 5,
+        "sheddingLevel": 1,
+        "beginnerFriendly": 4,
+        "maintenanceCost": 3,
+        "noiseLevel": 2,
+        "trainability": 4,
+        "temperamentCalm": 4,
+    },
     "greyhound": {
         "size": 4,
         "apartmentSuitability": 4,
@@ -265,6 +280,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "havanese": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "greyhound": {
         "isVocal": False,
         "isHighPreyDrive": True,
@@ -381,6 +403,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "havanese": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "greyhound": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -455,6 +481,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "havanese": [
+            "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают много контакта с людьми и не оставляют надолго в одиночестве",
+            "важно заранее принять регулярный уход за шерстью и не путать very light shedding с отсутствием груминга",
+        ],
         "greyhound": [
             "лучше всего раскрывается у владельца, который хочет спокойную дома, но всё же крупную собаку и готов к безопасным прогулкам с учётом prey drive",
             "важно заранее принять размер, более высокую стоимость содержания и то, что мягкий характер не всегда означает идеальный fit для маленьких детей и свободного контакта с кошками",
@@ -524,6 +554,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "havanese":
+        return (
+            "Маленький, мягкий и people-oriented companion для квартиры, которому лучше всего подходят спокойный семейный ритм, "
+            "много контакта с человеком и готовность к регулярному уходу за шерстью."
+        )
     if breed_id == "greyhound":
         return (
             "Крупный, очень спокойный дома и surprisingly low-energy hound-companion, которому лучше всего подходят "
@@ -608,6 +643,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "havanese":
+        return [
+            "обычно хорошо подходит для квартирного и семейного ритма жизни",
+            "часто остаётся мягким и обучаемым small-companion профилем",
+            "почти не линяет и обычно хорошо уживается в доме с другими питомцами",
+        ]
     if breed_id == "greyhound":
         return [
             "часто оказывается более спокойным и квартирно-совместимым, чем ожидают от быстрой спортивной породы",
@@ -708,6 +749,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "havanese":
+        return [
+            "не лучший выбор для владельца, который не хочет регулярный груминг и плотный контакт с собакой",
+            "долгое одиночество и хаотичный ритм жизни обычно переносятся хуже, чем кажется по компактному размеру",
+        ]
     if breed_id == "greyhound":
         return [
             "с кошками, маленькими животными и очень свободными прогулками лучше заранее учитывать высокий prey drive",

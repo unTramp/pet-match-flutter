@@ -43,6 +43,7 @@
     { "breedId": "great_dane", "file": "breed.great_dane.json" },
     { "breedId": "samoyed", "file": "breed.samoyed.json" },
     { "breedId": "cane_corso", "file": "breed.cane_corso.json" },
-    { "breedId": "greyhound", "file": "breed.greyhound.json" }
+    { "breedId": "greyhound", "file": "breed.greyhound.json" },
+    { "breedId": "havanese", "file": "breed.havanese.json" }
   ]
 }
