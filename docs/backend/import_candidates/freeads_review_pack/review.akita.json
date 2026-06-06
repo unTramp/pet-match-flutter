@@ -1,0 +1,126 @@
+{
+  "breedId": "akita",
+  "petType": "dog",
+  "name": "Akita",
+  "reviewPriority": "normal",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.akita.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.akita.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/akita",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "utility",
+    "freeadsDraft": "utility",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 5,
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
+    },
+    "exerciseNeeds": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "aloneTolerance": {
+      "canonical": 4,
+      "freeadsDraft": 4,
+      "status": "match",
+      "difference": 0
+    },
+    "goodWithChildren": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "groomingNeeds": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "sheddingLevel": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "trainability": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "apartmentSuitability": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 1,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Крупная самостоятельная utility-порода с высокой нагрузкой, тяжёлой линькой и требовательностью к социализации, опыту и контролю окружения.",
+    "freeadsSummaryShort": "The Akita, a dignified, loyal and corageous breed, of Japanese lineage. Akitas thrive on companionship but must be socialised from birth. They can also be intolerant of other pe...",
+    "freeadsStrengths": [
+      "подходит для активного образа жизни",
+      "способна хорошо учиться при регулярной работе",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "freeadsWatchouts": [
+      "нуждается в регулярном уходе за шерстью",
+      "не подойдет для пассивного ритма жизни",
+      "содержание может обходиться дороже среднего"
+    ],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 1,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "candidate is ready for focused reviewer pass"
+  ]
+}

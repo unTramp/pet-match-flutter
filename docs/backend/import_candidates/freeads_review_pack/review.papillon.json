@@ -1,0 +1,122 @@
+{
+  "breedId": "papillon",
+  "petType": "dog",
+  "name": "Papillon",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.papillon.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.papillon.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/papillon",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "toy",
+    "freeadsDraft": "toy",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 1,
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "aloneTolerance": {
+      "canonical": 2,
+      "freeadsDraft": 4,
+      "status": "drift",
+      "difference": 2
+    },
+    "goodWithChildren": {
+      "canonical": 3,
+      "freeadsDraft": 5,
+      "status": "drift",
+      "difference": 2
+    },
+    "groomingNeeds": {
+      "canonical": 3,
+      "freeadsDraft": 1,
+      "status": "drift",
+      "difference": 2
+    },
+    "sheddingLevel": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 3,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "trainability": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Очень маленький, но surprisingly активный и очень обучаемый toy-companion, которому важны занятия, вовлечённость и аккуратная работа с возбуждением.",
+    "freeadsSummaryShort": "Not only is the Papillon adorable looking but they rank number 8 out of 79 other breeds when it comes to intelligence.",
+    "freeadsStrengths": [
+      "подходит для активного образа жизни"
+    ],
+    "freeadsWatchouts": [
+      "не подойдет для пассивного ритма жизни"
+    ],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 3,
+    "nearMatchCount": 2,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values"
+  ]
+}

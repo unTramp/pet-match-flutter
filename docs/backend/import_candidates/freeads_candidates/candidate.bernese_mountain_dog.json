@@ -1,0 +1,91 @@
+{
+  "breedId": "bernese_mountain_dog",
+  "petType": "dog",
+  "name": "Bernese Mountain Dog",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bernese-mountain",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Bernese Mountain Dog",
+    "freeadsSlug": "bernese-mountain",
+    "rawIdentity": {
+      "breedName": "Bernese Mountain Dog",
+      "slug": "bernese-mountain",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "BMD",
+      "Berner Sennenhund",
+      "Bernese cattle dog",
+      "\"Berner\""
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "Large",
+    "lifespan": "8-11 years",
+    "weight": "Male: 38-50kg; Female: 34-47kg",
+    "height": "Male: 64-70cm; Female: 58-66cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "hip dysplasia, elbow dysplasia"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Bernese Mountain Dog hails from Switzerland where they are highly prized not only as companions and family pets but as working dogs too. In their native land they are classe...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью",
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Heavy",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "High",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

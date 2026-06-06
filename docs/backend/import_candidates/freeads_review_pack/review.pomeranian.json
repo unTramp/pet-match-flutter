@@ -1,0 +1,123 @@
+{
+  "breedId": "pomeranian",
+  "petType": "dog",
+  "name": "Pomeranian",
+  "reviewPriority": "normal",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.pomeranian.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.pomeranian.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/pomeranian",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "toy",
+    "freeadsDraft": "toy",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 1,
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "aloneTolerance": {
+      "canonical": 3,
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
+    },
+    "goodWithChildren": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "groomingNeeds": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "sheddingLevel": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 3,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Очень маленький, заметно более vocal toy-companion для квартиры, который хорошо обучается, но требует регулярного ухода за шерстью.",
+    "freeadsSummaryShort": "Pomeranians are one of our most popular breeds. Also known as Pom poms, Pomeranians are a very small dog and a pedigree breed.",
+    "freeadsStrengths": [
+      "подходит для более спокойного ритма жизни",
+      "обычно хорошо поддается обучению"
+    ],
+    "freeadsWatchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 4,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "candidate is ready for focused reviewer pass"
+  ]
+}

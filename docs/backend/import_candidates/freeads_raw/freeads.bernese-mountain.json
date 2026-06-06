@@ -1,0 +1,48 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/bernese-mountain",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Bernese Mountain Dog",
+    "slug": "bernese-mountain",
+    "petType": "dog"
+  },
+  "summary": "The Bernese Mountain Dog hails from Switzerland where they are highly prized not only as companions and family pets but as working dogs too. In their native land they are classed as Sennenhunds and are known to be true gentle giants being especially good around children of all ages. Always eager to please the BMD is known to be loyal and affectionate characters by nature and boast being among the most intelligent dogs on the planet which means they are easy to train. The Bernese is an extremely handsome dog with their lovely tricolour coats which is one of their defining physical traits.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "BMD",
+      "Berner Sennenhund",
+      "Bernese cattle dog",
+      "\"Berner\""
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "Large",
+    "lifespan": "8-11 years",
+    "weight": "Male: 38-50kg; Female: 34-47kg",
+    "height": "Male: 64-70cm; Female: 58-66cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "hip dysplasia, elbow dysplasia"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Heavy",
+    "groomingNeeds": "High",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "High",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

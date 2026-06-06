@@ -1,0 +1,50 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/west-highland-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "West Highland Terrier",
+    "slug": "west-highland-terrier",
+    "petType": "dog"
+  },
+  "summary": "West Highland Terriers are a small dog and a pedigree breed. Also known as: Westy",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Westy",
+      "Westie",
+      "Poltalloch Terrier",
+      "Roseneath Terrie",
+      "White Roseneath Terrier",
+      "West highland white terrier"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "12-16 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 25-28cm; Female: 25-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Medium",
+    "groomingNeeds": "Very high",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

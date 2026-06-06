@@ -1,0 +1,122 @@
+{
+  "breedId": "boston_terrier",
+  "petType": "dog",
+  "name": "Boston Terrier",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.boston_terrier.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.boston_terrier.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/boston-terrier",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "utility",
+    "freeadsDraft": "utility",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "aloneTolerance": {
+      "canonical": 3,
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
+    },
+    "goodWithChildren": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "groomingNeeds": {
+      "canonical": 1,
+      "freeadsDraft": 1,
+      "status": "match",
+      "difference": 0
+    },
+    "sheddingLevel": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 4,
+      "freeadsDraft": 2,
+      "status": "drift",
+      "difference": 2
+    },
+    "trainability": {
+      "canonical": 4,
+      "freeadsDraft": 5,
+      "status": "near_match",
+      "difference": 1
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный, дружелюбный и квартирный companion с умеренной активностью и простым уходом, но с чувствительностью к здоровью и перегреву.",
+    "freeadsSummaryShort": "The Boston Terrier is often referred to as the \"American Gentleman\" and for good reason. These smart little dogs boast an interesting ancestry owing some of it to the English Bu...",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "freeadsWatchouts": [],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 1,
+    "nearMatchCount": 2,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values"
+  ]
+}

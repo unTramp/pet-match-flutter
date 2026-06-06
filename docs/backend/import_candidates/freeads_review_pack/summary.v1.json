@@ -1,20 +1,26 @@
 {
   "version": 1,
-  "breedCount": 8,
+  "breedCount": 14,
   "highPriority": [
     "maltese",
     "pug",
     "yorkshire_terrier",
     "english_cocker_spaniel",
     "american_cocker_spaniel",
-    "doberman"
+    "doberman",
+    "miniature_schnauzer",
+    "boston_terrier",
+    "papillon"
   ],
   "mediumPriority": [],
   "normalPriority": [
     "jack_russell_terrier",
-    "rottweiler"
+    "rottweiler",
+    "pomeranian",
+    "staffordshire_bull_terrier",
+    "akita"
   ],
-  "browserCaptureComplete": 8,
+  "browserCaptureComplete": 14,
   "snippetComplete": 0,
   "pendingCapture": 0
 }

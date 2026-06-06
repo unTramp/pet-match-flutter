@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Third Freeads capture wave after the initial browser-captured pilot and the first two canonical mini-batches.",
+    "This batch broadens the catalog with a small terrier, a mountain giant and a compact spitz profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "west_highland_white_terrier",
+      "petType": "dog",
+      "name": "West Highland White Terrier",
+      "freeadsBreedName": "West Highland Terrier",
+      "freeadsSlug": "west-highland-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/west-highland-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase3_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "bernese_mountain_dog",
+      "petType": "dog",
+      "name": "Bernese Mountain Dog",
+      "freeadsBreedName": "Bernese Mountain Dog",
+      "freeadsSlug": "bernese-mountain",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bernese-mountain",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase3_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "shiba_inu",
+      "petType": "dog",
+      "name": "Shiba Inu",
+      "freeadsBreedName": "Shiba Inu",
+      "freeadsSlug": "shiba-inu",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/shiba-inu",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase3_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

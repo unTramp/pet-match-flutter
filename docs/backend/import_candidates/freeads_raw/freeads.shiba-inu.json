@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/shiba-inu",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Shiba Inu",
+    "slug": "shiba-inu",
+    "petType": "dog"
+  },
+  "summary": "Shiba's are high shedding but very clean. They are great for first time pet parents and are not \"barky\"",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Shiba Inu"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 7-11kg; Female: 7-11kg",
+    "height": "Male: 35-41cm; Female: 35-41cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Low",
+    "easyToTrain": "Hard",
+    "shedding": "Medium",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "High",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Medium anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

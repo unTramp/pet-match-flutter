@@ -1,0 +1,85 @@
+{
+  "breedId": "shiba_inu",
+  "petType": "dog",
+  "name": "Shiba Inu",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/shiba-inu",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Shiba Inu",
+    "freeadsSlug": "shiba-inu",
+    "rawIdentity": {
+      "breedName": "Shiba Inu",
+      "slug": "shiba-inu",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Shiba Inu"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 7-11kg; Female: 7-11kg",
+    "height": "Male: 35-41cm; Female: 35-41cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Shiba's are high shedding but very clean. They are great for first time pet parents and are not \"barky\"",
+    "strengths": [
+      "подходит для более спокойного ритма жизни"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 2,
+    "trainabilityDraft": 2,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": null,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Low",
+      "easyToTrain": "Hard",
+      "shedding": "Medium",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Medium anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

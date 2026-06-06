@@ -1,0 +1,121 @@
+{
+  "breedId": "miniature_schnauzer",
+  "petType": "dog",
+  "name": "Miniature Schnauzer",
+  "reviewPriority": "high",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.miniature_schnauzer.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.miniature_schnauzer.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/miniature-schnauzer",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "utility",
+    "freeadsDraft": "utility",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 2,
+      "freeadsDraft": 2,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "aloneTolerance": {
+      "canonical": 4,
+      "freeadsDraft": 4,
+      "status": "match",
+      "difference": 0
+    },
+    "goodWithChildren": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "groomingNeeds": {
+      "canonical": 4,
+      "freeadsDraft": 1,
+      "status": "drift",
+      "difference": 3
+    },
+    "sheddingLevel": {
+      "canonical": 1,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "maintenanceCost": {
+      "canonical": 3,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "trainability": {
+      "canonical": 5,
+      "freeadsDraft": 5,
+      "status": "match",
+      "difference": 0
+    },
+    "apartmentSuitability": {
+      "canonical": 5,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 4,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактная и сообразительная utility-порода с умеренной активностью, низкой линькой и заметной потребностью в регулярном груминге.",
+    "freeadsSummaryShort": "Since they first appeared in the show ring they have become one of the most popular of all the Schnauzers thanks to their size as well as their charming looks and kind loyal nat...",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "freeadsWatchouts": [],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 1,
+    "nearMatchCount": 2,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "review numeric attribute drifts before trusting Freeads draft values"
+  ]
+}

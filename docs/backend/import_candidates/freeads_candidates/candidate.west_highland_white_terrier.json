@@ -1,0 +1,89 @@
+{
+  "breedId": "west_highland_white_terrier",
+  "petType": "dog",
+  "name": "West Highland White Terrier",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/west-highland-terrier",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "West Highland Terrier",
+    "freeadsSlug": "west-highland-terrier",
+    "rawIdentity": {
+      "breedName": "West Highland Terrier",
+      "slug": "west-highland-terrier",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Westy",
+      "Westie",
+      "Poltalloch Terrier",
+      "Roseneath Terrie",
+      "White Roseneath Terrier",
+      "West highland white terrier"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "12-16 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 25-28cm; Female: 25-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "West Highland Terriers are a small dog and a pedigree breed. Also known as: Westy",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Medium",
+      "groomingNeeds": "Very high",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

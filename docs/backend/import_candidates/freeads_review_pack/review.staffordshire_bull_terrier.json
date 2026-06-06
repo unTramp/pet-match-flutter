@@ -1,0 +1,121 @@
+{
+  "breedId": "staffordshire_bull_terrier",
+  "petType": "dog",
+  "name": "Staffordshire Bull Terrier",
+  "reviewPriority": "normal",
+  "sources": {
+    "canonicalFile": "docs/backend/examples/breed.staffordshire_bull_terrier.json",
+    "freeadsCandidateFile": "docs/backend/import_candidates/freeads_candidates/candidate.staffordshire_bull_terrier.json",
+    "freeadsUrl": "https://www.freeads.co.uk/dog-breeds/staffordshire-bull-terrier",
+    "freeadsUrlStatus": "verified_via_browser_capture"
+  },
+  "groupComparison": {
+    "canonical": "terrier",
+    "freeadsDraft": "terrier",
+    "status": "match"
+  },
+  "fieldComparison": {
+    "size": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "exerciseNeeds": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "aloneTolerance": {
+      "canonical": 3,
+      "freeadsDraft": 4,
+      "status": "near_match",
+      "difference": 1
+    },
+    "goodWithChildren": {
+      "canonical": 4,
+      "freeadsDraft": 3,
+      "status": "near_match",
+      "difference": 1
+    },
+    "groomingNeeds": {
+      "canonical": 1,
+      "freeadsDraft": 2,
+      "status": "near_match",
+      "difference": 1
+    },
+    "sheddingLevel": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "maintenanceCost": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "trainability": {
+      "canonical": 3,
+      "freeadsDraft": 3,
+      "status": "match",
+      "difference": 0
+    },
+    "apartmentSuitability": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "goodWithOtherPets": {
+      "canonical": 2,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "beginnerFriendly": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "noiseLevel": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    },
+    "temperamentCalm": {
+      "canonical": 3,
+      "freeadsDraft": null,
+      "status": "review_required_not_in_source",
+      "difference": null
+    }
+  },
+  "contentComparison": {
+    "canonicalSummaryShort": "Компактный muscular terrier-family companion с заметной вовлечённостью в людей, умеренно высокой активностью и простым уходом за шерстью.",
+    "freeadsSummaryShort": "Recognised by the Kennel club in the 1930's, the Staffie is one of the most trustworthy and popular family pets in the world.",
+    "freeadsStrengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "freeadsWatchouts": [],
+    "contentReady": true
+  },
+  "quality": {
+    "canonicalConfidenceScore": 0.72,
+    "freeadsConfidenceScore": 0.71,
+    "freeadsNeedsReview": true,
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "driftCount": 0,
+    "nearMatchCount": 4,
+    "missingFromSourceCount": 0
+  },
+  "recommendedActions": [
+    "candidate is ready for focused reviewer pass"
+  ]
+}
