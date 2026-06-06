@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "great_dane": {
+        "size": 5,
+        "apartmentSuitability": 2,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 1,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 3,
+        "temperamentCalm": 5,
+    },
     "dalmatian": {
         "size": 3,
         "apartmentSuitability": 2,
@@ -205,6 +220,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "great_dane": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "dalmatian": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -293,6 +315,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "great_dane": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "dalmatian": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -351,6 +377,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "great_dane": [
+            "лучше всего чувствует себя в просторном доме или очень продуманном большом жилье, где готовы подстраивать быт под giant breed и очень высокую стоимость содержания",
+            "важно заранее учитывать размер, транспорт, суставы, мягкую социализацию и то, что спокойный характер не отменяет потребности в дисциплине и рутине",
+        ],
         "dalmatian": [
             "лучше всего раскрывается у активного владельца, который любит длинные прогулки, занятия и не ждёт спокойного домашнего ритма без нагрузки",
             "важно заранее принять тяжёлую линьку, внимательность к рутине и то, что породе обычно нужно больше движения, чем ожидают по внешнему виду",
@@ -404,6 +434,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "great_dane":
+        return (
+            "Очень крупный, спокойный и впечатляюще размеренный companion, которому лучше всего подходит "
+            "просторный дом, мягкая последовательная социализация и владелец, готовый к giant-breed быту."
+        )
     if breed_id == "dalmatian":
         return (
             "Активный, athletic и заметно линяющий companion среднего размера, которому лучше всего подходит "
@@ -468,6 +503,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "great_dane":
+        return [
+            "часто остаётся более спокойным giant-companion профилем, чем ожидают по размеру",
+            "может хорошо вписываться в семейный ритм при достаточном пространстве и понятной рутине",
+            "уход за шерстью обычно остаётся проще, чем у многих других очень крупных пород",
+        ]
     if breed_id == "dalmatian":
         return [
             "обычно хорошо раскрывается у активного владельца и любит насыщенный ритм жизни",
@@ -544,6 +585,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "great_dane":
+        return [
+            "огромный размер и very high cost to keep требуют серьёзной бытовой готовности заранее",
+            "не лучший выбор для маленькой квартиры, новичка без поддержки и дома, где не хотят строить быт вокруг giant breed",
+        ]
     if breed_id == "dalmatian":
         return [
             "не лучший выбор для спокойного квартирного ритма без долгих прогулок, задач и регулярной активности",

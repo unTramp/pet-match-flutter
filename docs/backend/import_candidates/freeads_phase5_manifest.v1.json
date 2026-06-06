@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Fifth Freeads capture wave after the first four curated catalog expansions.",
+    "This batch is selected by product segment coverage rather than alphabet: a giant calm profile, a vocal heavy-coat spitz profile and a true guardian mastiff profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "great_dane",
+      "petType": "dog",
+      "name": "Great Dane",
+      "freeadsBreedName": "Great Dane",
+      "freeadsSlug": "great-dane",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/great-dane",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase5_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "samoyed",
+      "petType": "dog",
+      "name": "Samoyed",
+      "freeadsBreedName": "Samoyed",
+      "freeadsSlug": "samoyed",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/samoyed",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase5_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "cane_corso",
+      "petType": "dog",
+      "name": "Cane Corso",
+      "freeadsBreedName": "Cane Corso",
+      "freeadsSlug": "cane-corso",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cane-corso",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase5_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "breedId": "samoyed",
+  "petType": "dog",
+  "name": "Samoyed",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/samoyed",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Samoyed",
+    "freeadsSlug": "samoyed",
+    "rawIdentity": {
+      "breedName": "Samoyed",
+      "slug": "samoyed",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Smiley",
+      "Sammy",
+      "Bjelkier",
+      "Samoiedskaya Sobaka",
+      "Nenetskaya Laika"
+    ],
+    "breedGroup": "Spitz",
+    "breedType": "Pastoral , Hypoallergenic",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 23-30kg; Female: 23-30kg",
+    "height": "Male: 50-60cm; Female: 50-60cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, BVA/KC/ISDS Eye Scheme, Breeders should advise prospective buyers of the grooming needs of a Samoyed"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "This cheerful pedigree breed is known for its facial smile, athletic ability and its tolerance for children of all ages",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Heavy",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "High",
+      "costToKeep": "Medium",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

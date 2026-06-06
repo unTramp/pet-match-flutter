@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/cane-corso",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Cane Corso",
+    "slug": "cane-corso",
+    "petType": "dog"
+  },
+  "summary": "The Cane Corso is an impressive looking mastiff-type dog that's native to Italy where they were originally bred to guard herd and hunt although they were also highly prized as companion dogs too. They are still a very popular choice in their native Italy thanks to their impressive looks and kind loyal natures but less popular here in the UK simply because the breed is less known in this part of the world. The breed is not recognised by The Kennel Club (October 2017) but these impressive dogs are recognised by the American Kennel Club. Anyone wanting to share a home with a Cane Corso would have to agree to go on a waiting list because very few puppies are available every year.",
+  "heroImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/cane-corso.webp",
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Italian Mastiff"
+    ],
+    "breedGroup": "Herding",
+    "breedType": "Utility",
+    "breedSize": "XL",
+    "lifespan": "11-12 years",
+    "weight": "Male: 40-50kg; Female: 40-50kg",
+    "height": "Male: 60-70cm; Female: 60-70cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Very high",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Medium anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

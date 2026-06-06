@@ -1,0 +1,49 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/samoyed",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Samoyed",
+    "slug": "samoyed",
+    "petType": "dog"
+  },
+  "summary": "This cheerful pedigree breed is known for its facial smile, athletic ability and its tolerance for children of all ages",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Smiley",
+      "Sammy",
+      "Bjelkier",
+      "Samoiedskaya Sobaka",
+      "Nenetskaya Laika"
+    ],
+    "breedGroup": "Spitz",
+    "breedType": "Pastoral , Hypoallergenic",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 23-30kg; Female: 23-30kg",
+    "height": "Male: 50-60cm; Female: 50-60cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, BVA/KC/ISDS Eye Scheme, Breeders should advise prospective buyers of the grooming needs of a Samoyed"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Heavy",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "High",
+    "costToKeep": "Medium",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

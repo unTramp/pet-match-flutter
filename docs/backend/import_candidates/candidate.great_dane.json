@@ -1,0 +1,86 @@
+{
+  "breedId": "great_dane",
+  "petType": "dog",
+  "name": "Great Dane",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/great-dane",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Great Dane",
+    "freeadsSlug": "great-dane",
+    "rawIdentity": {
+      "breedName": "Great Dane",
+      "slug": "great-dane",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Deutsche dogge",
+      "German mastiff"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "XL",
+    "lifespan": "8-10 years",
+    "weight": "Male: 55-90kg; Female: 55-90kg",
+    "height": "Male: 72-90cm; Female: 72-90cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/great-dane.webp",
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Great Dane may be a large dog but they are true gentle giants and as such they have become a popular choice both as family pets and companion dogs not only in the UK but els...",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Low",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Light",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Low",
+      "costToKeep": "Very high",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "breedId": "great_dane",
+  "petType": "dog",
+  "name": "Great Dane",
+  "aliases": [
+    "Deutsche dogge",
+    "German mastiff"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 5,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 5,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень крупный, спокойный и впечатляюще размеренный companion, которому лучше всего подходит просторный дом, мягкая последовательная социализация и владелец, готовый к giant-breed быту.",
+    "strengths": [
+      "часто остаётся более спокойным giant-companion профилем, чем ожидают по размеру",
+      "может хорошо вписываться в семейный ритм при достаточном пространстве и понятной рутине",
+      "уход за шерстью обычно остаётся проще, чем у многих других очень крупных пород"
+    ],
+    "watchouts": [
+      "огромный размер и very high cost to keep требуют серьёзной бытовой готовности заранее",
+      "не лучший выбор для маленькой квартиры, новичка без поддержки и дома, где не хотят строить быт вокруг giant breed"
+    ],
+    "adaptationTips": [
+      "лучше всего чувствует себя в просторном доме или очень продуманном большом жилье, где готовы подстраивать быт под giant breed и очень высокую стоимость содержания",
+      "важно заранее учитывать размер, транспорт, суставы, мягкую социализацию и то, что спокойный характер не отменяет потребности в дисциплине и рутине"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/great-dane.webp"
+}

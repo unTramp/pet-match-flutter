@@ -1,0 +1,86 @@
+{
+  "breedId": "cane_corso",
+  "petType": "dog",
+  "name": "Cane Corso",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cane-corso",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Cane Corso",
+    "freeadsSlug": "cane-corso",
+    "rawIdentity": {
+      "breedName": "Cane Corso",
+      "slug": "cane-corso",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Italian Mastiff"
+    ],
+    "breedGroup": "Herding",
+    "breedType": "Utility",
+    "breedSize": "XL",
+    "lifespan": "11-12 years",
+    "weight": "Male: 40-50kg; Female: 40-50kg",
+    "height": "Male: 60-70cm; Female: 60-70cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/cane-corso.webp",
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Cane Corso is an impressive looking mastiff-type dog that's native to Italy where they were originally bred to guard herd and hunt although they were also highly prized as c...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": null,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Very high",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Medium anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": true,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

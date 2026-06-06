@@ -39,6 +39,7 @@
     { "breedId": "shiba_inu", "file": "breed.shiba_inu.json" },
     { "breedId": "welsh_corgi_pembroke", "file": "breed.welsh_corgi_pembroke.json" },
     { "breedId": "newfoundland", "file": "breed.newfoundland.json" },
-    { "breedId": "dalmatian", "file": "breed.dalmatian.json" }
+    { "breedId": "dalmatian", "file": "breed.dalmatian.json" },
+    { "breedId": "great_dane", "file": "breed.great_dane.json" }
   ]
 }

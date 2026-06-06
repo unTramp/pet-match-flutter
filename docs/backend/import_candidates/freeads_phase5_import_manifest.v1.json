@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the fifth curated Freeads capture batch.",
+    "Great Dane is chosen first because it expands the giant calm companion branch with comparatively low review ambiguity versus the more controversial guardian/spitz profiles in the same batch.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "great_dane",
+      "templateBreedId": "newfoundland",
+      "group": "working"
+    }
+  ]
+}
