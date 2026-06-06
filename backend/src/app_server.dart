@@ -167,6 +167,7 @@ class PetWiseAppServer {
 
     await _writeJson(
       request.response,
+      request.method,
       apiResponse.statusCode,
       apiResponse.payload,
       file: apiResponse.file,
@@ -214,7 +215,8 @@ class PetWiseAppServer {
       );
     }
 
-    if (request.method == 'GET' && path.startsWith('/media/story-avatars/')) {
+    if ((request.method == 'GET' || request.method == 'HEAD') &&
+        path.startsWith('/media/story-avatars/')) {
       final fileName = path.substring('/media/story-avatars/'.length);
       final file = _breedService.getStoryAvatarFile(fileName);
       if (file == null || !file.existsSync()) {
@@ -281,6 +283,7 @@ class PetWiseAppServer {
 
   Future<void> _writeJson(
     HttpResponse response,
+    String method,
     int statusCode,
     Map<String, dynamic> payload, {
     File? file,
@@ -289,7 +292,9 @@ class PetWiseAppServer {
     if (file != null) {
       response.statusCode = statusCode;
       response.headers.contentType = contentType;
-      await response.addStream(file.openRead());
+      if (method != 'HEAD') {
+        await response.addStream(file.openRead());
+      }
       await response.close();
       return;
     }
