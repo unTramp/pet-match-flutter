@@ -1,0 +1,86 @@
+{
+  "breedId": "newfoundland",
+  "petType": "dog",
+  "name": "Newfoundland",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/newfoundland",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Newfoundland",
+    "freeadsSlug": "newfoundland",
+    "rawIdentity": {
+      "breedName": "Newfoundland",
+      "slug": "newfoundland",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Newf",
+      "Newfie"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "XL",
+    "lifespan": "9-11 years",
+    "weight": "Male: 54-70kg; Female: 54-70kg",
+    "height": "Male: 65-75cm; Female: 65-75cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, DNA test - CU BVA/KC Elbow Dysplasia Scheme, Breed Club - Heart testing"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Always eager and willing to please these dogs are a great choice for people with families because the Newfoundland appears to have a real affinity with children liking nothing m...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Heavy",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Very high",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "breedId": "dalmatian",
+  "petType": "dog",
+  "name": "Dalmatian",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dalmatian",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Dalmatian",
+    "freeadsSlug": "dalmatian",
+    "rawIdentity": {
+      "breedName": "Dalmatian",
+      "slug": "dalmatian",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Dal",
+      "Carriage dog",
+      "Spotted coach dog",
+      "Firehouse dog",
+      "Plum pudding dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Medium",
+    "lifespan": "10-13 years",
+    "weight": "Male: 23-25kg; Female: 23-25kg",
+    "height": "Male: 58-61cm; Female: 56-58cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Dalmatians are a medium sized dog and a pedigree breed. Also known as: Dal",
+    "strengths": [
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью",
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 3,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 5,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Very high",
+      "easyToTrain": "High",
+      "shedding": "Heavy",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "High",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Very calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

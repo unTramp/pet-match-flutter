@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Fourth Freeads capture wave after the browser-captured pilot and the first curated import waves.",
+    "This batch broadens the catalog with a compact herding companion, an iconic active family dog and a giant gentle family profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "welsh_corgi_pembroke",
+      "petType": "dog",
+      "name": "Welsh Corgi Pembroke",
+      "freeadsBreedName": "Welsh Corgi Pembroke",
+      "freeadsSlug": "welsh-corgi-pembroke",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/welsh-corgi-pembroke",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase4_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "dalmatian",
+      "petType": "dog",
+      "name": "Dalmatian",
+      "freeadsBreedName": "Dalmatian",
+      "freeadsSlug": "dalmatian",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dalmatian",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase4_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "newfoundland",
+      "petType": "dog",
+      "name": "Newfoundland",
+      "freeadsBreedName": "Newfoundland",
+      "freeadsSlug": "newfoundland",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/newfoundland",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase4_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

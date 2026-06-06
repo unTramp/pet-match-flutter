@@ -1,0 +1,47 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/welsh-corgi-pembroke",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Welsh Corgi Pembroke",
+    "slug": "welsh-corgi-pembroke",
+    "petType": "dog"
+  },
+  "summary": "Pembroke Welsh Corgis are small in stature with an impressively loud bark. Highly intelligent and happy in either a flat or house.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Pembroke",
+      "Pembroke Corgi",
+      "PWC"
+    ],
+    "breedGroup": "Herding",
+    "breedType": "Pastoral",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 10-12kg; Female: 9-11kg",
+    "height": "Male: 25-30cm; Female: 25-30cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "Degenerative myelopathy (DM), Von Willebrand?? disease (type 1) - Test via the Animal Health Trust (AHT)"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Very easy",
+    "shedding": "Medium",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Low",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

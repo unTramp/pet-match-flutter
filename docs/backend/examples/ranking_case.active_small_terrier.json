@@ -34,6 +34,7 @@
     "acceptableTop3": [
       "jack_russell_terrier",
       "papillon",
+      "welsh_corgi_pembroke",
       "miniature_schnauzer",
       "boston_terrier",
       "labrador_retriever",
@@ -48,7 +49,7 @@
     "notes": [
       "Jack Russell Terrier должен выигрывать в кейсе, где пользователь явно хочет маленькую, очень активную и обучаемую terrier-like собаку.",
       "Фикстура страхует после Freeads review, что high-drive small terrier branch не растворяется среди toy companion и generic active breeds.",
-      "Papillon, Miniature Schnauzer и Boston Terrier допустимы в топе как компактные и обучаемые альтернативы, но не должны выбивать Jack Russell Terrier с первого места."
+      "Papillon, Welsh Corgi Pembroke, Miniature Schnauzer и Boston Terrier допустимы в топе как компактные и обучаемые альтернативы, но не должны выбивать Jack Russell Terrier с первого места."
     ]
   }
 }

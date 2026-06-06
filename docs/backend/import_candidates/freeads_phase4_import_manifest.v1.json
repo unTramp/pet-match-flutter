@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "First canonical import wave from the fourth Freeads browser-captured candidate batch.",
+    "Welsh Corgi Pembroke is chosen first because it adds a highly recognizable compact herding companion profile with strong capture quality.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "welsh_corgi_pembroke",
+      "templateBreedId": "beagle",
+      "group": "herding"
+    }
+  ]
+}

@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "welsh_corgi_pembroke": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 2,
+        "sheddingLevel": 4,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 4,
+        "trainability": 5,
+        "temperamentCalm": 3,
+    },
     "shiba_inu": {
         "size": 2,
         "apartmentSuitability": 4,
@@ -160,6 +175,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "welsh_corgi_pembroke": {
+        "isVocal": True,
+        "isHighPreyDrive": False,
+        "isSensitive": False,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "shiba_inu": {
         "isVocal": False,
         "isHighPreyDrive": True,
@@ -227,6 +249,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "welsh_corgi_pembroke": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "shiba_inu": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -273,6 +299,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "welsh_corgi_pembroke": [
+            "лучше всего раскрывается при коротких регулярных занятиях, спокойной дисциплине и готовности к более громкому голосу дома",
+            "важно учитывать herding-drive, склонность контролировать происходящее и регулярную линьку",
+        ],
         "shiba_inu": [
             "лучше всего раскрывается у владельца, который спокойно относится к самостоятельности, линьке и не ожидает высокой уступчивости в обучении",
             "важно заранее работать с безопасными прогулками, самоконтролем и границами с другими животными",
@@ -314,6 +344,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "welsh_corgi_pembroke":
+        return (
+            "Компактный, очень сообразительный herding-companion с умеренной активностью, "
+            "заметной линькой и более громким голосом, чем ожидают от его размера."
+        )
     if breed_id == "shiba_inu":
         return (
             "Компактный, чистоплотный и самостоятельный spitz-компаньон с заметной линькой, "
@@ -363,6 +398,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "welsh_corgi_pembroke":
+        return [
+            "обычно очень хорошо поддается обучению",
+            "может хорошо жить и в доме, и в квартире при достаточной рутине",
+            "даёт много отклика на взаимодействие и короткие интеллектуальные занятия",
+        ]
     if breed_id == "shiba_inu":
         return [
             "обычно очень чистоплотен и не слишком шумный в быту",
@@ -421,6 +462,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "welsh_corgi_pembroke":
+        return [
+            "может быть заметно более голосистым и линяющим, чем кажется по милому компактному виду",
+            "лучше не считать его чисто декоративной породой: ему нужны правила, занятия и контроль herding-привычек",
+        ]
     if breed_id == "shiba_inu":
         return [
             "не лучший выбор для новичка, который ждёт высокой уступчивости и лёгкого обучения",

@@ -36,6 +36,7 @@
     { "breedId": "akita", "file": "breed.akita.json" },
     { "breedId": "west_highland_white_terrier", "file": "breed.west_highland_white_terrier.json" },
     { "breedId": "bernese_mountain_dog", "file": "breed.bernese_mountain_dog.json" },
-    { "breedId": "shiba_inu", "file": "breed.shiba_inu.json" }
+    { "breedId": "shiba_inu", "file": "breed.shiba_inu.json" },
+    { "breedId": "welsh_corgi_pembroke", "file": "breed.welsh_corgi_pembroke.json" }
   ]
 }

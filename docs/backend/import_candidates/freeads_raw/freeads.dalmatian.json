@@ -1,0 +1,49 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/dalmatian",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Dalmatian",
+    "slug": "dalmatian",
+    "petType": "dog"
+  },
+  "summary": "Dalmatians are a medium sized dog and a pedigree breed. Also known as: Dal",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Dal",
+      "Carriage dog",
+      "Spotted coach dog",
+      "Firehouse dog",
+      "Plum pudding dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Medium",
+    "lifespan": "10-13 years",
+    "weight": "Male: 23-25kg; Female: 23-25kg",
+    "height": "Male: 58-61cm; Female: 56-58cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "Very high",
+    "easyToTrain": "High",
+    "shedding": "Heavy",
+    "groomingNeeds": "High",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "High",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Very calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}
