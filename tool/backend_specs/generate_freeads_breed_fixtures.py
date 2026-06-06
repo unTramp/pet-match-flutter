@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "newfoundland": {
+        "size": 5,
+        "apartmentSuitability": 1,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 5,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 4,
+        "sheddingLevel": 5,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 4,
+        "temperamentCalm": 5,
+    },
     "welsh_corgi_pembroke": {
         "size": 2,
         "apartmentSuitability": 4,
@@ -175,6 +190,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "newfoundland": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "welsh_corgi_pembroke": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -249,6 +271,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "newfoundland": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "welsh_corgi_pembroke": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -299,6 +325,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "newfoundland": [
+            "лучше всего чувствует себя в просторном доме, где готовы к очень крупному размеру, линьке и заметным бытовым расходам",
+            "важно заранее учитывать температуру, транспорт, нагрузку на суставы и спокойную последовательную социализацию",
+        ],
         "welsh_corgi_pembroke": [
             "лучше всего раскрывается при коротких регулярных занятиях, спокойной дисциплине и готовности к более громкому голосу дома",
             "важно учитывать herding-drive, склонность контролировать происходящее и регулярную линьку",
@@ -344,6 +374,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "newfoundland":
+        return (
+            "Очень крупный, мягкий и family-oriented working companion с умеренной активностью, "
+            "тяжёлой линькой и очень высокой стоимостью содержания, но спокойным домашним профилем."
+        )
     if breed_id == "welsh_corgi_pembroke":
         return (
             "Компактный, очень сообразительный herding-companion с умеренной активностью, "
@@ -398,6 +433,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "newfoundland":
+        return [
+            "обычно очень мягок в семейном ритме и хорошо чувствует себя рядом с детьми",
+            "может быть спокойным и обучаемым giant-companion профилем",
+            "лучше всего раскрывается в просторном доме и размеренном повседневном ритме",
+        ]
     if breed_id == "welsh_corgi_pembroke":
         return [
             "обычно очень хорошо поддается обучению",
@@ -462,6 +503,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "newfoundland":
+        return [
+            "огромный размер, линька и стоимость содержания требуют высокой бытовой готовности заранее",
+            "не лучший выбор для маленькой квартиры, жары и владельца, который не хочет подстраивать быт под giant breed",
+        ]
     if breed_id == "welsh_corgi_pembroke":
         return [
             "может быть заметно более голосистым и линяющим, чем кажется по милому компактному виду",
