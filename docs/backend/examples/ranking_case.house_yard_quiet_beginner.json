@@ -31,6 +31,7 @@
     },
     "acceptableTop3": [
       "whippet",
+      "greyhound",
       "boston_terrier",
       "french_bulldog",
       "italian_greyhound"
@@ -42,7 +43,8 @@
     ],
     "notes": [
       "Whippet не должен проигрывать только потому, что слишком хорошо подходит для квартиры.",
-      "Directional comparator для apartmentSuitability должен убрать симметричный штраф за extra apartment fit."
+      "Directional comparator для apartmentSuitability должен убрать симметричный штраф за extra apartment fit.",
+      "Greyhound допустим в top-3 как тихий и low-grooming large hound, если не обгоняет Whippet."
     ]
   }
 }

@@ -1,0 +1,60 @@
+{
+  "breedId": "greyhound",
+  "petType": "dog",
+  "name": "Greyhound",
+  "aliases": [
+    "English greyhound"
+  ],
+  "group": "hound",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": 2,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 1,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 4,
+    "noiseLevel": 1,
+    "trainability": 3,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Крупный, очень спокойный дома и surprisingly low-energy hound-companion, которому лучше всего подходят тихий ритм жизни, безопасные прогулки и владелец, готовый учитывать prey drive и крупный размер.",
+    "strengths": [
+      "часто оказывается более спокойным и квартирно-совместимым, чем ожидают от быстрой спортивной породы",
+      "уход за шерстью обычно остаётся простым и ненавязчивым",
+      "может хорошо подходить для тихого домашнего ритма при нормальных прогулках и мягком обращении"
+    ],
+    "watchouts": [
+      "с кошками, маленькими животными и очень свободными прогулками лучше заранее учитывать высокий prey drive",
+      "не лучший выбор для тех, кто ждёт дешёвую крупную собаку или полностью беспроблемный fit с маленькими детьми"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у владельца, который хочет спокойную дома, но всё же крупную собаку и готов к безопасным прогулкам с учётом prey drive",
+      "важно заранее принять размер, более высокую стоимость содержания и то, что мягкий характер не всегда означает идеальный fit для маленьких детей и свободного контакта с кошками"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/greyhound.webp"
+}

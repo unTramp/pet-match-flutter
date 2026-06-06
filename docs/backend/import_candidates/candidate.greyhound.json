@@ -1,0 +1,87 @@
+{
+  "breedId": "greyhound",
+  "petType": "dog",
+  "name": "Greyhound",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/greyhound",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Greyhound",
+    "freeadsSlug": "greyhound",
+    "rawIdentity": {
+      "breedName": "Greyhound",
+      "slug": "greyhound",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "English greyhound"
+    ],
+    "breedGroup": "Hound",
+    "breedType": "Hound , Hybrid",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 30-35kg; Female: 30-35kg",
+    "height": "Male: 68-76cm; Female: 68-76cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "DNA test - Greyhound Neuropathy (GN)"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Greyhound is an elegant graceful dog that over time has found their way into the hearts and homes of many people both here in the UK and elsewhere in the world and for good...",
+    "strengths": [
+      "подходит для более спокойного ритма жизни",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 2,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Low",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Low",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Medium",
+      "costToKeep": "High",
+      "intelligence": "Low",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Sixth Freeads capture wave chosen by product coverage rather than alphabet.",
+    "This batch adds a soft small companion profile, a calm sighthound profile and a vocal compact herding profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "havanese",
+      "petType": "dog",
+      "name": "Havanese",
+      "freeadsBreedName": "Havanese",
+      "freeadsSlug": "havanese",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/havanese",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase6_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "greyhound",
+      "petType": "dog",
+      "name": "Greyhound",
+      "freeadsBreedName": "Greyhound",
+      "freeadsSlug": "greyhound",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/greyhound",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase6_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "shetland_sheepdog",
+      "petType": "dog",
+      "name": "Shetland Sheepdog",
+      "freeadsBreedName": "Shetland Sheepdog",
+      "freeadsSlug": "shetland-sheepdog",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/shetland-sheepdog",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase6_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

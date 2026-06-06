@@ -14,7 +14,7 @@
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 41,
+  "mappingCount": 42,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -287,6 +287,19 @@
       "storyAvatar": {
         "fileName": "great-dane.webp",
         "suggestedUploadPath": "/media/story-avatars/great-dane.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "greyhound",
+      "petwiseBreedName": "Greyhound",
+      "freeadsSlug": "greyhound",
+      "freeadsBreedName": "Greyhound",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/greyhound",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/greyhound.webp",
+      "storyAvatar": {
+        "fileName": "greyhound.webp",
+        "suggestedUploadPath": "/media/story-avatars/greyhound.webp"
       },
       "matchType": "exact_slug"
     },

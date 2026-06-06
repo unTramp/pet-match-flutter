@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/havanese",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Havanese",
+    "slug": "havanese",
+    "petType": "dog"
+  },
+  "summary": "The Havanese has become a popular choice with people all over the world thanks to their charming looks and delightful natures. They are lively little dogs known to be intelligent affectionate forming very strong ties with their families. The downside to this being that they hate being on their own and can suffer from separation anxiety. With this said the Havanese is better suited to households where one person stays at home so they always have company.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Havanese silk dog"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 3-6kg; Female: 3-6kg",
+    "height": "Male: 21-29cm; Female: 21-29cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "KC/BVA Eye Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Very light",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "Very low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

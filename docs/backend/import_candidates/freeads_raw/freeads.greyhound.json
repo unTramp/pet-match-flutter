@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/greyhound",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Greyhound",
+    "slug": "greyhound",
+    "petType": "dog"
+  },
+  "summary": "The Greyhound is an elegant graceful dog that over time has found their way into the hearts and homes of many people both here in the UK and elsewhere in the world and for good reason. They are known to be wonderful companions and family pets that form strong ties with their owners which makes them such a pleasure to have around.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "English greyhound"
+    ],
+    "breedGroup": "Hound",
+    "breedType": "Hound , Hybrid",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 30-35kg; Female: 30-35kg",
+    "height": "Male: 68-76cm; Female: 68-76cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "DNA test - Greyhound Neuropathy (GN)"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Low",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "High",
+    "intelligence": "Low",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

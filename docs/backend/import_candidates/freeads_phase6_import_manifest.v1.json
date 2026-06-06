@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the sixth curated Freeads capture batch.",
+    "Greyhound is chosen first because it adds a large calm sighthound profile with clear product value and comparatively low review ambiguity.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "greyhound",
+      "templateBreedId": "whippet",
+      "group": "hound"
+    }
+  ]
+}

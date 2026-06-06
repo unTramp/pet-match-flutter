@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "greyhound": {
+        "size": 4,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 3,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 2,
+        "groomingNeeds": 1,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 4,
+        "noiseLevel": 1,
+        "trainability": 3,
+        "temperamentCalm": 5,
+    },
     "cane_corso": {
         "size": 5,
         "apartmentSuitability": 1,
@@ -250,6 +265,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "greyhound": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "cane_corso": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -359,6 +381,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "greyhound": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "cane_corso": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -429,6 +455,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "greyhound": [
+            "лучше всего раскрывается у владельца, который хочет спокойную дома, но всё же крупную собаку и готов к безопасным прогулкам с учётом prey drive",
+            "важно заранее принять размер, более высокую стоимость содержания и то, что мягкий характер не всегда означает идеальный fit для маленьких детей и свободного контакта с кошками",
+        ],
         "cane_corso": [
             "лучше всего чувствует себя у очень последовательного владельца, который готов к крупной guardian-породе, ранней социализации и чётким правилам дома",
             "важно заранее принять размер, стоимость содержания и то, что породе обычно нужен не просто выгул, а управляемая дисциплина и взрослое руководство",
@@ -494,6 +524,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "greyhound":
+        return (
+            "Крупный, очень спокойный дома и surprisingly low-energy hound-companion, которому лучше всего подходят "
+            "тихий ритм жизни, безопасные прогулки и владелец, готовый учитывать prey drive и крупный размер."
+        )
     if breed_id == "cane_corso":
         return (
             "Очень крупный и собранный guardian-companion mastiff-типа, которому лучше всего подходят пространство, "
@@ -573,6 +608,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "greyhound":
+        return [
+            "часто оказывается более спокойным и квартирно-совместимым, чем ожидают от быстрой спортивной породы",
+            "уход за шерстью обычно остаётся простым и ненавязчивым",
+            "может хорошо подходить для тихого домашнего ритма при нормальных прогулках и мягком обращении",
+        ]
     if breed_id == "cane_corso":
         return [
             "обычно выглядит более собранным и спокойным, чем многие другие крупные активные working-породы",
@@ -667,6 +708,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "greyhound":
+        return [
+            "с кошками, маленькими животными и очень свободными прогулками лучше заранее учитывать высокий prey drive",
+            "не лучший выбор для тех, кто ждёт дешёвую крупную собаку или полностью беспроблемный fit с маленькими детьми",
+        ]
     if breed_id == "cane_corso":
         return [
             "не лучший выбор для новичка, маленькой квартиры и дома без ранней последовательной социализации",

@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/shetland-sheepdog",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Shetland Sheepdog",
+    "slug": "shetland-sheepdog",
+    "petType": "dog"
+  },
+  "summary": "Sheltie's are great for first time pet parents but they shed alot, suffer from separation anxiety and may incur large vet costs",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Sheltie",
+      "Miniature Collie"
+    ],
+    "breedGroup": "Pastoral",
+    "breedType": "Pastoral",
+    "breedSize": "Small",
+    "lifespan": "13-14 years",
+    "weight": "Male: 7-11kg; Female: 7-11kg",
+    "height": "Male: 33-40cm; Female: 33-40cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, DNA test - CEA/CH, BVA/KC Hip Dysplasia Scheme, DNA test - MDR1, DNA test - vWD"
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "Medium",
+    "shedding": "Medium",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Low",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

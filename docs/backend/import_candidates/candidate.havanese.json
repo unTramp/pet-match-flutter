@@ -1,0 +1,84 @@
+{
+  "breedId": "havanese",
+  "petType": "dog",
+  "name": "Havanese",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/havanese",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Havanese",
+    "freeadsSlug": "havanese",
+    "rawIdentity": {
+      "breedName": "Havanese",
+      "slug": "havanese",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Havanese silk dog"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 3-6kg; Female: 3-6kg",
+    "height": "Male: 21-29cm; Female: 21-29cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "KC/BVA Eye Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Havanese has become a popular choice with people all over the world thanks to their charming looks and delightful natures. They are lively little dogs known to be intelligen...",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 1,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 1,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Very light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "Very low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}
