@@ -10,12 +10,14 @@ class RuntimeConfig {
   const RuntimeConfig({
     required this.host,
     required this.port,
+    required this.publicBaseUrl,
     required this.environment,
     required this.logLevel,
     required this.questionnaireVersion,
     required this.scoringVersion,
     required this.catalogVersion,
     required this.storagePath,
+    required this.mediaRootPath,
     required this.storageDriver,
     required this.databaseUrl,
     required this.exposeErrorDetails,
@@ -45,6 +47,10 @@ class RuntimeConfig {
             _readArgValue(args, '--port') ?? env['PETWISE_PORT'] ?? '',
           ) ??
           8080,
+      publicBaseUrl:
+          _readArgValue(args, '--public-base-url') ??
+          env['PETWISE_PUBLIC_BASE_URL'] ??
+          'https://petwise-api.65-109-135-215.sslip.io',
       environment: runtimeEnvironment,
       logLevel: _parseLogLevel(
         _readArgValue(args, '--log-level') ?? env['PETWISE_LOG_LEVEL'],
@@ -74,6 +80,10 @@ class RuntimeConfig {
           _readArgValue(args, '--storage-path') ??
           env['PETWISE_STORAGE_PATH'] ??
           'backend/storage',
+      mediaRootPath:
+          _readArgValue(args, '--media-root-path') ??
+          env['PETWISE_MEDIA_ROOT_PATH'] ??
+          'backend/media',
       storageDriver: _parseStorageDriver(
         _readArgValue(args, '--storage-driver') ??
             env['PETWISE_STORAGE_DRIVER'],
@@ -100,12 +110,14 @@ class RuntimeConfig {
 
   final String host;
   final int port;
+  final String publicBaseUrl;
   final RuntimeEnvironment environment;
   final LogLevel logLevel;
   final int questionnaireVersion;
   final int scoringVersion;
   final int catalogVersion;
   final String storagePath;
+  final String mediaRootPath;
   final StorageDriver storageDriver;
   final String databaseUrl;
   final bool exposeErrorDetails;
@@ -124,12 +136,14 @@ class RuntimeConfig {
     return <String, dynamic>{
       'host': host,
       'port': port,
+      'publicBaseUrl': publicBaseUrl,
       'environment': environment.name,
       'logLevel': logLevel.name,
       'questionnaireVersion': questionnaireVersion,
       'scoringVersion': scoringVersion,
       'catalogVersion': catalogVersion,
       'storagePath': storagePath,
+      'mediaRootPath': mediaRootPath,
       'storageDriver': storageDriver.name,
       'databaseUrlConfigured': databaseUrl.isNotEmpty,
       'exposeErrorDetails': exposeErrorDetails,

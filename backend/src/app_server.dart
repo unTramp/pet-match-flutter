@@ -9,6 +9,7 @@ import 'infra/persistence/persistence_bootstrap.dart';
 import 'services/breed_service.dart';
 import 'services/health_service.dart';
 import 'services/match_service.dart';
+import 'services/media_service.dart';
 import 'services/profile_service.dart';
 import 'services/questionnaire_service.dart';
 import 'services/stored_match_result_service.dart';
@@ -21,6 +22,10 @@ class PetWiseAppServer {
     final persistence = PersistenceBootstrap.create(
       runtimeConfig: runtimeConfig,
       logger: logger,
+    );
+    final mediaService = MediaService(
+      publicBaseUrl: runtimeConfig.publicBaseUrl,
+      mediaRootPath: runtimeConfig.mediaRootPath,
     );
 
     return PetWiseAppServer._(
@@ -42,8 +47,9 @@ class PetWiseAppServer {
         breedRepository: persistence.breedRepository,
         matchResultRepository: persistence.matchResultRepository,
         scoringConfigRepository: persistence.scoringConfigRepository,
+        mediaService: mediaService,
       ),
-      breedService: BreedService(persistence.breedRepository),
+      breedService: BreedService(persistence.breedRepository, mediaService),
       storedMatchResultService: StoredMatchResultService(
         persistence.matchResultRepository,
       ),
@@ -163,6 +169,8 @@ class PetWiseAppServer {
       request.response,
       apiResponse.statusCode,
       apiResponse.payload,
+      file: apiResponse.file,
+      contentType: apiResponse.contentType,
     );
 
     stopwatch.stop();
@@ -203,6 +211,22 @@ class PetWiseAppServer {
       return _ApiResponse(
         HttpStatus.ok,
         await _matchService.previewMatch(payload),
+      );
+    }
+
+    if (request.method == 'GET' && path.startsWith('/media/story-avatars/')) {
+      final fileName = path.substring('/media/story-avatars/'.length);
+      final file = _breedService.getStoryAvatarFile(fileName);
+      if (file == null || !file.existsSync()) {
+        return _ApiResponse(HttpStatus.notFound, <String, dynamic>{
+          'error': 'Media not found',
+          'path': path,
+        });
+      }
+      return _ApiResponse.file(
+        HttpStatus.ok,
+        file,
+        contentType: ContentType('image', 'webp'),
       );
     }
 
@@ -258,8 +282,18 @@ class PetWiseAppServer {
   Future<void> _writeJson(
     HttpResponse response,
     int statusCode,
-    Map<String, dynamic> payload,
-  ) async {
+    Map<String, dynamic> payload, {
+    File? file,
+    ContentType? contentType,
+  }) async {
+    if (file != null) {
+      response.statusCode = statusCode;
+      response.headers.contentType = contentType;
+      await response.addStream(file.openRead());
+      await response.close();
+      return;
+    }
+
     response.statusCode = statusCode;
     response.headers.contentType = ContentType.json;
     response.write(const JsonEncoder.withIndent('  ').convert(payload));
@@ -268,8 +302,18 @@ class PetWiseAppServer {
 }
 
 class _ApiResponse {
-  const _ApiResponse(this.statusCode, this.payload);
+  const _ApiResponse(this.statusCode, this.payload)
+    : file = null,
+      contentType = null;
+
+  const _ApiResponse.file(
+    this.statusCode,
+    this.file, {
+    required this.contentType,
+  }) : payload = const <String, dynamic>{};
 
   final int statusCode;
   final Map<String, dynamic> payload;
+  final File? file;
+  final ContentType? contentType;
 }

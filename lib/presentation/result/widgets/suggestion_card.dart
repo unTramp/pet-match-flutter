@@ -20,7 +20,7 @@ class SuggestionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scoreLabel = formatScorePercent(suggestion.score);
-    final imageUrl = suggestion.imageUrl;
+    final imageUrl = suggestion.storyAvatarUrl ?? suggestion.imageUrl;
     return Semantics(
       button: onTap != null,
       label: '${suggestion.breedName}, $scoreLabel',

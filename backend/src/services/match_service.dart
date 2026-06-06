@@ -6,6 +6,7 @@ import '../repositories/breed_repository.dart';
 import '../repositories/match_result_repository.dart';
 import '../repositories/scoring_config_repository.dart';
 import 'match_explanation_builder.dart';
+import 'media_service.dart';
 
 class MatchService {
   MatchService(
@@ -14,11 +15,13 @@ class MatchService {
     required BreedRepository breedRepository,
     required MatchResultRepository matchResultRepository,
     required ScoringConfigRepository scoringConfigRepository,
+    required MediaService mediaService,
     MatchExplanationBuilder? explanationBuilder,
   }) : _questionnaireVersion = questionnaireVersion,
        _breedRepository = breedRepository,
        _matchResultRepository = matchResultRepository,
        _scoringConfigRepository = scoringConfigRepository,
+       _mediaService = mediaService,
        _explanationBuilder =
            explanationBuilder ?? const MatchExplanationBuilder();
 
@@ -27,6 +30,7 @@ class MatchService {
   final BreedRepository _breedRepository;
   final MatchResultRepository _matchResultRepository;
   final ScoringConfigRepository _scoringConfigRepository;
+  final MediaService _mediaService;
   final MatchExplanationBuilder _explanationBuilder;
   static final Random _idRandom = Random.secure();
 
@@ -190,7 +194,9 @@ class MatchService {
       breedId: topBreed['breedId'] as String,
       breedName: topBreed['name'] as String,
       imageUrl: topBreed['imageUrl'] as String?,
-      storyAvatarUrl: topBreed['storyAvatarUrl'] as String?,
+      storyAvatarUrl: _mediaService.resolveStoryAvatarUrl(
+        topBreed['storyAvatarUrl'] as String?,
+      ),
       riskLevel: _resolveRiskLevel(
         matchPercent: topResult.matchPercent,
         compatible: compatible,
@@ -283,7 +289,9 @@ class MatchService {
       score: result.matchPercent,
       summary: summary,
       imageUrl: breed?['imageUrl'] as String?,
-      storyAvatarUrl: breed?['storyAvatarUrl'] as String?,
+      storyAvatarUrl: _mediaService.resolveStoryAvatarUrl(
+        breed?['storyAvatarUrl'] as String?,
+      ),
     );
   }
 

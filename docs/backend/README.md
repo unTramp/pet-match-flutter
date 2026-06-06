@@ -43,6 +43,7 @@
 - [../../tool/backend_specs/generate_freeads_candidates.py](../../tool/backend_specs/generate_freeads_candidates.py) — генератор черновых import candidates из raw `Freeads` snapshots.
 - [../../tool/backend_specs/generate_freeads_review_pack.py](../../tool/backend_specs/generate_freeads_review_pack.py) — генератор review pack `canonical vs Freeads candidate`.
 - [../../tool/backend_specs/generate_freeads_registry.py](../../tool/backend_specs/generate_freeads_registry.py) — генератор полного Freeads slug/media registry и mapping для текущего каталога.
+- [../../tool/backend_specs/sync_story_avatars.py](../../tool/backend_specs/sync_story_avatars.py) — sync текущих mapped story avatar `.webp` в `backend/media/story-avatars`.
 - [import_candidates/README.md](./import_candidates/README.md) — описание candidate-артефактов перед попаданием в канонический каталог.
 - [../../backend](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend:1) — первый живой server-side skeleton поверх reference pipeline.
 - [../../backend/deploy](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend/deploy:1) — deploy scaffold для Hetzner.
@@ -74,6 +75,7 @@
 - current dog catalog: `26` breeds, including two semi-assisted import waves from `pets_json`
 - AI only for offline breed enrichment and text generation
 - `Freeads` accepted as a primary reviewed source for dog breed ingestion
+- story avatars are served from `/media/story-avatars/{fileName}`
 - config-driven questionnaire, mapping and scoring
 
 ## Quick start
@@ -125,6 +127,12 @@ python3 tool/backend_specs/generate_freeads_candidates.py
 
 ```bash
 python3 tool/backend_specs/generate_freeads_registry.py
+```
+
+Подтянуть текущие mapped story avatar `.webp` в backend media directory:
+
+```bash
+python3 tool/backend_specs/sync_story_avatars.py --source-dir /absolute/path/to/webp_512
 ```
 
 Собрать review pack для текущего pilot batch:

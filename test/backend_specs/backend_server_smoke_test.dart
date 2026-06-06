@@ -13,21 +13,32 @@ void main() {
     late HttpServer server;
     late HttpClient client;
     late Directory storageDir;
+    late Directory mediaDir;
 
     setUpAll(() async {
       storageDir = Directory.systemTemp.createTempSync(
         'petwise_backend_smoke_',
       );
+      mediaDir = Directory.systemTemp.createTempSync(
+        'petwise_backend_media_',
+      );
+      final storyAvatarDir = Directory('${mediaDir.path}/story-avatars')
+        ..createSync(recursive: true);
+      File(
+        '${storyAvatarDir.path}/whippet.webp',
+      ).writeAsBytesSync(<int>[82, 73, 70, 70, 1, 2, 3, 4]);
       appServer = PetWiseAppServer.bootstrap(
         runtimeConfig: RuntimeConfig(
           host: '127.0.0.1',
           port: 8080,
+          publicBaseUrl: 'http://127.0.0.1',
           environment: RuntimeEnvironment.development,
           logLevel: LogLevel.info,
           questionnaireVersion: 1,
           scoringVersion: 2,
           catalogVersion: 1,
           storagePath: storageDir.path,
+          mediaRootPath: mediaDir.path,
           storageDriver: StorageDriver.file,
           databaseUrl: '',
           exposeErrorDetails: true,
@@ -48,6 +59,9 @@ void main() {
       await server.close(force: true);
       if (storageDir.existsSync()) {
         storageDir.deleteSync(recursive: true);
+      }
+      if (mediaDir.existsSync()) {
+        mediaDir.deleteSync(recursive: true);
       }
     });
 
@@ -164,6 +178,27 @@ void main() {
 
       expect(response.$1, HttpStatus.ok);
       expect(response.$2['breedId'], 'whippet');
+      expect(
+        response.$2['storyAvatarUrl'],
+        'http://127.0.0.1/media/story-avatars/whippet.webp',
+      );
+    });
+
+    test('GET /media/story-avatars/{fileName} returns static avatar', () async {
+      final request = await client.get(
+        server.address.address,
+        server.port,
+        '/media/story-avatars/whippet.webp',
+      );
+      final response = await request.close();
+      final bytes = await response.fold<List<int>>(
+        <int>[],
+        (buffer, chunk) => buffer..addAll(chunk),
+      );
+
+      expect(response.statusCode, HttpStatus.ok);
+      expect(response.headers.contentType?.mimeType, 'image/webp');
+      expect(bytes, isNotEmpty);
     });
   });
 }

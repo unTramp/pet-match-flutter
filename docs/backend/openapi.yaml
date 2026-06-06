@@ -363,6 +363,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /media/story-avatars/{fileName}:
+    get:
+      tags: [breeds]
+      summary: Get story avatar image
+      operationId: getStoryAvatar
+      parameters:
+        - in: path
+          name: fileName
+          required: true
+          description: Story avatar file name
+          schema:
+            type: string
+          example: whippet.webp
+      responses:
+        '200':
+          description: Static WebP story avatar
+          content:
+            image/webp:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Media not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
