@@ -1,0 +1,62 @@
+{
+  "breedId": "irish_setter",
+  "petType": "dog",
+  "name": "Irish Setter",
+  "aliases": [
+    "Red setter",
+    "Sotar rua",
+    "Irish red setter"
+  ],
+  "group": "sporting",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 3,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "trainability": 4,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Крупный, очень активный и эффектный gundog-companion, которому лучше всего подходят длинные прогулки, много движения, семейный ритм с высокой вовлечённостью и владелец, готовый к более demanding sporting-профилю.",
+    "strengths": [
+      "обычно хорошо раскрывается в активной семье или у владельца, который любит длинные прогулки и насыщенный outdoor-ритм",
+      "часто остаётся мягким и people-oriented sporting-companion профилем при нормальной рутине и социализации",
+      "может хорошо откликаться на обучение и совместные занятия, если собаке дают достаточно движения и включённости"
+    ],
+    "watchouts": [
+      "не лучший выбор для спокойной квартиры, пассивного ритма жизни и владельца, который хочет large family dog без очень высокой ежедневной нагрузки",
+      "дружелюбный характер не отменяет sporting-drive: длинные прогулки, уход за шерстью и более слабая переносимость одиночества обычно требуют больше быта и дисциплины, чем у retriever-style companions"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у активного владельца или семьи, которым нравятся длинные прогулки, работа в движении и more sporting daily rhythm, а не просто дружелюбная большая собака дома",
+      "важно заранее принять более высокую нагрузку, уход за длинной шерстью и то, что мягкий family-friendly характер не делает породу по-настоящему лёгкой для новичка или долгого одиночества"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/irish-setter.webp"
+}

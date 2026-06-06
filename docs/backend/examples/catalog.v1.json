@@ -47,6 +47,7 @@
     { "breedId": "havanese", "file": "breed.havanese.json" },
     { "breedId": "shetland_sheepdog", "file": "breed.shetland_sheepdog.json" },
     { "breedId": "english_bulldog", "file": "breed.english_bulldog.json" },
-    { "breedId": "coton_de_tulear", "file": "breed.coton_de_tulear.json" }
+    { "breedId": "coton_de_tulear", "file": "breed.coton_de_tulear.json" },
+    { "breedId": "irish_setter", "file": "breed.irish_setter.json" }
   ]
 }

@@ -15,7 +15,7 @@
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 46,
+  "mappingCount": 47,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -340,6 +340,19 @@
       "storyAvatar": {
         "fileName": "havanese.webp",
         "suggestedUploadPath": "/media/story-avatars/havanese.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "irish_setter",
+      "petwiseBreedName": "Irish Setter",
+      "freeadsSlug": "irish-setter",
+      "freeadsBreedName": "Irish Setter",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/irish-setter",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/irish-setter.webp",
+      "storyAvatar": {
+        "fileName": "irish-setter.webp",
+        "suggestedUploadPath": "/media/story-avatars/irish-setter.webp"
       },
       "matchType": "exact_slug"
     },

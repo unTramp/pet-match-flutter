@@ -5,6 +5,7 @@
     "Canonical import wave from the seventh curated Freeads capture batch.",
     "English Bulldog is chosen first because it adds a distinct low-energy compact bulldog profile without overlapping too heavily with the existing toy and terrier companions.",
     "Coton de Tulear is added as a soft low-shedding toy companion, but normalized away from the overly optimistic Freeads draft so it does not collapse into a free win across every apartment scenario.",
+    "Irish Setter is added as an active and glamorous gundog profile, normalized away from the most optimistic Freeads hints so it does not collapse into a friendlier Golden/Lab duplicate.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -17,6 +18,11 @@
       "breedId": "coton_de_tulear",
       "templateBreedId": "havanese",
       "group": "toy"
+    },
+    {
+      "breedId": "irish_setter",
+      "templateBreedId": "golden_retriever",
+      "group": "sporting"
     }
   ]
 }

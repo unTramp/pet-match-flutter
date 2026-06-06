@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "irish_setter": {
+        "size": 4,
+        "apartmentSuitability": 2,
+        "exerciseNeeds": 5,
+        "aloneTolerance": 2,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 3,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 4,
+        "noiseLevel": 2,
+        "trainability": 4,
+        "temperamentCalm": 3,
+    },
     "coton_de_tulear": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -325,6 +340,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "irish_setter": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "coton_de_tulear": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -469,6 +491,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "irish_setter": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "coton_de_tulear": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -559,6 +585,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "irish_setter": [
+            "лучше всего раскрывается у активного владельца или семьи, которым нравятся длинные прогулки, работа в движении и more sporting daily rhythm, а не просто дружелюбная большая собака дома",
+            "важно заранее принять более высокую нагрузку, уход за длинной шерстью и то, что мягкий family-friendly характер не делает породу по-настоящему лёгкой для новичка или долгого одиночества",
+        ],
         "coton_de_tulear": [
             "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают много контакта с людьми и заранее принимают регулярный уход за белой шерстью",
             "важно не путать very light shedding с отсутствием бытовых затрат: линьки мало, но груминг, внимание и мягкая социализация остаются обязательными",
@@ -644,6 +674,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "irish_setter":
+        return (
+            "Крупный, очень активный и эффектный gundog-companion, которому лучше всего подходят длинные прогулки, "
+            "много движения, семейный ритм с высокой вовлечённостью и владелец, готовый к более demanding sporting-профилю."
+        )
     if breed_id == "coton_de_tulear":
         return (
             "Небольшой, мягкий и very low-shedding companion для квартиры, которому лучше всего подходят спокойный семейный ритм, "
@@ -748,6 +783,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "irish_setter":
+        return [
+            "обычно хорошо раскрывается в активной семье или у владельца, который любит длинные прогулки и насыщенный outdoor-ритм",
+            "часто остаётся мягким и people-oriented sporting-companion профилем при нормальной рутине и социализации",
+            "может хорошо откликаться на обучение и совместные занятия, если собаке дают достаточно движения и включённости",
+        ]
     if breed_id == "coton_de_tulear":
         return [
             "обычно хорошо подходит для квартирного и семейного ритма жизни",
@@ -872,6 +913,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "irish_setter":
+        return [
+            "не лучший выбор для спокойной квартиры, пассивного ритма жизни и владельца, который хочет large family dog без очень высокой ежедневной нагрузки",
+            "дружелюбный характер не отменяет sporting-drive: длинные прогулки, уход за шерстью и более слабая переносимость одиночества обычно требуют больше быта и дисциплины, чем у retriever-style companions",
+        ]
     if breed_id == "coton_de_tulear":
         return [
             "очень низкая линька не делает породу low-maintenance: длинная шерсть всё равно требует регулярного ухода, времени и бюджета",
