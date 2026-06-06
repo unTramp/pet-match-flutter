@@ -1,7 +1,7 @@
 {
   "source": "freeads",
   "version": 1,
-  "generatedAt": "2026-06-06",
+  "generatedAt": "2026-06-07",
   "notes": [
     "Maps current canonical PetWise breed IDs to Freeads slugs and avatar files.",
     "Use this mapping before introducing storyAvatarUrl into backend/app contracts."
@@ -15,7 +15,7 @@
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 48,
+  "mappingCount": 49,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -405,6 +405,19 @@
       "storyAvatar": {
         "fileName": "labrador-retriever.webp",
         "suggestedUploadPath": "/media/story-avatars/labrador-retriever.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "lhasa_apso",
+      "petwiseBreedName": "Lhasa Apso",
+      "freeadsSlug": "lhasa-apso",
+      "freeadsBreedName": "Lhasa Apso",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/lhasa-apso",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/lhasa-apso.webp",
+      "storyAvatar": {
+        "fileName": "lhasa-apso.webp",
+        "suggestedUploadPath": "/media/story-avatars/lhasa-apso.webp"
       },
       "matchType": "exact_slug"
     },

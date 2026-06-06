@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "lhasa_apso": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 2,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 5,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 3,
+        "trainability": 3,
+        "temperamentCalm": 4,
+    },
     "basset_hound": {
         "size": 3,
         "apartmentSuitability": 3,
@@ -355,6 +370,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "lhasa_apso": {
+        "isVocal": True,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "basset_hound": {
         "isVocal": True,
         "isHighPreyDrive": True,
@@ -513,6 +535,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "lhasa_apso": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "basset_hound": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -611,6 +637,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "lhasa_apso": [
+            "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают понятные границы, близкий контакт с людьми и заранее принимают регулярный уход за длинной шерстью",
+            "важно не считать породу purely decorative: alert watchdog-нотки, более выборочная дружелюбность и груминг обычно требуют больше зрелости, чем у самых мягких toy companions",
+        ],
         "basset_hound": [
             "лучше всего раскрывается в спокойном домашнем ритме с размеренными прогулками, безопасным контролем на запахе и владельцем, который не ждёт высокой уступчивости в обучении",
             "важно заранее принять более громкий hound-голос, склонность идти за запахом и то, что спокойный темп не делает породу полностью беспроблемной для компактной квартиры",
@@ -704,6 +734,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "lhasa_apso":
+        return (
+            "Небольшой, спокойный и grooming-heavy companion для квартиры, которому лучше всего подходят размеренный домашний ритм, "
+            "уважительное обращение и владелец, готовый к регулярному уходу за шерстью и более alert характеру."
+        )
     if breed_id == "basset_hound":
         return (
             "Невысокий, спокойный и очень nose-driven hound-companion, которому лучше всего подходят размеренные прогулки, "
@@ -818,6 +853,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "lhasa_apso":
+        return [
+            "обычно хорошо подходит для спокойного квартирного или домашнего ритма без высокой ежедневной активности",
+            "часто остаётся более сдержанным и self-contained small companion-профилем, чем самые people-pleasing toy breeds",
+            "может хорошо жить в компактном формате, если семье комфортны груминг и уважительный спокойный контакт",
+        ]
     if breed_id == "basset_hound":
         return [
             "обычно остаётся более спокойным и low-key family hound-профилем, чем многие другие охотничьи собаки",
@@ -954,6 +995,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "lhasa_apso":
+        return [
+            "не лучший выбор для владельца, который хочет very easy beginner dog, полностью social butterfly-поведение или low-maintenance шерсть",
+            "маленький размер не отменяет более alert характера: груминг, выборочная дружелюбность и долгие периоды одиночества обычно требуют больше зрелости и рутины",
+        ]
     if breed_id == "basset_hound":
         return [
             "спокойный темп не означает quiet profile: hound-голос, вой и работа носом могут заметно мешать в квартире или при чувствительных соседях",

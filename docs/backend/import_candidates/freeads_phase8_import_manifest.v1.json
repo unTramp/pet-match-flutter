@@ -4,6 +4,7 @@
   "notes": [
     "Canonical import wave from the eighth curated Freeads capture batch.",
     "Basset Hound is chosen first because it adds a distinct calm-but-vocal scent hound profile without collapsing into the existing beagle or calm toy companion branches.",
+    "Lhasa Apso is added next as a reserved and grooming-heavy small companion, normalized away from the most optimistic Freeads hints so it does not collapse into a softer Shih Tzu or Havanese duplicate.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -11,6 +12,11 @@
       "breedId": "basset_hound",
       "templateBreedId": "beagle",
       "group": "hound"
+    },
+    {
+      "breedId": "lhasa_apso",
+      "templateBreedId": "shih_tzu",
+      "group": "toy"
     }
   ]
 }
