@@ -1,0 +1,64 @@
+{
+  "breedId": "samoyed",
+  "petType": "dog",
+  "name": "Samoyed",
+  "aliases": [
+    "Smiley",
+    "Sammy",
+    "Bjelkier",
+    "Samoiedskaya Sobaka",
+    "Nenetskaya Laika"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 5,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 4,
+    "noiseLevel": 4,
+    "trainability": 4,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Крупный, очень пушистый и более vocal spitz-companion, которому лучше всего подходит активный ритм жизни, много вовлечённости и готовность к тяжёлой линьке круглый год.",
+    "strengths": [
+      "обычно остаётся дружелюбным и вовлечённым companion-профилем для активной семьи",
+      "часто хорошо откликается на обучение и совместные занятия, если рутина стабильна",
+      "может хорошо жить с детьми и в семье, где любят прогулки и постоянный контакт с собакой"
+    ],
+    "watchouts": [
+      "тяжёлая линька, груминг и более шумный spitz-характер требуют высокой бытовой готовности заранее",
+      "не лучший выбор для очень спокойной квартиры, редких прогулок и владельца, который хочет собаку с высокой самостоятельностью"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у активного владельца, который готов к плотной рутине, обильной линьке и регулярному уходу за густой шерстью",
+      "важно заранее принять более шумный spitz-профиль, работу с самоконтролем и то, что породе обычно тяжело без занятости и включённости в жизнь семьи"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/samoyed.webp"
+}
