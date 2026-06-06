@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Eighth Freeads capture wave chosen by product coverage rather than alphabet.",
+    "This batch adds a calm low-energy hound profile, an intense velcro sporting profile and a grooming-heavy small calm companion profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "basset_hound",
+      "petType": "dog",
+      "name": "Basset Hound",
+      "freeadsBreedName": "Basset Hound",
+      "freeadsSlug": "basset-hound",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/basset-hound",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase8_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "hungarian_vizsla",
+      "petType": "dog",
+      "name": "Hungarian Vizsla",
+      "freeadsBreedName": "Hungarian Vizsla",
+      "freeadsSlug": "hungarian-vizsla",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/hungarian-vizsla",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase8_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "lhasa_apso",
+      "petType": "dog",
+      "name": "Lhasa Apso",
+      "freeadsBreedName": "Lhasa Apso",
+      "freeadsSlug": "lhasa-apso",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/lhasa-apso",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase8_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

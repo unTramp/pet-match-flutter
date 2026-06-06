@@ -1,0 +1,61 @@
+{
+  "breedId": "basset_hound",
+  "petType": "dog",
+  "name": "Basset Hound",
+  "aliases": [
+    "Hush Puppy",
+    "Basset"
+  ],
+  "group": "hound",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 3,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 1,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 2,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Невысокий, спокойный и очень nose-driven hound-companion, которому лучше всего подходят размеренные прогулки, домашний ритм без спешки и владелец, готовый к более громкому голосу и менее уступчивому обучению.",
+    "strengths": [
+      "обычно остаётся более спокойным и low-key family hound-профилем, чем многие другие охотничьи собаки",
+      "часто хорошо чувствует себя в доме с детьми и другими собаками при нормальной рутине",
+      "уход за шерстью обычно остаётся простым и не требует сложного груминга"
+    ],
+    "watchouts": [
+      "спокойный темп не означает quiet profile: hound-голос, вой и работа носом могут заметно мешать в квартире или при чувствительных соседях",
+      "не лучший выбор для владельца, который ждёт высокой обучаемости, прогулок без контроля на запахе и беспроблемной свободы без поводка"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается в спокойном домашнем ритме с размеренными прогулками, безопасным контролем на запахе и владельцем, который не ждёт высокой уступчивости в обучении",
+      "важно заранее принять более громкий hound-голос, склонность идти за запахом и то, что спокойный темп не делает породу полностью беспроблемной для компактной квартиры"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/basset-hound.webp"
+}

@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/lhasa-apso",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Lhasa Apso",
+    "slug": "lhasa-apso",
+    "petType": "dog"
+  },
+  "summary": "Lhasa Apsos are one of our most popular breeds. Also known as Apso Seng Kyis, Lhasa Apsos are a small dog and a pedigree breed.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Apso Seng Kyi"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-14 years",
+    "weight": "Male: 6-7kg; Female: 6-7kg",
+    "height": "Male: 25-28cm; Female: 23-25cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "High",
+    "shedding": "Medium",
+    "groomingNeeds": "High",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

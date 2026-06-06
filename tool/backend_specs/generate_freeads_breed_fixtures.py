@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "basset_hound": {
+        "size": 3,
+        "apartmentSuitability": 3,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 3,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 1,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 4,
+        "trainability": 2,
+        "temperamentCalm": 4,
+    },
     "irish_setter": {
         "size": 4,
         "apartmentSuitability": 2,
@@ -340,6 +355,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "basset_hound": {
+        "isVocal": True,
+        "isHighPreyDrive": True,
+        "isSensitive": False,
+        "isEscapeProne": True,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "irish_setter": {
         "isVocal": False,
         "isHighPreyDrive": True,
@@ -491,6 +513,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "basset_hound": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "irish_setter": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -585,6 +611,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "basset_hound": [
+            "лучше всего раскрывается в спокойном домашнем ритме с размеренными прогулками, безопасным контролем на запахе и владельцем, который не ждёт высокой уступчивости в обучении",
+            "важно заранее принять более громкий hound-голос, склонность идти за запахом и то, что спокойный темп не делает породу полностью беспроблемной для компактной квартиры",
+        ],
         "irish_setter": [
             "лучше всего раскрывается у активного владельца или семьи, которым нравятся длинные прогулки, работа в движении и more sporting daily rhythm, а не просто дружелюбная большая собака дома",
             "важно заранее принять более высокую нагрузку, уход за длинной шерстью и то, что мягкий family-friendly характер не делает породу по-настоящему лёгкой для новичка или долгого одиночества",
@@ -674,6 +704,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "basset_hound":
+        return (
+            "Невысокий, спокойный и очень nose-driven hound-companion, которому лучше всего подходят размеренные прогулки, "
+            "домашний ритм без спешки и владелец, готовый к более громкому голосу и менее уступчивому обучению."
+        )
     if breed_id == "irish_setter":
         return (
             "Крупный, очень активный и эффектный gundog-companion, которому лучше всего подходят длинные прогулки, "
@@ -783,6 +818,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "basset_hound":
+        return [
+            "обычно остаётся более спокойным и low-key family hound-профилем, чем многие другие охотничьи собаки",
+            "часто хорошо чувствует себя в доме с детьми и другими собаками при нормальной рутине",
+            "уход за шерстью обычно остаётся простым и не требует сложного груминга",
+        ]
     if breed_id == "irish_setter":
         return [
             "обычно хорошо раскрывается в активной семье или у владельца, который любит длинные прогулки и насыщенный outdoor-ритм",
@@ -913,6 +954,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "basset_hound":
+        return [
+            "спокойный темп не означает quiet profile: hound-голос, вой и работа носом могут заметно мешать в квартире или при чувствительных соседях",
+            "не лучший выбор для владельца, который ждёт высокой обучаемости, прогулок без контроля на запахе и беспроблемной свободы без поводка",
+        ]
     if breed_id == "irish_setter":
         return [
             "не лучший выбор для спокойной квартиры, пассивного ритма жизни и владельца, который хочет large family dog без очень высокой ежедневной нагрузки",

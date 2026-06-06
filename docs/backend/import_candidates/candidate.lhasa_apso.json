@@ -1,0 +1,87 @@
+{
+  "breedId": "lhasa_apso",
+  "petType": "dog",
+  "name": "Lhasa Apso",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/lhasa-apso",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Lhasa Apso",
+    "freeadsSlug": "lhasa-apso",
+    "rawIdentity": {
+      "breedName": "Lhasa Apso",
+      "slug": "lhasa-apso",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Apso Seng Kyi"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-14 years",
+    "weight": "Male: 6-7kg; Female: 6-7kg",
+    "height": "Male: 25-28cm; Female: 23-25cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Lhasa Apsos are one of our most popular breeds. Also known as Apso Seng Kyis, Lhasa Apsos are a small dog and a pedigree breed.",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "High",
+      "shedding": "Medium",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

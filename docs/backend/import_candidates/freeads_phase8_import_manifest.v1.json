@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the eighth curated Freeads capture batch.",
+    "Basset Hound is chosen first because it adds a distinct calm-but-vocal scent hound profile without collapsing into the existing beagle or calm toy companion branches.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "basset_hound",
+      "templateBreedId": "beagle",
+      "group": "hound"
+    }
+  ]
+}

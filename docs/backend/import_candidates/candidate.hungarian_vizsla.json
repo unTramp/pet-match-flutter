@@ -1,0 +1,90 @@
+{
+  "breedId": "hungarian_vizsla",
+  "petType": "dog",
+  "name": "Hungarian Vizsla",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/hungarian-vizsla",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Hungarian Vizsla",
+    "freeadsSlug": "hungarian-vizsla",
+    "rawIdentity": {
+      "breedName": "Hungarian Vizsla",
+      "slug": "hungarian-vizsla",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Magyar vizsla",
+      "Vizsla",
+      "Hungarian pointer"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 24-33kg; Female: 24-33kg",
+    "height": "Male: 54-64cm; Female: 54-64cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Hungarian Vizslas are extremely intelligent handsome and athletic gundogs with their gold coats and eyes to match.",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью",
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Low",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Low",
+      "costToKeep": "Medium",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

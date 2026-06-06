@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/basset-hound",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Basset Hound",
+    "slug": "basset-hound",
+    "petType": "dog"
+  },
+  "summary": "Great with families and children, this gentle breed is great for first time pet parents and those with little experience",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Hush Puppy",
+      "Basset"
+    ],
+    "breedGroup": "Hound",
+    "breedType": "Hound",
+    "breedSize": "Medium",
+    "lifespan": "10-12 years",
+    "weight": "Male: 22-32kg; Female: 22-32kg",
+    "height": "Male: 33-38cm; Female: 33-38cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy, BVA/KC Elbow Dysplasia Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Hard",
+    "shedding": "Medium",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Medium",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

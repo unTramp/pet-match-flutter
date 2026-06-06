@@ -1,0 +1,47 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/hungarian-vizsla",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Hungarian Vizsla",
+    "slug": "hungarian-vizsla",
+    "petType": "dog"
+  },
+  "summary": "Hungarian Vizslas are extremely intelligent handsome and athletic gundogs with their gold coats and eyes to match.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Magyar vizsla",
+      "Vizsla",
+      "Hungarian pointer"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 24-33kg; Female: 24-33kg",
+    "height": "Male: 54-64cm; Female: 54-64cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Low",
+    "costToKeep": "Medium",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

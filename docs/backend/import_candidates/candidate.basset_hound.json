@@ -1,0 +1,85 @@
+{
+  "breedId": "basset_hound",
+  "petType": "dog",
+  "name": "Basset Hound",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/basset-hound",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Basset Hound",
+    "freeadsSlug": "basset-hound",
+    "rawIdentity": {
+      "breedName": "Basset Hound",
+      "slug": "basset-hound",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Hush Puppy",
+      "Basset"
+    ],
+    "breedGroup": "Hound",
+    "breedType": "Hound",
+    "breedSize": "Medium",
+    "lifespan": "10-12 years",
+    "weight": "Male: 22-32kg; Female: 22-32kg",
+    "height": "Male: 33-38cm; Female: 33-38cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Gonioscopy, BVA/KC Elbow Dysplasia Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Great with families and children, this gentle breed is great for first time pet parents and those with little experience",
+    "strengths": [
+      "умеренный уровень активности",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 3,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 2,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Hard",
+      "shedding": "Medium",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Medium",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}
