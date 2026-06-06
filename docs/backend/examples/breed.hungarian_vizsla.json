@@ -1,0 +1,62 @@
+{
+  "breedId": "hungarian_vizsla",
+  "petType": "dog",
+  "name": "Hungarian Vizsla",
+  "aliases": [
+    "Magyar vizsla",
+    "Vizsla",
+    "Hungarian pointer"
+  ],
+  "group": "sporting",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 1,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 5,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Крупный, очень активный и тесно ориентированный на человека sporting-companion, которому лучше всего подходят длинные прогулки, постоянная вовлечённость владельца и ритм жизни, где собаку не оставляют надолго без движения и контакта.",
+    "strengths": [
+      "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-ритм",
+      "часто остаётся очень обучаемым и тесно ориентированным на человека sporting-companion профилем",
+      "может хорошо вписываться в активную семью, если собаке дают много движения, контакта и понятную рутину"
+    ],
+    "watchouts": [
+      "не лучший выбор для новичка, пассивного ритма жизни, долгого одиночества и владельца, который хочет active dog без very high daily involvement",
+      "высокая обучаемость не отменяет sporting-intensity: породе обычно нужны больше движения, контакта и структуры, чем у retriever-style family companions"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у очень активного владельца или семьи, которым нужен тесный контакт с собакой, длинные прогулки и регулярные тренировки, а не просто дружелюбная спортивная порода",
+      "важно заранее принять velcro-характер, более слабую переносимость одиночества и то, что высокая обучаемость не делает породу лёгкой для новичка или спокойного городского ритма"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/hungarian-vizsla.webp"
+}

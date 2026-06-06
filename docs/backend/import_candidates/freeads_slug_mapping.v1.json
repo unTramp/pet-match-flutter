@@ -15,7 +15,7 @@
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 49,
+  "mappingCount": 50,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -353,6 +353,19 @@
       "storyAvatar": {
         "fileName": "havanese.webp",
         "suggestedUploadPath": "/media/story-avatars/havanese.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "hungarian_vizsla",
+      "petwiseBreedName": "Hungarian Vizsla",
+      "freeadsSlug": "hungarian-vizsla",
+      "freeadsBreedName": "Hungarian Vizsla",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/hungarian-vizsla",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/hungarian-vizsla.webp",
+      "storyAvatar": {
+        "fileName": "hungarian-vizsla.webp",
+        "suggestedUploadPath": "/media/story-avatars/hungarian-vizsla.webp"
       },
       "matchType": "exact_slug"
     },

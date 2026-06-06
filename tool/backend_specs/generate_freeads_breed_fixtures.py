@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "hungarian_vizsla": {
+        "size": 4,
+        "apartmentSuitability": 2,
+        "exerciseNeeds": 5,
+        "aloneTolerance": 1,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 2,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 1,
+        "maintenanceCost": 3,
+        "noiseLevel": 2,
+        "trainability": 5,
+        "temperamentCalm": 2,
+    },
     "lhasa_apso": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -370,6 +385,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "hungarian_vizsla": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "lhasa_apso": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -535,6 +557,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "hungarian_vizsla": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "lhasa_apso": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -637,6 +663,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "hungarian_vizsla": [
+            "лучше всего раскрывается у очень активного владельца или семьи, которым нужен тесный контакт с собакой, длинные прогулки и регулярные тренировки, а не просто дружелюбная спортивная порода",
+            "важно заранее принять velcro-характер, более слабую переносимость одиночества и то, что высокая обучаемость не делает породу лёгкой для новичка или спокойного городского ритма",
+        ],
         "lhasa_apso": [
             "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают понятные границы, близкий контакт с людьми и заранее принимают регулярный уход за длинной шерстью",
             "важно не считать породу purely decorative: alert watchdog-нотки, более выборочная дружелюбность и груминг обычно требуют больше зрелости, чем у самых мягких toy companions",
@@ -734,6 +764,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "hungarian_vizsla":
+        return (
+            "Крупный, очень активный и тесно ориентированный на человека sporting-companion, которому лучше всего подходят длинные прогулки, "
+            "постоянная вовлечённость владельца и ритм жизни, где собаку не оставляют надолго без движения и контакта."
+        )
     if breed_id == "lhasa_apso":
         return (
             "Небольшой, спокойный и grooming-heavy companion для квартиры, которому лучше всего подходят размеренный домашний ритм, "
@@ -853,6 +888,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "hungarian_vizsla":
+        return [
+            "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-ритм",
+            "часто остаётся очень обучаемым и тесно ориентированным на человека sporting-companion профилем",
+            "может хорошо вписываться в активную семью, если собаке дают много движения, контакта и понятную рутину",
+        ]
     if breed_id == "lhasa_apso":
         return [
             "обычно хорошо подходит для спокойного квартирного или домашнего ритма без высокой ежедневной активности",
@@ -995,6 +1036,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "hungarian_vizsla":
+        return [
+            "не лучший выбор для новичка, пассивного ритма жизни, долгого одиночества и владельца, который хочет active dog без very high daily involvement",
+            "высокая обучаемость не отменяет sporting-intensity: породе обычно нужны больше движения, контакта и структуры, чем у retriever-style family companions",
+        ]
     if breed_id == "lhasa_apso":
         return [
             "не лучший выбор для владельца, который хочет very easy beginner dog, полностью social butterfly-поведение или low-maintenance шерсть",
