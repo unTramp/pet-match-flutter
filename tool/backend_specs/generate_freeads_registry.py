@@ -26,6 +26,7 @@ DEFAULT_CATALOG = Path("docs/backend/examples/catalog.v1.json")
 
 
 MANUAL_SLUG_OVERRIDES = {
+    "bernese_mountain_dog": "bernese-mountain",
     "doberman": "dobermann",
     "english_cocker_spaniel": "cocker-spaniel",
     "jack_russell_terrier": "jack-russell",

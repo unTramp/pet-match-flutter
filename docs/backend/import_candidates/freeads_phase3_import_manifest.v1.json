@@ -2,8 +2,8 @@
   "source": "freeads",
   "version": 1,
   "notes": [
-    "First canonical import wave from the third Freeads browser-captured candidate batch.",
-    "West Highland White Terrier is chosen first because it has a clear and product-useful terrier companion profile with strong capture quality.",
+    "Canonical import wave from the third Freeads browser-captured candidate batch.",
+    "West Highland White Terrier and Bernese Mountain Dog are chosen first because they add clear terrier-companion and gentle-giant family coverage with strong capture quality.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -11,6 +11,11 @@
       "breedId": "west_highland_white_terrier",
       "templateBreedId": "jack_russell_terrier",
       "group": "terrier"
+    },
+    {
+      "breedId": "bernese_mountain_dog",
+      "templateBreedId": "golden_retriever",
+      "group": "working"
     }
   ]
 }

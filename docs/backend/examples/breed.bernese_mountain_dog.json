@@ -1,0 +1,63 @@
+{
+  "breedId": "bernese_mountain_dog",
+  "petType": "dog",
+  "name": "Bernese Mountain Dog",
+  "aliases": [
+    "BMD",
+    "Berner Sennenhund",
+    "Bernese cattle dog",
+    "\"Berner\""
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 5,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 5,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 5,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 5,
+    "noiseLevel": 2,
+    "trainability": 4,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Крупный, мягкий и family-oriented working companion с умеренной активностью, тяжёлой линькой и высокой стоимостью содержания, но очень приятным семейным профилем.",
+    "strengths": [
+      "обычно очень хорошо подходит для семейного ритма и спокойного контакта с детьми",
+      "может быть мягким и обучаемым крупным companion-псом",
+      "чаще раскрывается в доме с пространством и размеренным образом жизни"
+    ],
+    "watchouts": [
+      "тяжёлая линька, груминг и стоимость содержания требуют осознанной готовности заранее",
+      "не лучший выбор для маленькой квартиры, жары и владельца, который не готов к очень крупной собаке"
+    ],
+    "adaptationTips": [
+      "лучше всего чувствует себя в семье, готовой к большому размеру, тяжёлой линьке и регулярным спокойным прогулкам",
+      "стоит заранее учитывать пространство дома, затраты на уход и мягкую последовательную социализацию"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/bernese-mountain.webp"
+}

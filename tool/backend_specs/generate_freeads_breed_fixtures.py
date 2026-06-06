@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "bernese_mountain_dog": {
+        "size": 5,
+        "apartmentSuitability": 2,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 5,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 5,
+        "sheddingLevel": 5,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 4,
+        "temperamentCalm": 4,
+    },
     "west_highland_white_terrier": {
         "size": 2,
         "apartmentSuitability": 4,
@@ -130,6 +145,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "bernese_mountain_dog": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "west_highland_white_terrier": {
         "isVocal": True,
         "isHighPreyDrive": True,
@@ -183,6 +205,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "bernese_mountain_dog": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "west_highland_white_terrier": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -221,6 +247,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "bernese_mountain_dog": [
+            "лучше всего чувствует себя в семье, готовой к большому размеру, тяжёлой линьке и регулярным спокойным прогулкам",
+            "стоит заранее учитывать пространство дома, затраты на уход и мягкую последовательную социализацию",
+        ],
         "west_highland_white_terrier": [
             "лучше всего чувствует себя в доме, где готовы к регулярному грумингу и terrier-упрямству",
             "важно заранее работать с голосистостью, самоконтролем и знакомством с другими животными",
@@ -254,6 +284,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "bernese_mountain_dog":
+        return (
+            "Крупный, мягкий и family-oriented working companion с умеренной активностью, "
+            "тяжёлой линькой и высокой стоимостью содержания, но очень приятным семейным профилем."
+        )
     if breed_id == "west_highland_white_terrier":
         return (
             "Небольшой, уверенный и более упрямый terrier-companion, которому подходят умеренная активность, "
@@ -293,6 +328,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "bernese_mountain_dog":
+        return [
+            "обычно очень хорошо подходит для семейного ритма и спокойного контакта с детьми",
+            "может быть мягким и обучаемым крупным companion-псом",
+            "чаще раскрывается в доме с пространством и размеренным образом жизни",
+        ]
     if breed_id == "west_highland_white_terrier":
         return [
             "подходит для компактного формата жизни при достаточной рутине",
@@ -339,6 +380,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "bernese_mountain_dog":
+        return [
+            "тяжёлая линька, груминг и стоимость содержания требуют осознанной готовности заранее",
+            "не лучший выбор для маленькой квартиры, жары и владельца, который не готов к очень крупной собаке",
+        ]
     if breed_id == "west_highland_white_terrier":
         return [
             "регулярный груминг и уход за шерстью лучше считать обязательной частью жизни с породой",
