@@ -5,6 +5,7 @@
     "Canonical import wave from the sixth curated Freeads capture batch.",
     "Greyhound is chosen first because it adds a large calm sighthound profile with clear product value and comparatively low review ambiguity.",
     "Havanese follows as a soft small companion profile and is intentionally normalized away from the misleading raw low-grooming and very-low-cost hints.",
+    "Shetland Sheepdog closes the wave as a compact but vocal herding profile that needs explicit normalization around grooming, calmness and household noise.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -17,6 +18,11 @@
       "breedId": "havanese",
       "templateBreedId": "bichon_frise",
       "group": "toy"
+    },
+    {
+      "breedId": "shetland_sheepdog",
+      "templateBreedId": "welsh_corgi_pembroke",
+      "group": "herding"
     }
   ]
 }

@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "shetland_sheepdog": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 4,
+        "aloneTolerance": 2,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 4,
+        "sheddingLevel": 4,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 4,
+        "trainability": 5,
+        "temperamentCalm": 3,
+    },
     "havanese": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -280,6 +295,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "shetland_sheepdog": {
+        "isVocal": True,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "havanese": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -403,6 +425,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "shetland_sheepdog": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "havanese": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -481,6 +507,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "shetland_sheepdog": [
+            "лучше всего раскрывается у владельца, который любит короткие регулярные занятия, чувствительный контакт и готов к более голосистому herding-профилю дома",
+            "важно заранее принять линьку, регулярный уход за шерстью и то, что компактный размер не делает породу простой декоративной собакой",
+        ],
         "havanese": [
             "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают много контакта с людьми и не оставляют надолго в одиночестве",
             "важно заранее принять регулярный уход за шерстью и не путать very light shedding с отсутствием груминга",
@@ -554,6 +584,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "shetland_sheepdog":
+        return (
+            "Компактный, очень умный и заметно vocal herding-companion, которому лучше всего подходят регулярные занятия, "
+            "спокойная дисциплина и владелец, готовый к линьке и чувствительному характеру."
+        )
     if breed_id == "havanese":
         return (
             "Маленький, мягкий и people-oriented companion для квартиры, которому лучше всего подходят спокойный семейный ритм, "
@@ -643,6 +678,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "shetland_sheepdog":
+        return [
+            "обычно очень хорошо поддается обучению и любит интеллектуальные занятия",
+            "может хорошо жить в компактном формате при достаточной рутине и ментальной нагрузке",
+            "часто остаётся очень внимательным и включённым companion-профилем для вовлечённого владельца",
+        ]
     if breed_id == "havanese":
         return [
             "обычно хорошо подходит для квартирного и семейного ритма жизни",
@@ -749,6 +790,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "shetland_sheepdog":
+        return [
+            "может быть заметно более шумным, чувствительным и линяющим, чем ожидают от маленькой красивой herding-породы",
+            "не лучший выбор для пассивного ритма жизни и владельца, который не хочет заниматься шерстью, рутиной и самоконтролем",
+        ]
     if breed_id == "havanese":
         return [
             "не лучший выбор для владельца, который не хочет регулярный груминг и плотный контакт с собакой",

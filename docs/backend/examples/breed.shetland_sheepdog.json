@@ -1,0 +1,61 @@
+{
+  "breedId": "shetland_sheepdog",
+  "petType": "dog",
+  "name": "Shetland Sheepdog",
+  "aliases": [
+    "Sheltie",
+    "Miniature Collie"
+  ],
+  "group": "herding",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 2,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 4,
+    "sheddingLevel": 4,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 5,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Компактный, очень умный и заметно vocal herding-companion, которому лучше всего подходят регулярные занятия, спокойная дисциплина и владелец, готовый к линьке и чувствительному характеру.",
+    "strengths": [
+      "обычно очень хорошо поддается обучению и любит интеллектуальные занятия",
+      "может хорошо жить в компактном формате при достаточной рутине и ментальной нагрузке",
+      "часто остаётся очень внимательным и включённым companion-профилем для вовлечённого владельца"
+    ],
+    "watchouts": [
+      "может быть заметно более шумным, чувствительным и линяющим, чем ожидают от маленькой красивой herding-породы",
+      "не лучший выбор для пассивного ритма жизни и владельца, который не хочет заниматься шерстью, рутиной и самоконтролем"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у владельца, который любит короткие регулярные занятия, чувствительный контакт и готов к более голосистому herding-профилю дома",
+      "важно заранее принять линьку, регулярный уход за шерстью и то, что компактный размер не делает породу простой декоративной собакой"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/shetland-sheepdog.webp"
+}
