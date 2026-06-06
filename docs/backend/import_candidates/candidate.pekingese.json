@@ -1,0 +1,89 @@
+{
+  "breedId": "pekingese",
+  "petType": "dog",
+  "name": "Pekingese",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pekingese",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Pekingese",
+    "freeadsSlug": "pekingese",
+    "rawIdentity": {
+      "breedName": "Pekingese",
+      "slug": "pekingese",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Peke",
+      "Peking lion dog",
+      "Peking palasthund",
+      "Lion dog",
+      "Chinese spaniel",
+      "Pelchie dog"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Small",
+    "lifespan": "12-14 years",
+    "weight": "Male: 5-6kg; Female: 5-6kg",
+    "height": "Male: 20-22cm; Female: 20-22cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Pekingese of today is very much the same as the dogs of days long past and they have found their way into the hearts and homes of many people the world over.",
+    "strengths": [
+      "подходит для более спокойного ритма жизни",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 2,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Low",
+      "easyToTrain": "Medium",
+      "shedding": "Medium",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

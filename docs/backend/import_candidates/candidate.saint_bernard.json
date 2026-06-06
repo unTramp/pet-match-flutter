@@ -1,0 +1,88 @@
+{
+  "breedId": "saint_bernard",
+  "petType": "dog",
+  "name": "Saint Bernard",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/saint-bernard",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Saint Bernard",
+    "freeadsSlug": "saint-bernard",
+    "rawIdentity": {
+      "breedName": "Saint Bernard",
+      "slug": "saint-bernard",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Saint Dogs",
+      "Noble Steeds",
+      "Barry Dogs"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "XL",
+    "lifespan": "9-11 years",
+    "weight": "Male: 60-90kg; Female: 60-90kg",
+    "height": "Male: 70-90cm; Female: 65-85cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Saint Bernard is a huge breed, renowned for its \"gentle giant\" nature. They are intelligent and from strong bonds wth owners",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": [
+      "требует регулярного и заметного ухода за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": null,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 5,
+    "groomingNeedsDraft": 5,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": null,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Heavy",
+      "groomingNeeds": "High",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Very high",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Medium anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Ninth Freeads capture wave chosen by product coverage rather than alphabet.",
+    "This batch adds a giant calm family giant profile, a compact alert terrier profile and a tiny guarded calm companion profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "saint_bernard",
+      "petType": "dog",
+      "name": "Saint Bernard",
+      "freeadsBreedName": "Saint Bernard",
+      "freeadsSlug": "saint-bernard",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/saint-bernard",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase9_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "border_terrier",
+      "petType": "dog",
+      "name": "Border Terrier",
+      "freeadsBreedName": "Border Terrier",
+      "freeadsSlug": "border-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/border-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase9_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "pekingese",
+      "petType": "dog",
+      "name": "Pekingese",
+      "freeadsBreedName": "Pekingese",
+      "freeadsSlug": "pekingese",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pekingese",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase9_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

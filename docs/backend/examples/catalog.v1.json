@@ -51,6 +51,7 @@
     { "breedId": "irish_setter", "file": "breed.irish_setter.json" },
     { "breedId": "basset_hound", "file": "breed.basset_hound.json" },
     { "breedId": "lhasa_apso", "file": "breed.lhasa_apso.json" },
-    { "breedId": "hungarian_vizsla", "file": "breed.hungarian_vizsla.json" }
+    { "breedId": "hungarian_vizsla", "file": "breed.hungarian_vizsla.json" },
+    { "breedId": "pekingese", "file": "breed.pekingese.json" }
   ]
 }

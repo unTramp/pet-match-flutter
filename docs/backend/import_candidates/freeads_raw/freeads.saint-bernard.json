@@ -1,0 +1,47 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/saint-bernard",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Saint Bernard",
+    "slug": "saint-bernard",
+    "petType": "dog"
+  },
+  "summary": "The Saint Bernard is a huge breed, renowned for its \"gentle giant\" nature. They are intelligent and from strong bonds wth owners",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Saint Dogs",
+      "Noble Steeds",
+      "Barry Dogs"
+    ],
+    "breedGroup": "Working",
+    "breedType": "Working",
+    "breedSize": "XL",
+    "lifespan": "9-11 years",
+    "weight": "Male: 60-90kg; Female: 60-90kg",
+    "height": "Male: 70-90cm; Female: 65-85cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Heavy",
+    "groomingNeeds": "High",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Very high",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Medium anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

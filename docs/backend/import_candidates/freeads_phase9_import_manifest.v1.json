@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the ninth curated Freeads capture batch.",
+    "Pekingese is chosen first because it adds a tiny calm but more guarded companion profile without collapsing into the softer Shih Tzu or more alert Lhasa Apso branch.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "pekingese",
+      "templateBreedId": "shih_tzu",
+      "group": "toy"
+    }
+  ]
+}

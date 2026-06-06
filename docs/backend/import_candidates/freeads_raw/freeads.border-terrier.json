@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/border-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Border Terrier",
+    "slug": "border-terrier",
+    "petType": "dog"
+  },
+  "summary": "Border Terriers are one of our most popular breeds. Also known as Redesdale Terriers, Border Terriers are a small dog and a pedigree breed.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Redesdale Terrier (previously called)",
+      "Coquetdale Terrier (previously called)"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "12-14 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 33-40cm; Female: 28-36cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "No screening schemes or DNA tests available at the present time"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Very high",
+    "easyToTrain": "High",
+    "shedding": "Light",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Medium",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

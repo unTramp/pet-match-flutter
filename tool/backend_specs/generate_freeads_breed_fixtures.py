@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "pekingese": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 1,
+        "aloneTolerance": 2,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 2,
+        "groomingNeeds": 4,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 3,
+        "noiseLevel": 2,
+        "trainability": 2,
+        "temperamentCalm": 5,
+    },
     "hungarian_vizsla": {
         "size": 4,
         "apartmentSuitability": 2,
@@ -385,6 +400,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "pekingese": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "hungarian_vizsla": {
         "isVocal": False,
         "isHighPreyDrive": True,
@@ -557,6 +579,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "pekingese": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "hungarian_vizsla": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -663,6 +689,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "pekingese": [
+            "лучше всего раскрывается в очень спокойном домашнем ритме, где собаке дают уважительное обращение, короткие прогулки и не ждут высокой уступчивости или постоянной social openness",
+            "важно заранее принять более guarded характер, уход за шерстью и то, что tiny size не делает породу автоматически простой для детей, гостей или хаотичного дома",
+        ],
         "hungarian_vizsla": [
             "лучше всего раскрывается у очень активного владельца или семьи, которым нужен тесный контакт с собакой, длинные прогулки и регулярные тренировки, а не просто дружелюбная спортивная порода",
             "важно заранее принять velcro-характер, более слабую переносимость одиночества и то, что высокая обучаемость не делает породу лёгкой для новичка или спокойного городского ритма",
@@ -764,6 +794,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "pekingese":
+        return (
+            "Очень маленький, спокойный и более guarded companion для квартиры, которому лучше всего подходят короткие прогулки, "
+            "размеренный домашний ритм и владелец, готовый к уважительному контакту и регулярному уходу за шерстью."
+        )
     if breed_id == "hungarian_vizsla":
         return (
             "Крупный, очень активный и тесно ориентированный на человека sporting-companion, которому лучше всего подходят длинные прогулки, "
@@ -888,6 +923,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "pekingese":
+        return [
+            "обычно хорошо подходит для очень спокойного квартирного ритма и не требует высокой ежедневной активности",
+            "часто остаётся более собранным и dignified tiny-companion профилем, чем самые people-pleasing toy breeds",
+            "может хорошо жить в компактном формате, если дома комфортны короткие прогулки, груминг и более уважительная дистанция с гостями и детьми",
+        ]
     if breed_id == "hungarian_vizsla":
         return [
             "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-ритм",
@@ -1036,6 +1077,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "pekingese":
+        return [
+            "не лучший выбор для семьи, которая хочет very easy social butterfly dog, полностью терпимую к грубому детскому контакту или очень простую tiny beginner-породу",
+            "спокойный ритм не отменяет уход за шерстью, более guarded характер и чувствительность к хаотичной домашней среде",
+        ]
     if breed_id == "hungarian_vizsla":
         return [
             "не лучший выбор для новичка, пассивного ритма жизни, долгого одиночества и владельца, который хочет active dog без very high daily involvement",

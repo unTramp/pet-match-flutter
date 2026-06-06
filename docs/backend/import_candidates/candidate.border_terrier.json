@@ -1,0 +1,85 @@
+{
+  "breedId": "border_terrier",
+  "petType": "dog",
+  "name": "Border Terrier",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/border-terrier",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Border Terrier",
+    "freeadsSlug": "border-terrier",
+    "rawIdentity": {
+      "breedName": "Border Terrier",
+      "slug": "border-terrier",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Redesdale Terrier (previously called)",
+      "Coquetdale Terrier (previously called)"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "12-14 years",
+    "weight": "Male: 6-9kg; Female: 6-9kg",
+    "height": "Male: 33-40cm; Female: 28-36cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "No screening schemes or DNA tests available at the present time"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Border Terriers are one of our most popular breeds. Also known as Redesdale Terriers, Border Terriers are a small dog and a pedigree breed.",
+    "strengths": [
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Very high",
+      "easyToTrain": "High",
+      "shedding": "Light",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Medium",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

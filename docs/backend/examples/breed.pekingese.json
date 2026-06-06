@@ -1,0 +1,65 @@
+{
+  "breedId": "pekingese",
+  "petType": "dog",
+  "name": "Pekingese",
+  "aliases": [
+    "Peke",
+    "Peking lion dog",
+    "Peking palasthund",
+    "Lion dog",
+    "Chinese spaniel",
+    "Pelchie dog"
+  ],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 1,
+    "aloneTolerance": 2,
+    "goodWithChildren": 2,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 4,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 2,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень маленький, спокойный и более guarded companion для квартиры, которому лучше всего подходят короткие прогулки, размеренный домашний ритм и владелец, готовый к уважительному контакту и регулярному уходу за шерстью.",
+    "strengths": [
+      "обычно хорошо подходит для очень спокойного квартирного ритма и не требует высокой ежедневной активности",
+      "часто остаётся более собранным и dignified tiny-companion профилем, чем самые people-pleasing toy breeds",
+      "может хорошо жить в компактном формате, если дома комфортны короткие прогулки, груминг и более уважительная дистанция с гостями и детьми"
+    ],
+    "watchouts": [
+      "не лучший выбор для семьи, которая хочет very easy social butterfly dog, полностью терпимую к грубому детскому контакту или очень простую tiny beginner-породу",
+      "спокойный ритм не отменяет уход за шерстью, более guarded характер и чувствительность к хаотичной домашней среде"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается в очень спокойном домашнем ритме, где собаке дают уважительное обращение, короткие прогулки и не ждут высокой уступчивости или постоянной social openness",
+      "важно заранее принять более guarded характер, уход за шерстью и то, что tiny size не делает породу автоматически простой для детей, гостей или хаотичного дома"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/pekingese.webp"
+}
