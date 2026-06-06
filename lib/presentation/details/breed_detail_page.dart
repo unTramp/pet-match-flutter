@@ -133,7 +133,7 @@ class _HeroImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final url = detail.imageUrl;
+    final url = detail.storyAvatarUrl ?? detail.imageUrl;
     final placeholder = Container(
       color: AppColors.lavenderTint,
       alignment: Alignment.center,

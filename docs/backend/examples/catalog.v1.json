@@ -27,6 +27,9 @@
     { "breedId": "english_cocker_spaniel", "file": "breed.english_cocker_spaniel.json" },
     { "breedId": "american_cocker_spaniel", "file": "breed.american_cocker_spaniel.json" },
     { "breedId": "rottweiler", "file": "breed.rottweiler.json" },
-    { "breedId": "doberman", "file": "breed.doberman.json" }
+    { "breedId": "doberman", "file": "breed.doberman.json" },
+    { "breedId": "pomeranian", "file": "breed.pomeranian.json" },
+    { "breedId": "miniature_schnauzer", "file": "breed.miniature_schnauzer.json" },
+    { "breedId": "boston_terrier", "file": "breed.boston_terrier.json" }
   ]
 }

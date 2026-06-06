@@ -72,7 +72,7 @@
 - directional comparators for one-sided fit fields
 - compatibility bridge-view on top of internal `topMatch/alternatives` result shape
 - contradictory questionnaire answers degrade confidence via `profileDiagnostics`
-- current dog catalog: `26` breeds, including two semi-assisted import waves from `pets_json`
+- current dog catalog: `29` breeds, including two semi-assisted import waves from `pets_json`
 - AI only for offline breed enrichment and text generation
 - `Freeads` accepted as a primary reviewed source for dog breed ingestion
 - story avatars are served from `/media/story-avatars/{fileName}`

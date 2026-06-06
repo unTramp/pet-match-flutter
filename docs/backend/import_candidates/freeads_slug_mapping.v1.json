@@ -12,7 +12,7 @@
     "jack_russell_terrier": "jack-russell",
     "italian_greyhound": "italian-greyhounds"
   },
-  "mappingCount": 26,
+  "mappingCount": 29,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -90,6 +90,19 @@
       "storyAvatar": {
         "fileName": "border-collie.webp",
         "suggestedUploadPath": "/media/story-avatars/border-collie.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "boston_terrier",
+      "petwiseBreedName": "Boston Terrier",
+      "freeadsSlug": "boston-terrier",
+      "freeadsBreedName": "Boston Terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/boston-terrier",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/boston-terrier.webp",
+      "storyAvatar": {
+        "fileName": "boston-terrier.webp",
+        "suggestedUploadPath": "/media/story-avatars/boston-terrier.webp"
       },
       "matchType": "exact_slug"
     },
@@ -272,6 +285,32 @@
       "storyAvatar": {
         "fileName": "miniature-poodle.webp",
         "suggestedUploadPath": "/media/story-avatars/miniature-poodle.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "miniature_schnauzer",
+      "petwiseBreedName": "Miniature Schnauzer",
+      "freeadsSlug": "miniature-schnauzer",
+      "freeadsBreedName": "Miniature Schnauzer",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/miniature-schnauzer",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/miniature-schnauzer.webp",
+      "storyAvatar": {
+        "fileName": "miniature-schnauzer.webp",
+        "suggestedUploadPath": "/media/story-avatars/miniature-schnauzer.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "pomeranian",
+      "petwiseBreedName": "Pomeranian",
+      "freeadsSlug": "pomeranian",
+      "freeadsBreedName": "Pomeranian",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pomeranian",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/pomeranian.webp",
+      "storyAvatar": {
+        "fileName": "pomeranian.webp",
+        "suggestedUploadPath": "/media/story-avatars/pomeranian.webp"
       },
       "matchType": "exact_slug"
     },

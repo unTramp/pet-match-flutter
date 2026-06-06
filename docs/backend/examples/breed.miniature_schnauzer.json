@@ -1,0 +1,60 @@
+{
+  "breedId": "miniature_schnauzer",
+  "petType": "dog",
+  "name": "Miniature Schnauzer",
+  "aliases": [
+    "Zwergschnauzer (Dwarf Schnauzer)"
+  ],
+  "group": "utility",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 4,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 4,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 5,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": false,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Компактная и сообразительная utility-порода с умеренной активностью, низкой линькой и заметной потребностью в регулярном груминге.",
+    "strengths": [
+      "умеренная активность для компактной собаки",
+      "низкая линька",
+      "обычно хорошо поддается обучению"
+    ],
+    "watchouts": [
+      "регулярный груминг лучше закладывать заранее",
+      "может быть более голосистым и внимательным к окружению"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается при регулярных коротких занятиях и понятной рутине",
+      "стоит заранее закладывать груминг и работу с голосистостью дома"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/miniature-schnauzer.webp"
+}

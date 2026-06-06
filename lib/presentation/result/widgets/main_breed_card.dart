@@ -45,7 +45,7 @@ class MainBreedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scoreLabel = formatScorePercent(compatibility.score);
-    final imageUrl = compatibility.imageUrl;
+    final imageUrl = compatibility.storyAvatarUrl ?? compatibility.imageUrl;
     final accent = _scoreColor();
     final breedId = compatibility.breedId;
 

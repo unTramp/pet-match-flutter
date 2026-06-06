@@ -1,0 +1,67 @@
+{
+  "breedId": "pomeranian",
+  "petType": "dog",
+  "name": "Pomeranian",
+  "aliases": [
+    "Pom pom",
+    "Pom",
+    "Deutscher Spitz",
+    "Zwergspitz",
+    "Spitz nain",
+    "Spitz enano",
+    "Zwers"
+  ],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 3,
+    "goodWithChildren": 2,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 4,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 4,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Очень маленький, заметно более vocal toy-companion для квартиры, который хорошо обучается, но требует регулярного ухода за шерстью.",
+    "strengths": [
+      "подходит для квартиры",
+      "обычно хорошо поддается обучению",
+      "подходит для более спокойного ритма жизни"
+    ],
+    "watchouts": [
+      "может быть заметно более шумным, чем кажется по размеру",
+      "требует регулярного ухода за шерстью",
+      "с маленькими детьми лучше чувствует себя при спокойном и уважительном обращении"
+    ],
+    "adaptationTips": [
+      "важно заранее принять более шумный toy-ритм и короткие, но регулярные прогулки",
+      "сразу закладывать время на уход за шерстью и аккуратную социализацию"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/pomeranian.webp"
+}

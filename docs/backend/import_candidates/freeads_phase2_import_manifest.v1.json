@@ -1,0 +1,26 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "First canonical import wave from Freeads phase2 browser-captured candidates.",
+    "These breeds are chosen for high product ROI and usable compact-companion coverage.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "pomeranian",
+      "templateBreedId": "yorkshire_terrier",
+      "group": "toy"
+    },
+    {
+      "breedId": "miniature_schnauzer",
+      "templateBreedId": "miniature_poodle",
+      "group": "utility"
+    },
+    {
+      "breedId": "boston_terrier",
+      "templateBreedId": "french_bulldog",
+      "group": "utility"
+    }
+  ]
+}

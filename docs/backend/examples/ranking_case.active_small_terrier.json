@@ -33,6 +33,8 @@
     },
     "acceptableTop3": [
       "jack_russell_terrier",
+      "miniature_schnauzer",
+      "boston_terrier",
       "labrador_retriever",
       "boxer",
       "golden_retriever",
@@ -44,7 +46,8 @@
     ],
     "notes": [
       "Jack Russell Terrier должен выигрывать в кейсе, где пользователь явно хочет маленькую, очень активную и обучаемую terrier-like собаку.",
-      "Фикстура страхует после Freeads review, что high-drive small terrier branch не растворяется среди toy companion и generic active breeds."
+      "Фикстура страхует после Freeads review, что high-drive small terrier branch не растворяется среди toy companion и generic active breeds.",
+      "Miniature Schnauzer и Boston Terrier допустимы в топе как компактные и обучаемые альтернативы, но не должны выбивать Jack Russell Terrier с первого места."
     ]
   }
 }

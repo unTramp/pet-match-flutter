@@ -32,6 +32,7 @@
     "acceptableTop3": [
       "italian_greyhound",
       "whippet",
+      "boston_terrier",
       "french_bulldog"
     ],
     "mustRankAbove": [
@@ -41,7 +42,8 @@
     ],
     "notes": [
       "После directional comparators избыточно тихие и компактные породы больше не штрафуются симметрично.",
-      "Italian Greyhound и Whippet должны находиться в самой сильной зоне из-за квартиры, тишины и простого ухода."
+      "Italian Greyhound и Whippet должны находиться в самой сильной зоне из-за квартиры, тишины и простого ухода.",
+      "Boston Terrier допустим рядом с ними как компактный beginner-friendly companion, но не должен подниматься выше Italian Greyhound."
     ]
   }
 }

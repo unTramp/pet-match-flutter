@@ -97,6 +97,34 @@ void main() {
     expect(tapped, 1);
   });
 
+  testWidgets('MainBreedCard prefers storyAvatarUrl over imageUrl', (
+    tester,
+  ) async {
+    const cardCompatibility = Compatibility(
+      status: CompatibilityStatus.ready,
+      breedId: 'whippet',
+      breedName: 'Уиппет',
+      score: 0.91,
+      imageUrl: 'https://example.com/hero-whippet.png',
+      storyAvatarUrl: 'https://example.com/story-whippet.webp',
+    );
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: MainBreedCard(compatibility: cardCompatibility),
+          ),
+        ),
+      ),
+    );
+
+    final image = tester.widget<CachedNetworkImage>(
+      find.byType(CachedNetworkImage),
+    );
+    expect(image.imageUrl, 'https://example.com/story-whippet.webp');
+  });
+
   group('MainBreedCard score color (по style текста)', () {
     Color scoreLabelColor(WidgetTester tester) {
       // Score-label — Text «90%»/«0%»/etc. Цвет его TextStyle = accent.
