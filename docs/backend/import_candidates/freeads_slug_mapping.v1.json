@@ -14,7 +14,7 @@
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 34,
+  "mappingCount": 35,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -378,6 +378,19 @@
       "storyAvatar": {
         "fileName": "rottweiler.webp",
         "suggestedUploadPath": "/media/story-avatars/rottweiler.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "shiba_inu",
+      "petwiseBreedName": "Shiba Inu",
+      "freeadsSlug": "shiba-inu",
+      "freeadsBreedName": "Shiba Inu",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/shiba-inu",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/shiba-inu.webp",
+      "storyAvatar": {
+        "fileName": "shiba-inu.webp",
+        "suggestedUploadPath": "/media/story-avatars/shiba-inu.webp"
       },
       "matchType": "exact_slug"
     },

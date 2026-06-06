@@ -3,7 +3,7 @@
   "version": 1,
   "notes": [
     "Canonical import wave from the third Freeads browser-captured candidate batch.",
-    "West Highland White Terrier and Bernese Mountain Dog are chosen first because they add clear terrier-companion and gentle-giant family coverage with strong capture quality.",
+    "West Highland White Terrier, Bernese Mountain Dog and Shiba Inu are chosen first because they add clear terrier-companion, gentle-giant family and compact independent spitz coverage with strong capture quality.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -16,6 +16,11 @@
       "breedId": "bernese_mountain_dog",
       "templateBreedId": "golden_retriever",
       "group": "working"
+    },
+    {
+      "breedId": "shiba_inu",
+      "templateBreedId": "basenji",
+      "group": "utility"
     }
   ]
 }

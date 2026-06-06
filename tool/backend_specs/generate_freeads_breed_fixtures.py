@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "shiba_inu": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 2,
+        "groomingNeeds": 3,
+        "sheddingLevel": 4,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 3,
+        "noiseLevel": 2,
+        "trainability": 2,
+        "temperamentCalm": 3,
+    },
     "bernese_mountain_dog": {
         "size": 5,
         "apartmentSuitability": 2,
@@ -145,6 +160,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "shiba_inu": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": False,
+        "isEscapeProne": True,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "bernese_mountain_dog": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -205,6 +227,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "shiba_inu": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "bernese_mountain_dog": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -247,6 +273,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "shiba_inu": [
+            "лучше всего раскрывается у владельца, который спокойно относится к самостоятельности, линьке и не ожидает высокой уступчивости в обучении",
+            "важно заранее работать с безопасными прогулками, самоконтролем и границами с другими животными",
+        ],
         "bernese_mountain_dog": [
             "лучше всего чувствует себя в семье, готовой к большому размеру, тяжёлой линьке и регулярным спокойным прогулкам",
             "стоит заранее учитывать пространство дома, затраты на уход и мягкую последовательную социализацию",
@@ -284,6 +314,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "shiba_inu":
+        return (
+            "Компактный, чистоплотный и самостоятельный spitz-компаньон с заметной линькой, "
+            "более сдержанным характером и не самым простым обучением для новичка."
+        )
     if breed_id == "bernese_mountain_dog":
         return (
             "Крупный, мягкий и family-oriented working companion с умеренной активностью, "
@@ -328,6 +363,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "shiba_inu":
+        return [
+            "обычно очень чистоплотен и не слишком шумный в быту",
+            "подходит для более спокойного ритма активности, чем многие рабочие и sporting-породы",
+            "может хорошо жить в компактном формате при уважении к его самостоятельности",
+        ]
     if breed_id == "bernese_mountain_dog":
         return [
             "обычно очень хорошо подходит для семейного ритма и спокойного контакта с детьми",
@@ -380,6 +421,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "shiba_inu":
+        return [
+            "не лучший выбор для новичка, который ждёт высокой уступчивости и лёгкого обучения",
+            "линька, prey drive и более независимый характер требуют готовности к управлению и рутине",
+        ]
     if breed_id == "bernese_mountain_dog":
         return [
             "тяжёлая линька, груминг и стоимость содержания требуют осознанной готовности заранее",
