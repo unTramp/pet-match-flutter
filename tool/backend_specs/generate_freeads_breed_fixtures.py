@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "west_highland_white_terrier": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 5,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 4,
+        "trainability": 3,
+        "temperamentCalm": 3,
+    },
     "papillon": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -115,6 +130,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "west_highland_white_terrier": {
+        "isVocal": True,
+        "isHighPreyDrive": True,
+        "isSensitive": False,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "papillon": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -161,6 +183,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "west_highland_white_terrier": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "papillon": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -195,6 +221,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "west_highland_white_terrier": [
+            "лучше всего чувствует себя в доме, где готовы к регулярному грумингу и terrier-упрямству",
+            "важно заранее работать с голосистостью, самоконтролем и знакомством с другими животными",
+        ],
         "papillon": [
             "лучше всего раскрывается при ежедневной ментальной нагрузке и коротких активных прогулках",
             "важно заранее поработать с возбуждением и шумностью дома, несмотря на миниатюрный размер",
@@ -224,6 +254,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "west_highland_white_terrier":
+        return (
+            "Небольшой, уверенный и более упрямый terrier-companion, которому подходят умеренная активность, "
+            "регулярный груминг и владелец, готовый к более выраженному характеру."
+        )
     if breed_id == "papillon":
         return (
             "Очень маленький, но surprisingly активный и очень обучаемый toy-companion, "
@@ -258,6 +293,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "west_highland_white_terrier":
+        return [
+            "подходит для компактного формата жизни при достаточной рутине",
+            "обычно остаётся бодрым и вовлечённым companion-терьером",
+            "может хорошо жить в семье, если заранее заложен груминг и правила",
+        ]
     if breed_id == "papillon":
         return [
             "очень хорошо поддается обучению",
@@ -298,6 +339,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "west_highland_white_terrier":
+        return [
+            "регулярный груминг и уход за шерстью лучше считать обязательной частью жизни с породой",
+            "может быть более шумным, упрямым и terrier-like, чем ожидают от маленькой белой собаки",
+        ]
     if breed_id == "papillon":
         return [
             "может оказаться гораздо активнее и шумнее, чем ожидают от toy-породы",

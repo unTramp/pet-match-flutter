@@ -33,6 +33,7 @@
     { "breedId": "boston_terrier", "file": "breed.boston_terrier.json" },
     { "breedId": "papillon", "file": "breed.papillon.json" },
     { "breedId": "staffordshire_bull_terrier", "file": "breed.staffordshire_bull_terrier.json" },
-    { "breedId": "akita", "file": "breed.akita.json" }
+    { "breedId": "akita", "file": "breed.akita.json" },
+    { "breedId": "west_highland_white_terrier", "file": "breed.west_highland_white_terrier.json" }
   ]
 }

@@ -1,0 +1,65 @@
+{
+  "breedId": "west_highland_white_terrier",
+  "petType": "dog",
+  "name": "West Highland White Terrier",
+  "aliases": [
+    "Westy",
+    "Westie",
+    "Poltalloch Terrier",
+    "Roseneath Terrie",
+    "White Roseneath Terrier",
+    "West highland white terrier"
+  ],
+  "group": "terrier",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 5,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 3,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Небольшой, уверенный и более упрямый terrier-companion, которому подходят умеренная активность, регулярный груминг и владелец, готовый к более выраженному характеру.",
+    "strengths": [
+      "подходит для компактного формата жизни при достаточной рутине",
+      "обычно остаётся бодрым и вовлечённым companion-терьером",
+      "может хорошо жить в семье, если заранее заложен груминг и правила"
+    ],
+    "watchouts": [
+      "регулярный груминг и уход за шерстью лучше считать обязательной частью жизни с породой",
+      "может быть более шумным, упрямым и terrier-like, чем ожидают от маленькой белой собаки"
+    ],
+    "adaptationTips": [
+      "лучше всего чувствует себя в доме, где готовы к регулярному грумингу и terrier-упрямству",
+      "важно заранее работать с голосистостью, самоконтролем и знакомством с другими животными"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/west-highland-terrier.webp"
+}

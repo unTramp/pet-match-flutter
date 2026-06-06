@@ -30,6 +30,7 @@ MANUAL_SLUG_OVERRIDES = {
     "english_cocker_spaniel": "cocker-spaniel",
     "jack_russell_terrier": "jack-russell",
     "italian_greyhound": "italian-greyhounds",
+    "west_highland_white_terrier": "west-highland-terrier",
 }
 
 
