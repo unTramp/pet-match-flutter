@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=bichon_frise"
+  "imageUrl": "https://placehold.co/1200x900/png?text=bichon_frise",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/bichon-frise.webp"
 }

@@ -671,7 +671,7 @@ class _SuggestionsSection extends StatelessWidget {
               return BreedStoryAvatar(
                 breedName: suggestion.breedName,
                 score: suggestion.score ?? 0,
-                imageUrl: suggestion.imageUrl,
+                imageUrl: suggestion.storyAvatarUrl ?? suggestion.imageUrl,
                 onTap: () => onTap(suggestion),
               );
             },

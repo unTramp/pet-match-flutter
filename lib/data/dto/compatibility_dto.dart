@@ -6,6 +6,7 @@ class CompatibilitySuggestionDto {
     this.score,
     this.summary,
     this.imageUrl,
+    this.storyAvatarUrl,
   });
 
   factory CompatibilitySuggestionDto.fromJson(Map<String, dynamic> json) =>
@@ -16,6 +17,8 @@ class CompatibilitySuggestionDto {
         score: (json['score'] as num?)?.toDouble(),
         summary: json['summary'] as String?,
         imageUrl: json['image_url'] as String?,
+        storyAvatarUrl:
+            (json['story_avatar_url'] ?? json['storyAvatarUrl']) as String?,
       );
 
   final String breedId;
@@ -24,6 +27,7 @@ class CompatibilitySuggestionDto {
   final double? score;
   final String? summary;
   final String? imageUrl;
+  final String? storyAvatarUrl;
 }
 
 /// Причина (hard) или потенциальный риск (risk) — оба используют один shape
@@ -68,6 +72,7 @@ class CompatibilityDto {
     this.breedId,
     this.breedName,
     this.imageUrl,
+    this.storyAvatarUrl,
     this.riskLevel,
     this.score,
     this.summary,
@@ -87,6 +92,8 @@ class CompatibilityDto {
     breedId: _readNullableId(json['breed_id'] ?? json['breedId']),
     breedName: json['breed_name'] as String?,
     imageUrl: json['image_url'] as String?,
+    storyAvatarUrl:
+        (json['story_avatar_url'] ?? json['storyAvatarUrl']) as String?,
     riskLevel: json['risk_level'] as String?,
     score: (json['score'] as num?)?.toDouble(),
     summary: json['summary'] as String?,
@@ -118,6 +125,7 @@ class CompatibilityDto {
   final String? breedId;
   final String? breedName;
   final String? imageUrl;
+  final String? storyAvatarUrl;
   final String? riskLevel;
   final double? score;
   final String? summary;

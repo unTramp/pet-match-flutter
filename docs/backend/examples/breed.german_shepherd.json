@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=german_shepherd"
+  "imageUrl": "https://placehold.co/1200x900/png?text=german_shepherd",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/german-shepherd.webp"
 }

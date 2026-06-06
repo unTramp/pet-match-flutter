@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=siberian_husky"
+  "imageUrl": "https://placehold.co/1200x900/png?text=siberian_husky",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/siberian-husky.webp"
 }

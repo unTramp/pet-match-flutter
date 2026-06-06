@@ -54,6 +54,8 @@ python3 tool/backend_specs/generate_import_candidates.py
 Для нового основного source теперь есть отдельный foundation layer:
 - [freeads_phase1_manifest.v1.json](./freeads_phase1_manifest.v1.json)
 - [freeads_phase2_manifest.v1.json](./freeads_phase2_manifest.v1.json)
+- [freeads_full_manifest.v1.json](./freeads_full_manifest.v1.json)
+- [freeads_slug_mapping.v1.json](./freeads_slug_mapping.v1.json)
 - [freeads_raw/README.md](./freeads_raw/README.md)
 - [freeads_review_pack/README.md](./freeads_review_pack/README.md)
 
@@ -67,6 +69,12 @@ Review pack:
 
 ```bash
 python3 tool/backend_specs/generate_freeads_review_pack.py
+```
+
+Full registry + current catalog mapping:
+
+```bash
+python3 tool/backend_specs/generate_freeads_registry.py
 ```
 
 Важно:

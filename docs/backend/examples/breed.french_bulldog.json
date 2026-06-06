@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=french_bulldog"
+  "imageUrl": "https://placehold.co/1200x900/png?text=french_bulldog",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/french-bulldog.webp"
 }

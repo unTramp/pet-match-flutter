@@ -9,6 +9,7 @@ class BreedMapper {
     breedName: dto.breedName,
     summary: dto.summary,
     imageUrl: dto.imageUrl,
+    storyAvatarUrl: dto.storyAvatarUrl,
     galleryImages: List<String>.unmodifiable(dto.galleryImages),
     sections: dto.sections
         .where((s) => (s.title ?? '').isNotEmpty || (s.body ?? '').isNotEmpty)

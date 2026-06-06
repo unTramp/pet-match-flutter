@@ -17,6 +17,7 @@ class BreedDetailDto {
     required this.breedName,
     this.summary,
     this.imageUrl,
+    this.storyAvatarUrl,
     this.galleryImages = const [],
     this.sections = const [],
   });
@@ -28,6 +29,8 @@ class BreedDetailDto {
         (json['summary'] ?? (json['content'] as Map<String, dynamic>?)?['summaryShort'])
             as String?,
     imageUrl: (json['imageUrl'] ?? json['image_url']) as String?,
+    storyAvatarUrl:
+        (json['storyAvatarUrl'] ?? json['story_avatar_url']) as String?,
     galleryImages:
         ((json['galleryImages'] ?? json['gallery_images']) as List<dynamic>? ??
                 const [])
@@ -39,6 +42,7 @@ class BreedDetailDto {
   final String breedName;
   final String? summary;
   final String? imageUrl;
+  final String? storyAvatarUrl;
   final List<String> galleryImages;
   final List<BreedSectionDto> sections;
 

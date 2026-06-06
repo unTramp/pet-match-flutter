@@ -56,5 +56,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel"
+  "imageUrl": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/cavalier-king-charles-spaniel.webp"
 }

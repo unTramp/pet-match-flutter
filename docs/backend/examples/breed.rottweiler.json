@@ -64,5 +64,6 @@
     "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_02.avif",
     "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_02.jpg",
     "https://app-api.dev.pet-match.app/media/breeds/rottweiler/image_03.avif"
-  ]
+  ],
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/rottweiler.webp"
 }

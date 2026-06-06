@@ -31,6 +31,7 @@ class CompatibilityMapper {
     breedId: dto.breedId,
     breedName: dto.breedName,
     imageUrl: dto.imageUrl,
+    storyAvatarUrl: dto.storyAvatarUrl,
     score: _normalizeScore(dto.score),
     risk: _parseRisk(dto.riskLevel),
     compatible: dto.compatible,
@@ -71,6 +72,7 @@ class CompatibilityMapper {
             risk: _parseRisk(s.riskLevel),
             summary: s.summary,
             imageUrl: s.imageUrl,
+            storyAvatarUrl: s.storyAvatarUrl,
           ),
         )
         .toList(growable: false),

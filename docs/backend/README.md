@@ -16,12 +16,15 @@
 - [PETS_JSON_IMPORT_SHORTLIST.md](./PETS_JSON_IMPORT_SHORTLIST.md) — shortlist и порядок импорта новых пород из внешнего каталога.
 - [FREEADS_MAPPING_SPEC.md](./FREEADS_MAPPING_SPEC.md) — правила маппинга `Freeads` breed pages в `PetWise` candidate format.
 - [FREEADS_INGESTION_PLAN.md](./FREEADS_INGESTION_PLAN.md) — phased rollout для `Freeads` как основного внешнего source.
+- [FREEADS_AVATAR_REGISTRY_PLAN.md](./FREEADS_AVATAR_REGISTRY_PLAN.md) — plan для полного slug/media registry и story avatar layer.
 - [FREEADS_SOURCE_STATUS.md](./FREEADS_SOURCE_STATUS.md) — статус доступности `Freeads` data по pilot batch.
 - [FREEADS_PILOT_COMPARISON.md](./FREEADS_PILOT_COMPARISON.md) — актуальная сводка по `Freeads` pilot batch и comparison workflow.
 - [FREEADS_REVIEW_DECISIONS.md](./FREEADS_REVIEW_DECISIONS.md) — первые reviewed решения по породам из `Freeads` pilot batch.
 - [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md) — очередь на следующий цикл richer source capture.
 - [FREEADS_BROWSER_CAPTURE_PROTOCOL.md](./FREEADS_BROWSER_CAPTURE_PROTOCOL.md) — безопасный протокол для ручного browser-assisted capture.
 - [import_candidates/freeads_phase2_manifest.v1.json](./import_candidates/freeads_phase2_manifest.v1.json) — следующий expansion batch после завершённого pilot cycle.
+- [import_candidates/freeads_full_manifest.v1.json](./import_candidates/freeads_full_manifest.v1.json) — полный registry breed slug-ов и source image URL из внешнего CSV.
+- [import_candidates/freeads_slug_mapping.v1.json](./import_candidates/freeads_slug_mapping.v1.json) — mapping текущих canonical `PetWise` пород на `Freeads` slug-и и avatar files.
 - [config/answer_to_profile_mapping.v1.json](./config/answer_to_profile_mapping.v1.json) — канонический mapping `answer -> user_profile`.
 - [config/scoring_config.v2.json](./config/scoring_config.v2.json) — versioned scoring config для текущего engine baseline.
 - [../../prisma/schema.prisma](../../prisma/schema.prisma) — Prisma-черновик модели данных.
@@ -39,6 +42,7 @@
 - [../../tool/backend_specs/parse_freeads_html.py](../../tool/backend_specs/parse_freeads_html.py) — преобразование сохранённого `Freeads` HTML в raw snapshot JSON.
 - [../../tool/backend_specs/generate_freeads_candidates.py](../../tool/backend_specs/generate_freeads_candidates.py) — генератор черновых import candidates из raw `Freeads` snapshots.
 - [../../tool/backend_specs/generate_freeads_review_pack.py](../../tool/backend_specs/generate_freeads_review_pack.py) — генератор review pack `canonical vs Freeads candidate`.
+- [../../tool/backend_specs/generate_freeads_registry.py](../../tool/backend_specs/generate_freeads_registry.py) — генератор полного Freeads slug/media registry и mapping для текущего каталога.
 - [import_candidates/README.md](./import_candidates/README.md) — описание candidate-артефактов перед попаданием в канонический каталог.
 - [../../backend](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend:1) — первый живой server-side skeleton поверх reference pipeline.
 - [../../backend/deploy](/Users/andreydorofeev/Development/CLAUDE/pet-match/backend/deploy:1) — deploy scaffold для Hetzner.
@@ -115,6 +119,12 @@ python3 tool/backend_specs/parse_freeads_html.py --breed-id rottweiler
 
 ```bash
 python3 tool/backend_specs/generate_freeads_candidates.py
+```
+
+Собрать полный Freeads slug/media registry и mapping текущего каталога:
+
+```bash
+python3 tool/backend_specs/generate_freeads_registry.py
 ```
 
 Собрать review pack для текущего pilot batch:

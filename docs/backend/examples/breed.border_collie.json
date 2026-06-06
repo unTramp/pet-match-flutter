@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=border_collie"
+  "imageUrl": "https://placehold.co/1200x900/png?text=border_collie",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/border-collie.webp"
 }

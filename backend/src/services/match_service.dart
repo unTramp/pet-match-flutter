@@ -190,6 +190,7 @@ class MatchService {
       breedId: topBreed['breedId'] as String,
       breedName: topBreed['name'] as String,
       imageUrl: topBreed['imageUrl'] as String?,
+      storyAvatarUrl: topBreed['storyAvatarUrl'] as String?,
       riskLevel: _resolveRiskLevel(
         matchPercent: topResult.matchPercent,
         compatible: compatible,
@@ -282,6 +283,7 @@ class MatchService {
       score: result.matchPercent,
       summary: summary,
       imageUrl: breed?['imageUrl'] as String?,
+      storyAvatarUrl: breed?['storyAvatarUrl'] as String?,
     );
   }
 

@@ -692,6 +692,10 @@ components:
           type: string
           format: uri
           nullable: true
+        storyAvatarUrl:
+          type: string
+          format: uri
+          nullable: true
         galleryImages:
           type: array
           items:
@@ -933,6 +937,10 @@ components:
           type: string
           format: uri
           nullable: true
+        story_avatar_url:
+          type: string
+          format: uri
+          nullable: true
         risk_level:
           type: string
           enum: [low, medium, high]
@@ -1016,6 +1024,10 @@ components:
           type: string
           nullable: true
         image_url:
+          type: string
+          format: uri
+          nullable: true
+        story_avatar_url:
           type: string
           format: uri
           nullable: true

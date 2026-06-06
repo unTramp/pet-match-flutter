@@ -63,5 +63,6 @@
   "galleryImages": [
     "https://app-api.dev.pet-match.app/media/breeds/spaniel-american-cocker/image_01.jpg",
     "https://app-api.dev.pet-match.app/media/breeds/spaniel-american-cocker/image_02.jpg"
-  ]
+  ],
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/american-cocker-spaniel.webp"
 }

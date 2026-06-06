@@ -56,5 +56,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=labrador_retriever"
+  "imageUrl": "https://placehold.co/1200x900/png?text=labrador_retriever",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/labrador-retriever.webp"
 }

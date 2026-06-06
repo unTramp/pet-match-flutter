@@ -64,5 +64,6 @@
   "galleryImages": [
     "https://app-api.dev.pet-match.app/media/breeds/dobermann/image_01.jpg",
     "https://app-api.dev.pet-match.app/media/breeds/dobermann/image_02.jpg"
-  ]
+  ],
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/dobermann.webp"
 }

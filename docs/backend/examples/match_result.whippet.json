@@ -5,7 +5,10 @@
   "scoringVersion": 2,
   "userProfile": {
     "petType": "dog",
-    "sizePreference": [2, 3],
+    "sizePreference": [
+      2,
+      3
+    ],
     "exerciseNeeds": 3,
     "apartmentSuitability": 5,
     "aloneTolerance": 3,
@@ -16,7 +19,11 @@
     "beginnerFriendly": 5,
     "maintenanceCost": 3,
     "noiseLevel": 1,
-    "priorities": ["apartment_friendly", "low_grooming", "quiet"],
+    "priorities": [
+      "apartment_friendly",
+      "low_grooming",
+      "quiet"
+    ],
     "criticalContext": {
       "hasYoungChildren": false,
       "hasOtherPets": true,
@@ -93,7 +100,8 @@
         "risk_level": "medium",
         "score": 82,
         "summary": "Ласковая семейная собака, дружелюбная и комфортная для новичков.",
-        "image_url": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel"
+        "image_url": "https://placehold.co/1200x900/png?text=cavalier_king_charles_spaniel",
+        "story_avatar_url": "https://app-api.dev.pet-match.app/media/story-avatars/cavalier-king-charles-spaniel.webp"
       },
       {
         "breed_id": "italian_greyhound",
@@ -101,7 +109,8 @@
         "risk_level": "medium",
         "score": 81,
         "summary": "Компактная, тихая и очень домашняя порода, но чувствительна к холоду и одиночеству.",
-        "image_url": "https://placehold.co/1200x900/png?text=italian_greyhound"
+        "image_url": "https://placehold.co/1200x900/png?text=italian_greyhound",
+        "story_avatar_url": "https://app-api.dev.pet-match.app/media/story-avatars/italian-greyhounds.webp"
       },
       {
         "breed_id": "basenji",
@@ -109,8 +118,10 @@
         "risk_level": "medium",
         "score": 76,
         "summary": "Тихая и чистоплотная порода с независимым характером и выраженным охотничьим инстинктом.",
-        "image_url": "https://placehold.co/1200x900/png?text=basenji"
+        "image_url": "https://placehold.co/1200x900/png?text=basenji",
+        "story_avatar_url": "https://app-api.dev.pet-match.app/media/story-avatars/basenji.webp"
       }
-    ]
+    ],
+    "story_avatar_url": "https://app-api.dev.pet-match.app/media/story-avatars/whippet.webp"
   }
 }

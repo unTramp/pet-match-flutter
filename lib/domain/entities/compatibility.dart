@@ -43,6 +43,7 @@ class CompatibilitySuggestion extends Equatable {
     this.risk = CompatibilityRisk.unknown,
     this.summary,
     this.imageUrl,
+    this.storyAvatarUrl,
   });
 
   final String breedId;
@@ -51,6 +52,7 @@ class CompatibilitySuggestion extends Equatable {
   final CompatibilityRisk risk;
   final String? summary;
   final String? imageUrl;
+  final String? storyAvatarUrl;
 
   @override
   List<Object?> get props => [
@@ -60,6 +62,7 @@ class CompatibilitySuggestion extends Equatable {
     risk,
     summary,
     imageUrl,
+    storyAvatarUrl,
   ];
 }
 
@@ -69,6 +72,7 @@ class Compatibility extends Equatable {
     this.breedId,
     this.breedName,
     this.imageUrl,
+    this.storyAvatarUrl,
     this.score,
     this.risk = CompatibilityRisk.unknown,
     this.compatible,
@@ -85,6 +89,7 @@ class Compatibility extends Equatable {
   final String? breedId;
   final String? breedName;
   final String? imageUrl;
+  final String? storyAvatarUrl;
   final double? score;
   final CompatibilityRisk risk;
   final bool? compatible;
@@ -106,6 +111,7 @@ class Compatibility extends Equatable {
     breedId,
     breedName,
     imageUrl,
+    storyAvatarUrl,
     score,
     risk,
     compatible,

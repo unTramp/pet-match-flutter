@@ -16,6 +16,7 @@ class BreedDetail extends Equatable {
     required this.breedName,
     this.summary,
     this.imageUrl,
+    this.storyAvatarUrl,
     this.galleryImages = const [],
     this.sections = const [],
   });
@@ -24,6 +25,7 @@ class BreedDetail extends Equatable {
   final String breedName;
   final String? summary;
   final String? imageUrl;
+  final String? storyAvatarUrl;
   final List<String> galleryImages;
   final List<BreedSection> sections;
 
@@ -35,6 +37,7 @@ class BreedDetail extends Equatable {
     breedName,
     summary,
     imageUrl,
+    storyAvatarUrl,
     galleryImages,
     sections,
   ];

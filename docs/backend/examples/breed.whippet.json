@@ -55,5 +55,6 @@
     "needsReview": false,
     "version": 1
   },
-  "imageUrl": "https://placehold.co/1200x900/png?text=whippet"
+  "imageUrl": "https://placehold.co/1200x900/png?text=whippet",
+  "storyAvatarUrl": "https://app-api.dev.pet-match.app/media/story-avatars/whippet.webp"
 }

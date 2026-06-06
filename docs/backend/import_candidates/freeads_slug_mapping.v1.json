@@ -1,0 +1,358 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "generatedAt": "2026-06-06",
+  "notes": [
+    "Maps current canonical PetWise breed IDs to Freeads slugs and avatar files.",
+    "Use this mapping before introducing storyAvatarUrl into backend/app contracts."
+  ],
+  "manualSlugOverrides": {
+    "doberman": "dobermann",
+    "english_cocker_spaniel": "cocker-spaniel",
+    "jack_russell_terrier": "jack-russell",
+    "italian_greyhound": "italian-greyhounds"
+  },
+  "mappingCount": 26,
+  "unresolvedCount": 0,
+  "mappings": [
+    {
+      "petwiseBreedId": "american_cocker_spaniel",
+      "petwiseBreedName": "American Cocker Spaniel",
+      "freeadsSlug": "american-cocker-spaniel",
+      "freeadsBreedName": "American Cocker Spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/american-cocker-spaniel",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/american-cocker-spaniel.webp",
+      "storyAvatar": {
+        "fileName": "american-cocker-spaniel.webp",
+        "suggestedUploadPath": "/media/story-avatars/american-cocker-spaniel.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "australian_shepherd",
+      "petwiseBreedName": "Australian Shepherd",
+      "freeadsSlug": "australian-shepherd",
+      "freeadsBreedName": "Australian Shepherd",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/australian-shepherd",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/australian-shepherd.webp",
+      "storyAvatar": {
+        "fileName": "australian-shepherd.webp",
+        "suggestedUploadPath": "/media/story-avatars/australian-shepherd.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "basenji",
+      "petwiseBreedName": "Basenji",
+      "freeadsSlug": "basenji",
+      "freeadsBreedName": "Basenji",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/basenji",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/basenji.webp",
+      "storyAvatar": {
+        "fileName": "basenji.webp",
+        "suggestedUploadPath": "/media/story-avatars/basenji.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "beagle",
+      "petwiseBreedName": "Beagle",
+      "freeadsSlug": "beagle",
+      "freeadsBreedName": "Beagle",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/beagle",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/beagle.webp",
+      "storyAvatar": {
+        "fileName": "beagle.webp",
+        "suggestedUploadPath": "/media/story-avatars/beagle.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "bichon_frise",
+      "petwiseBreedName": "Bichon Frise",
+      "freeadsSlug": "bichon-frise",
+      "freeadsBreedName": "Bichon Frise",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bichon-frise",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/bichon-frise.webp",
+      "storyAvatar": {
+        "fileName": "bichon-frise.webp",
+        "suggestedUploadPath": "/media/story-avatars/bichon-frise.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "border_collie",
+      "petwiseBreedName": "Border Collie",
+      "freeadsSlug": "border-collie",
+      "freeadsBreedName": "Border Collie",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/border-collie",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/border-collie.webp",
+      "storyAvatar": {
+        "fileName": "border-collie.webp",
+        "suggestedUploadPath": "/media/story-avatars/border-collie.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "boxer",
+      "petwiseBreedName": "Boxer",
+      "freeadsSlug": "boxer",
+      "freeadsBreedName": "Boxer",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/boxer",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/boxer.webp",
+      "storyAvatar": {
+        "fileName": "boxer.webp",
+        "suggestedUploadPath": "/media/story-avatars/boxer.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "cavalier_king_charles_spaniel",
+      "petwiseBreedName": "Cavalier King Charles Spaniel",
+      "freeadsSlug": "cavalier-king-charles-spaniel",
+      "freeadsBreedName": "Cavalier King Charles Spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cavalier-king-charles-spaniel",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/cavalier-king-charles-spaniel.webp",
+      "storyAvatar": {
+        "fileName": "cavalier-king-charles-spaniel.webp",
+        "suggestedUploadPath": "/media/story-avatars/cavalier-king-charles-spaniel.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "chihuahua",
+      "petwiseBreedName": "Chihuahua",
+      "freeadsSlug": "chihuahua",
+      "freeadsBreedName": "Chihuahua",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/chihuahua",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/chihuahua.webp",
+      "storyAvatar": {
+        "fileName": "chihuahua.webp",
+        "suggestedUploadPath": "/media/story-avatars/chihuahua.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "dachshund",
+      "petwiseBreedName": "Dachshund",
+      "freeadsSlug": "dachshund",
+      "freeadsBreedName": "Dachshund",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dachshund",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/dachshund.webp",
+      "storyAvatar": {
+        "fileName": "dachshund.webp",
+        "suggestedUploadPath": "/media/story-avatars/dachshund.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "doberman",
+      "petwiseBreedName": "Doberman",
+      "freeadsSlug": "dobermann",
+      "freeadsBreedName": "Dobermann",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/dobermann",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/dobermann.webp",
+      "storyAvatar": {
+        "fileName": "dobermann.webp",
+        "suggestedUploadPath": "/media/story-avatars/dobermann.webp"
+      },
+      "matchType": "manual_override"
+    },
+    {
+      "petwiseBreedId": "english_cocker_spaniel",
+      "petwiseBreedName": "English Cocker Spaniel",
+      "freeadsSlug": "cocker-spaniel",
+      "freeadsBreedName": "Cocker Spaniel",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cocker-spaniel",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/cocker-spaniel.webp",
+      "storyAvatar": {
+        "fileName": "cocker-spaniel.webp",
+        "suggestedUploadPath": "/media/story-avatars/cocker-spaniel.webp"
+      },
+      "matchType": "manual_override"
+    },
+    {
+      "petwiseBreedId": "french_bulldog",
+      "petwiseBreedName": "French Bulldog",
+      "freeadsSlug": "french-bulldog",
+      "freeadsBreedName": "French Bulldog",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/french-bulldog",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/french-bulldog.webp",
+      "storyAvatar": {
+        "fileName": "french-bulldog.webp",
+        "suggestedUploadPath": "/media/story-avatars/french-bulldog.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "german_shepherd",
+      "petwiseBreedName": "German Shepherd",
+      "freeadsSlug": "german-shepherd",
+      "freeadsBreedName": "German Shepherd",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/german-shepherd",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/german-shepherd.webp",
+      "storyAvatar": {
+        "fileName": "german-shepherd.webp",
+        "suggestedUploadPath": "/media/story-avatars/german-shepherd.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "golden_retriever",
+      "petwiseBreedName": "Golden Retriever",
+      "freeadsSlug": "golden-retriever",
+      "freeadsBreedName": "Golden Retriever",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/golden-retriever",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/golden-retriever.webp",
+      "storyAvatar": {
+        "fileName": "golden-retriever.webp",
+        "suggestedUploadPath": "/media/story-avatars/golden-retriever.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "italian_greyhound",
+      "petwiseBreedName": "Italian Greyhound",
+      "freeadsSlug": "italian-greyhounds",
+      "freeadsBreedName": "Italian Greyhound",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/italian-greyhounds",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/italian-greyhounds.webp",
+      "storyAvatar": {
+        "fileName": "italian-greyhounds.webp",
+        "suggestedUploadPath": "/media/story-avatars/italian-greyhounds.webp"
+      },
+      "matchType": "manual_override"
+    },
+    {
+      "petwiseBreedId": "jack_russell_terrier",
+      "petwiseBreedName": "Jack Russell Terrier",
+      "freeadsSlug": "jack-russell",
+      "freeadsBreedName": "Jack Russell",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/jack-russell",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/jack-russell.webp",
+      "storyAvatar": {
+        "fileName": "jack-russell.webp",
+        "suggestedUploadPath": "/media/story-avatars/jack-russell.webp"
+      },
+      "matchType": "manual_override"
+    },
+    {
+      "petwiseBreedId": "labrador_retriever",
+      "petwiseBreedName": "Labrador Retriever",
+      "freeadsSlug": "labrador-retriever",
+      "freeadsBreedName": "Labrador Retriever",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/labrador-retriever",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/labrador-retriever.webp",
+      "storyAvatar": {
+        "fileName": "labrador-retriever.webp",
+        "suggestedUploadPath": "/media/story-avatars/labrador-retriever.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "maltese",
+      "petwiseBreedName": "Maltese",
+      "freeadsSlug": "maltese",
+      "freeadsBreedName": "Maltese",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/maltese",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/maltese.webp",
+      "storyAvatar": {
+        "fileName": "maltese.webp",
+        "suggestedUploadPath": "/media/story-avatars/maltese.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "miniature_poodle",
+      "petwiseBreedName": "Miniature Poodle",
+      "freeadsSlug": "miniature-poodle",
+      "freeadsBreedName": "Miniature Poodle",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/miniature-poodle",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/miniature-poodle.webp",
+      "storyAvatar": {
+        "fileName": "miniature-poodle.webp",
+        "suggestedUploadPath": "/media/story-avatars/miniature-poodle.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "pug",
+      "petwiseBreedName": "Pug",
+      "freeadsSlug": "pug",
+      "freeadsBreedName": "Pug",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/pug",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/pug.webp",
+      "storyAvatar": {
+        "fileName": "pug.webp",
+        "suggestedUploadPath": "/media/story-avatars/pug.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "rottweiler",
+      "petwiseBreedName": "Rottweiler",
+      "freeadsSlug": "rottweiler",
+      "freeadsBreedName": "Rottweiler",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/rottweiler",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/rottweiler.webp",
+      "storyAvatar": {
+        "fileName": "rottweiler.webp",
+        "suggestedUploadPath": "/media/story-avatars/rottweiler.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "shih_tzu",
+      "petwiseBreedName": "Shih Tzu",
+      "freeadsSlug": "shih-tzu",
+      "freeadsBreedName": "Shih Tzu",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/shih-tzu",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/shih-tzu.webp",
+      "storyAvatar": {
+        "fileName": "shih-tzu.webp",
+        "suggestedUploadPath": "/media/story-avatars/shih-tzu.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "siberian_husky",
+      "petwiseBreedName": "Siberian Husky",
+      "freeadsSlug": "siberian-husky",
+      "freeadsBreedName": "Siberian Husky",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/siberian-husky",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/siberian-husky.webp",
+      "storyAvatar": {
+        "fileName": "siberian-husky.webp",
+        "suggestedUploadPath": "/media/story-avatars/siberian-husky.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "whippet",
+      "petwiseBreedName": "Whippet",
+      "freeadsSlug": "whippet",
+      "freeadsBreedName": "Whippet",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/whippet",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/whippet.webp",
+      "storyAvatar": {
+        "fileName": "whippet.webp",
+        "suggestedUploadPath": "/media/story-avatars/whippet.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "yorkshire_terrier",
+      "petwiseBreedName": "Yorkshire Terrier",
+      "freeadsSlug": "yorkshire-terrier",
+      "freeadsBreedName": "Yorkshire Terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/yorkshire-terrier",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/yorkshire-terrier.webp",
+      "storyAvatar": {
+        "fileName": "yorkshire-terrier.webp",
+        "suggestedUploadPath": "/media/story-avatars/yorkshire-terrier.webp"
+      },
+      "matchType": "exact_slug"
+    }
+  ],
+  "unresolved": []
+}

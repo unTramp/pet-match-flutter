@@ -115,6 +115,7 @@ class CompatibilitySuggestionResponse {
     this.score,
     this.summary,
     this.imageUrl,
+    this.storyAvatarUrl,
   });
 
   final String breedId;
@@ -123,6 +124,7 @@ class CompatibilitySuggestionResponse {
   final int? score;
   final String? summary;
   final String? imageUrl;
+  final String? storyAvatarUrl;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -132,6 +134,7 @@ class CompatibilitySuggestionResponse {
       'score': score,
       'summary': summary,
       'image_url': imageUrl,
+      'story_avatar_url': storyAvatarUrl,
     };
   }
 }
@@ -142,6 +145,7 @@ class CompatibilityViewResponse {
     this.breedId,
     this.breedName,
     this.imageUrl,
+    this.storyAvatarUrl,
     this.riskLevel,
     this.score,
     this.summary,
@@ -158,6 +162,7 @@ class CompatibilityViewResponse {
   final String? breedId;
   final String? breedName;
   final String? imageUrl;
+  final String? storyAvatarUrl;
   final String? riskLevel;
   final int? score;
   final String? summary;
@@ -175,6 +180,7 @@ class CompatibilityViewResponse {
       'breed_id': breedId,
       'breed_name': breedName,
       'image_url': imageUrl,
+      'story_avatar_url': storyAvatarUrl,
       'risk_level': riskLevel,
       'score': score,
       'summary': summary,
