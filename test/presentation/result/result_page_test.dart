@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pet_match/core/design/components/breed_story_avatar.dart';
 import 'package:pet_match/core/theme/app_colors.dart';
 import 'package:pet_match/domain/entities/compatibility.dart';
@@ -175,6 +176,29 @@ void main() {
     );
 
     expect(find.text('—'), findsOneWidget);
+  });
+
+  testWidgets('SuggestionCard prefers storyAvatarUrl over imageUrl', (
+    tester,
+  ) async {
+    const suggestion = CompatibilitySuggestion(
+      breedId: 'whippet',
+      breedName: 'Уиппет',
+      score: 0.91,
+      imageUrl: 'https://example.com/hero-whippet.png',
+      storyAvatarUrl: 'https://example.com/story-whippet.webp',
+    );
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(body: SuggestionCard(suggestion: suggestion)),
+      ),
+    );
+
+    final image = tester.widget<CachedNetworkImage>(
+      find.byType(CachedNetworkImage),
+    );
+    expect(image.imageUrl, 'https://example.com/story-whippet.webp');
   });
 
   testWidgets(
