@@ -2,11 +2,16 @@
   "source": "freeads",
   "version": 1,
   "notes": [
-    "First canonical import wave from Freeads phase2 browser-captured candidates.",
-    "These breeds are chosen for high product ROI and usable compact-companion coverage.",
+    "Canonical import wave from Freeads phase2 browser-captured candidates.",
+    "These breeds are chosen for high product ROI and broaden compact-companion, terrier-family, and large guardian coverage.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
+    {
+      "breedId": "papillon",
+      "templateBreedId": "cavalier_king_charles_spaniel",
+      "group": "toy"
+    },
     {
       "breedId": "pomeranian",
       "templateBreedId": "yorkshire_terrier",
@@ -20,6 +25,16 @@
     {
       "breedId": "boston_terrier",
       "templateBreedId": "french_bulldog",
+      "group": "utility"
+    },
+    {
+      "breedId": "staffordshire_bull_terrier",
+      "templateBreedId": "boxer",
+      "group": "terrier"
+    },
+    {
+      "breedId": "akita",
+      "templateBreedId": "rottweiler",
       "group": "utility"
     }
   ]

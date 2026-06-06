@@ -12,9 +12,22 @@
     "jack_russell_terrier": "jack-russell",
     "italian_greyhound": "italian-greyhounds"
   },
-  "mappingCount": 29,
+  "mappingCount": 32,
   "unresolvedCount": 0,
   "mappings": [
+    {
+      "petwiseBreedId": "akita",
+      "petwiseBreedName": "Akita",
+      "freeadsSlug": "akita",
+      "freeadsBreedName": "Akita",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/akita",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/akita.webp",
+      "storyAvatar": {
+        "fileName": "akita.webp",
+        "suggestedUploadPath": "/media/story-avatars/akita.webp"
+      },
+      "matchType": "exact_slug"
+    },
     {
       "petwiseBreedId": "american_cocker_spaniel",
       "petwiseBreedName": "American Cocker Spaniel",
@@ -302,6 +315,19 @@
       "matchType": "exact_slug"
     },
     {
+      "petwiseBreedId": "papillon",
+      "petwiseBreedName": "Papillon",
+      "freeadsSlug": "papillon",
+      "freeadsBreedName": "Papillon",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/papillon",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/papillon.webp",
+      "storyAvatar": {
+        "fileName": "papillon.webp",
+        "suggestedUploadPath": "/media/story-avatars/papillon.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
       "petwiseBreedId": "pomeranian",
       "petwiseBreedName": "Pomeranian",
       "freeadsSlug": "pomeranian",
@@ -363,6 +389,19 @@
       "storyAvatar": {
         "fileName": "siberian-husky.webp",
         "suggestedUploadPath": "/media/story-avatars/siberian-husky.webp"
+      },
+      "matchType": "exact_slug"
+    },
+    {
+      "petwiseBreedId": "staffordshire_bull_terrier",
+      "petwiseBreedName": "Staffordshire Bull Terrier",
+      "freeadsSlug": "staffordshire-bull-terrier",
+      "freeadsBreedName": "Staffordshire Bull Terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/staffordshire-bull-terrier",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/staffordshire-bull-terrier.webp",
+      "storyAvatar": {
+        "fileName": "staffordshire-bull-terrier.webp",
+        "suggestedUploadPath": "/media/story-avatars/staffordshire-bull-terrier.webp"
       },
       "matchType": "exact_slug"
     },

@@ -30,6 +30,9 @@
     { "breedId": "doberman", "file": "breed.doberman.json" },
     { "breedId": "pomeranian", "file": "breed.pomeranian.json" },
     { "breedId": "miniature_schnauzer", "file": "breed.miniature_schnauzer.json" },
-    { "breedId": "boston_terrier", "file": "breed.boston_terrier.json" }
+    { "breedId": "boston_terrier", "file": "breed.boston_terrier.json" },
+    { "breedId": "papillon", "file": "breed.papillon.json" },
+    { "breedId": "staffordshire_bull_terrier", "file": "breed.staffordshire_bull_terrier.json" },
+    { "breedId": "akita", "file": "breed.akita.json" }
   ]
 }

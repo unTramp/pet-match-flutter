@@ -1,0 +1,64 @@
+{
+  "breedId": "staffordshire_bull_terrier",
+  "petType": "dog",
+  "name": "Staffordshire Bull Terrier",
+  "aliases": [
+    "Staffy",
+    "Staffie",
+    "Staffy Bull",
+    "Nanny Dog",
+    "SBT"
+  ],
+  "group": "terrier",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 3,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 3,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 2,
+    "groomingNeeds": 1,
+    "sheddingLevel": 3,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "trainability": 3,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Компактный muscular terrier-family companion с заметной вовлечённостью в людей, умеренно высокой активностью и простым уходом за шерстью.",
+    "strengths": [
+      "обычно очень ориентирован на людей",
+      "прост в базовом уходе за шерстью",
+      "может быть хорошим активным семейным компаньоном при ответственной социализации"
+    ],
+    "watchouts": [
+      "не лучший выбор для слабой дисциплины и хаотичной социализации",
+      "контакт с другими животными лучше выстраивать осторожно и последовательно"
+    ],
+    "adaptationTips": [
+      "лучше всего чувствует себя при последовательной социализации, понятных границах и ежедневной активности",
+      "стоит заранее планировать работу с самоконтролем и аккуратное знакомство с другими животными"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/staffordshire-bull-terrier.webp"
+}

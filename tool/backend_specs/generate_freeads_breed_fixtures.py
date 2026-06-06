@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "papillon": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 4,
+        "aloneTolerance": 2,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 3,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 4,
+        "trainability": 5,
+        "temperamentCalm": 3,
+    },
     "pomeranian": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -62,14 +77,51 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
         "sheddingLevel": 2,
         "beginnerFriendly": 4,
         "maintenanceCost": 4,
-        "noiseLevel": 2,
+        "noiseLevel": 3,
         "trainability": 4,
+        "temperamentCalm": 3,
+    },
+    "staffordshire_bull_terrier": {
+        "size": 3,
+        "apartmentSuitability": 3,
+        "exerciseNeeds": 4,
+        "aloneTolerance": 3,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 2,
+        "groomingNeeds": 1,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 3,
+        "trainability": 3,
+        "temperamentCalm": 3,
+    },
+    "akita": {
+        "size": 5,
+        "apartmentSuitability": 1,
+        "exerciseNeeds": 5,
+        "aloneTolerance": 4,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 1,
+        "groomingNeeds": 3,
+        "sheddingLevel": 5,
+        "beginnerFriendly": 1,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 3,
         "temperamentCalm": 4,
     },
 }
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "papillon": {
+        "isVocal": True,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "pomeranian": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -91,10 +143,28 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
         "isEscapeProne": False,
         "isSuitableForFirstTimeOwners": True,
     },
+    "staffordshire_bull_terrier": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
+    "akita": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": False,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
 }
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "papillon": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "pomeranian": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -104,6 +174,14 @@ QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
         "sourceCount": 2,
     },
     "boston_terrier": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
+    "staffordshire_bull_terrier": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
+    "akita": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
     },
@@ -117,6 +195,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "papillon": [
+            "лучше всего раскрывается при ежедневной ментальной нагрузке и коротких активных прогулках",
+            "важно заранее поработать с возбуждением и шумностью дома, несмотря на миниатюрный размер",
+        ],
         "pomeranian": [
             "важно заранее принять более шумный toy-ритм и короткие, но регулярные прогулки",
             "сразу закладывать время на уход за шерстью и аккуратную социализацию",
@@ -129,11 +211,24 @@ def adaptation_tips(breed_id: str) -> list[str]:
             "хорошо чувствует себя в квартирном ритме, если поддерживать умеренную активность",
             "важно избегать перегрева и внимательно относиться к дыханию в жаркую погоду",
         ],
+        "staffordshire_bull_terrier": [
+            "лучше всего чувствует себя при последовательной социализации, понятных границах и ежедневной активности",
+            "стоит заранее планировать работу с самоконтролем и аккуратное знакомство с другими животными",
+        ],
+        "akita": [
+            "нужны пространство, стабильная социализация и владелец, готовый к самостоятельному характеру породы",
+            "лучше заранее закладывать активный ритм, контроль контактов с другими животными и уход за шерстью",
+        ],
     }
     return tips[breed_id]
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "papillon":
+        return (
+            "Очень маленький, но surprisingly активный и очень обучаемый toy-companion, "
+            "которому важны занятия, вовлечённость и аккуратная работа с возбуждением."
+        )
     if breed_id == "pomeranian":
         return (
             "Очень маленький, заметно более vocal toy-companion для квартиры, "
@@ -149,10 +244,26 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
             "Компактный, дружелюбный и квартирный companion с умеренной активностью "
             "и простым уходом, но с чувствительностью к здоровью и перегреву."
         )
+    if breed_id == "staffordshire_bull_terrier":
+        return (
+            "Компактный muscular terrier-family companion с заметной вовлечённостью в людей, "
+            "умеренно высокой активностью и простым уходом за шерстью."
+        )
+    if breed_id == "akita":
+        return (
+            "Крупная самостоятельная utility-порода с высокой нагрузкой, тяжёлой линькой "
+            "и требовательностью к социализации, опыту и контролю окружения."
+        )
     return candidate["contentDraft"]["summaryShort"]
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "papillon":
+        return [
+            "очень хорошо поддается обучению",
+            "подходит для квартиры при достаточной вовлечённости",
+            "даёт много отклика на игры и ментальную нагрузку",
+        ]
     if breed_id == "pomeranian":
         return [
             "подходит для квартиры",
@@ -171,10 +282,27 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
             "обычно хорошо поддается обучению",
             "уход за шерстью остается простым",
         ]
+    if breed_id == "staffordshire_bull_terrier":
+        return [
+            "обычно очень ориентирован на людей",
+            "прост в базовом уходе за шерстью",
+            "может быть хорошим активным семейным компаньоном при ответственной социализации",
+        ]
+    if breed_id == "akita":
+        return [
+            "лучше раскрывается у владельца, готового к дисциплине и активному ритму",
+            "обычно сохраняет собранность и независимость в знакомой рутине",
+            "хорошо подходит для крупного protective-профиля",
+        ]
     return candidate["contentDraft"]["strengths"]
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "papillon":
+        return [
+            "может оказаться гораздо активнее и шумнее, чем ожидают от toy-породы",
+            "лучше чувствует себя при уважительном обращении и без грубого контакта с маленькими детьми",
+        ]
     if breed_id == "pomeranian":
         return [
             "может быть заметно более шумным, чем кажется по размеру",
@@ -190,6 +318,16 @@ def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
         return [
             "лучше чувствует себя с детьми постарше и при спокойном обращении",
             "нужна внимательность к дыханию и перегреву",
+        ]
+    if breed_id == "staffordshire_bull_terrier":
+        return [
+            "не лучший выбор для слабой дисциплины и хаотичной социализации",
+            "контакт с другими животными лучше выстраивать осторожно и последовательно",
+        ]
+    if breed_id == "akita":
+        return [
+            "не лучший выбор для новичков или дома с несколькими животными без опытного управления",
+            "тяжёлая линька, нагрузка и стоимость содержания требуют готовности заранее",
         ]
     return candidate["contentDraft"]["watchouts"]
 

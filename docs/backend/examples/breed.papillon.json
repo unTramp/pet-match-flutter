@@ -1,0 +1,62 @@
+{
+  "breedId": "papillon",
+  "petType": "dog",
+  "name": "Papillon",
+  "aliases": [
+    "Pap",
+    "Butterfly dog",
+    "Squirrel dog"
+  ],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 2,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 3,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 4,
+    "trainability": 5,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень маленький, но surprisingly активный и очень обучаемый toy-companion, которому важны занятия, вовлечённость и аккуратная работа с возбуждением.",
+    "strengths": [
+      "очень хорошо поддается обучению",
+      "подходит для квартиры при достаточной вовлечённости",
+      "даёт много отклика на игры и ментальную нагрузку"
+    ],
+    "watchouts": [
+      "может оказаться гораздо активнее и шумнее, чем ожидают от toy-породы",
+      "лучше чувствует себя при уважительном обращении и без грубого контакта с маленькими детьми"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается при ежедневной ментальной нагрузке и коротких активных прогулках",
+      "важно заранее поработать с возбуждением и шумностью дома, несмотря на миниатюрный размер"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/papillon.webp"
+}
