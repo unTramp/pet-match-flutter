@@ -1,0 +1,89 @@
+{
+  "breedId": "english_bulldog",
+  "petType": "dog",
+  "name": "English Bulldog",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bulldog",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "English Bulldog",
+    "freeadsSlug": "bulldog",
+    "rawIdentity": {
+      "breedName": "English Bulldog",
+      "slug": "bulldog",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "British bulldog",
+      "Bulldog",
+      "Churchill dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Medium",
+    "lifespan": "8-10 years",
+    "weight": "Male: 25-29kg; Female: 23-29kg",
+    "height": "Male: 32-36cm; Female: 31-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "DNA test for HUU, Breed Council - health certificate for breeding stock"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Among the oldest breeds native to the UK the English Bulldog is considered a national treasure. In fact the breed is Great Britain's National dog known the world over as the per...",
+    "strengths": [
+      "подходит для более спокойного ритма жизни",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью",
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 3,
+    "exerciseNeedsDraft": 2,
+    "trainabilityDraft": 2,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Very high",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Low",
+      "easyToTrain": "Hard",
+      "shedding": "Light",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Very high",
+      "costToKeep": "High",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

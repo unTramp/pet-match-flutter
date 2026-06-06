@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/coton-de-tulear",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Coton de Tulear",
+    "slug": "coton-de-tulear",
+    "petType": "dog"
+  },
+  "summary": "The Coton de Tulear is a charming little white dog that hails from Madagascar where they are often referred to as the Royal Dogs of Madagascar. They are known to be loyal affectionate and intelligent dogs that over recent times have gained popularity both here in the UK and elsewhere in the world not only because the Coton de Tulear is such a charming dog but also because they don't shed which means they are a good choice for people who tend to suffer from allergies.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Coton",
+      "Cotie"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "14-15 years",
+    "weight": "Male: 4-6kg; Female: 4-6kg",
+    "height": "Male: 23-28cm; Female: 23-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "Medium",
+    "shedding": "Very light",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to all ages of children",
+    "healthOfBreed": "High",
+    "costToKeep": "Very low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

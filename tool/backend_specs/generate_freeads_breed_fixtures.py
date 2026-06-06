@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "english_bulldog": {
+        "size": 3,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 1,
+        "aloneTolerance": 3,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 2,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 2,
+        "temperamentCalm": 5,
+    },
     "shetland_sheepdog": {
         "size": 2,
         "apartmentSuitability": 4,
@@ -295,6 +310,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "english_bulldog": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "shetland_sheepdog": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -425,6 +447,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "english_bulldog": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "shetland_sheepdog": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -507,6 +533,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "english_bulldog": [
+            "лучше всего чувствует себя в спокойном домашнем ритме без перегрева, с короткими прогулками и владельцем, готовым к заметным health-related расходам",
+            "важно заранее принять, что низкая активность и мягкий характер не делают породу дешёвой или по-настоящему беспроблемной для новичка",
+        ],
         "shetland_sheepdog": [
             "лучше всего раскрывается у владельца, который любит короткие регулярные занятия, чувствительный контакт и готов к более голосистому herding-профилю дома",
             "важно заранее принять линьку, регулярный уход за шерстью и то, что компактный размер не делает породу простой декоративной собакой",
@@ -584,6 +614,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "english_bulldog":
+        return (
+            "Коренастый, очень спокойный и low-energy companion, которому лучше всего подходят короткие прогулки, "
+            "спокойный квартирный или домашний ритм и владелец, готовый к высоким health-related расходам."
+        )
     if breed_id == "shetland_sheepdog":
         return (
             "Компактный, очень умный и заметно vocal herding-companion, которому лучше всего подходят регулярные занятия, "
@@ -678,6 +713,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "english_bulldog":
+        return [
+            "обычно хорошо подходит для спокойного домашнего ритма и не требует высокой ежедневной активности",
+            "часто остаётся очень спокойным и предсказуемым companion-профилем",
+            "может хорошо вписываться в квартиру или дом, если нагрузки остаются умеренными",
+        ]
     if breed_id == "shetland_sheepdog":
         return [
             "обычно очень хорошо поддается обучению и любит интеллектуальные занятия",
@@ -790,6 +831,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "english_bulldog":
+        return [
+            "не лучший выбор для жаркого климата, длинных активных прогулок и владельца, который хочет low-cost собаку без health-related забот",
+            "спокойный характер не отменяет заметных ветеринарных и бытовых расходов, а обучаемость обычно не такая лёгкая, как у более eager-to-please companion-пород",
+        ]
     if breed_id == "shetland_sheepdog":
         return [
             "может быть заметно более шумным, чувствительным и линяющим, чем ожидают от маленькой красивой herding-породы",

@@ -1,0 +1,47 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/irish-setter",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Irish Setter",
+    "slug": "irish-setter",
+    "petType": "dog"
+  },
+  "summary": "Originally bred as working gundogs they must be among the most glamorous of dogs which means more often than not they are the focus of lots of attention",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Red setter",
+      "Sotar rua",
+      "Irish red setter"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-14 years",
+    "weight": "Male: 25-32kg; Female: 25-32kg",
+    "height": "Male: 55-67cm; Female: 55-67cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, DNA test - CLAD, DNA test - PRA (rcd1), BVA/KC/ISDS Eye Scheme, DNA test - PRA (rcd4)"
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "High",
+    "shedding": "Medium",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "High",
+    "costToKeep": "High",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

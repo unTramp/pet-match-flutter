@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Seventh Freeads capture wave chosen by product coverage rather than alphabet.",
+    "This batch adds a low-energy compact bulldog profile, an active sporting family profile and a low-shedding soft small companion profile.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "english_bulldog",
+      "petType": "dog",
+      "name": "English Bulldog",
+      "freeadsBreedName": "English Bulldog",
+      "freeadsSlug": "bulldog",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bulldog",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase7_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "irish_setter",
+      "petType": "dog",
+      "name": "Irish Setter",
+      "freeadsBreedName": "Irish Setter",
+      "freeadsSlug": "irish-setter",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/irish-setter",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase7_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "coton_de_tulear",
+      "petType": "dog",
+      "name": "Coton de Tulear",
+      "freeadsBreedName": "Coton de Tulear",
+      "freeadsSlug": "coton-de-tulear",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/coton-de-tulear",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase7_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

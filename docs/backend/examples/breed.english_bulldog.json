@@ -1,0 +1,62 @@
+{
+  "breedId": "english_bulldog",
+  "petType": "dog",
+  "name": "English Bulldog",
+  "aliases": [
+    "British bulldog",
+    "Bulldog",
+    "Churchill dog"
+  ],
+  "group": "non-sporting",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 1,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 5,
+    "noiseLevel": 2,
+    "trainability": 2,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Коренастый, очень спокойный и low-energy companion, которому лучше всего подходят короткие прогулки, спокойный квартирный или домашний ритм и владелец, готовый к высоким health-related расходам.",
+    "strengths": [
+      "обычно хорошо подходит для спокойного домашнего ритма и не требует высокой ежедневной активности",
+      "часто остаётся очень спокойным и предсказуемым companion-профилем",
+      "может хорошо вписываться в квартиру или дом, если нагрузки остаются умеренными"
+    ],
+    "watchouts": [
+      "не лучший выбор для жаркого климата, длинных активных прогулок и владельца, который хочет low-cost собаку без health-related забот",
+      "спокойный характер не отменяет заметных ветеринарных и бытовых расходов, а обучаемость обычно не такая лёгкая, как у более eager-to-please companion-пород"
+    ],
+    "adaptationTips": [
+      "лучше всего чувствует себя в спокойном домашнем ритме без перегрева, с короткими прогулками и владельцем, готовым к заметным health-related расходам",
+      "важно заранее принять, что низкая активность и мягкий характер не делают породу дешёвой или по-настоящему беспроблемной для новичка"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/bulldog.webp"
+}

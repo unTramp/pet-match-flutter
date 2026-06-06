@@ -1,0 +1,47 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/bulldog",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "English Bulldog",
+    "slug": "bulldog",
+    "petType": "dog"
+  },
+  "summary": "Among the oldest breeds native to the UK the English Bulldog is considered a national treasure. In fact the breed is Great Britain's National dog known the world over as the personification of determination as well as being a constant reminder of the legendary John Bull. The shorter faced and squatter dog we see today came about in the mid eighteen hundreds and English Bulldogs first appeared in the show ring in 1860.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "British bulldog",
+      "Bulldog",
+      "Churchill dog"
+    ],
+    "breedGroup": "Utility",
+    "breedType": "Utility",
+    "breedSize": "Medium",
+    "lifespan": "8-10 years",
+    "weight": "Male: 25-29kg; Female: 23-29kg",
+    "height": "Male: 32-36cm; Female: 31-35cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "DNA test for HUU, Breed Council - health certificate for breeding stock"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Low",
+    "easyToTrain": "Hard",
+    "shedding": "Light",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Very high",
+    "costToKeep": "High",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

@@ -9,12 +9,13 @@
   "manualSlugOverrides": {
     "bernese_mountain_dog": "bernese-mountain",
     "doberman": "dobermann",
+    "english_bulldog": "bulldog",
     "english_cocker_spaniel": "cocker-spaniel",
     "jack_russell_terrier": "jack-russell",
     "italian_greyhound": "italian-greyhounds",
     "west_highland_white_terrier": "west-highland-terrier"
   },
-  "mappingCount": 44,
+  "mappingCount": 45,
   "unresolvedCount": 0,
   "mappings": [
     {
@@ -222,6 +223,19 @@
       "storyAvatar": {
         "fileName": "dobermann.webp",
         "suggestedUploadPath": "/media/story-avatars/dobermann.webp"
+      },
+      "matchType": "manual_override"
+    },
+    {
+      "petwiseBreedId": "english_bulldog",
+      "petwiseBreedName": "English Bulldog",
+      "freeadsSlug": "bulldog",
+      "freeadsBreedName": "English Bulldog",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/bulldog",
+      "freeadsImageUrl": "https://asset.freeads.co.uk/v6/css/images/dog-breed/bulldog.webp",
+      "storyAvatar": {
+        "fileName": "bulldog.webp",
+        "suggestedUploadPath": "/media/story-avatars/bulldog.webp"
       },
       "matchType": "manual_override"
     },

@@ -1,0 +1,87 @@
+{
+  "breedId": "coton_de_tulear",
+  "petType": "dog",
+  "name": "Coton de Tulear",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/coton-de-tulear",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Coton de Tulear",
+    "freeadsSlug": "coton-de-tulear",
+    "rawIdentity": {
+      "breedName": "Coton de Tulear",
+      "slug": "coton-de-tulear",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Coton",
+      "Cotie"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "14-15 years",
+    "weight": "Male: 4-6kg; Female: 4-6kg",
+    "height": "Male: 23-28cm; Female: 23-28cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Coton de Tulear is a charming little white dog that hails from Madagascar where they are often referred to as the Royal Dogs of Madagascar. They are known to be loyal affect...",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": [
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 1,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 5,
+    "maintenanceCostDraft": 1,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "Medium",
+      "shedding": "Very light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to all ages of children",
+      "healthOfBreed": "High",
+      "costToKeep": "Very low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the seventh curated Freeads capture batch.",
+    "English Bulldog is chosen first because it adds a distinct low-energy compact bulldog profile without overlapping too heavily with the existing toy and terrier companions.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "english_bulldog",
+      "templateBreedId": "french_bulldog",
+      "group": "non-sporting"
+    }
+  ]
+}

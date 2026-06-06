@@ -1,0 +1,91 @@
+{
+  "breedId": "irish_setter",
+  "petType": "dog",
+  "name": "Irish Setter",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/irish-setter",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Irish Setter",
+    "freeadsSlug": "irish-setter",
+    "rawIdentity": {
+      "breedName": "Irish Setter",
+      "slug": "irish-setter",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Red setter",
+      "Sotar rua",
+      "Irish red setter"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-14 years",
+    "weight": "Male: 25-32kg; Female: 25-32kg",
+    "height": "Male: 55-67cm; Female: 55-67cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme, DNA test - CLAD, DNA test - PRA (rcd1), BVA/KC/ISDS Eye Scheme, DNA test - PRA (rcd4)"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Originally bred as working gundogs they must be among the most glamorous of dogs which means more often than not they are the focus of lots of attention",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "обычно хорошо поддается обучению",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью",
+      "не подойдет для пассивного ритма жизни",
+      "содержание может обходиться дороже среднего"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 5,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "High",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "High",
+      "shedding": "Medium",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "High",
+      "costToKeep": "High",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

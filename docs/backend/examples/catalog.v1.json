@@ -45,6 +45,7 @@
     { "breedId": "cane_corso", "file": "breed.cane_corso.json" },
     { "breedId": "greyhound", "file": "breed.greyhound.json" },
     { "breedId": "havanese", "file": "breed.havanese.json" },
-    { "breedId": "shetland_sheepdog", "file": "breed.shetland_sheepdog.json" }
+    { "breedId": "shetland_sheepdog", "file": "breed.shetland_sheepdog.json" },
+    { "breedId": "english_bulldog", "file": "breed.english_bulldog.json" }
   ]
 }
