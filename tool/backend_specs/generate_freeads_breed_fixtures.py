@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "coton_de_tulear": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 2,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 4,
+        "groomingNeeds": 5,
+        "sheddingLevel": 1,
+        "beginnerFriendly": 4,
+        "maintenanceCost": 3,
+        "noiseLevel": 2,
+        "trainability": 3,
+        "temperamentCalm": 4,
+    },
     "english_bulldog": {
         "size": 3,
         "apartmentSuitability": 4,
@@ -310,6 +325,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "coton_de_tulear": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "english_bulldog": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -447,6 +469,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "coton_de_tulear": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "english_bulldog": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -533,6 +559,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "coton_de_tulear": [
+            "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают много контакта с людьми и заранее принимают регулярный уход за белой шерстью",
+            "важно не путать very light shedding с отсутствием бытовых затрат: линьки мало, но груминг, внимание и мягкая социализация остаются обязательными",
+        ],
         "english_bulldog": [
             "лучше всего чувствует себя в спокойном домашнем ритме без перегрева, с короткими прогулками и владельцем, готовым к заметным health-related расходам",
             "важно заранее принять, что низкая активность и мягкий характер не делают породу дешёвой или по-настоящему беспроблемной для новичка",
@@ -614,6 +644,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "coton_de_tulear":
+        return (
+            "Небольшой, мягкий и very low-shedding companion для квартиры, которому лучше всего подходят спокойный семейный ритм, "
+            "много контакта с человеком и готовность к регулярному уходу за длинной шерстью."
+        )
     if breed_id == "english_bulldog":
         return (
             "Коренастый, очень спокойный и low-energy companion, которому лучше всего подходят короткие прогулки, "
@@ -713,6 +748,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "coton_de_tulear":
+        return [
+            "обычно хорошо подходит для квартирного и семейного ритма жизни",
+            "почти не линяет и часто хорошо переносится людьми, которым важен very low-shedding small-companion профиль",
+            "обычно остаётся мягким, контактным и достаточно дружелюбным companion-псом для дома с детьми и другими питомцами",
+        ]
     if breed_id == "english_bulldog":
         return [
             "обычно хорошо подходит для спокойного домашнего ритма и не требует высокой ежедневной активности",
@@ -831,6 +872,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "coton_de_tulear":
+        return [
+            "очень низкая линька не делает породу low-maintenance: длинная шерсть всё равно требует регулярного ухода, времени и бюджета",
+            "долгое одиночество и хаотичный ритм жизни обычно переносятся хуже, чем кажется по маленькому размеру и мягкому характеру",
+        ]
     if breed_id == "english_bulldog":
         return [
             "не лучший выбор для жаркого климата, длинных активных прогулок и владельца, который хочет low-cost собаку без health-related забот",

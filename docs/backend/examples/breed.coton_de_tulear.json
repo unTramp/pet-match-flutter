@@ -1,0 +1,61 @@
+{
+  "breedId": "coton_de_tulear",
+  "petType": "dog",
+  "name": "Coton de Tulear",
+  "aliases": [
+    "Coton",
+    "Cotie"
+  ],
+  "group": "toy",
+  "attributes": {
+    "size": 1,
+    "apartmentSuitability": 5,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 4,
+    "groomingNeeds": 5,
+    "sheddingLevel": 1,
+    "beginnerFriendly": 4,
+    "maintenanceCost": 3,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 4
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": true
+  },
+  "content": {
+    "summaryShort": "Небольшой, мягкий и very low-shedding companion для квартиры, которому лучше всего подходят спокойный семейный ритм, много контакта с человеком и готовность к регулярному уходу за длинной шерстью.",
+    "strengths": [
+      "обычно хорошо подходит для квартирного и семейного ритма жизни",
+      "почти не линяет и часто хорошо переносится людьми, которым важен very low-shedding small-companion профиль",
+      "обычно остаётся мягким, контактным и достаточно дружелюбным companion-псом для дома с детьми и другими питомцами"
+    ],
+    "watchouts": [
+      "очень низкая линька не делает породу low-maintenance: длинная шерсть всё равно требует регулярного ухода, времени и бюджета",
+      "долгое одиночество и хаотичный ритм жизни обычно переносятся хуже, чем кажется по маленькому размеру и мягкому характеру"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается в спокойном домашнем ритме, где собаке дают много контакта с людьми и заранее принимают регулярный уход за белой шерстью",
+      "важно не путать very light shedding с отсутствием бытовых затрат: линьки мало, но груминг, внимание и мягкая социализация остаются обязательными"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/coton-de-tulear.webp"
+}

@@ -4,6 +4,7 @@
   "notes": [
     "Canonical import wave from the seventh curated Freeads capture batch.",
     "English Bulldog is chosen first because it adds a distinct low-energy compact bulldog profile without overlapping too heavily with the existing toy and terrier companions.",
+    "Coton de Tulear is added as a soft low-shedding toy companion, but normalized away from the overly optimistic Freeads draft so it does not collapse into a free win across every apartment scenario.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -11,6 +12,11 @@
       "breedId": "english_bulldog",
       "templateBreedId": "french_bulldog",
       "group": "non-sporting"
+    },
+    {
+      "breedId": "coton_de_tulear",
+      "templateBreedId": "havanese",
+      "group": "toy"
     }
   ]
 }
