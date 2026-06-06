@@ -1,0 +1,64 @@
+{
+  "breedId": "dalmatian",
+  "petType": "dog",
+  "name": "Dalmatian",
+  "aliases": [
+    "Dal",
+    "Carriage dog",
+    "Spotted coach dog",
+    "Firehouse dog",
+    "Plum pudding dog"
+  ],
+  "group": "utility",
+  "attributes": {
+    "size": 3,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 1,
+    "sheddingLevel": 5,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 4,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Активный, athletic и заметно линяющий companion среднего размера, которому лучше всего подходит подвижный образ жизни, понятная рутина и владелец, готовый к высокой ежедневной нагрузке.",
+    "strengths": [
+      "обычно хорошо раскрывается у активного владельца и любит насыщенный ритм жизни",
+      "часто хорошо откликается на обучение и совместные занятия",
+      "может быть сильным family-companion профилем в доме, где любят движение и прогулки"
+    ],
+    "watchouts": [
+      "не лучший выбор для спокойного квартирного ритма без долгих прогулок, задач и регулярной активности",
+      "тяжёлая линька и более возбудимый athletic-профиль требуют бытовой готовности и последовательной рутины"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у активного владельца, который любит длинные прогулки, занятия и не ждёт спокойного домашнего ритма без нагрузки",
+      "важно заранее принять тяжёлую линьку, внимательность к рутине и то, что породе обычно нужно больше движения, чем ожидают по внешнему виду"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/dalmatian.webp"
+}

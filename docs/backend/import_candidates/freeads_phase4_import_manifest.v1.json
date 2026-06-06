@@ -4,6 +4,7 @@
   "notes": [
     "Canonical import wave from the fourth Freeads browser-captured candidate batch.",
     "Welsh Corgi Pembroke and Newfoundland are chosen first because they add a highly recognizable compact herding companion and a giant family working profile with strong capture quality.",
+    "Dalmatian follows as an active medium companion profile with heavy shedding and a much less calm baseline than the raw draft hints initially suggested.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -16,6 +17,11 @@
       "breedId": "newfoundland",
       "templateBreedId": "bernese_mountain_dog",
       "group": "working"
+    },
+    {
+      "breedId": "dalmatian",
+      "templateBreedId": "boxer",
+      "group": "utility"
     }
   ]
 }
