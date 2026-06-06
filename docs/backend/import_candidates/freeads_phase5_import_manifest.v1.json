@@ -5,6 +5,7 @@
     "Canonical import wave from the fifth curated Freeads capture batch.",
     "Great Dane is chosen first because it expands the giant calm companion branch with comparatively low review ambiguity versus the more controversial guardian/spitz profiles in the same batch.",
     "Samoyed follows as a vocal heavy-coat spitz companion profile and is intentionally normalized away from the overly calm raw draft hints.",
+    "Cane Corso is imported last because its guardian-mastiff profile needs the most conservative normalization around beginner fit, child fit and housing requirements.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -16,6 +17,11 @@
     {
       "breedId": "samoyed",
       "templateBreedId": "siberian_husky",
+      "group": "working"
+    },
+    {
+      "breedId": "cane_corso",
+      "templateBreedId": "rottweiler",
       "group": "working"
     }
   ]

@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "cane_corso": {
+        "size": 5,
+        "apartmentSuitability": 1,
+        "exerciseNeeds": 4,
+        "aloneTolerance": 3,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 2,
+        "groomingNeeds": 2,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 1,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 4,
+        "temperamentCalm": 4,
+    },
     "samoyed": {
         "size": 4,
         "apartmentSuitability": 2,
@@ -235,6 +250,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "cane_corso": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "samoyed": {
         "isVocal": True,
         "isHighPreyDrive": False,
@@ -337,6 +359,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "cane_corso": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "samoyed": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -403,6 +429,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "cane_corso": [
+            "лучше всего чувствует себя у очень последовательного владельца, который готов к крупной guardian-породе, ранней социализации и чётким правилам дома",
+            "важно заранее принять размер, стоимость содержания и то, что породе обычно нужен не просто выгул, а управляемая дисциплина и взрослое руководство",
+        ],
         "samoyed": [
             "лучше всего раскрывается у активного владельца, который готов к плотной рутине, обильной линьке и регулярному уходу за густой шерстью",
             "важно заранее принять более шумный spitz-профиль, работу с самоконтролем и то, что породе обычно тяжело без занятости и включённости в жизнь семьи",
@@ -464,6 +494,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "cane_corso":
+        return (
+            "Очень крупный и собранный guardian-companion mastiff-типа, которому лучше всего подходят пространство, "
+            "взрослое ответственное руководство и спокойная, но строгая последовательная социализация."
+        )
     if breed_id == "samoyed":
         return (
             "Крупный, очень пушистый и более vocal spitz-companion, которому лучше всего подходит активный ритм жизни, "
@@ -538,6 +573,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "cane_corso":
+        return [
+            "обычно выглядит более собранным и спокойным, чем многие другие крупные активные working-породы",
+            "может хорошо откликаться на обучение при уверенной последовательной работе",
+            "лучше всего чувствует себя в доме с пространством и понятной структурой дня",
+        ]
     if breed_id == "samoyed":
         return [
             "обычно остаётся дружелюбным и вовлечённым companion-профилем для активной семьи",
@@ -626,6 +667,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "cane_corso":
+        return [
+            "не лучший выбор для новичка, маленькой квартиры и дома без ранней последовательной социализации",
+            "очень крупный размер, very high cost to keep и guardian-профиль требуют серьёзной бытовой и поведенческой готовности",
+        ]
     if breed_id == "samoyed":
         return [
             "тяжёлая линька, груминг и более шумный spitz-характер требуют высокой бытовой готовности заранее",

@@ -41,6 +41,7 @@
     { "breedId": "newfoundland", "file": "breed.newfoundland.json" },
     { "breedId": "dalmatian", "file": "breed.dalmatian.json" },
     { "breedId": "great_dane", "file": "breed.great_dane.json" },
-    { "breedId": "samoyed", "file": "breed.samoyed.json" }
+    { "breedId": "samoyed", "file": "breed.samoyed.json" },
+    { "breedId": "cane_corso", "file": "breed.cane_corso.json" }
   ]
 }
