@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "saint_bernard": {
+        "size": 5,
+        "apartmentSuitability": 1,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 2,
+        "goodWithChildren": 4,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 5,
+        "sheddingLevel": 5,
+        "beginnerFriendly": 2,
+        "maintenanceCost": 5,
+        "noiseLevel": 2,
+        "trainability": 3,
+        "temperamentCalm": 5,
+    },
     "pekingese": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -400,6 +415,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "saint_bernard": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "pekingese": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -579,6 +601,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "saint_bernard": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "pekingese": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -689,6 +715,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "saint_bernard": [
+            "лучше всего раскрывается в просторном доме и очень спокойном семейном ритме, где готовы к giant-breed быту, тяжёлой шерсти и заметным бытовым расходам",
+            "важно не романтизировать gentle giant образ: огромный размер, жара, транспорт, здоровье и ограниченная манёвренность дома требуют больше зрелости и подготовки, чем кажется по мягкому характеру",
+        ],
         "pekingese": [
             "лучше всего раскрывается в очень спокойном домашнем ритме, где собаке дают уважительное обращение, короткие прогулки и не ждут высокой уступчивости или постоянной social openness",
             "важно заранее принять более guarded характер, уход за шерстью и то, что tiny size не делает породу автоматически простой для детей, гостей или хаотичного дома",
@@ -794,6 +824,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "saint_bernard":
+        return (
+            "Очень крупный, мягкий и спокойный giant family companion, которому лучше всего подходят просторный дом, "
+            "размеренный семейный ритм и владелец, готовый к очень высокой стоимости содержания и heavy-coat giant-breed быту."
+        )
     if breed_id == "pekingese":
         return (
             "Очень маленький, спокойный и более guarded companion для квартиры, которому лучше всего подходят короткие прогулки, "
@@ -923,6 +958,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "saint_bernard":
+        return [
+            "обычно остаётся очень спокойным и мягким giant-companion профилем в семейном ритме",
+            "часто хорошо чувствует себя рядом с детьми и в доме, где ценят размеренный, предсказуемый характер",
+            "может быть сильным выбором для просторного дома, если семья готова к very large breed scale и бытовым расходам",
+        ]
     if breed_id == "pekingese":
         return [
             "обычно хорошо подходит для очень спокойного квартирного ритма и не требует высокой ежедневной активности",
@@ -1077,6 +1118,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "saint_bernard":
+        return [
+            "не лучший выбор для квартиры, жары, ограниченного бюджета и владельца, который не хочет подстраивать быт под giant breed с very high upkeep",
+            "мягкий характер не отменяет огромный размер, тяжёлую линьку, more limited trainability и бытовые сложности, которые обычно делают породу плохим выбором для новичка",
+        ]
     if breed_id == "pekingese":
         return [
             "не лучший выбор для семьи, которая хочет very easy social butterfly dog, полностью терпимую к грубому детскому контакту или очень простую tiny beginner-породу",

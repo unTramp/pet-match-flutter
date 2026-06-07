@@ -1,0 +1,62 @@
+{
+  "breedId": "saint_bernard",
+  "petType": "dog",
+  "name": "Saint Bernard",
+  "aliases": [
+    "Saint Dogs",
+    "Noble Steeds",
+    "Barry Dogs"
+  ],
+  "group": "working",
+  "attributes": {
+    "size": 5,
+    "apartmentSuitability": 1,
+    "exerciseNeeds": 2,
+    "aloneTolerance": 2,
+    "goodWithChildren": 4,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 5,
+    "sheddingLevel": 5,
+    "beginnerFriendly": 2,
+    "maintenanceCost": 5,
+    "noiseLevel": 2,
+    "trainability": 3,
+    "temperamentCalm": 5
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": false,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Очень крупный, мягкий и спокойный giant family companion, которому лучше всего подходят просторный дом, размеренный семейный ритм и владелец, готовый к очень высокой стоимости содержания и heavy-coat giant-breed быту.",
+    "strengths": [
+      "обычно остаётся очень спокойным и мягким giant-companion профилем в семейном ритме",
+      "часто хорошо чувствует себя рядом с детьми и в доме, где ценят размеренный, предсказуемый характер",
+      "может быть сильным выбором для просторного дома, если семья готова к very large breed scale и бытовым расходам"
+    ],
+    "watchouts": [
+      "не лучший выбор для квартиры, жары, ограниченного бюджета и владельца, который не хочет подстраивать быт под giant breed с very high upkeep",
+      "мягкий характер не отменяет огромный размер, тяжёлую линьку, more limited trainability и бытовые сложности, которые обычно делают породу плохим выбором для новичка"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается в просторном доме и очень спокойном семейном ритме, где готовы к giant-breed быту, тяжёлой шерсти и заметным бытовым расходам",
+      "важно не романтизировать gentle giant образ: огромный размер, жара, транспорт, здоровье и ограниченная манёвренность дома требуют больше зрелости и подготовки, чем кажется по мягкому характеру"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/saint-bernard.webp"
+}
