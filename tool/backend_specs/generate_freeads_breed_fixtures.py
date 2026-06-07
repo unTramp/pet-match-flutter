@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "german_shorthaired_pointer": {
+        "size": 4,
+        "apartmentSuitability": 2,
+        "exerciseNeeds": 5,
+        "aloneTolerance": 2,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 2,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 1,
+        "maintenanceCost": 4,
+        "noiseLevel": 2,
+        "trainability": 5,
+        "temperamentCalm": 2,
+    },
     "japanese_chin": {
         "size": 1,
         "apartmentSuitability": 5,
@@ -445,6 +460,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "german_shorthaired_pointer": {
+        "isVocal": False,
+        "isHighPreyDrive": True,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "japanese_chin": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -645,6 +667,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "german_shorthaired_pointer": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "japanese_chin": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -767,6 +793,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "german_shorthaired_pointer": [
+            "лучше всего раскрывается у очень активного владельца, которому нужен рабочий gundog с длинными прогулками, тренировками, поисковыми играми и регулярной структурой дня",
+            "важно заранее принять high-drive sporting profile: высокая обучаемость не делает породу лёгкой для новичка, пассивного ритма или дома, где собаку часто оставляют без движения и задач",
+        ],
         "japanese_chin": [
             "лучше всего раскрывается в очень спокойном домашнем ритме, где собаке дают мягкий контакт, короткие прогулки и не ждут от неё ни terrier-энергии, ни eager-to-please retriever-поведения",
             "важно заранее принять деликатный toy-компаньон профиль: уважительное обращение, бережный контакт с детьми и умеренная, но регулярная вовлечённость человека обычно важнее, чем активные нагрузки",
@@ -884,6 +914,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "german_shorthaired_pointer":
+        return (
+            "Крупный, очень активный и очень обучаемый gundog-companion, которому лучше всего подходят "
+            "длинные прогулки, рабочие задачи и владелец, готовый к high-drive sporting ритму без долгого одиночества."
+        )
     if breed_id == "japanese_chin":
         return (
             "Очень маленький, мягкий и спокойный toy-companion для квартиры, которому лучше всего подходят "
@@ -1028,6 +1063,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "german_shorthaired_pointer":
+        return [
+            "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-задачи",
+            "часто остаётся очень обучаемым и вовлечённым gundog-профилем при достаточной нагрузке",
+            "уход за короткой шерстью обычно остаётся простым по сравнению с длинношёрстными sporting-породами",
+        ]
     if breed_id == "japanese_chin":
         return [
             "обычно хорошо подходит для спокойного квартирного ритма и не требует высокой ежедневной активности",
@@ -1200,6 +1241,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "german_shorthaired_pointer":
+        return [
+            "не лучший выбор для новичка, спокойной квартиры, пассивного ритма и владельца, который хочет active dog без ежедневных задач и контроля охотничьего драйва",
+            "высокая обучаемость и короткая шерсть не отменяют high-drive нагрузки: породе обычно нужно больше движения, структуры и участия человека, чем generic family companions",
+        ]
     if breed_id == "japanese_chin":
         return [
             "не лучший выбор для очень шумного дома, грубого контакта с маленькими детьми и владельца, который ждёт от tiny dog полной устойчивости и беспроблемной social boldness",

@@ -31,6 +31,7 @@
     },
     "acceptableTop3": [
       "border_collie",
+      "german_shorthaired_pointer",
       "hungarian_vizsla",
       "australian_shepherd",
       "golden_retriever",
@@ -44,6 +45,7 @@
     ],
     "notes": [
       "Border Collie должен быть первым из-за сочетания exerciseNeeds=5 и trainability=5.",
+      "German Shorthaired Pointer допустим в топе как очень активный и обучаемый gundog, если пользователь явно готов к demanding sporting rhythm.",
       "Компактные спокойные породы не должны подниматься выше Border Collie в этом сценарии."
     ]
   }

@@ -55,6 +55,7 @@
     { "breedId": "pekingese", "file": "breed.pekingese.json" },
     { "breedId": "saint_bernard", "file": "breed.saint_bernard.json" },
     { "breedId": "border_terrier", "file": "breed.border_terrier.json" },
-    { "breedId": "japanese_chin", "file": "breed.japanese_chin.json" }
+    { "breedId": "japanese_chin", "file": "breed.japanese_chin.json" },
+    { "breedId": "german_shorthaired_pointer", "file": "breed.german_shorthaired_pointer.json" }
   ]
 }

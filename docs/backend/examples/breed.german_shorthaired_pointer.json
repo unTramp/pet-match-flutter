@@ -1,0 +1,61 @@
+{
+  "breedId": "german_shorthaired_pointer",
+  "petType": "dog",
+  "name": "German Shorthaired Pointer",
+  "aliases": [
+    "GSP",
+    "DK"
+  ],
+  "group": "sporting",
+  "attributes": {
+    "size": 4,
+    "apartmentSuitability": 2,
+    "exerciseNeeds": 5,
+    "aloneTolerance": 2,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 1,
+    "maintenanceCost": 4,
+    "noiseLevel": 2,
+    "trainability": 5,
+    "temperamentCalm": 2
+  },
+  "flags": {
+    "isVocal": false,
+    "isHighPreyDrive": true,
+    "isSensitive": true,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Крупный, очень активный и очень обучаемый gundog-companion, которому лучше всего подходят длинные прогулки, рабочие задачи и владелец, готовый к high-drive sporting ритму без долгого одиночества.",
+    "strengths": [
+      "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-задачи",
+      "часто остаётся очень обучаемым и вовлечённым gundog-профилем при достаточной нагрузке",
+      "уход за короткой шерстью обычно остаётся простым по сравнению с длинношёрстными sporting-породами"
+    ],
+    "watchouts": [
+      "не лучший выбор для новичка, спокойной квартиры, пассивного ритма и владельца, который хочет active dog без ежедневных задач и контроля охотничьего драйва",
+      "высокая обучаемость и короткая шерсть не отменяют high-drive нагрузки: породе обычно нужно больше движения, структуры и участия человека, чем generic family companions"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у очень активного владельца, которому нужен рабочий gundog с длинными прогулками, тренировками, поисковыми играми и регулярной структурой дня",
+      "важно заранее принять high-drive sporting profile: высокая обучаемость не делает породу лёгкой для новичка, пассивного ритма или дома, где собаку часто оставляют без движения и задач"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/german-shorthaired-pointer.webp"
+}
