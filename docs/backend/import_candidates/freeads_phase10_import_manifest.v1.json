@@ -5,6 +5,7 @@
     "Canonical import wave from the tenth curated Freeads capture batch.",
     "Japanese Chin is chosen first because it adds a tiny, calm and gentler toy-companion branch without collapsing into the more guarded Pekingese or the more people-dependent Havanese/Havanese-like lane.",
     "German Shorthaired Pointer is added as a high-drive gundog profile, reviewed away from the overly convenient raw alone-tolerance signal so it remains a demanding sporting dog rather than a generic easy active family default.",
+    "Cairn Terrier closes the wave as a small scrappy terrier with easier coat upkeep than Westie and less working intensity than Border Terrier, while still carrying prey-drive and vocal terrier constraints.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -17,6 +18,11 @@
       "breedId": "german_shorthaired_pointer",
       "templateBreedId": "hungarian_vizsla",
       "group": "sporting"
+    },
+    {
+      "breedId": "cairn_terrier",
+      "templateBreedId": "border_terrier",
+      "group": "terrier"
     }
   ]
 }

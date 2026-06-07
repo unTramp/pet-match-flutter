@@ -1,0 +1,60 @@
+{
+  "breedId": "cairn_terrier",
+  "petType": "dog",
+  "name": "Cairn Terrier",
+  "aliases": [
+    "Cairn"
+  ],
+  "group": "terrier",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 3,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 2,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 2,
+    "noiseLevel": 4,
+    "trainability": 3,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": false,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Небольшой, бодрый и более scrappy terrier-companion, которому подходят умеренная активность, простая шерсть и владелец, готовый к голосистости, prey drive и самостоятельному характеру.",
+    "strengths": [
+      "обычно остаётся бодрым и компактным companion-терьером без very high sporting нагрузки",
+      "уход за шерстью и стоимость содержания обычно легче, чем у более grooming-heavy small companions",
+      "может хорошо жить в квартире или доме, если семье комфортны terrier-голос, прогулки и понятные правила"
+    ],
+    "watchouts": [
+      "не лучший выбор для владельца, который хочет полностью тихую, уступчивую и decorative small dog без охотничьего интереса",
+      "умеренная активность и простая шерсть не отменяют terrier-упрямство, голосистость и осторожность с маленькими животными"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается в доме, где маленькой собаке дают регулярные прогулки, понятные правила и возможность быть бодрым terrier-companion, а не только декоративным питомцем",
+      "важно заранее принять голосистость, prey drive и самостоятельность: порода может быть бытово проще по шерсти и стоимости, но всё равно требует terrier-рутины и контроля мелких животных"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/cairn-terrier.webp"
+}

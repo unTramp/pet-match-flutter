@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "cairn_terrier": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 3,
+        "aloneTolerance": 3,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 2,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 2,
+        "noiseLevel": 4,
+        "trainability": 3,
+        "temperamentCalm": 3,
+    },
     "german_shorthaired_pointer": {
         "size": 4,
         "apartmentSuitability": 2,
@@ -460,6 +475,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "cairn_terrier": {
+        "isVocal": True,
+        "isHighPreyDrive": True,
+        "isSensitive": False,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "german_shorthaired_pointer": {
         "isVocal": False,
         "isHighPreyDrive": True,
@@ -667,6 +689,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "cairn_terrier": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "german_shorthaired_pointer": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -793,6 +819,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "cairn_terrier": [
+            "лучше всего раскрывается в доме, где маленькой собаке дают регулярные прогулки, понятные правила и возможность быть бодрым terrier-companion, а не только декоративным питомцем",
+            "важно заранее принять голосистость, prey drive и самостоятельность: порода может быть бытово проще по шерсти и стоимости, но всё равно требует terrier-рутины и контроля мелких животных",
+        ],
         "german_shorthaired_pointer": [
             "лучше всего раскрывается у очень активного владельца, которому нужен рабочий gundog с длинными прогулками, тренировками, поисковыми играми и регулярной структурой дня",
             "важно заранее принять high-drive sporting profile: высокая обучаемость не делает породу лёгкой для новичка, пассивного ритма или дома, где собаку часто оставляют без движения и задач",
@@ -914,6 +944,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "cairn_terrier":
+        return (
+            "Небольшой, бодрый и более scrappy terrier-companion, которому подходят умеренная активность, "
+            "простая шерсть и владелец, готовый к голосистости, prey drive и самостоятельному характеру."
+        )
     if breed_id == "german_shorthaired_pointer":
         return (
             "Крупный, очень активный и очень обучаемый gundog-companion, которому лучше всего подходят "
@@ -1063,6 +1098,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "cairn_terrier":
+        return [
+            "обычно остаётся бодрым и компактным companion-терьером без very high sporting нагрузки",
+            "уход за шерстью и стоимость содержания обычно легче, чем у более grooming-heavy small companions",
+            "может хорошо жить в квартире или доме, если семье комфортны terrier-голос, прогулки и понятные правила",
+        ]
     if breed_id == "german_shorthaired_pointer":
         return [
             "обычно очень хорошо раскрывается у спортивного владельца, который любит длинные прогулки, тренировки и outdoor-задачи",
@@ -1241,6 +1282,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "cairn_terrier":
+        return [
+            "не лучший выбор для владельца, который хочет полностью тихую, уступчивую и decorative small dog без охотничьего интереса",
+            "умеренная активность и простая шерсть не отменяют terrier-упрямство, голосистость и осторожность с маленькими животными",
+        ]
     if breed_id == "german_shorthaired_pointer":
         return [
             "не лучший выбор для новичка, спокойной квартиры, пассивного ритма и владельца, который хочет active dog без ежедневных задач и контроля охотничьего драйва",
