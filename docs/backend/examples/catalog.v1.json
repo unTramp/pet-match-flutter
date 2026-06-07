@@ -53,6 +53,7 @@
     { "breedId": "lhasa_apso", "file": "breed.lhasa_apso.json" },
     { "breedId": "hungarian_vizsla", "file": "breed.hungarian_vizsla.json" },
     { "breedId": "pekingese", "file": "breed.pekingese.json" },
-    { "breedId": "saint_bernard", "file": "breed.saint_bernard.json" }
+    { "breedId": "saint_bernard", "file": "breed.saint_bernard.json" },
+    { "breedId": "border_terrier", "file": "breed.border_terrier.json" }
   ]
 }

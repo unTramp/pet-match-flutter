@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "border_terrier": {
+        "size": 2,
+        "apartmentSuitability": 4,
+        "exerciseNeeds": 4,
+        "aloneTolerance": 3,
+        "goodWithChildren": 3,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 3,
+        "sheddingLevel": 2,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 3,
+        "noiseLevel": 3,
+        "trainability": 4,
+        "temperamentCalm": 3,
+    },
     "saint_bernard": {
         "size": 5,
         "apartmentSuitability": 1,
@@ -415,6 +430,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "border_terrier": {
+        "isVocal": True,
+        "isHighPreyDrive": True,
+        "isSensitive": False,
+        "isEscapeProne": True,
+        "isSuitableForFirstTimeOwners": False,
+    },
     "saint_bernard": {
         "isVocal": False,
         "isHighPreyDrive": False,
@@ -601,6 +623,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "border_terrier": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "saint_bernard": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -715,6 +741,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "border_terrier": [
+            "лучше всего раскрывается у владельца, которому нравится компактный, но рабочий terrier-профиль: регулярные прогулки, понятные правила и ежедневная занятость без крайностей sporting-пород",
+            "важно заранее принять prey drive, terrier-упрямство и то, что низкая линька и небольшой размер не делают породу полностью беспроблемной для квартиры, кошек или долгого отсутствия людей дома",
+        ],
         "saint_bernard": [
             "лучше всего раскрывается в просторном доме и очень спокойном семейном ритме, где готовы к giant-breed быту, тяжёлой шерсти и заметным бытовым расходам",
             "важно не романтизировать gentle giant образ: огромный размер, жара, транспорт, здоровье и ограниченная манёвренность дома требуют больше зрелости и подготовки, чем кажется по мягкому характеру",
@@ -824,6 +854,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "border_terrier":
+        return (
+            "Компактный, бодрый и более собранный working-terrier companion, которому лучше всего подходят "
+            "регулярные прогулки, понятная дисциплина и владелец, готовый к драйву, prey drive и terrier-независимости без перегиба в hyper-chaos."
+        )
     if breed_id == "saint_bernard":
         return (
             "Очень крупный, мягкий и спокойный giant family companion, которому лучше всего подходят просторный дом, "
@@ -958,6 +993,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "border_terrier":
+        return [
+            "обычно остаётся более уравновешенным и управляемым compact terrier-профилем, чем самые взрывные small terriers",
+            "часто хорошо откликается на обучение и рутину, если у собаки есть регулярная занятость и понятные границы",
+            "уход за шерстью и линька обычно не превращаются в heavy-maintenance быт, если заранее принять регулярный terrier-grooming минимум",
+        ]
     if breed_id == "saint_bernard":
         return [
             "обычно остаётся очень спокойным и мягким giant-companion профилем в семейном ритме",
@@ -1118,6 +1159,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "border_terrier":
+        return [
+            "не лучший выбор для владельца, который хочет purely calm easy small dog без terrier-упрямства, prey drive и регулярной активности",
+            "маленький размер не отменяет vocal нотки, склонность преследовать мелких животных и потребность в занятиях: порода обычно сложнее, чем выглядит на фоне soft companion-small breeds",
+        ]
     if breed_id == "saint_bernard":
         return [
             "не лучший выбор для квартиры, жары, ограниченного бюджета и владельца, который не хочет подстраивать быт под giant breed с very high upkeep",

@@ -5,6 +5,7 @@
     "Canonical import wave from the ninth curated Freeads capture batch.",
     "Pekingese is chosen first because it adds a tiny calm but more guarded companion profile without collapsing into the softer Shih Tzu or more alert Lhasa Apso branch.",
     "Saint Bernard is added next as a giant gentle family profile, normalized away from any romanticized gentle-giant shorthand so it still reflects the very large size, heavy upkeep and limited apartment fit.",
+    "Border Terrier closes the wave as a compact working-terrier profile that stays more grounded and less chaotic than Jack Russell Terrier, while also avoiding the heavier grooming and softer family framing of West Highland White Terrier.",
     "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
   ],
   "candidates": [
@@ -17,6 +18,11 @@
       "breedId": "saint_bernard",
       "templateBreedId": "newfoundland",
       "group": "working"
+    },
+    {
+      "breedId": "border_terrier",
+      "templateBreedId": "jack_russell_terrier",
+      "group": "terrier"
     }
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "breedId": "border_terrier",
+  "petType": "dog",
+  "name": "Border Terrier",
+  "aliases": [
+    "Redesdale Terrier (previously called)",
+    "Coquetdale Terrier (previously called)"
+  ],
+  "group": "terrier",
+  "attributes": {
+    "size": 2,
+    "apartmentSuitability": 4,
+    "exerciseNeeds": 4,
+    "aloneTolerance": 3,
+    "goodWithChildren": 3,
+    "goodWithOtherPets": 3,
+    "groomingNeeds": 3,
+    "sheddingLevel": 2,
+    "beginnerFriendly": 3,
+    "maintenanceCost": 3,
+    "noiseLevel": 3,
+    "trainability": 4,
+    "temperamentCalm": 3
+  },
+  "flags": {
+    "isVocal": true,
+    "isHighPreyDrive": true,
+    "isSensitive": false,
+    "isEscapeProne": true,
+    "isSuitableForFirstTimeOwners": false
+  },
+  "content": {
+    "summaryShort": "Компактный, бодрый и более собранный working-terrier companion, которому лучше всего подходят регулярные прогулки, понятная дисциплина и владелец, готовый к драйву, prey drive и terrier-независимости без перегиба в hyper-chaos.",
+    "strengths": [
+      "обычно остаётся более уравновешенным и управляемым compact terrier-профилем, чем самые взрывные small terriers",
+      "часто хорошо откликается на обучение и рутину, если у собаки есть регулярная занятость и понятные границы",
+      "уход за шерстью и линька обычно не превращаются в heavy-maintenance быт, если заранее принять регулярный terrier-grooming минимум"
+    ],
+    "watchouts": [
+      "не лучший выбор для владельца, который хочет purely calm easy small dog без terrier-упрямства, prey drive и регулярной активности",
+      "маленький размер не отменяет vocal нотки, склонность преследовать мелких животных и потребность в занятиях: порода обычно сложнее, чем выглядит на фоне soft companion-small breeds"
+    ],
+    "adaptationTips": [
+      "лучше всего раскрывается у владельца, которому нравится компактный, но рабочий terrier-профиль: регулярные прогулки, понятные правила и ежедневная занятость без крайностей sporting-пород",
+      "важно заранее принять prey drive, terrier-упрямство и то, что низкая линька и небольшой размер не делают породу полностью беспроблемной для квартиры, кошек или долгого отсутствия людей дома"
+    ]
+  },
+  "quality": {
+    "confidenceScore": 0.72,
+    "sourceCount": 2,
+    "sourceNotes": [
+      "template breed baseline",
+      "freeads browser capture review"
+    ],
+    "needsReview": true,
+    "version": 1
+  },
+  "imageUrl": null,
+  "galleryImages": [],
+  "storyAvatarUrl": "https://petwise-api.65-109-135-215.sslip.io/media/story-avatars/border-terrier.webp"
+}
