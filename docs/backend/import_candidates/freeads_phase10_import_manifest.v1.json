@@ -1,0 +1,16 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "notes": [
+    "Canonical import wave from the tenth curated Freeads capture batch.",
+    "Japanese Chin is chosen first because it adds a tiny, calm and gentler toy-companion branch without collapsing into the more guarded Pekingese or the more people-dependent Havanese/Havanese-like lane.",
+    "Fixtures are generated semi-assisted and still require catalog validation and ranking coverage."
+  ],
+  "candidates": [
+    {
+      "breedId": "japanese_chin",
+      "templateBreedId": "pekingese",
+      "group": "toy"
+    }
+  ]
+}

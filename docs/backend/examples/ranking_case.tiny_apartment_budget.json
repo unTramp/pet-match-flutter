@@ -33,7 +33,8 @@
       "chihuahua",
       "shih_tzu",
       "dachshund",
-      "bichon_frise"
+      "bichon_frise",
+      "japanese_chin"
     ],
     "mustRankAbove": [
       { "higher": "chihuahua", "lower": "german_shepherd" },

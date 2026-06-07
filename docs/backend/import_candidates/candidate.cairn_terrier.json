@@ -1,0 +1,85 @@
+{
+  "breedId": "cairn_terrier",
+  "petType": "dog",
+  "name": "Cairn Terrier",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cairn-terrier",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Cairn Terrier",
+    "freeadsSlug": "cairn-terrier",
+    "rawIdentity": {
+      "breedName": "Cairn Terrier",
+      "slug": "cairn-terrier",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Cairn"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 28-31cm; Female: 28-31cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, Bile acid testing of puppies"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "Cairn Terriers boast a Scottish ancestry and are known for being lively game little dog with a very distinct shaggy coat which is never scruffy looking. At one time they were hi...",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": []
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 2,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 1,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Very high",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Light",
+      "groomingNeeds": "Very low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Very high",
+      "costToKeep": "Low",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "source": "freeads",
+  "version": 1,
+  "baseUrl": "https://www.freeads.co.uk/dog-breeds",
+  "notes": [
+    "Tenth Freeads capture wave chosen by product coverage rather than alphabet.",
+    "This batch adds a tiny gentle companion branch, a high-drive gundog branch and a compact scrappy terrier branch.",
+    "Nothing from this manifest should go directly into catalog.v1 without capture, review and canonical fixture validation."
+  ],
+  "candidates": [
+    {
+      "breedId": "japanese_chin",
+      "petType": "dog",
+      "name": "Japanese Chin",
+      "freeadsBreedName": "Japanese Chin",
+      "freeadsSlug": "japanese-chin",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/japanese-chin",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase10_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "german_shorthaired_pointer",
+      "petType": "dog",
+      "name": "German Shorthaired Pointer",
+      "freeadsBreedName": "German Shorthaired Pointer",
+      "freeadsSlug": "german-shorthaired-pointer",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/german-shorthaired-pointer",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase10_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    },
+    {
+      "breedId": "cairn_terrier",
+      "petType": "dog",
+      "name": "Cairn Terrier",
+      "freeadsBreedName": "Cairn Terrier",
+      "freeadsSlug": "cairn-terrier",
+      "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/cairn-terrier",
+      "urlStatus": "index_verified_only",
+      "importMode": "new_breed",
+      "phase": "phase10_a",
+      "reviewRequiredFields": [
+        "apartmentSuitability",
+        "goodWithOtherPets",
+        "beginnerFriendly",
+        "noiseLevel",
+        "temperamentCalm"
+      ]
+    }
+  ]
+}

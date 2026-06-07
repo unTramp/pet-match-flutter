@@ -1,0 +1,45 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/cairn-terrier",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Cairn Terrier",
+    "slug": "cairn-terrier",
+    "petType": "dog"
+  },
+  "summary": "Cairn Terriers boast a Scottish ancestry and are known for being lively game little dog with a very distinct shaggy coat which is never scruffy looking. At one time they were highly prized for their hunting skills but today these charming dogs are popular both as family pets and companions thanks to their mischievous looks and their devotion to their owners.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Cairn"
+    ],
+    "breedGroup": "Terrier",
+    "breedType": "Terrier , Hypoallergenic",
+    "breedSize": "Small",
+    "lifespan": "13-15 years",
+    "weight": "Male: 6-8kg; Female: 6-8kg",
+    "height": "Male: 28-31cm; Female: 28-31cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC/ISDS Eye Scheme, Bile acid testing of puppies"
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Light",
+    "groomingNeeds": "Very low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Very high",
+    "costToKeep": "Low",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

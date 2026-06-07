@@ -21,6 +21,21 @@ def save_json(path: Path, data: dict[str, Any]) -> None:
 
 
 ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
+    "japanese_chin": {
+        "size": 1,
+        "apartmentSuitability": 5,
+        "exerciseNeeds": 2,
+        "aloneTolerance": 2,
+        "goodWithChildren": 2,
+        "goodWithOtherPets": 3,
+        "groomingNeeds": 3,
+        "sheddingLevel": 3,
+        "beginnerFriendly": 3,
+        "maintenanceCost": 2,
+        "noiseLevel": 2,
+        "trainability": 3,
+        "temperamentCalm": 4,
+    },
     "border_terrier": {
         "size": 2,
         "apartmentSuitability": 4,
@@ -430,6 +445,13 @@ ATTRIBUTE_OVERRIDES: dict[str, dict[str, int]] = {
 
 
 FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
+    "japanese_chin": {
+        "isVocal": False,
+        "isHighPreyDrive": False,
+        "isSensitive": True,
+        "isEscapeProne": False,
+        "isSuitableForFirstTimeOwners": True,
+    },
     "border_terrier": {
         "isVocal": True,
         "isHighPreyDrive": True,
@@ -623,6 +645,10 @@ FLAG_OVERRIDES: dict[str, dict[str, bool]] = {
 
 
 QUALITY_OVERRIDES: dict[str, dict[str, Any]] = {
+    "japanese_chin": {
+        "confidenceScore": 0.72,
+        "sourceCount": 2,
+    },
     "border_terrier": {
         "confidenceScore": 0.72,
         "sourceCount": 2,
@@ -741,6 +767,10 @@ def story_avatar_url(candidate: dict[str, Any]) -> str:
 
 def adaptation_tips(breed_id: str) -> list[str]:
     tips = {
+        "japanese_chin": [
+            "лучше всего раскрывается в очень спокойном домашнем ритме, где собаке дают мягкий контакт, короткие прогулки и не ждут от неё ни terrier-энергии, ни eager-to-please retriever-поведения",
+            "важно заранее принять деликатный toy-компаньон профиль: уважительное обращение, бережный контакт с детьми и умеренная, но регулярная вовлечённость человека обычно важнее, чем активные нагрузки",
+        ],
         "border_terrier": [
             "лучше всего раскрывается у владельца, которому нравится компактный, но рабочий terrier-профиль: регулярные прогулки, понятные правила и ежедневная занятость без крайностей sporting-пород",
             "важно заранее принять prey drive, terrier-упрямство и то, что низкая линька и небольшой размер не делают породу полностью беспроблемной для квартиры, кошек или долгого отсутствия людей дома",
@@ -854,6 +884,11 @@ def adaptation_tips(breed_id: str) -> list[str]:
 
 
 def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
+    if breed_id == "japanese_chin":
+        return (
+            "Очень маленький, мягкий и спокойный toy-companion для квартиры, которому лучше всего подходят "
+            "бережный домашний ритм, короткие прогулки и владелец, которому важен деликатный, а не hyper-social small-dog профиль."
+        )
     if breed_id == "border_terrier":
         return (
             "Компактный, бодрый и более собранный working-terrier companion, которому лучше всего подходят "
@@ -993,6 +1028,12 @@ def summary_short(candidate: dict[str, Any], breed_id: str) -> str:
 
 
 def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "japanese_chin":
+        return [
+            "обычно хорошо подходит для спокойного квартирного ритма и не требует высокой ежедневной активности",
+            "часто остаётся мягким и более деликатным tiny-companion профилем без лишней шумности",
+            "может хорошо жить в компактном формате, если дома комфортны короткие прогулки, уважительный контакт и умеренный уход за шерстью",
+        ]
     if breed_id == "border_terrier":
         return [
             "обычно остаётся более уравновешенным и управляемым compact terrier-профилем, чем самые взрывные small terriers",
@@ -1159,6 +1200,11 @@ def strengths(candidate: dict[str, Any], breed_id: str) -> list[str]:
 
 
 def watchouts(candidate: dict[str, Any], breed_id: str) -> list[str]:
+    if breed_id == "japanese_chin":
+        return [
+            "не лучший выбор для очень шумного дома, грубого контакта с маленькими детьми и владельца, который ждёт от tiny dog полной устойчивости и беспроблемной social boldness",
+            "маленький размер и спокойный характер не отменяют потребность в уважительном обращении, умеренном уходе за шерстью и более тесном бытовом контакте с людьми",
+        ]
     if breed_id == "border_terrier":
         return [
             "не лучший выбор для владельца, который хочет purely calm easy small dog без terrier-упрямства, prey drive и регулярной активности",

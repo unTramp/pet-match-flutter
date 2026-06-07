@@ -1,0 +1,87 @@
+{
+  "breedId": "japanese_chin",
+  "petType": "dog",
+  "name": "Japanese Chin",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/japanese-chin",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "Japanese Chin",
+    "freeadsSlug": "japanese-chin",
+    "rawIdentity": {
+      "breedName": "Japanese Chin",
+      "slug": "japanese-chin",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "Japanese spaniel",
+      "Chin"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Toy",
+    "lifespan": "11-13 years",
+    "weight": "Male: 2-5kg; Female: 2-5kg",
+    "height": "Male: 25-cm; Female: 25-cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The Japanese Chin is a dainty little dog and one that boasts having lots of presence.",
+    "strengths": [
+      "умеренный уровень активности",
+      "способна хорошо учиться при регулярной работе"
+    ],
+    "watchouts": [
+      "нуждается в регулярном уходе за шерстью"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 1,
+    "exerciseNeedsDraft": 3,
+    "trainabilityDraft": 3,
+    "sheddingLevelDraft": 3,
+    "groomingNeedsDraft": 3,
+    "goodWithChildrenDraft": 2,
+    "maintenanceCostDraft": 2,
+    "aloneToleranceDraft": 5,
+    "intelligenceLabel": "Medium",
+    "healthOfBreedLabel": "Low",
+    "rawCharacteristics": {
+      "exerciseNeeds": "Medium",
+      "easyToTrain": "Medium",
+      "shedding": "Medium",
+      "groomingNeeds": "Medium",
+      "goodWithChildren": "Requires supervision",
+      "healthOfBreed": "Low",
+      "costToKeep": "Low",
+      "intelligence": "Medium",
+      "toleratesBeingAlone": "Very calm"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

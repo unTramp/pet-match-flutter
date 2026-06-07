@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/japanese-chin",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "Japanese Chin",
+    "slug": "japanese-chin",
+    "petType": "dog"
+  },
+  "summary": "The Japanese Chin is a dainty little dog and one that boasts having lots of presence.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "Japanese spaniel",
+      "Chin"
+    ],
+    "breedGroup": "Toy",
+    "breedType": "Toy",
+    "breedSize": "Toy",
+    "lifespan": "11-13 years",
+    "weight": "Male: 2-5kg; Female: 2-5kg",
+    "height": "Male: 25-cm; Female: 25-cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": null
+  },
+  "characteristics": {
+    "exerciseNeeds": "Medium",
+    "easyToTrain": "Medium",
+    "shedding": "Medium",
+    "groomingNeeds": "Medium",
+    "goodWithChildren": "Requires supervision",
+    "healthOfBreed": "Low",
+    "costToKeep": "Low",
+    "intelligence": "Medium",
+    "toleratesBeingAlone": "Very calm"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}

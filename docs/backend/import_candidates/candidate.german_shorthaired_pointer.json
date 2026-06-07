@@ -1,0 +1,87 @@
+{
+  "breedId": "german_shorthaired_pointer",
+  "petType": "dog",
+  "name": "German Shorthaired Pointer",
+  "source": {
+    "origin": "freeads",
+    "breedDetailsUrl": "https://www.freeads.co.uk/dog-breeds/german-shorthaired-pointer",
+    "urlStatus": "verified_via_browser_capture",
+    "freeadsBreedName": "German Shorthaired Pointer",
+    "freeadsSlug": "german-shorthaired-pointer",
+    "rawIdentity": {
+      "breedName": "German Shorthaired Pointer",
+      "slug": "german-shorthaired-pointer",
+      "petType": "dog"
+    }
+  },
+  "sourceFacts": {
+    "aliases": [
+      "GSP",
+      "DK"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 27-32kg; Female: 27-32kg",
+    "height": "Male: 58-66cm; Female: 58-66cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "mediaDraft": {
+    "imageUrl": null,
+    "galleryImages": []
+  },
+  "contentDraft": {
+    "summaryShort": "The German Shorthaired Pointer is among the most popular Hunt Point and Retrieve working dogs to have been imported to the UK since the end of the World War II. They are handsom...",
+    "strengths": [
+      "подходит для активного образа жизни",
+      "обычно легче переносит короткие периоды одиночества"
+    ],
+    "watchouts": [
+      "не подойдет для пассивного ритма жизни"
+    ]
+  },
+  "attributeExtractionHints": {
+    "sizeDraft": 4,
+    "exerciseNeedsDraft": 5,
+    "trainabilityDraft": 5,
+    "sheddingLevelDraft": 2,
+    "groomingNeedsDraft": 2,
+    "goodWithChildrenDraft": 3,
+    "maintenanceCostDraft": 3,
+    "aloneToleranceDraft": 4,
+    "intelligenceLabel": "High",
+    "healthOfBreedLabel": "Medium",
+    "rawCharacteristics": {
+      "exerciseNeeds": "High",
+      "easyToTrain": "Very easy",
+      "shedding": "Light",
+      "groomingNeeds": "Low",
+      "goodWithChildren": "Suited to older children",
+      "healthOfBreed": "Medium",
+      "costToKeep": "Medium",
+      "intelligence": "High",
+      "toleratesBeingAlone": "Low anxiety"
+    }
+  },
+  "importStatus": {
+    "contentReady": true,
+    "mediaReady": false,
+    "attributesReady": false,
+    "flagsReady": false
+  },
+  "quality": {
+    "confidenceScore": 0.71,
+    "sourceCount": 1,
+    "sourceNotes": [
+      "freeads breed page",
+      "structured traits normalized into draft hints"
+    ],
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ],
+    "needsReview": true,
+    "version": 1
+  }
+}

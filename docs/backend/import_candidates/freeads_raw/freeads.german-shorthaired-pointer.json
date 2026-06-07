@@ -1,0 +1,46 @@
+{
+  "source": {
+    "origin": "freeads",
+    "url": "https://www.freeads.co.uk/dog-breeds/german-shorthaired-pointer",
+    "scrapedAt": "2026-06-05",
+    "urlStatus": "verified_via_browser_capture"
+  },
+  "identity": {
+    "breedName": "German Shorthaired Pointer",
+    "slug": "german-shorthaired-pointer",
+    "petType": "dog"
+  },
+  "summary": "The German Shorthaired Pointer is among the most popular Hunt Point and Retrieve working dogs to have been imported to the UK since the end of the World War II. They are handsome athletic and dedicated dogs that over the years have also earned themselves a solid reputation for being good companions and family pets. GSP's are athletic large dogs that boast a noble elegant appearance which paired to their well-balanced natures sees them enjoying success both in the field and in the showring too.",
+  "heroImageUrl": null,
+  "galleryImages": [],
+  "facts": {
+    "otherNames": [
+      "GSP",
+      "DK"
+    ],
+    "breedGroup": "Gun dog",
+    "breedType": "Gundog",
+    "breedSize": "Large",
+    "lifespan": "12-13 years",
+    "weight": "Male: 27-32kg; Female: 27-32kg",
+    "height": "Male: 58-66cm; Female: 58-66cm",
+    "pedigree": "Yes",
+    "healthTestsAvailable": "BVA/KC Hip Dysplasia Scheme"
+  },
+  "characteristics": {
+    "exerciseNeeds": "High",
+    "easyToTrain": "Very easy",
+    "shedding": "Light",
+    "groomingNeeds": "Low",
+    "goodWithChildren": "Suited to older children",
+    "healthOfBreed": "Medium",
+    "costToKeep": "Medium",
+    "intelligence": "High",
+    "toleratesBeingAlone": "Low anxiety"
+  },
+  "quality": {
+    "pageWarnings": [
+      "Captured manually after Cloudflare browser pass."
+    ]
+  }
+}
