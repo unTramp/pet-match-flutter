@@ -22,6 +22,7 @@
 - [FREEADS_REVIEW_DECISIONS.md](./FREEADS_REVIEW_DECISIONS.md) — первые reviewed решения по породам из `Freeads` pilot batch.
 - [FREEADS_CAPTURE_QUEUE.md](./FREEADS_CAPTURE_QUEUE.md) — очередь на следующий цикл richer source capture.
 - [FREEADS_BROWSER_CAPTURE_PROTOCOL.md](./FREEADS_BROWSER_CAPTURE_PROTOCOL.md) — безопасный протокол для ручного browser-assisted capture.
+- [BETA_RELEASE_AND_CATALOG_ROADMAP.md](./BETA_RELEASE_AND_CATALOG_ROADMAP.md) — текущий beta scope, UI-readiness план и алгоритм возобновления catalog waves после релиза.
 - [import_candidates/freeads_phase2_manifest.v1.json](./import_candidates/freeads_phase2_manifest.v1.json) — следующий expansion batch после завершённого pilot cycle.
 - [import_candidates/freeads_full_manifest.v1.json](./import_candidates/freeads_full_manifest.v1.json) — полный registry breed slug-ов и source image URL из внешнего CSV.
 - [import_candidates/freeads_slug_mapping.v1.json](./import_candidates/freeads_slug_mapping.v1.json) — mapping текущих canonical `PetWise` пород на `Freeads` slug-и и avatar files.
@@ -72,7 +73,7 @@
 - directional comparators for one-sided fit fields
 - compatibility bridge-view on top of internal `topMatch/alternatives` result shape
 - contradictory questionnaire answers degrade confidence via `profileDiagnostics`
-- current dog catalog: `37` breeds, including Freeads-backed mini-batches and earlier semi-assisted imports
+- current dog catalog: `56` breeds, including Freeads-backed mini-batches and earlier semi-assisted imports
 - AI only for offline breed enrichment and text generation
 - `Freeads` accepted as a primary reviewed source for dog breed ingestion
 - story avatars are served from `/media/story-avatars/{fileName}`
