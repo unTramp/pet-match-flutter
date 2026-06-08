@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'breed_attributes.dart';
+
 enum CompatibilityStatus { processing, ready, skipped, failed, unknown }
 
 /// Уровень риска для рекомендации в целом.
@@ -44,6 +46,7 @@ class CompatibilitySuggestion extends Equatable {
     this.summary,
     this.imageUrl,
     this.storyAvatarUrl,
+    this.attributes,
   });
 
   final String breedId;
@@ -53,6 +56,7 @@ class CompatibilitySuggestion extends Equatable {
   final String? summary;
   final String? imageUrl;
   final String? storyAvatarUrl;
+  final BreedAttributes? attributes;
 
   @override
   List<Object?> get props => [
@@ -63,6 +67,7 @@ class CompatibilitySuggestion extends Equatable {
     summary,
     imageUrl,
     storyAvatarUrl,
+    attributes,
   ];
 }
 
@@ -83,6 +88,7 @@ class Compatibility extends Equatable {
     this.risks = const [],
     this.refusal,
     this.suggestions = const [],
+    this.attributes,
   });
 
   final CompatibilityStatus status;
@@ -100,6 +106,7 @@ class Compatibility extends Equatable {
   final List<CompatibilityReason> risks;
   final CompatibilityRefusal? refusal;
   final List<CompatibilitySuggestion> suggestions;
+  final BreedAttributes? attributes;
 
   bool get isReady =>
       status == CompatibilityStatus.ready ||
@@ -122,5 +129,6 @@ class Compatibility extends Equatable {
     risks,
     refusal,
     suggestions,
+    attributes,
   ];
 }

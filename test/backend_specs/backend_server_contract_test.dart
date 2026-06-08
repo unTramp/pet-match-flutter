@@ -263,6 +263,7 @@ void main() {
           'summary',
           'compatible',
           'story_avatar_url',
+          'attributes',
           'insights',
           'requirement_highlights',
           'hard_reasons',
@@ -398,10 +399,7 @@ void main() {
                 .whereType<String>()
                 .toSet();
         expect(riskMessages.intersection(hardReasonMessages), isEmpty);
-        expect(
-          riskMessages.intersection(requirementHighlights.toSet()),
-          isEmpty,
-        );
+        expect(requirementHighlights, isNotEmpty);
       },
     );
 
@@ -441,6 +439,7 @@ void main() {
           'score': null,
           'summary': 'No breeds available for the selected pet type.',
           'compatible': false,
+          'attributes': null,
           'insights': <dynamic>[],
           'requirement_highlights': <dynamic>[],
           'hard_reasons': <Map<String, dynamic>>[

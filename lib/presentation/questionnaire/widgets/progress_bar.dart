@@ -26,8 +26,7 @@ class ProgressBar extends StatelessWidget {
       container: true,
       label:
           '${AppStrings.questionnaire.progressLabel} ${progress.answered + 1} '
-          '${AppStrings.questionnaire.progressOf} ${progress.total}, '
-          '${progress.percentInt}%. ${AppStrings.questionnaire.timeEstimate}.',
+          '${AppStrings.questionnaire.progressOf} ${progress.total}.',
       child: TweenAnimationBuilder<double>(
         tween: Tween<double>(begin: 0, end: target),
         duration: duration,
@@ -38,67 +37,42 @@ class ProgressBar extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(
-                    '${AppStrings.questionnaire.progressLabel} '
-                    '${progress.answered + 1} '
-                    '${AppStrings.questionnaire.progressOf} ${progress.total}',
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  const Spacer(),
-                  Text(
-                    '${(animatedFraction * 100).round()}%',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: AppColors.primary.withValues(
-                        alpha: AppAlpha.textOverSurface,
-                      ),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(AppRadius.sm),
-                child: SizedBox(
-                  height: AppControlSize.progressBarHeight,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Container(color: AppColors.border),
-                      FractionallySizedBox(
-                        widthFactor: animatedFraction,
-                        alignment: Alignment.centerLeft,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColors.primary.withValues(
-                                  alpha: AppAlpha.textOverSurface,
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
+                      child: SizedBox(
+                        height: AppControlSize.progressBarHeight,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Container(color: AppColors.border),
+                            FractionallySizedBox(
+                              widthFactor: animatedFraction,
+                              alignment: Alignment.centerLeft,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.primary.withValues(
+                                        alpha: AppAlpha.textOverSurface,
+                                      ),
+                                      AppColors.primary,
+                                    ],
+                                  ),
                                 ),
-                                AppColors.primary,
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xl),
-              Row(
-                children: [
-                  Icon(
-                    Icons.schedule_rounded,
-                    size: AppIconSize.md,
-                    color: AppColors.primary.withValues(alpha: AppAlpha.muted),
-                  ),
-                  const SizedBox(width: AppSpacing.xs),
+                  const SizedBox(width: AppSpacing.xl),
                   Text(
-                    AppStrings.questionnaire.timeEstimate,
-                    style: theme.textTheme.bodySmall?.copyWith(
+                    '${progress.answered + 1}/${progress.total}',
+                    style: theme.textTheme.bodyMedium?.copyWith(
                       color: AppColors.textSecondary,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],

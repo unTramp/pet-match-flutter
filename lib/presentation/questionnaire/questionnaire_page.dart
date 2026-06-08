@@ -157,7 +157,7 @@ class _QuestionBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(
         AppSpacing.xxxl,
-        AppSpacing.xl,
+        AppSpacing.xs,
         AppSpacing.xxxl,
         AppSpacing.xl,
       ),
@@ -165,11 +165,6 @@ class _QuestionBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ProgressBar(progress: state.progress),
-          const SizedBox(height: AppSpacing.xl),
-          Divider(
-            color: AppColors.border.withValues(alpha: AppAlpha.divider),
-            height: 1,
-          ),
           const SizedBox(height: AppSpacing.xxxl),
           Expanded(
             child: SingleChildScrollView(

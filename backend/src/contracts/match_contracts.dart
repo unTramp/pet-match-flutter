@@ -116,6 +116,7 @@ class CompatibilitySuggestionResponse {
     this.summary,
     this.imageUrl,
     this.storyAvatarUrl,
+    this.attributes,
   });
 
   final String breedId;
@@ -125,6 +126,7 @@ class CompatibilitySuggestionResponse {
   final String? summary;
   final String? imageUrl;
   final String? storyAvatarUrl;
+  final Map<String, int>? attributes;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -135,6 +137,7 @@ class CompatibilitySuggestionResponse {
       'summary': summary,
       'image_url': imageUrl,
       'story_avatar_url': storyAvatarUrl,
+      'attributes': attributes,
     };
   }
 }
@@ -150,6 +153,7 @@ class CompatibilityViewResponse {
     this.score,
     this.summary,
     this.compatible,
+    this.attributes,
     required this.insights,
     required this.requirementHighlights,
     required this.hardReasons,
@@ -167,6 +171,7 @@ class CompatibilityViewResponse {
   final int? score;
   final String? summary;
   final bool? compatible;
+  final Map<String, int>? attributes;
   final List<String> insights;
   final List<String> requirementHighlights;
   final List<CompatibilityReasonResponse> hardReasons;
@@ -185,6 +190,7 @@ class CompatibilityViewResponse {
       'score': score,
       'summary': summary,
       'compatible': compatible,
+      'attributes': attributes,
       'insights': insights,
       'requirement_highlights': requirementHighlights,
       'hard_reasons': hardReasons.map((item) => item.toJson()).toList(),

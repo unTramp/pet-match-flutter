@@ -190,9 +190,7 @@ class _WelcomePageState extends State<WelcomePage>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const TopBrandBar(
-                      padding: EdgeInsets.zero,
-                    ),
+                    const TopBrandBar(padding: EdgeInsets.zero),
                     const Spacer(flex: 1),
                     AppStaggeredEntrance(
                       controller: _introController,
@@ -219,25 +217,6 @@ class _WelcomePageState extends State<WelcomePage>
                           height: 1.5,
                         ),
                       ),
-                    ),
-                    FutureBuilder<bool>(
-                      future: _hasActiveSession,
-                      builder: (context, snapshot) {
-                        final hasSession = snapshot.data ?? false;
-                        if (!hasSession) return const SizedBox.shrink();
-                        return Padding(
-                          padding: const EdgeInsets.only(top: AppSpacing.lg),
-                          child: Text(
-                            AppStrings.welcome.activeSessionHint,
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              color: AppColors.textSecondary.withValues(
-                                alpha: AppAlpha.muted,
-                              ),
-                              height: 1.4,
-                            ),
-                          ),
-                        );
-                      },
                     ),
                     const Spacer(flex: 5),
                     AppStaggeredEntrance(

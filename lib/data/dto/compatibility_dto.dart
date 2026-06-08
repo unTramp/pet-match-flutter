@@ -1,3 +1,5 @@
+import 'breed_attributes_dto.dart';
+
 class CompatibilitySuggestionDto {
   const CompatibilitySuggestionDto({
     required this.breedId,
@@ -7,6 +9,7 @@ class CompatibilitySuggestionDto {
     this.summary,
     this.imageUrl,
     this.storyAvatarUrl,
+    this.attributes,
   });
 
   factory CompatibilitySuggestionDto.fromJson(Map<String, dynamic> json) =>
@@ -19,6 +22,12 @@ class CompatibilitySuggestionDto {
         imageUrl: json['image_url'] as String?,
         storyAvatarUrl:
             (json['story_avatar_url'] ?? json['storyAvatarUrl']) as String?,
+        attributes:
+            json['attributes'] is Map<String, dynamic>
+                ? BreedAttributesDto.fromJson(
+                  json['attributes'] as Map<String, dynamic>,
+                )
+                : null,
       );
 
   final String breedId;
@@ -28,6 +37,7 @@ class CompatibilitySuggestionDto {
   final String? summary;
   final String? imageUrl;
   final String? storyAvatarUrl;
+  final BreedAttributesDto? attributes;
 }
 
 /// Причина (hard) или потенциальный риск (risk) — оба используют один shape
@@ -83,6 +93,7 @@ class CompatibilityDto {
     this.risks = const [],
     this.refusal,
     this.suggestions = const [],
+    this.attributes,
   });
 
   factory CompatibilityDto.fromJson(
@@ -114,6 +125,12 @@ class CompatibilityDto {
               json['refusal'] as Map<String, dynamic>,
             )
             : null,
+    attributes:
+        json['attributes'] is Map<String, dynamic>
+            ? BreedAttributesDto.fromJson(
+              json['attributes'] as Map<String, dynamic>,
+            )
+            : null,
     suggestions: (json['suggestions'] as List<dynamic>? ?? const [])
         .map(
           (e) => CompatibilitySuggestionDto.fromJson(e as Map<String, dynamic>),
@@ -136,6 +153,7 @@ class CompatibilityDto {
   final List<CompatibilityReasonDto> risks;
   final CompatibilityRefusalDto? refusal;
   final List<CompatibilitySuggestionDto> suggestions;
+  final BreedAttributesDto? attributes;
 }
 
 String _readId(Object? raw) {

@@ -11,7 +11,9 @@ import 'package:pet_match/presentation/questionnaire/widgets/single_choice_widge
 /// заголовок и набор опций. Это покрывается напрямую на ProgressBar и
 /// SingleChoiceWidget.
 void main() {
-  testWidgets('ProgressBar renders "N из M" и проценты', (tester) async {
+  testWidgets('ProgressBar renders compact counter under the bar', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
@@ -20,11 +22,14 @@ void main() {
       ),
     );
 
-    expect(find.textContaining('1 из 6'), findsOneWidget);
-    expect(find.textContaining('0%'), findsOneWidget);
+    expect(find.text('1/6'), findsOneWidget);
+    expect(find.textContaining('из'), findsNothing);
+    expect(find.textContaining('%'), findsNothing);
   });
 
-  testWidgets('ProgressBar 3 из 6 → 50%', (tester) async {
+  testWidgets('ProgressBar keeps current question index visible', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
@@ -35,7 +40,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.textContaining('50%'), findsOneWidget);
+    expect(find.text('4/6'), findsOneWidget);
   });
 
   testWidgets('SingleChoiceWidget рендерит все опции', (tester) async {

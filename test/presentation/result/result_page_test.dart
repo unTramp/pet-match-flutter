@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pet_match/core/design/components/breed_story_avatar.dart';
 import 'package:pet_match/core/theme/app_colors.dart';
+import 'package:pet_match/domain/entities/breed_attributes.dart';
 import 'package:pet_match/domain/entities/compatibility.dart';
 import 'package:pet_match/presentation/result/result_page.dart';
 import 'package:pet_match/presentation/result/widgets/main_breed_card.dart';
@@ -277,6 +278,88 @@ void main() {
       expect(cta.onPressed, isNotNull);
     },
   );
+
+  testWidgets('ResultPage shows why-match and requirements sections', (
+    tester,
+  ) async {
+    const explainedCompatibility = Compatibility(
+      status: CompatibilityStatus.ready,
+      breedId: 'labrador_retriever',
+      breedName: 'Лабрадор',
+      score: 0.9,
+      summary: 'Отличный выбор',
+      insights: [
+        'Подходит для активного образа жизни.',
+        'Дружелюбен к детям и другим животным.',
+      ],
+      requirementHighlights: [
+        'Активные прогулки 1+ час в день',
+        'Минимальный груминг — расчёсывание 2-3 раза в неделю',
+      ],
+      risks: [
+        CompatibilityReason(
+          message: 'Может скучать без регулярных нагрузок.',
+          severity: ReasonSeverity.risk,
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ResultPage(compatibility: explainedCompatibility),
+      ),
+    );
+
+    await tester.pumpAndSettle();
+    await tester.drag(find.byType(ListView).first, const Offset(0, -900));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Что важно знать'), findsOneWidget);
+    expect(find.text('Подходит для активного образа жизни.'), findsOneWidget);
+    expect(find.text('Требования породы'), findsOneWidget);
+    expect(find.text('Активные прогулки 1+ час в день'), findsOneWidget);
+    expect(find.text('Может скучать без регулярных нагрузок.'), findsOneWidget);
+  });
+
+  testWidgets('ResultPage shows real breed characteristics instead of stubs', (
+    tester,
+  ) async {
+    const detailedCompatibility = Compatibility(
+      status: CompatibilityStatus.ready,
+      breedId: 'havanese',
+      breedName: 'Хаванез',
+      score: 0.93,
+      summary: 'Мягкий companion-профиль для квартиры.',
+      attributes: BreedAttributes(
+        exerciseNeeds: 2,
+        trainability: 4,
+        sheddingLevel: 1,
+        groomingNeeds: 5,
+        goodWithChildren: 4,
+        maintenanceCost: 3,
+        aloneTolerance: 2,
+      ),
+    );
+
+    await tester.pumpWidget(
+      const MaterialApp(home: ResultPage(compatibility: detailedCompatibility)),
+    );
+
+    await tester.pumpAndSettle();
+    await tester.drag(find.byType(ListView).first, const Offset(0, -900));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Характеристики'), findsOneWidget);
+    expect(find.text('Потребность в нагрузке'), findsOneWidget);
+    expect(find.text('Обучаемость'), findsOneWidget);
+    expect(find.text('Линька'), findsOneWidget);
+    expect(find.text('Потребность в уходе'), findsOneWidget);
+    expect(find.text('Отношение к детям'), findsOneWidget);
+    expect(find.text('Стоимость содержания'), findsOneWidget);
+    expect(find.text('Переносит одиночество'), findsOneWidget);
+    expect(find.text('Здоровье породы'), findsNothing);
+    expect(find.text('Интеллект'), findsNothing);
+  });
 
   // Фокусный тест на BreedStoryAvatar — изолированно проверяем что виджет
   // корректно рендерит имя породы под аватаром. Это test для

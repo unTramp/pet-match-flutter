@@ -7,6 +7,7 @@ import '../../core/design/components/animated_score_label.dart';
 import '../../core/design/components/ui_button.dart';
 import '../../core/design/content/app_strings.dart';
 import '../../core/design/tokens/alpha.dart';
+import '../../core/design/tokens/radius.dart';
 import '../../core/design/tokens/shadows.dart';
 import '../../core/design/tokens/sizes.dart';
 import '../../core/design/tokens/spacing.dart';
@@ -14,8 +15,11 @@ import '../../core/di/injection.dart';
 import '../../core/routing/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../domain/entities/breed_detail.dart';
+import '../../domain/entities/breed_flags.dart';
 import '../widgets/error_view.dart';
 import '../widgets/loading_view.dart';
+import '../result/widgets/reasons_section.dart';
+import '../result/widgets/characteristics_section.dart';
 import 'cubit/breed_detail_cubit.dart';
 import 'cubit/breed_detail_state.dart';
 
@@ -170,6 +174,8 @@ class _Content extends StatelessWidget {
     final theme = Theme.of(context);
     final sections = detail.sections;
     final summary = detail.summary;
+    final hasFlags = detail.flags != null && !detail.flags!.isEmpty;
+    final hasKeyTraits = (detail.group?.isNotEmpty ?? false) || hasFlags;
     return DecoratedBox(
       // Лёгкий fade сверху, чтобы граница image/cream не была резкой.
       decoration: BoxDecoration(
@@ -198,6 +204,15 @@ class _Content extends StatelessWidget {
             const SizedBox(height: AppSpacing.xl),
             Text(summary, style: theme.textTheme.bodyLarge),
           ],
+          if (hasKeyTraits) ...[
+            const SizedBox(height: AppSpacing.xxxl),
+            _KeyTraitsSection(detail: detail),
+          ],
+          if (detail.attributes case final attributes?
+              when !attributes.isEmpty) ...[
+            const SizedBox(height: AppSpacing.xxxl),
+            CharacteristicsSection(attributes: attributes),
+          ],
           if (detail.hasGallery) ...[
             const SizedBox(height: AppSpacing.xxxl),
             UiButton(
@@ -216,9 +231,7 @@ class _Content extends StatelessWidget {
           ],
           const SizedBox(height: AppSpacing.xxxxl),
           for (var i = 0; i < sections.length; i++) ...[
-            Text(sections[i].title, style: theme.textTheme.titleLarge),
-            const SizedBox(height: AppSpacing.md),
-            Text(sections[i].body, style: theme.textTheme.bodyLarge),
+            _DetailSection(section: sections[i]),
             if (i < sections.length - 1) ...[
               const SizedBox(height: AppSpacing.xxxl),
               Divider(
@@ -231,6 +244,177 @@ class _Content extends StatelessWidget {
           const SizedBox(height: AppSpacing.xxxxl),
         ],
       ),
+    );
+  }
+}
+
+class _KeyTraitsSection extends StatelessWidget {
+  const _KeyTraitsSection({required this.detail});
+
+  final BreedDetail detail;
+
+  @override
+  Widget build(BuildContext context) {
+    final chips = <_TraitChipData>[
+      if (detail.group case final group? when group.isNotEmpty)
+        _TraitChipData(
+          label: _groupLabel(group),
+          background: AppColors.lavenderTint,
+          foreground: AppColors.primaryDark,
+        ),
+      ..._flagChips(detail.flags),
+    ];
+
+    if (chips.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Ключевые особенности', style: theme.textTheme.titleLarge),
+        const SizedBox(height: AppSpacing.xl),
+        Wrap(
+          spacing: AppSpacing.md,
+          runSpacing: AppSpacing.md,
+          children: chips
+              .map(
+                (chip) => Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
+                    vertical: AppSpacing.md,
+                  ),
+                  decoration: BoxDecoration(
+                    color: chip.background,
+                    borderRadius: BorderRadius.circular(AppRadius.pill),
+                    border: Border.all(color: AppColors.border),
+                  ),
+                  child: Text(
+                    chip.label,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: chip.foreground,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              )
+              .toList(growable: false),
+        ),
+      ],
+    );
+  }
+
+  static String _groupLabel(String group) => switch (group) {
+    'sporting' => 'Спортивная группа',
+    'working' => 'Рабочая группа',
+    'herding' => 'Пастушья группа',
+    'hound' => 'Гончая группа',
+    'toy' => 'Той-группа',
+    'terrier' => 'Терьер',
+    'non-sporting' => 'Компаньон',
+    'utility' => 'Утилитарная группа',
+    _ => group,
+  };
+
+  static List<_TraitChipData> _flagChips(BreedFlags? flags) {
+    if (flags == null || flags.isEmpty) {
+      return const [];
+    }
+
+    return [
+      if (flags.isSuitableForFirstTimeOwners)
+        const _TraitChipData(
+          label: 'Подходит новичкам',
+          background: AppColors.lavenderTint,
+          foreground: AppColors.primaryDark,
+        ),
+      if (flags.isVocal)
+        const _TraitChipData(
+          label: 'Голосистая',
+          background: AppColors.warningSurface,
+          foreground: AppColors.warning,
+        ),
+      if (flags.isHighPreyDrive)
+        const _TraitChipData(
+          label: 'Сильный prey drive',
+          background: AppColors.warningSurface,
+          foreground: AppColors.warning,
+        ),
+      if (flags.isSensitive)
+        const _TraitChipData(
+          label: 'Чувствительная',
+          background: AppColors.lavenderTint,
+          foreground: AppColors.primaryDark,
+        ),
+      if (flags.isEscapeProne)
+        const _TraitChipData(
+          label: 'Склонна к побегам',
+          background: AppColors.warningSurface,
+          foreground: AppColors.warning,
+        ),
+    ];
+  }
+}
+
+class _TraitChipData {
+  const _TraitChipData({
+    required this.label,
+    required this.background,
+    required this.foreground,
+  });
+
+  final String label;
+  final Color background;
+  final Color foreground;
+}
+
+class _DetailSection extends StatelessWidget {
+  const _DetailSection({required this.section});
+
+  final BreedSection section;
+
+  @override
+  Widget build(BuildContext context) {
+    final title = section.title.trim();
+    final lines = section.body
+        .split('\n')
+        .map((line) => line.trim())
+        .where((line) => line.isNotEmpty)
+        .toList(growable: false);
+
+    if (lines.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final config = switch (title) {
+      'Сильные стороны' => (
+        icon: Icons.check_circle_rounded,
+        color: AppColors.accent,
+      ),
+      'Что учитывать' => (
+        icon: Icons.warning_amber_rounded,
+        color: AppColors.warning,
+      ),
+      'Советы по адаптации' => (
+        icon: Icons.tips_and_updates_rounded,
+        color: AppColors.primary,
+      ),
+      _ => (icon: Icons.notes_rounded, color: AppColors.primary),
+    };
+
+    return ReasonsSection(
+      title: title,
+      items: lines
+          .map(
+            (line) => ReasonItem(
+              text: line,
+              icon: config.icon,
+              color: config.color,
+              plainIcon: true,
+            ),
+          )
+          .toList(growable: false),
     );
   }
 }

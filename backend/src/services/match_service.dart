@@ -205,6 +205,7 @@ class MatchService {
       score: topResult.matchPercent,
       summary: explanation.summary,
       compatible: compatible,
+      attributes: _readAttributes(topBreed),
       insights: explanation.strongMatches,
       requirementHighlights: explanation.weakMatches,
       hardReasons: hardReasons,
@@ -292,7 +293,22 @@ class MatchService {
       storyAvatarUrl: _mediaService.resolveStoryAvatarUrl(
         breed?['storyAvatarUrl'] as String?,
       ),
+      attributes: _readAttributes(breed),
     );
+  }
+
+  Map<String, int>? _readAttributes(Map<String, dynamic>? breed) {
+    final raw = breed?['attributes'];
+    if (raw is! Map<String, dynamic>) return null;
+
+    final attributes = <String, int>{};
+    for (final entry in raw.entries) {
+      final value = entry.value;
+      if (value is num) {
+        attributes[entry.key] = value.toInt();
+      }
+    }
+    return attributes.isEmpty ? null : attributes;
   }
 
   String _resolveRiskLevel({

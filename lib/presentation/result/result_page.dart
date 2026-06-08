@@ -100,9 +100,11 @@ class _ResultPageState extends State<ResultPage>
         breedId: s.breedId,
         breedName: s.breedName,
         imageUrl: s.imageUrl,
+        storyAvatarUrl: s.storyAvatarUrl,
         score: s.score,
         risk: s.risk,
         summary: s.summary,
+        attributes: s.attributes,
       );
 
   @override
@@ -216,19 +218,23 @@ class _ResultPageState extends State<ResultPage>
                         child: _SummarySection(summary: primary!.summary!),
                       ),
                     ),
-                  AppStaggeredEntrance(
-                    controller: _introController,
-                    interval: const Interval(0.16, 0.56),
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        AppSpacing.xxxl,
-                        AppSpacing.xxxxl,
-                        AppSpacing.xxxl,
-                        0,
+                  if (primary?.attributes case final attributes?
+                      when !attributes.isEmpty)
+                    AppStaggeredEntrance(
+                      controller: _introController,
+                      interval: const Interval(0.16, 0.56),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                          AppSpacing.xxxl,
+                          AppSpacing.xxxxl,
+                          AppSpacing.xxxl,
+                          0,
+                        ),
+                        child: _ResultCharacteristicsSection(
+                          attributes: attributes,
+                        ),
                       ),
-                      child: _ResultCharacteristicsSection(),
                     ),
-                  ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(
                       AppSpacing.xxxl,
@@ -239,20 +245,31 @@ class _ResultPageState extends State<ResultPage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // if (primary != null) ...[
-                        //   AppStaggeredEntrance(
-                        //     controller: _introController,
-                        //     interval: const Interval(0.2, 0.6),
-                        //     child: const _WhyMatchSection(),
-                        //   ),
-                        //   const SizedBox(height: AppSpacing.xxxxl),
-                        //   AppStaggeredEntrance(
-                        //     controller: _introController,
-                        //     interval: const Interval(0.28, 0.68),
-                        //     child: const _ImportantNotesSection(),
-                        //   ),
-                        //   const SizedBox(height: AppSpacing.xxxxl),
-                        // ],
+                        if (primary != null &&
+                            compatibility.insights.isNotEmpty) ...[
+                          AppStaggeredEntrance(
+                            controller: _introController,
+                            interval: const Interval(0.2, 0.6),
+                            child: _WhyMatchSection(
+                              insights: compatibility.insights,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xxxxl),
+                        ],
+                        if (primary != null &&
+                            (compatibility.requirementHighlights.isNotEmpty ||
+                                influences.isNotEmpty)) ...[
+                          AppStaggeredEntrance(
+                            controller: _introController,
+                            interval: const Interval(0.28, 0.68),
+                            child: _ImportantNotesSection(
+                              requirementHighlights:
+                                  compatibility.requirementHighlights,
+                              influences: influences,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.xxxxl),
+                        ],
                         if (refusal != null &&
                             ((refusal.title?.isNotEmpty ?? false) ||
                                 (refusal.message?.isNotEmpty ?? false))) ...[
@@ -461,11 +478,71 @@ class _FavoritePawButton extends FavoritePawButton {
 }
 
 class _ResultCharacteristicsSection extends CharacteristicsSection {
-  const _ResultCharacteristicsSection();
+  const _ResultCharacteristicsSection({required super.attributes});
 }
 
 class _SummarySection extends SummarySection {
   const _SummarySection({required super.summary});
+}
+
+class _WhyMatchSection extends StatelessWidget {
+  const _WhyMatchSection({required this.insights});
+
+  final List<String> insights;
+
+  @override
+  Widget build(BuildContext context) {
+    return _SoftSectionCard(
+      icon: Icons.auto_awesome_rounded,
+      child: ReasonsSection(
+        title: AppStrings.result.insights,
+        items: insights
+            .map(
+              (text) => ReasonItem(
+                text: text,
+                icon: Icons.check_circle_rounded,
+                color: AppColors.accent,
+                plainIcon: true,
+              ),
+            )
+            .toList(growable: false),
+      ),
+    );
+  }
+}
+
+class _ImportantNotesSection extends StatelessWidget {
+  const _ImportantNotesSection({
+    required this.requirementHighlights,
+    required this.influences,
+  });
+
+  final List<String> requirementHighlights;
+  final List<ReasonItem> influences;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = <ReasonItem>[
+      ...requirementHighlights.map(
+        (text) => ReasonItem(
+          text: text,
+          icon: Icons.task_alt_rounded,
+          color: AppColors.primary,
+          plainIcon: true,
+        ),
+      ),
+      ...influences,
+    ];
+
+    return _SoftSectionCard(
+      icon: Icons.info_outline_rounded,
+      iconColor: AppColors.primary,
+      child: ReasonsSection(
+        title: AppStrings.result.requirements,
+        items: items,
+      ),
+    );
+  }
 }
 
 class _RefusalSection extends StatelessWidget {

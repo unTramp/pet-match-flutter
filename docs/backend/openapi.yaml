@@ -983,6 +983,8 @@ components:
         compatible:
           type: boolean
           nullable: true
+        attributes:
+          $ref: '#/components/schemas/BreedAttributes'
         insights:
           type: array
           items:
@@ -1058,3 +1060,5 @@ components:
           type: string
           format: uri
           nullable: true
+        attributes:
+          $ref: '#/components/schemas/BreedAttributes'

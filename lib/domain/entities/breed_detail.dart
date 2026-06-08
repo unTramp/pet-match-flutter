@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 
+import 'breed_attributes.dart';
+import 'breed_flags.dart';
+
 class BreedSection extends Equatable {
   const BreedSection({required this.title, required this.body});
 
@@ -19,6 +22,10 @@ class BreedDetail extends Equatable {
     this.storyAvatarUrl,
     this.galleryImages = const [],
     this.sections = const [],
+    this.attributes,
+    this.group,
+    this.aliases = const [],
+    this.flags,
   });
 
   final String breedId;
@@ -28,6 +35,10 @@ class BreedDetail extends Equatable {
   final String? storyAvatarUrl;
   final List<String> galleryImages;
   final List<BreedSection> sections;
+  final BreedAttributes? attributes;
+  final String? group;
+  final List<String> aliases;
+  final BreedFlags? flags;
 
   bool get hasGallery => galleryImages.isNotEmpty;
 
@@ -40,5 +51,9 @@ class BreedDetail extends Equatable {
     storyAvatarUrl,
     galleryImages,
     sections,
+    attributes,
+    group,
+    aliases,
+    flags,
   ];
 }

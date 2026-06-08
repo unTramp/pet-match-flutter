@@ -1,3 +1,6 @@
+import 'breed_attributes_dto.dart';
+import 'breed_flags_dto.dart';
+
 class BreedSectionDto {
   const BreedSectionDto({this.title, this.body});
 
@@ -20,21 +23,38 @@ class BreedDetailDto {
     this.storyAvatarUrl,
     this.galleryImages = const [],
     this.sections = const [],
+    this.attributes,
+    this.group,
+    this.aliases = const [],
+    this.flags,
   });
 
   factory BreedDetailDto.fromJson(Map<String, dynamic> json) => BreedDetailDto(
     breedId: _readId(json['breedId'] ?? json['breed_id']),
     breedName: (json['name'] ?? json['breed_name']) as String,
     summary:
-        (json['summary'] ?? (json['content'] as Map<String, dynamic>?)?['summaryShort'])
+        (json['summary'] ??
+                (json['content'] as Map<String, dynamic>?)?['summaryShort'])
             as String?,
     imageUrl: (json['imageUrl'] ?? json['image_url']) as String?,
     storyAvatarUrl:
         (json['storyAvatarUrl'] ?? json['story_avatar_url']) as String?,
+    group: json['group'] as String?,
+    aliases: (json['aliases'] as List<dynamic>? ?? const []).cast<String>(),
     galleryImages:
         ((json['galleryImages'] ?? json['gallery_images']) as List<dynamic>? ??
                 const [])
             .cast<String>(),
+    attributes:
+        json['attributes'] is Map<String, dynamic>
+            ? BreedAttributesDto.fromJson(
+              json['attributes'] as Map<String, dynamic>,
+            )
+            : null,
+    flags:
+        json['flags'] is Map<String, dynamic>
+            ? BreedFlagsDto.fromJson(json['flags'] as Map<String, dynamic>)
+            : null,
     sections: _readSections(json),
   );
 
@@ -43,8 +63,12 @@ class BreedDetailDto {
   final String? summary;
   final String? imageUrl;
   final String? storyAvatarUrl;
+  final String? group;
+  final List<String> aliases;
   final List<String> galleryImages;
   final List<BreedSectionDto> sections;
+  final BreedAttributesDto? attributes;
+  final BreedFlagsDto? flags;
 
   static String _readId(Object? raw) {
     return switch (raw) {

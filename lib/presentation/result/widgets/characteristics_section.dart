@@ -5,72 +5,23 @@ import '../../../core/design/tokens/alpha.dart';
 import '../../../core/design/tokens/radius.dart';
 import '../../../core/design/tokens/spacing.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../domain/entities/breed_attributes.dart';
 
 class CharacteristicsSection extends StatelessWidget {
-  const CharacteristicsSection({super.key});
+  const CharacteristicsSection({super.key, required this.attributes});
+
+  final BreedAttributes attributes;
 
   static const _iconBase = 'assets/icons/prototype_traits';
-
-  static const _items = <_ResultCharacteristicItem>[
-    _ResultCharacteristicItem(
-      title: 'Потребность в нагрузке',
-      description: 'Сколько активности нужно собаке для хорошего самочувствия',
-      assetPath: '$_iconBase/exercise_runner.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Обучаемость',
-      description: 'Насколько легко собака поддаётся обучению',
-      assetPath: '$_iconBase/pedigree_medal.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Линька',
-      description: 'Сколько шерсти будет дома в период линьки',
-      assetPath: '$_iconBase/shedding_fur.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Потребность в уходе',
-      description: 'Сколько времени и усилий нужно на уход и гигиену',
-      assetPath: '$_iconBase/grooming_brush.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Отношение к детям',
-      description: 'Насколько спокойно и дружелюбно собака ладит с детьми',
-      assetPath: '$_iconBase/good_with_children.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Здоровье породы',
-      description: 'Общее состояние здоровья и склонность к частым проблемам',
-      assetPath: '$_iconBase/health_heart.png',
-      level: 5,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Стоимость содержания',
-      description: 'Финансовые затраты на содержание, питание и уход',
-      assetPath: '$_iconBase/cost_bag.png',
-      level: 5,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Интеллект',
-      description: 'Как быстро собака схватывает команды и новые паттерны',
-      assetPath: '$_iconBase/intelligence_brain.png',
-      level: 3,
-    ),
-    _ResultCharacteristicItem(
-      title: 'Переносит одиночество',
-      description: 'Насколько спокойно собака остаётся одна без лишней тревоги',
-      assetPath: '$_iconBase/home_alone.png',
-      level: 2,
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final items = _items(attributes);
+    if (items.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -82,12 +33,78 @@ class CharacteristicsSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSpacing.xl),
-        for (final item in _items)
+        for (final item in items)
           Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: _ResultCharacteristicCard(item: item),
           ),
       ],
+    );
+  }
+
+  static List<_ResultCharacteristicItem> _items(BreedAttributes attributes) {
+    final items = <_ResultCharacteristicItem?>[
+      _item(
+        title: 'Потребность в нагрузке',
+        description:
+            'Сколько активности нужно собаке для хорошего самочувствия',
+        assetPath: '$_iconBase/exercise_runner.png',
+        level: attributes.exerciseNeeds,
+      ),
+      _item(
+        title: 'Обучаемость',
+        description: 'Насколько легко собака поддаётся обучению',
+        assetPath: '$_iconBase/pedigree_medal.png',
+        level: attributes.trainability,
+      ),
+      _item(
+        title: 'Линька',
+        description: 'Сколько шерсти будет дома в период линьки',
+        assetPath: '$_iconBase/shedding_fur.png',
+        level: attributes.sheddingLevel,
+      ),
+      _item(
+        title: 'Потребность в уходе',
+        description: 'Сколько времени и усилий нужно на уход и гигиену',
+        assetPath: '$_iconBase/grooming_brush.png',
+        level: attributes.groomingNeeds,
+      ),
+      _item(
+        title: 'Отношение к детям',
+        description: 'Насколько спокойно и дружелюбно собака ладит с детьми',
+        assetPath: '$_iconBase/good_with_children.png',
+        level: attributes.goodWithChildren,
+      ),
+      _item(
+        title: 'Стоимость содержания',
+        description: 'Финансовые затраты на содержание, питание и уход',
+        assetPath: '$_iconBase/cost_bag.png',
+        level: attributes.maintenanceCost,
+      ),
+      _item(
+        title: 'Переносит одиночество',
+        description:
+            'Насколько спокойно собака остаётся одна без лишней тревоги',
+        assetPath: '$_iconBase/home_alone.png',
+        level: attributes.aloneTolerance,
+      ),
+    ];
+
+    return items.whereType<_ResultCharacteristicItem>().toList(growable: false);
+  }
+
+  static _ResultCharacteristicItem? _item({
+    required String title,
+    required String description,
+    required String assetPath,
+    required int? level,
+  }) {
+    if (level == null) return null;
+    return _ResultCharacteristicItem(
+      title: title,
+      description: description,
+      assetPath: assetPath,
+      level: level,
     );
   }
 }

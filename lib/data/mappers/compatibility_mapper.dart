@@ -1,4 +1,5 @@
 import '../../domain/entities/compatibility.dart';
+import 'breed_attributes_mapper.dart';
 import '../dto/compatibility_dto.dart';
 
 class CompatibilityMapper {
@@ -38,6 +39,10 @@ class CompatibilityMapper {
     summary: dto.summary,
     insights: List<String>.unmodifiable(dto.insights),
     requirementHighlights: List<String>.unmodifiable(dto.requirementHighlights),
+    attributes:
+        dto.attributes == null
+            ? null
+            : BreedAttributesMapper.fromDto(dto.attributes!),
     hardReasons: dto.hardReasons
         .map(
           (r) => CompatibilityReason(
@@ -73,6 +78,10 @@ class CompatibilityMapper {
             summary: s.summary,
             imageUrl: s.imageUrl,
             storyAvatarUrl: s.storyAvatarUrl,
+            attributes:
+                s.attributes == null
+                    ? null
+                    : BreedAttributesMapper.fromDto(s.attributes!),
           ),
         )
         .toList(growable: false),
