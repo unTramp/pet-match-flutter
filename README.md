@@ -1,4 +1,4 @@
-# 🐾 Pet Match AI — Flutter (Тестовое Задание)
+# 🐾 Pet Match AI — Flutter
 <p align="center">
   <img 
     src="https://i.ibb.co/3D09TnY/Chat-GPT-Image-24-2026-00-26-41.png"
